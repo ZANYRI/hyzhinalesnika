@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "hyzhinalesnika",
       script: "node_modules/next/dist/bin/next",
-      args: "start -p 3001",
+      args: "start -p 3001 -H 127.0.0.1",
       cwd: __dirname,
       instances: 1,
       autorestart: true,
@@ -11,6 +11,7 @@ module.exports = {
       env: {
         NODE_ENV: "production",
         PORT: "3001",
+        HOSTNAME: "127.0.0.1",
       },
     },
   ],
