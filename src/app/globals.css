@@ -254,9 +254,65 @@ body {
   overflow: hidden;
 }
 
-#availability-calendar .kontur-forest-scope > div > div > div {
-  width: 100%;
+/* Center `RoomAvailabilityCalendarContainer` horizontally across all breakpoints */
+.kontur-forest-scope [style*="--bm-theme-filterContainer-bg"] > div {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 100%;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 767px) {
+  .kontur-forest-scope [style*="--bm-theme-filterContainer-bg"] > div {
+    width: min(100%, 420px) !important;
+  }
+}
+
+/* Interactive check-in / check-out date selection states inside `availabilityCalendar` */
+.kontur-forest-scope [data-hl-clickable="true"] {
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.kontur-forest-scope [data-hl-clickable="true"]:hover {
+  background-color: rgba(212, 154, 90, 0.38) !important;
+  box-shadow: inset 0 0 0 1.5px rgba(212, 154, 90, 0.85);
+  border-radius: 8px;
+  z-index: 2;
+}
+
+.kontur-forest-scope [data-hl-selected="start"],
+.kontur-forest-scope [data-hl-selected="end"] {
+  background-color: #d49a5a !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+
+.kontur-forest-scope [data-hl-selected="start"] > div:nth-child(-n + 2),
+.kontur-forest-scope [data-hl-selected="end"] > div:nth-child(-n + 2) {
+  color: #0a1911 !important;
+  font-weight: 700 !important;
+}
+
+.kontur-forest-scope [data-hl-selected="preview-end"] {
+  background-color: rgba(212, 154, 90, 0.72) !important;
+  border-radius: 8px !important;
+  z-index: 2;
+}
+
+.kontur-forest-scope [data-hl-selected="preview-end"] > div:nth-child(-n + 2) {
+  color: #0a1911 !important;
+  font-weight: 600 !important;
+}
+
+.kontur-forest-scope [data-hl-selected="range"] {
+  background-color: rgba(212, 154, 90, 0.32) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(212, 154, 90, 0.45),
+    inset 0 -1px 0 rgba(212, 154, 90, 0.45);
 }
 
 /* Portaled Контур.Отель popups (`Select__menu`, `Popup__root`, `Tooltip__root`) when no light modal (`modal-container`) is open */

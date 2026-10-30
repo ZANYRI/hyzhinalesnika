@@ -21,7 +21,7 @@ export default function BookingPage() {
       <main className="mx-auto max-w-[1400px] px-4 pt-10 pb-24 sm:px-6 sm:pt-14">
         <nav
           aria-label="Хлебные крошки"
-          className="flex flex-wrap items-center gap-2 text-xs text-[#a8b9ae]"
+          className="flex flex-wrap items-center justify-center gap-2 text-xs text-[#a8b9ae]"
         >
           <Link href="/" className="transition hover:text-[#d49a5a]">
             Главная
@@ -30,38 +30,30 @@ export default function BookingPage() {
           <span className="text-[#f3f5f0]">Онлайн-бронирование</span>
         </nav>
 
-        <div className="mt-5 max-w-2xl">
+        <div className="mx-auto mt-5 max-w-2xl text-center">
           <h1 className="font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
             Онлайн-бронирование домов
           </h1>
           <p className="mt-3 text-base leading-relaxed text-[#a8b9ae]">
-            Выберите даты заезда и выезда в официальном модуле Контур.Отель.
-            При бронировании от 4 суток действует скидка 5%.
+            Выберите даты заезда и выезда прямо в календаре Контур.Отель. При
+            бронировании от 4 суток действует скидка 5%.
           </p>
         </div>
 
-        {/* 1. Горизонтальный модуль поиска */}
+        {/* 1. Центрированный интерактивный календарь доступности */}
         <KonturBookingWidget
           id="booking"
-          variant="horizontalForm"
-          containerId="WidgetHorizontalBlockId"
-          align="left"
+          variant="calendarResponsive"
+          interactiveCalendar
           className="mt-9 px-0 sm:px-0"
         />
 
-        {/* 2. Адаптивный календарь доступности (2 месяца на десктопе, 1 месяц на мобильных без скрытого контейнера) */}
-        <KonturBookingWidget
-          id="availability-calendar"
-          variant="calendarResponsive"
-          className="mt-10 px-0 sm:px-0"
-        />
-
-        {/* 3. Полный список домов */}
+        {/* 2. Полный список домов (выровнен по центру вровень с календарём) */}
         <KonturBookingWidget
           id="rooms-list"
           variant="roomsList"
           containerId="WidgetRoomsListId"
-          className="mt-10 px-0 sm:px-0"
+          className="mt-10 max-w-[910px] px-0 sm:px-0"
         />
       </main>
 

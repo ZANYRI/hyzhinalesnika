@@ -35,6 +35,46 @@ export interface HotelWidgetGlobal {
   isExists: (widgetId: string) => boolean | undefined;
 }
 
+export interface KonturCalendarDayInfo {
+  year: number;
+  monthIndex: number;
+  day: number;
+  isoDate: string;
+  formattedDate: string;
+  hasPrice: boolean;
+  isDisabled: boolean;
+}
+
+interface ReactFiberNode {
+  return: ReactFiberNode | null;
+  type?: {
+    displayName?: string;
+  } | null;
+  memoizedProps?: Record<string, unknown> | null;
+}
+
+interface KonturSearchParamsState {
+  fromDate: string | null;
+  toDate: string | null;
+  adultsCount: number;
+  children?: unknown[];
+  roomCategoryId?: string | null;
+  calendarRoomCategoryId?: string | null;
+}
+
+interface KonturSearchContextValue {
+  params: KonturSearchParamsState;
+  setParams: (
+    updater: (prev: KonturSearchParamsState) => KonturSearchParamsState
+  ) => void;
+  calendarRoomCategoryId?: string | null;
+}
+
+interface KonturLightboxContextValue {
+  isBookingProcess: boolean;
+  openBookingLightbox: () => void;
+}
+
 declare global {
   interface Window {
     HotelWidget?: HotelWidgetGlobal;
@@ -185,6 +225,420 @@ let scriptPromise: Promise<HotelWidgetGlobal> | null = null;
 let initializedHotelId: string | null = null;
 let adultsCapGuardInstalled = false;
 
+const MONTH_NAME_MAP: Record<string, number> = {
+  январ: 0,
+  феврал: 1,
+  март: 2,
+  апрел: 3,
+  май: 4,
+  мая: 4,
+  июн: 5,
+  июл: 6,
+  август: 7,
+  сентябр: 8,
+  октябр: 9,
+  ноябр: 10,
+  декабр: 11,
+  januar: 0,
+  februar: 1,
+  march: 2,
+  april: 3,
+  may: 4,
+  june: 5,
+  july: 6,
+  august: 7,
+  september: 8,
+  october: 9,
+  november: 10,
+  december: 11,
+};
+
+function pad2(n: number): string {
+  return n < 10 ? `0${n}` : String(n);
+}
+
+function getReactFiber(el: Element): ReactFiberNode | null {
+  const record = el as unknown as Record<string, unknown>;
+  for (const key of Object.keys(record)) {
+    if (key.startsWith("__reactFiber$")) {
+      return (record[key] as ReactFiberNode) || null;
+    }
+  }
+  return null;
+}
+
+function parseMonthYearText(raw: string): {
+  monthIndex: number | null;
+  year: number | null;
+} {
+  const lower = raw.toLowerCase().trim();
+  let monthIndex: number | null = null;
+  for (const [prefix, idx] of Object.entries(MONTH_NAME_MAP)) {
+    if (lower.includes(prefix)) {
+      monthIndex = idx;
+      break;
+    }
+  }
+  const yearMatch = lower.match(/\b(20\d{2})\b/);
+  const year = yearMatch ? Number.parseInt(yearMatch[1], 10) : null;
+  return { monthIndex, year };
+}
+
+/**
+ * Finds the day cell `<div>` (`CalendarDay`) inside Контур.Отель's `CalendarMonth`
+ * `<section>` when clicking or hovering anywhere inside a day cell.
+ */
+export function findKonturCalendarDayCell(
+  target: EventTarget | null,
+  containerEl: HTMLElement
+): HTMLElement | null {
+  if (!(target instanceof HTMLElement) || !containerEl.contains(target)) {
+    return null;
+  }
+  if (target.closest("button")) {
+    return null;
+  }
+  const section = target.closest("section");
+  if (!section || !containerEl.contains(section)) {
+    return null;
+  }
+
+  let node: HTMLElement | null = target;
+  while (node && node !== section) {
+    const parent: HTMLElement | null = node.parentElement;
+    if (parent && section.contains(parent) && parent.childElementCount >= 28) {
+      return node;
+    }
+    node = parent;
+  }
+  return null;
+}
+
+/**
+ * Extracts exact `{ year, monthIndex, day, isoDate, formattedDate, hasPrice, isDisabled }`
+ * from a Контур.Отель `CalendarDay` DOM cell via its React Fiber props (with DOM fallback).
+ */
+export function extractKonturCalendarDayInfo(
+  cell: HTMLElement
+): KonturCalendarDayInfo | null {
+  let day: number | null = null;
+  let monthIndex: number | null = null;
+  let year: number | null = null;
+  let hasPrice = false;
+  let isDisabled = false;
+  let foundDayProps = false;
+
+  let fiber = getReactFiber(cell);
+  let hops = 0;
+  while (fiber && hops < 16) {
+    const props = fiber.memoizedProps;
+    if (props) {
+      if (!foundDayProps && "day" in props && "disabled" in props) {
+        foundDayProps = true;
+        if (typeof props.day !== "number" || props.day < 1) {
+          return null;
+        }
+        day = props.day;
+        isDisabled = Boolean(props.disabled);
+        const data = props.data as { price?: unknown } | undefined;
+        hasPrice = !isDisabled && Boolean(data && data.price);
+      }
+      if (
+        typeof props.monthNumberFromZero === "number" &&
+        typeof props.year === "number"
+      ) {
+        monthIndex = props.monthNumberFromZero;
+        year = props.year;
+        break;
+      }
+    }
+    fiber = fiber.return;
+    hops++;
+  }
+
+  // Pure DOM fallback if Fiber props are unavailable
+  if (day === null) {
+    const numText = (cell.firstElementChild?.textContent || "").trim();
+    if (!/^\d{1,2}$/.test(numText)) {
+      return null;
+    }
+    day = Number.parseInt(numText, 10);
+    const subText = (cell.children[1]?.textContent || "").trim();
+    hasPrice = /\d/.test(subText);
+  }
+
+  if (monthIndex === null || year === null) {
+    const section = cell.closest("section");
+    const flipId = section?.parentElement?.getAttribute("data-flip-id") || "";
+    const titleText = (section?.firstElementChild?.textContent || "").trim();
+    const parsedFlip = parseMonthYearText(flipId);
+    const parsedTitle = parseMonthYearText(titleText);
+
+    monthIndex = parsedFlip.monthIndex ?? parsedTitle.monthIndex;
+    year = parsedFlip.year ?? parsedTitle.year;
+
+    if (monthIndex !== null && year === null) {
+      const now = new Date();
+      year =
+        monthIndex < now.getMonth() - 1
+          ? now.getFullYear() + 1
+          : now.getFullYear();
+    }
+  }
+
+  if (day === null || monthIndex === null || year === null) {
+    return null;
+  }
+
+  const isoDate = `${year}-${pad2(monthIndex + 1)}-${pad2(day)}`;
+  const formattedDate = `${pad2(day)}.${pad2(monthIndex + 1)}.${year}`;
+
+  if (!foundDayProps) {
+    const now = new Date();
+    const todayIso = `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(
+      now.getDate()
+    )}`;
+    isDisabled = isoDate < todayIso;
+    if (isDisabled) {
+      hasPrice = false;
+    }
+  }
+
+  return {
+    year,
+    monthIndex,
+    day,
+    isoDate,
+    formattedDate,
+    hasPrice,
+    isDisabled,
+  };
+}
+
+/**
+ * Collects all rendered day cells inside a Контур.Отель `availabilityCalendar` container.
+ */
+function collectCalendarCells(
+  containerEl: HTMLElement
+): Array<{ cell: HTMLElement; info: KonturCalendarDayInfo }> {
+  const results: Array<{ cell: HTMLElement; info: KonturCalendarDayInfo }> = [];
+  const sections = containerEl.querySelectorAll("section");
+  sections.forEach((section) => {
+    const grids = section.querySelectorAll("div");
+    grids.forEach((grid) => {
+      if (grid.childElementCount >= 28) {
+        Array.from(grid.children).forEach((child) => {
+          if (child instanceof HTMLElement) {
+            const info = extractKonturCalendarDayInfo(child);
+            if (info) {
+              results.push({ cell: child, info });
+            }
+          }
+        });
+      }
+    });
+  });
+  return results;
+}
+
+/**
+ * Computes the maximum valid check-out ISO date (`YYYY-MM-DD`) for a given `checkInIso`
+ * based on currently rendered calendar availability: guests can stay across contiguous
+ * nights with `hasPrice === true` and check out up to the first unavailable boundary morning.
+ */
+export function computeMaxValidCheckOutIso(
+  containerEl: HTMLElement,
+  checkInIso: string
+): string | null {
+  const entries = collectCalendarCells(containerEl);
+  const byIso = new Map<string, KonturCalendarDayInfo>();
+  for (const { info } of entries) {
+    if (!byIso.has(info.isoDate) || info.hasPrice) {
+      byIso.set(info.isoDate, info);
+    }
+  }
+
+  const sortedIsos = Array.from(byIso.keys()).sort();
+  for (const iso of sortedIsos) {
+    if (iso <= checkInIso) continue;
+    const info = byIso.get(iso);
+    if (info && !info.hasPrice) {
+      return iso;
+    }
+  }
+  return null;
+}
+
+/**
+ * Stamps `data-hl-clickable` and `data-hl-selected` attributes on Контур.Отель's
+ * calendar cells so users get interactive hover, range preview, and selected range styling.
+ */
+export function paintKonturCalendarSelection(
+  containerEl: HTMLElement,
+  checkInIso: string | null,
+  checkOutIso: string | null,
+  hoverIso: string | null
+): void {
+  const entries = collectCalendarCells(containerEl);
+  const pickingCheckOut = Boolean(checkInIso && !checkOutIso);
+  const maxCheckOutIso =
+    pickingCheckOut && checkInIso
+      ? computeMaxValidCheckOutIso(containerEl, checkInIso)
+      : null;
+
+  const isValidCheckOutTarget = (iso: string): boolean => {
+    if (!checkInIso || iso <= checkInIso) return false;
+    if (maxCheckOutIso && iso > maxCheckOutIso) return false;
+    return true;
+  };
+
+  const previewEndIso =
+    pickingCheckOut && hoverIso && isValidCheckOutTarget(hoverIso)
+      ? hoverIso
+      : null;
+  const effectiveEndIso = checkOutIso || previewEndIso;
+
+  for (const { cell, info } of entries) {
+    const canClick =
+      !info.isDisabled &&
+      (pickingCheckOut
+        ? info.isoDate === checkInIso ||
+          isValidCheckOutTarget(info.isoDate) ||
+          info.hasPrice
+        : info.hasPrice);
+
+    if (canClick) {
+      cell.setAttribute("data-hl-clickable", "true");
+    } else {
+      cell.removeAttribute("data-hl-clickable");
+    }
+
+    let selectedState: string | null = null;
+    if (checkInIso && info.isoDate === checkInIso) {
+      selectedState = "start";
+    } else if (checkOutIso && info.isoDate === checkOutIso) {
+      selectedState = "end";
+    } else if (previewEndIso && info.isoDate === previewEndIso) {
+      selectedState = "preview-end";
+    } else if (
+      checkInIso &&
+      effectiveEndIso &&
+      info.isoDate > checkInIso &&
+      info.isoDate < effectiveEndIso
+    ) {
+      selectedState = "range";
+    }
+
+    if (selectedState) {
+      cell.setAttribute("data-hl-selected", selectedState);
+    } else {
+      cell.removeAttribute("data-hl-selected");
+    }
+  }
+}
+
+/**
+ * Calculates number of nights between two `YYYY-MM-DD` ISO dates.
+ */
+export function countNightsBetweenIso(
+  checkInIso: string,
+  checkOutIso: string
+): number {
+  const [y1, m1, d1] = checkInIso.split("-").map(Number);
+  const [y2, m2, d2] = checkOutIso.split("-").map(Number);
+  const utc1 = Date.UTC(y1, m1 - 1, d1);
+  const utc2 = Date.UTC(y2, m2 - 1, d2);
+  return Math.max(1, Math.round((utc2 - utc1) / 86_400_000));
+}
+
+/**
+ * Updates Контур.Отель's shared daily `RoomCategorySearchParamsProvider` (`xH`) with the
+ * selected check-in / check-out dates (`DD.MM.YYYY`) and the currently selected house in
+ * the calendar filter, then opens Контур.Отель's official `BookingSearchLightbox` checkout.
+ */
+export function openKonturCheckoutForDates(
+  containerEl: HTMLElement,
+  fromDate: string,
+  toDate: string
+): void {
+  const anchorEl =
+    containerEl.querySelector("section") || containerEl.firstElementChild;
+
+  let searchCtx: KonturSearchContextValue | null = null;
+  let lightboxCtx: KonturLightboxContextValue | null = null;
+
+  if (anchorEl) {
+    let curr = getReactFiber(anchorEl);
+    while (curr) {
+      const val = curr.memoizedProps?.value as
+        | Record<string, unknown>
+        | undefined;
+      if (val && typeof val === "object") {
+        // Outermost match wins: `ZU` (daily RoomCategorySearchParamsProvider) wraps `ZW` (hourly)
+        if (typeof val.setParams === "function" && "params" in val) {
+          const parentName = curr.return?.type?.displayName;
+          if (parentName !== "HourlyObjectsSearchParamsProvider") {
+            searchCtx = val as unknown as KonturSearchContextValue;
+          }
+        }
+        // Outermost match wins: `XL` (daily BookingLightboxProvider) wraps `Zk` (hourly)
+        if (
+          typeof val.openBookingLightbox === "function" &&
+          "isBookingProcess" in val
+        ) {
+          lightboxCtx = val as unknown as KonturLightboxContextValue;
+        }
+      }
+      curr = curr.return;
+    }
+  }
+
+  // Clamp adultsCount to the currently selected house's capacity if needed
+  const placesEl = containerEl.querySelector('[data-tid="PlacesCount"]');
+  const parsedCapacity = placesEl
+    ? Number.parseInt((placesEl.textContent || "").trim(), 10)
+    : Number.NaN;
+  const maxHouseAdults =
+    Number.isFinite(parsedCapacity) && parsedCapacity > 0
+      ? Math.min(parsedCapacity, MAX_ADULTS_COUNT)
+      : MAX_ADULTS_COUNT;
+
+  if (searchCtx && lightboxCtx) {
+    searchCtx.setParams((prev) => {
+      const currentAdults = Math.min(
+        Math.max(1, prev.adultsCount || 2),
+        maxHouseAdults
+      );
+      const selectedRoomId =
+        prev.calendarRoomCategoryId ??
+        searchCtx?.calendarRoomCategoryId ??
+        prev.roomCategoryId ??
+        null;
+      return {
+        ...prev,
+        fromDate,
+        toDate,
+        adultsCount: currentAdults,
+        roomCategoryId: selectedRoomId,
+      };
+    });
+
+    // Open lightbox on next macrotask after React 18 commits `fromDate` & `toDate` into `xH`
+    const openModal = lightboxCtx.openBookingLightbox;
+    window.setTimeout(() => {
+      openModal();
+    }, 0);
+    return;
+  }
+
+  // Fallback for non-whitelisted preview hosts
+  const fallbackUrl = new URL(SITE_CONFIG.konturBookingPortalUrl);
+  fallbackUrl.searchParams.set("fromDate", fromDate);
+  fallbackUrl.searchParams.set("toDate", toDate);
+  fallbackUrl.searchParams.set("adultsCount", "2");
+  window.open(fallbackUrl.toString(), "_blank", "noopener,noreferrer");
+}
+
 function parseAdultsMenuItemValue(item: Element): number | null {
   const content = item.querySelector('[data-tid="MenuItem__content"]');
   if (!content || !content.querySelector("svg")) {
@@ -216,7 +670,11 @@ function installKonturAdultsCapGuard(): void {
       const parsed = Number.parseInt(rawAdults, 10);
       if (Number.isFinite(parsed) && parsed > MAX_ADULTS_COUNT) {
         url.searchParams.set("adultsCount", String(MAX_ADULTS_COUNT));
-        window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+        window.history.replaceState(
+          null,
+          "",
+          url.pathname + url.search + url.hash
+        );
       }
     }
   } catch {
@@ -224,7 +682,9 @@ function installKonturAdultsCapGuard(): void {
   }
 
   const pruneAdultsItems = (root: ParentNode = document.body) => {
-    const items = root.querySelectorAll<HTMLElement>('[data-tid="MenuItem__root"]');
+    const items = root.querySelectorAll<HTMLElement>(
+      '[data-tid="MenuItem__root"]'
+    );
     items.forEach((item) => {
       const count = parseAdultsMenuItemValue(item);
       if (count !== null && count > MAX_ADULTS_COUNT) {
@@ -246,9 +706,7 @@ function installKonturAdultsCapGuard(): void {
           if (node instanceof HTMLElement) {
             if (node.matches('[data-tid="MenuItem__root"]')) {
               pruneAdultsItems(node.parentElement || document.body);
-            } else if (
-              node.querySelector('[data-tid="MenuItem__root"]')
-            ) {
+            } else if (node.querySelector('[data-tid="MenuItem__root"]')) {
               pruneAdultsItems(node);
             }
           }
@@ -489,12 +947,17 @@ export async function mountKonturWidget(
 }
 
 /**
- * Highlights the `#booking` bar and opens Контур.Отель's interactive calendar
- * (or opens the full booking modal immediately if both dates are already selected).
+ * Highlights the `#booking` bar or centered calendar and opens Контур.Отель's interactive
+ * calendar (or opens the full booking modal immediately if both dates are already selected).
  */
 export function activateKonturBookingSection(sectionEl: HTMLElement): void {
+  const calendarCard = sectionEl.querySelector<HTMLElement>(
+    '[style*="--bm-theme-filterContainer-bg"] > div'
+  );
   const pulseTarget =
-    sectionEl.querySelector<HTMLElement>(".forest-glass") || sectionEl;
+    sectionEl.querySelector<HTMLElement>(".forest-glass") ||
+    calendarCard ||
+    sectionEl;
   pulseTarget.classList.remove("booking-focus-pulse");
   // Trigger reflow so repeated clicks replay the amber highlight pulse
   void pulseTarget.offsetWidth;
@@ -514,7 +977,11 @@ export function activateKonturBookingSection(sectionEl: HTMLElement): void {
     Boolean(el && /\d{2}\.\d{2}\.\d{4}/.test(el.textContent || ""));
 
   if (startField || endField) {
-    if (hasFormattedDate(startField) && hasFormattedDate(endField) && searchBtn) {
+    if (
+      hasFormattedDate(startField) &&
+      hasFormattedDate(endField) &&
+      searchBtn
+    ) {
       searchBtn.click();
       return;
     }
