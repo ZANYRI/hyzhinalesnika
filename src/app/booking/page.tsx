@@ -15,39 +15,40 @@ export const metadata: Metadata = {
 
 export default function BookingPage() {
   return (
-    <div className="min-h-screen bg-[#0e2618] text-white">
+    <div className="min-h-screen bg-[#0a1911] text-[#f3f5f0]">
       <Header variant="inner" bookingAnchor="#booking" />
 
-      <main className="mx-auto max-w-[1280px] px-4 pt-12 pb-20 sm:px-6 sm:pt-16">
+      <main className="mx-auto max-w-[1400px] px-4 pt-10 pb-24 sm:px-6 sm:pt-14">
         <nav
           aria-label="Хлебные крошки"
-          className="flex flex-wrap items-center gap-2 text-xs text-white/70 sm:text-sm"
+          className="flex flex-wrap items-center gap-2 text-xs text-[#a8b9ae]"
         >
-          <Link href="/" className="underline hover:text-[#dbd0bf]">
+          <Link href="/" className="transition hover:text-[#d49a5a]">
             Главная
           </Link>
           <span>/</span>
-          <span className="text-white/95">Онлайн-бронирование</span>
+          <span className="text-[#f3f5f0]">Онлайн-бронирование</span>
         </nav>
 
-        <div className="mt-6 text-center">
-          <p className="font-great-vibes text-[44px] leading-none text-[#dbd0bf] sm:text-[52px]">
-            Выберите удобные даты
-          </p>
-          <h1 className="mt-2 font-moderustic text-[28px] leading-tight font-extrabold uppercase text-[#90754b] sm:text-[40px]">
-            ОНЛАЙН-БРОНИРОВАНИЕ ДОМИКОВ
+        <div className="mt-5 max-w-2xl">
+          <h1 className="font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
+            Онлайн-бронирование домов
           </h1>
+          <p className="mt-3 text-base leading-relaxed text-[#a8b9ae]">
+            Выберите даты заезда и выезда в официальном модуле Контур.Отель.
+            При бронировании от 4 суток действует скидка 5%.
+          </p>
         </div>
 
-        {/* 1. Поиск и бронирование номеров — горизонтальный блок */}
+        {/* 1. Горизонтальный модуль поиска */}
         <KonturBookingWidget
           id="booking"
           variant="horizontalForm"
           containerId="WidgetHorizontalBlockId"
-          className="mt-10 px-0 sm:px-0"
+          className="mt-9 px-0 sm:px-0"
         />
 
-        {/* 2. Календарь доступности (горизонтальный на 2 месяца для десктопа, вертикальный на 1 месяц для мобильных) */}
+        {/* 2. Календарь доступности */}
         <div className="mt-10 hidden md:block">
           <KonturBookingWidget
             id="availability-calendar-desktop"
@@ -65,7 +66,7 @@ export default function BookingPage() {
           />
         </div>
 
-        {/* 3. Бронирование номеров — полный список домиков */}
+        {/* 3. Полный список домов */}
         <KonturBookingWidget
           id="rooms-list"
           variant="roomsList"

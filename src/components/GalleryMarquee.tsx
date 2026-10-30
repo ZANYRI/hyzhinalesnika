@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { CaretLeft, CaretRight, X } from "@phosphor-icons/react";
 import { HOME_GALLERY } from "@/data/home";
-import { CloseIcon } from "./Icons";
 
 export function GalleryMarquee() {
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
@@ -32,10 +32,10 @@ export function GalleryMarquee() {
 
   return (
     <>
-      <div className="relative w-full overflow-hidden py-2">
+      <div className="marquee-container relative w-full overflow-hidden py-2">
         <div
-          className="marquee-track gap-6"
-          style={{ ["--marquee-duration" as string]: "46s" }}
+          className="marquee-track items-center gap-5 pr-5"
+          style={{ ["--marquee-duration" as string]: "56s" }}
         >
           {doubled.map((item, idx) => (
             <button
@@ -43,13 +43,17 @@ export function GalleryMarquee() {
               type="button"
               onClick={() => setLightboxIdx(idx % HOME_GALLERY.length)}
               aria-label={`Открыть фото: ${item.alt}`}
-              className="group relative h-[380px] w-[265px] shrink-0 overflow-hidden rounded-[26px] focus:outline-none sm:h-[465px] sm:w-[308px] cursor-pointer"
+              className={`relative shrink-0 overflow-hidden rounded-3xl border border-white/10 bg-[#102419] transition-colors hover:border-[#d49a5a]/55 focus:outline-none cursor-pointer ${
+                item.aspect === "portrait"
+                  ? "h-[360px] w-[265px] sm:h-[430px] sm:w-[310px]"
+                  : "h-[290px] w-[360px] sm:h-[345px] sm:w-[440px]"
+              }`}
             >
               <img
                 src={item.src}
                 alt={item.alt}
                 loading="lazy"
-                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                className="h-full w-full object-cover"
               />
             </button>
           ))}
@@ -59,19 +63,19 @@ export function GalleryMarquee() {
       {/* Lightbox Modal */}
       {lightboxIdx !== null && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-xs"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/88 p-4 backdrop-blur-sm"
           onClick={() => setLightboxIdx(null)}
           role="dialog"
           aria-modal="true"
-          aria-label="Просмотр фото галереи"
+          aria-label="Просмотр фото территории"
         >
           <button
             type="button"
             onClick={() => setLightboxIdx(null)}
             aria-label="Закрыть"
-            className="absolute top-5 right-5 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25 cursor-pointer"
+            className="absolute top-5 right-5 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-[#102419] text-[#f3f5f0] transition hover:border-[#d49a5a] hover:text-[#d49a5a] cursor-pointer"
           >
-            <CloseIcon className="h-5 w-5" />
+            <X size={20} />
           </button>
 
           <button
@@ -83,9 +87,9 @@ export function GalleryMarquee() {
               );
             }}
             aria-label="Предыдущее фото"
-            className="absolute left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-[#90754b] text-2xl text-white shadow-lg transition hover:bg-[#a68859] cursor-pointer"
+            className="absolute left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-[#102419]/90 text-[#f3f5f0] shadow-lg transition hover:border-[#d49a5a] hover:text-[#d49a5a] cursor-pointer"
           >
-            ‹
+            <CaretLeft size={22} weight="bold" />
           </button>
 
           <div
@@ -95,7 +99,7 @@ export function GalleryMarquee() {
             <img
               src={HOME_GALLERY[lightboxIdx].src}
               alt={HOME_GALLERY[lightboxIdx].alt}
-              className="max-h-[85vh] max-w-full rounded-2xl object-contain shadow-2xl"
+              className="max-h-[84vh] max-w-full rounded-2xl object-contain shadow-2xl"
             />
           </div>
 
@@ -106,9 +110,9 @@ export function GalleryMarquee() {
               setLightboxIdx((lightboxIdx + 1) % HOME_GALLERY.length);
             }}
             aria-label="Следующее фото"
-            className="absolute right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-[#90754b] text-2xl text-white shadow-lg transition hover:bg-[#a68859] cursor-pointer"
+            className="absolute right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-[#102419]/90 text-[#f3f5f0] shadow-lg transition hover:border-[#d49a5a] hover:text-[#d49a5a] cursor-pointer"
           >
-            ›
+            <CaretRight size={22} weight="bold" />
           </button>
         </div>
       )}

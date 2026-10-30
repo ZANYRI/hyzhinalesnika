@@ -1,60 +1,76 @@
 import React from "react";
 import Link from "next/link";
-import { NAV_ITEMS, SITE_CONFIG } from "@/data/site";
 import {
-  MailPencilIcon,
-  MapPinIcon,
-  PhoneOutlineIcon,
-  TelegramIcon,
-  WhatsappOutlineIcon,
-} from "./Icons";
+  ArrowUpRight,
+  EnvelopeSimple,
+  MapPin,
+  Phone,
+  TelegramLogo,
+  WhatsappLogo,
+} from "@phosphor-icons/react/dist/ssr";
+import { NAV_ITEMS, SITE_CONFIG } from "@/data/site";
+import { HospitalityAwards } from "./HospitalityAwards";
+import { CabinTreeEmoji } from "./CabinTreeEmoji";
 
 export function Footer() {
   return (
-    <footer className="w-full bg-[#0e2618] pt-14 pb-12 text-white">
-      <div className="mx-auto max-w-[1340px] px-5 sm:px-8">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 lg:gap-16">
-          {/* Column 1: Brand + Messengers */}
-          <div>
-            <p className="font-mulish text-[20px] leading-snug font-normal uppercase text-[#90754b]">
-              БАЗА ОТДЫХА &quot;ХИЖИНА
-              <br />
-              ЛЕСНИКА&quot;
-            </p>
-            <p className="mt-2.5 font-moderustic text-[13.5px] tracking-wide uppercase text-white/90">
-              СНЯТЬ ДОМ В АРХЫЗЕ
+    <footer className="mt-20 border-t border-white/10 bg-[#08140d] pt-16 pb-12 text-[#f3f5f0]">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
+          {/* Brand & Messengers */}
+          <div className="md:col-span-5">
+            <div className="flex items-center gap-3.5">
+              <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-[#f3f5f0] p-1.5">
+                <img
+                  src="/images/brand/logo.png"
+                  alt='База отдыха "Хижина лесника"'
+                  className="h-full w-full object-contain"
+                />
+              </span>
+              <div>
+                <p className="font-moderustic text-xl font-bold tracking-tight text-[#f3f5f0]">
+                  Хижина лесника
+                </p>
+                <p className="text-xs text-[#a8b9ae]">
+                  Уединённые дома в буковом лесу Архыза
+                </p>
+              </div>
+            </div>
+
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-[#a8b9ae]">
+              Три приватных дома со своей огороженной территорией, мангальной и
+              костровой зоной, панорамными окнами на горы и быстрым Wi-Fi.
             </p>
 
-            <div className="mt-7 space-y-3.5">
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <a
                 href={SITE_CONFIG.whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 text-[15px] text-white transition hover:text-[#dbd0bf]"
+                className="inline-flex h-11 items-center gap-2.5 rounded-full border border-white/12 bg-[#102419] px-4 text-sm font-medium text-[#f3f5f0] transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a]"
               >
-                <span className="flex h-[48px] w-[48px] items-center justify-center rounded-[12px] border border-white/15 bg-white/[0.02] text-white transition group-hover:border-[#90754b]">
-                  <WhatsappOutlineIcon className="h-[19px] w-[19px]" />
-                </span>
-                <span className="font-moderustic">WhatsApp</span>
+                <WhatsappLogo size={18} />
+                <span>WhatsApp</span>
               </a>
 
               <a
                 href={SITE_CONFIG.telegramHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 text-[15px] text-white transition hover:text-[#dbd0bf]"
+                className="inline-flex h-11 items-center gap-2.5 rounded-full border border-white/12 bg-[#102419] px-4 text-sm font-medium text-[#f3f5f0] transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a]"
               >
-                <span className="flex h-[48px] w-[48px] items-center justify-center rounded-[12px] border border-white/15 bg-white/[0.02] text-white transition group-hover:border-[#90754b]">
-                  <TelegramIcon className="h-[18px] w-[18px]" />
-                </span>
-                <span className="font-moderustic">Telegram</span>
+                <TelegramLogo size={18} />
+                <span>Telegram</span>
               </a>
             </div>
           </div>
 
-          {/* Column 2: Navigation */}
-          <div className="md:pl-4">
-            <ul className="space-y-3.5 font-moderustic text-[14.5px] leading-snug text-white">
+          {/* Navigation */}
+          <div className="md:col-span-3">
+            <p className="font-moderustic text-sm font-bold text-[#f3f5f0]">
+              Дома и разделы
+            </p>
+            <ul className="mt-4 space-y-3 text-sm text-[#a8b9ae]">
               {NAV_ITEMS.map((item) => (
                 <li key={item.href}>
                   {item.external ? (
@@ -62,119 +78,134 @@ export function Footer() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="transition hover:text-[#dbd0bf]"
+                      className="inline-flex items-center gap-1 transition hover:text-[#d49a5a]"
                     >
-                      {item.label}
+                      <span>{item.label}</span>
+                      <ArrowUpRight size={14} />
                     </a>
                   ) : (
                     <Link
                       href={item.href}
-                      className="transition hover:text-[#dbd0bf]"
+                      className="transition hover:text-[#d49a5a]"
                     >
+                      {item.cabinId && (
+                        <CabinTreeEmoji id={item.cabinId} className="mr-1.5" />
+                      )}
                       {item.label}
                     </Link>
                   )}
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/booking"
+                  className="transition hover:text-[#d49a5a]"
+                >
+                  Онлайн-календарь дат
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/karta-sayta"
+                  className="transition hover:text-[#d49a5a]"
+                >
+                  Карта сайта
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Column 3: Address, Email, Phone */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-4">
-              <span className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[12px] border border-white/15 bg-white/[0.02] text-white">
-                <MapPinIcon className="h-5 w-4" />
-              </span>
-              <div>
-                <span className="block text-[13px] text-white/50">Адрес</span>
-                <span className="mt-0.5 block font-moderustic text-[14.5px] text-white">
-                  {SITE_CONFIG.addressShort}
-                </span>
-              </div>
-            </div>
+          {/* Contacts */}
+          <div className="md:col-span-4">
+            <p className="font-moderustic text-sm font-bold text-[#f3f5f0]">
+              Контакты и координаты
+            </p>
 
-            <div className="flex items-center gap-4">
-              <span className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[12px] border border-white/15 bg-white/[0.02] text-white">
-                <MailPencilIcon className="h-5 w-4" />
-              </span>
-              <div>
-                <span className="block text-[13px] text-white/50">Почта</span>
+            <div className="mt-4 space-y-3.5 text-sm">
+              <div className="flex items-start gap-3">
+                <MapPin
+                  size={18}
+                  className="mt-0.5 shrink-0 text-[#d49a5a]"
+                />
+                <div>
+                  <span className="block text-[#f3f5f0]">
+                    {SITE_CONFIG.address}
+                  </span>
+                  <span className="text-xs text-[#a8b9ae]">
+                    43.568904, 41.305983 · 5 мин от посёлка Архыз
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Phone size={18} className="shrink-0 text-[#d49a5a]" />
+                <a
+                  href={SITE_CONFIG.phoneHref}
+                  className="font-semibold text-[#f3f5f0] transition hover:text-[#d49a5a]"
+                >
+                  {SITE_CONFIG.phoneDisplay}
+                </a>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <EnvelopeSimple
+                  size={18}
+                  className="shrink-0 text-[#d49a5a]"
+                />
                 <a
                   href={`mailto:${SITE_CONFIG.email}`}
-                  className="mt-0.5 block font-moderustic text-[14.5px] text-white transition hover:text-[#dbd0bf]"
+                  className="text-[#a8b9ae] transition hover:text-[#d49a5a]"
                 >
                   {SITE_CONFIG.email}
                 </a>
               </div>
             </div>
 
-            <div className="flex items-center gap-4">
-              <span className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[12px] border border-white/15 bg-white/[0.02] text-white">
-                <PhoneOutlineIcon className="h-[18px] w-[18px]" />
-              </span>
-              <div>
-                <span className="block text-[13px] text-white/50">
-                  Бронирование
-                </span>
-                <a
-                  href={SITE_CONFIG.phoneHref}
-                  className="mt-0.5 block font-moderustic text-[14.5px] font-semibold text-white transition hover:text-[#dbd0bf]"
-                >
-                  {SITE_CONFIG.phoneDisplay}
-                </a>
-              </div>
+            <div className="mt-6">
+              <HospitalityAwards variant="compact" />
             </div>
           </div>
         </div>
 
-        {/* Bottom Legal Bar + Yandex Award Badge */}
-        <div className="mt-12 border-t border-dotted border-white/35 pt-7">
-          <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-            <div className="space-y-2 text-[14px] text-white/60">
-              <p>{SITE_CONFIG.legalOwner}</p>
-              <p>{SITE_CONFIG.inn}</p>
-              <p>
-                Номер реестровой записи:{" "}
-                <a
-                  href={SITE_CONFIG.registryUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#2f65ff] underline hover:text-blue-400"
-                >
-                  {SITE_CONFIG.registryNumber}
-                </a>
-              </p>
-              <div className="pt-1 space-y-2">
-                <div>
-                  <Link
-                    href="/oferta"
-                    className="text-white underline transition hover:text-[#dbd0bf]"
-                  >
-                    Договор оферты
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    href="/privacy-policy"
-                    className="text-white underline transition hover:text-[#dbd0bf]"
-                  >
-                    Политика обработки персональных данных
-                  </Link>
-                </div>
-              </div>
-            </div>
+        {/* Legal Bottom Strip */}
+        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-7 text-xs text-[#a8b9ae] lg:flex-row lg:items-center">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
+            <span>{SITE_CONFIG.legalOwner}</span>
+            <span>·</span>
+            <span>{SITE_CONFIG.inn}</span>
+            <span>·</span>
+            <span>
+              Реестровая запись:{" "}
+              <a
+                href={SITE_CONFIG.registryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#d49a5a] underline decoration-[#d49a5a]/50 hover:text-[#e0ab6e]"
+              >
+                {SITE_CONFIG.registryNumber}
+              </a>
+            </span>
+          </div>
 
-            <div className="md:mx-auto">
-              <iframe
-                src={`https://yandex.ru/sprav/widget/rating-badge/${SITE_CONFIG.yandexOrgId}?type=award`}
-                width="150"
-                height="50"
-                frameBorder="0"
-                title="Хорошее место 5.0 — Выбор пользователей Яндекса"
-                className="rounded-md bg-transparent"
-                loading="lazy"
-              />
-            </div>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5">
+            <Link
+              href="/oferta"
+              className="transition hover:text-[#f3f5f0]"
+            >
+              Договор оферты
+            </Link>
+            <Link
+              href="/privacy-policy"
+              className="transition hover:text-[#f3f5f0]"
+            >
+              Политика обработки персональных данных
+            </Link>
+            <Link
+              href="/users/agreement"
+              className="transition hover:text-[#f3f5f0]"
+            >
+              Пользовательское соглашение
+            </Link>
           </div>
         </div>
       </div>

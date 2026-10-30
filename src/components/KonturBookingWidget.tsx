@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useId, useRef, useState } from "react";
+import { CalendarBlank, CaretDown, Users } from "@phosphor-icons/react";
 import { SITE_CONFIG } from "@/data/site";
 import { KonturAddConfig, mountKonturWidget } from "@/lib/kontur-hotel";
 
@@ -126,7 +127,6 @@ export function KonturBookingWidget({
     };
   }, [containerId, variant]);
 
-  // Mobile floating button renders exclusively through Контур.Отель without visual wrapper
   if (variant === "mobileFloatingButton") {
     return <div id={containerId} ref={containerRef} />;
   }
@@ -147,15 +147,19 @@ export function KonturBookingWidget({
     <section
       id={id}
       aria-label="Онлайн-бронирование Контур.Отель"
-      className={`mx-auto w-full max-w-[1260px] px-4 sm:px-6 ${className}`}
+      className={`mx-auto w-full max-w-[1400px] px-4 sm:px-6 ${className}`}
     >
-      {/* Target container into which Контур.Отель (https://bookonline24.ru/widget.js) mounts */}
-      <div id={containerId} ref={containerRef} className="w-full" />
+      {/* Live Контур.Отель container */}
+      <div
+        id={containerId}
+        ref={containerRef}
+        className={mountedWidget ? "rounded-3xl border border-white/12 bg-[#102419] p-3 sm:p-5" : "w-full"}
+      />
 
-      {/* Interactive fallback / preview shown while widget.js loads or on domains not yet added in Контур.Отель settings */}
+      {/* Interactive architectural booking bar while widget mounts or on non-whitelisted preview hosts */}
       {!mountedWidget && isFormVariant && (
         <div
-          className={`w-full rounded-[14px] bg-white px-5 py-7 text-[#222] shadow-md sm:px-10 ${
+          className={`forest-glass w-full rounded-3xl p-5 sm:p-7 ${
             variant === "verticalForm" ? "mx-auto max-w-md" : ""
           }`}
         >
@@ -163,119 +167,101 @@ export function KonturBookingWidget({
             onSubmit={handleFallbackSubmit}
             className={
               variant === "verticalForm"
-                ? "flex flex-col gap-3"
-                : "mx-auto flex max-w-[880px] flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center"
+                ? "flex flex-col gap-4"
+                : "grid grid-cols-1 items-end gap-4 md:grid-cols-12"
             }
           >
-            <div className="flex flex-1 items-center gap-2">
-              <div className="relative flex-1">
-                <input
-                  type={checkIn ? "date" : "text"}
-                  value={checkIn}
-                  onFocus={(e) => {
-                    e.currentTarget.type = "date";
-                  }}
-                  onBlur={(e) => {
-                    if (!e.currentTarget.value) e.currentTarget.type = "text";
-                  }}
-                  onChange={(e) => setCheckIn(e.target.value)}
-                  placeholder="Заезд"
-                  aria-label="Дата заезда"
-                  className="h-[42px] w-full rounded-[6px] border border-[#dcdcdc] bg-white pr-9 pl-3.5 text-[14px] text-[#333] placeholder:text-[#9c9c9c] outline-none focus:border-[#fcc038]"
-                />
-                {!checkIn && (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.7"
-                    className="pointer-events-none absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-[#444]"
-                    aria-hidden="true"
-                  >
-                    <rect x="3" y="4" width="18" height="17" rx="2" />
-                    <path d="M16 2v4M8 2v4M3 10h18" />
-                  </svg>
-                )}
-              </div>
-
-              <span className="text-[#888]">–</span>
-
-              <div className="relative flex-1">
-                <input
-                  type={checkOut ? "date" : "text"}
-                  value={checkOut}
-                  min={checkIn || undefined}
-                  onFocus={(e) => {
-                    e.currentTarget.type = "date";
-                  }}
-                  onBlur={(e) => {
-                    if (!e.currentTarget.value) e.currentTarget.type = "text";
-                  }}
-                  onChange={(e) => setCheckOut(e.target.value)}
-                  placeholder="Выезд"
-                  aria-label="Дата выезда"
-                  className="h-[42px] w-full rounded-[6px] border border-[#dcdcdc] bg-white pr-9 pl-3.5 text-[14px] text-[#333] placeholder:text-[#9c9c9c] outline-none focus:border-[#fcc038]"
-                />
-                {!checkOut && (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.7"
-                    className="pointer-events-none absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-[#444]"
-                    aria-hidden="true"
-                  >
-                    <rect x="3" y="4" width="18" height="17" rx="2" />
-                    <path d="M16 2v4M8 2v4M3 10h18" />
-                  </svg>
-                )}
-              </div>
-            </div>
-
-            <div className="relative min-w-[210px]">
-              <select
-                value={adults}
-                onChange={(e) => setAdults(e.target.value)}
-                aria-label="Количество гостей"
-                className="h-[42px] w-full appearance-none rounded-[6px] border border-[#dcdcdc] bg-white pr-8 pl-3.5 text-[14px] text-[#222] outline-none focus:border-[#fcc038] cursor-pointer"
+            <div className={variant === "verticalForm" ? "flex flex-col gap-2" : "flex flex-col gap-2 md:col-span-3"}>
+              <label
+                htmlFor={`${containerId}-checkin`}
+                className="flex items-center gap-1.5 text-xs font-medium text-[#a8b9ae]"
               >
-                <option value="1">1 взрослый</option>
-                <option value="2">2 взрослых</option>
-                <option value="3">3 взрослых</option>
-                <option value="4">4 взрослых</option>
-                <option value="5">5 взрослых</option>
-                <option value="6">6 взрослых</option>
-                <option value="7">7 взрослых</option>
-              </select>
-              <span className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-xs text-[#777]">
-                ▾
-              </span>
+                <CalendarBlank size={14} className="text-[#d49a5a]" />
+                <span>Дата заезда</span>
+              </label>
+              <input
+                id={`${containerId}-checkin`}
+                type="date"
+                value={checkIn}
+                onChange={(e) => setCheckIn(e.target.value)}
+                className="h-12 w-full rounded-xl border border-white/15 bg-[#0a1911]/90 px-3.5 text-sm text-[#f3f5f0] outline-none transition focus:border-[#d49a5a]"
+              />
             </div>
 
-            <button
-              type="submit"
-              className="h-[42px] min-w-[230px] rounded-[8px] bg-[#fcc038] px-6 font-moderustic text-[14px] font-medium text-[#1e1e1e] transition hover:bg-[#f2b324] cursor-pointer"
-            >
-              Проверить наличие
-            </button>
+            <div className={variant === "verticalForm" ? "flex flex-col gap-2" : "flex flex-col gap-2 md:col-span-3"}>
+              <label
+                htmlFor={`${containerId}-checkout`}
+                className="flex items-center gap-1.5 text-xs font-medium text-[#a8b9ae]"
+              >
+                <CalendarBlank size={14} className="text-[#d49a5a]" />
+                <span>Дата выезда</span>
+              </label>
+              <input
+                id={`${containerId}-checkout`}
+                type="date"
+                min={checkIn || undefined}
+                value={checkOut}
+                onChange={(e) => setCheckOut(e.target.value)}
+                className="h-12 w-full rounded-xl border border-white/15 bg-[#0a1911]/90 px-3.5 text-sm text-[#f3f5f0] outline-none transition focus:border-[#d49a5a]"
+              />
+            </div>
+
+            <div className={variant === "verticalForm" ? "flex flex-col gap-2" : "flex flex-col gap-2 md:col-span-3"}>
+              <label
+                htmlFor={`${containerId}-guests`}
+                className="flex items-center gap-1.5 text-xs font-medium text-[#a8b9ae]"
+              >
+                <Users size={14} className="text-[#d49a5a]" />
+                <span>Гости</span>
+              </label>
+              <div className="relative">
+                <select
+                  id={`${containerId}-guests`}
+                  value={adults}
+                  onChange={(e) => setAdults(e.target.value)}
+                  className="h-12 w-full appearance-none rounded-xl border border-white/15 bg-[#0a1911]/90 pr-9 pl-3.5 text-sm text-[#f3f5f0] outline-none transition focus:border-[#d49a5a] cursor-pointer"
+                >
+                  <option value="1">1 гость</option>
+                  <option value="2">2 гостя</option>
+                  <option value="3">3 гостя</option>
+                  <option value="4">4 гостя</option>
+                  <option value="5">5 гостей</option>
+                  <option value="6">6 гостей</option>
+                  <option value="7">7 гостей</option>
+                </select>
+                <CaretDown
+                  size={15}
+                  className="pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2 text-[#a8b9ae]"
+                />
+              </div>
+            </div>
+
+            <div className={variant === "verticalForm" ? "pt-1" : "md:col-span-3"}>
+              <button
+                type="submit"
+                className="flex h-12 w-full items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-6 text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98] cursor-pointer"
+              >
+                Проверить даты
+              </button>
+            </div>
           </form>
         </div>
       )}
 
       {!mountedWidget && !isFormVariant && (
-        <div className="rounded-[14px] bg-white p-8 text-center text-[#222] shadow-md">
-          <p className="font-moderustic text-base text-[#444]">
+        <div className="rounded-3xl border border-white/10 bg-[#102419] p-8 text-center">
+          <p className="mx-auto max-w-xl text-sm leading-relaxed text-[#a8b9ae]">
             {originBlocked
-              ? "Встроенный модуль Контур.Отель активируется на основном домене hyzhinalesnika.ru. Вы можете перейти к бронированию напрямую:"
-              : "Загрузка модуля онлайн-бронирования Контур.Отель..."}
+              ? "Встроенный календарь Контур.Отель активируется на основном домене hyzhinalesnika.ru. Вы можете открыть актуальную шахматку свободных дат напрямую:"
+              : "Загружаем актуальный календарь свободных дат Контур.Отель..."}
           </p>
           <a
             href={SITE_CONFIG.konturBookingPortalUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex h-[44px] items-center justify-center rounded-[8px] bg-[#fcc038] px-7 font-moderustic text-sm font-medium text-[#1e1e1e] transition hover:bg-[#f2b324]"
+            className="mt-5 inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-7 text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
           >
-            Открыть модуль бронирования Контур.Отель
+            Открыть календарь бронирования
           </a>
         </div>
       )}

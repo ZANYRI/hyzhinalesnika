@@ -4,6 +4,7 @@ import { NAV_ITEMS } from "@/data/site";
 import { BLOG_POSTS } from "@/data/blog";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { CabinTreeEmoji } from "@/components/CabinTreeEmoji";
 
 export const metadata: Metadata = {
   title: 'Карта сайта | База отдыха "Хижина лесника"',
@@ -14,38 +15,43 @@ export const metadata: Metadata = {
 
 export default function KartaSaytaPage() {
   return (
-    <div className="min-h-screen bg-[#0e2618] text-white">
+    <div className="min-h-screen bg-[#0a1911] text-[#f3f5f0]">
       <Header variant="inner" bookingAnchor="/#booking" />
 
-      <main className="mx-auto max-w-[1260px] px-4 pt-12 pb-20 sm:px-6 sm:pt-16">
+      <main className="mx-auto max-w-[1260px] px-4 pt-10 pb-24 sm:px-6 sm:pt-14">
         <nav
           aria-label="Хлебные крошки"
-          className="flex flex-wrap items-center gap-2 text-xs text-white/70 sm:text-sm"
+          className="flex flex-wrap items-center gap-2 text-xs text-[#a8b9ae]"
         >
-          <Link href="/" className="underline hover:text-[#dbd0bf]">
+          <Link href="/" className="transition hover:text-[#d49a5a]">
             Главная
           </Link>
           <span>/</span>
-          <span className="text-white/95">Карта сайта</span>
+          <span className="text-[#f3f5f0]">Карта сайта</span>
         </nav>
 
-        <div className="mt-6 rounded-2xl bg-white p-6 text-[#232323] shadow-lg sm:p-10">
-          <h1 className="font-moderustic text-2xl font-extrabold text-[#0e2618] sm:text-3xl">
+        <div className="mt-6">
+          <h1 className="font-moderustic text-3xl font-bold tracking-tight text-[#f3f5f0] sm:text-4xl">
             Карта сайта
           </h1>
 
-          <div className="mt-6 space-y-6">
-            <div>
-              <h2 className="font-moderustic text-lg font-bold text-[#90754b]">
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+            <section className="rounded-3xl border border-white/10 bg-[#102419] p-6">
+              <h2 className="font-moderustic text-lg font-bold text-[#d49a5a]">
                 Основные разделы
               </h2>
-              <ul className="mt-3 list-disc space-y-2 pl-5 text-base">
+              <ul className="mt-4 space-y-2.5 text-sm text-[#d6e0d9]">
+                <li>
+                  <Link href="/" className="transition hover:text-[#d49a5a]">
+                    Главная страница
+                  </Link>
+                </li>
                 <li>
                   <Link
-                    href="/"
-                    className="text-[#396448] underline hover:text-[#90754b]"
+                    href="/booking"
+                    className="transition hover:text-[#d49a5a]"
                   >
-                    Главная страница
+                    Онлайн-бронирование
                   </Link>
                 </li>
                 {NAV_ITEMS.map((item) => (
@@ -55,58 +61,64 @@ export default function KartaSaytaPage() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#396448] underline hover:text-[#90754b]"
+                        className="transition hover:text-[#d49a5a]"
                       >
                         {item.label}
                       </a>
                     ) : (
                       <Link
                         href={item.href}
-                        className="text-[#396448] underline hover:text-[#90754b]"
+                        className="transition hover:text-[#d49a5a]"
                       >
+                        {item.cabinId && (
+                          <CabinTreeEmoji
+                            id={item.cabinId}
+                            className="mr-1.5"
+                          />
+                        )}
                         {item.label}
                       </Link>
                     )}
                   </li>
                 ))}
               </ul>
-            </div>
+            </section>
 
-            <div>
-              <h2 className="font-moderustic text-lg font-bold text-[#90754b]">
+            <section className="rounded-3xl border border-white/10 bg-[#102419] p-6">
+              <h2 className="font-moderustic text-lg font-bold text-[#d49a5a]">
                 Статьи и маршруты
               </h2>
-              <ul className="mt-3 list-disc space-y-2 pl-5 text-base">
+              <ul className="mt-4 space-y-2.5 text-sm text-[#d6e0d9]">
                 <li>
                   <Link
-                    href="/putevoditeli-marshruty"
-                    className="text-[#396448] underline hover:text-[#90754b]"
+                    href="/#blog"
+                    className="transition hover:text-[#d49a5a]"
                   >
-                    Путеводители / маршруты
+                    Раздел «Блог» на главной
                   </Link>
                 </li>
                 {BLOG_POSTS.map((post) => (
                   <li key={post.slug}>
                     <Link
                       href={post.href}
-                      className="text-[#396448] underline hover:text-[#90754b]"
+                      className="transition hover:text-[#d49a5a]"
                     >
                       {post.title}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </div>
+            </section>
 
-            <div>
-              <h2 className="font-moderustic text-lg font-bold text-[#90754b]">
+            <section className="rounded-3xl border border-white/10 bg-[#102419] p-6">
+              <h2 className="font-moderustic text-lg font-bold text-[#d49a5a]">
                 Правовая информация
               </h2>
-              <ul className="mt-3 list-disc space-y-2 pl-5 text-base">
+              <ul className="mt-4 space-y-2.5 text-sm text-[#d6e0d9]">
                 <li>
                   <Link
                     href="/oferta"
-                    className="text-[#396448] underline hover:text-[#90754b]"
+                    className="transition hover:text-[#d49a5a]"
                   >
                     Договор публичной оферты
                   </Link>
@@ -114,7 +126,7 @@ export default function KartaSaytaPage() {
                 <li>
                   <Link
                     href="/privacy-policy"
-                    className="text-[#396448] underline hover:text-[#90754b]"
+                    className="transition hover:text-[#d49a5a]"
                   >
                     Политика обработки персональных данных
                   </Link>
@@ -122,13 +134,13 @@ export default function KartaSaytaPage() {
                 <li>
                   <Link
                     href="/users/agreement"
-                    className="text-[#396448] underline hover:text-[#90754b]"
+                    className="transition hover:text-[#d49a5a]"
                   >
                     Пользовательское соглашение
                   </Link>
                 </li>
               </ul>
-            </div>
+            </section>
           </div>
         </div>
       </main>

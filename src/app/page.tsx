@@ -1,23 +1,29 @@
 import React from "react";
 import Link from "next/link";
-import { CABIN_LIST } from "@/data/cabins";
-import { HOME_ADVANTAGES, HOME_FAQ } from "@/data/home";
+import {
+  ArrowRight,
+  CarProfile,
+  Key,
+  MapPin,
+  PawPrint,
+  Percent,
+  TreeEvergreen,
+  WifiHigh,
+} from "@phosphor-icons/react/dist/ssr";
+import { HOME_FAQ } from "@/data/home";
 import { SITE_CONFIG } from "@/data/site";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { KonturBookingWidget } from "@/components/KonturBookingWidget";
+import { CabinShowcase } from "@/components/CabinShowcase";
+import { SeasonalExperiences } from "@/components/SeasonalExperiences";
 import { GalleryMarquee } from "@/components/GalleryMarquee";
-import { SeasonalMarquee } from "@/components/SeasonalMarquee";
+import { BlogSection } from "@/components/BlogSection";
 import { FaqAccordion } from "@/components/FaqAccordion";
-import {
-  AboutContactActions,
-  AdvantageContactCard,
-} from "@/components/AboutContactActions";
-import {
-  ContactlessKeyIcon,
-  ForestCabinIcon,
-  WifiLaptopIcon,
-} from "@/components/Icons";
+import { AboutContactActions } from "@/components/AboutContactActions";
+import { HospitalityAwards } from "@/components/HospitalityAwards";
+import { GuestReviews } from "@/components/GuestReviews";
+import { Reveal } from "@/components/Reveal";
 
 const HOME_JSON_LD = [
   {
@@ -60,267 +66,286 @@ const HOME_JSON_LD = [
   },
 ];
 
-function renderAdvantageIcon(id: "wifi" | "checkin" | "forest") {
-  switch (id) {
-    case "wifi":
-      return <WifiLaptopIcon className="h-[44px] w-[49px]" />;
-    case "checkin":
-      return <ContactlessKeyIcon className="h-[52px] w-[52px]" />;
-    case "forest":
-      return <ForestCabinIcon className="h-[54px] w-[60px]" />;
-  }
-}
-
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#0e2618] text-white">
+    <div className="min-h-screen bg-[#0a1911] text-[#f3f5f0]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_JSON_LD) }}
       />
 
-      {/* 1. HERO SECTION */}
-      <section className="mx-auto mt-3.5 w-[calc(100%-24px)] max-w-[1400px]">
-        <div className="relative overflow-hidden rounded-[22px] bg-[#16291b]">
-          {/* Hero Background Image */}
-          <img
-            src="/images/home/hero-bg.webp"
-            alt='База отдыха "Хижина лесника" — дома в буковом лесу Архыза'
-            fetchPriority="high"
-            className="absolute inset-0 h-full w-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/35 to-black/45" />
+      {/* Sticky Floating Glass Navigation */}
+      <Header variant="hero" bookingAnchor="#booking" />
 
-          {/* Embedded Hero Header */}
-          <Header variant="hero" bookingAnchor="#booking" />
+      {/* 1. FULL-VIEWPORT ARCHITECTURAL HERO + DOCKED BOOKING BAR */}
+      <section className="relative -mt-[80px] flex min-h-[100dvh] w-full flex-col justify-between overflow-hidden pt-24 pb-10 sm:-mt-[84px] sm:pt-28 sm:pb-12">
+        <img
+          src="/images/home/hero-bg.webp"
+          alt='База отдыха «Хижина лесника», уединённые дома в буковом лесу Архыза'
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-b from-[#0a1911]/70 via-[#0a1911]/45 to-[#0a1911]"
+        />
 
-          {/* Hero Content */}
-          <div className="relative z-10 px-6 pt-12 pb-12 sm:px-10 sm:pt-16 sm:pb-16 lg:px-14 lg:pt-20 lg:pb-16">
-            <div className="max-w-3xl">
-              <p className="font-moderustic text-[23px] leading-snug font-bold uppercase tracking-wide text-white sm:text-[31px] lg:text-[33px]">
-                БАЗА ОТДЫХА &quot;ХИЖИНА ЛЕСНИКА&quot;
-              </p>
-              <p className="mt-6 font-moderustic text-[23px] leading-snug font-bold uppercase tracking-wide text-white sm:mt-8 sm:text-[31px] lg:text-[33px]">
-                ДОМА В БУКОВОМ ЛЕСУ АРХЫЗА
-              </p>
-            </div>
+        <div className="relative z-10 mx-auto my-auto w-full max-w-[1400px] px-4 py-10 sm:px-6 lg:py-14">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d49a5a]">
+              Хижина лесника · Архыз, ул. Лесная 40
+            </p>
 
-            <div className="mx-auto mt-10 max-w-6xl text-center font-bad-script text-[21px] leading-[1.6] text-white drop-shadow-xs sm:mt-12 sm:text-[26px] lg:text-[28px]">
-              <p>Идеальное место для отдыха и работы.</p>
-              <p>
-                Чистый лесной воздух, спа-комплекс, вкусная еда с доставкой в
-                номер.
-              </p>
-              <p>
-                Минимум контактов с другими людьми - закрытая территория в
-                заповедном буковом лесу Архыза.
-              </p>
-            </div>
+            <h1 className="mt-4 font-moderustic text-4xl font-bold leading-[1.06] tracking-tight text-[#f3f5f0] sm:text-5xl lg:text-6xl">
+              Три уединённых дома
+              <br />в буковом лесу Архыза
+            </h1>
 
-            <div className="mt-10 sm:mt-12">
+            <p className="mt-5 max-w-[54ch] text-base leading-relaxed text-[#d6e0d9] sm:text-lg">
+              Огороженный приватный двор у каждого дома, панорамные окна на
+              хребты, бесконтактный заезд 24/7 и 15 минут до склонов.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-3.5">
               <a
                 href="#booking"
-                className="inline-flex min-h-[68px] w-full items-center justify-center rounded-[12px] bg-[#fffaf0] px-7 py-3 text-center font-moderustic text-[13px] font-semibold uppercase tracking-wider text-[#4b4b4b] shadow-md transition hover:bg-[#f2eadb] sm:w-auto sm:px-10"
+                className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-7 text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
               >
-                ПРОВЕРИТЬ ДАТЫ И ЗАБРОНИРОВАТЬ
+                Проверить свободные даты
+              </a>
+              <a
+                href="#cabins"
+                className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full border border-white/20 bg-[#0a1911]/55 px-7 text-sm font-medium text-[#f3f5f0] backdrop-blur-md transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a] active:scale-[0.98]"
+              >
+                Смотреть дома
               </a>
             </div>
           </div>
         </div>
+
+        {/* Hero-Docked Контур.Отель Booking Module */}
+        <div className="relative z-10 w-full">
+          <KonturBookingWidget id="booking" />
+        </div>
       </section>
 
       <main>
-        {/* 2. KONTUR.HOTEL INLINE BOOKING WIDGET */}
-        <KonturBookingWidget id="booking" className="mt-10 sm:mt-12" />
+        {/* 2. INTERACTIVE CABIN EXPLORER (Barskie Polya / PineRiver inspired) */}
+        <section
+          id="cabins"
+          className="mx-auto max-w-[1400px] scroll-mt-24 px-4 pt-20 sm:px-6 sm:pt-28"
+        >
+          <Reveal>
+            <div className="max-w-2xl">
+              <h2 className="font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
+                Выберите свой дом в лесу
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-[#a8b9ae]">
+                На территории базы всего три отдельно стоящих дома для 4, 5 или
+                7 гостей: максимум тишины, личная парковка и своя костровая зона
+                у каждого.
+              </p>
+            </div>
+          </Reveal>
 
-        {/* 3. CHOOSE YOUR CABIN */}
-        <section className="mx-auto mt-16 max-w-[1280px] px-4 sm:mt-20 sm:px-6">
-          <div className="text-center">
-            <p className="font-great-vibes text-[44px] leading-[1.12] text-[#dbd0bf] sm:text-[54px]">
-              Будь как дома, путник
-              <br />Я ни в чем не откажу!
-            </p>
-            <h2 className="mt-3 font-moderustic text-[28px] leading-tight font-extrabold uppercase text-[#90754b] sm:text-[40px]">
-              ВЫБЕРИТЕ СВОЙ ИДЕАЛЬНЫЙ ДОМИК
-            </h2>
-          </div>
+          <Reveal delay={0.08} className="mt-9">
+            <CabinShowcase />
+          </Reveal>
+        </section>
 
-          <div className="mx-auto mt-11 grid max-w-[960px] grid-cols-1 gap-6 md:grid-cols-3">
-            {CABIN_LIST.map((cabin) => (
-              <article
-                key={cabin.id}
-                className="flex flex-col overflow-hidden rounded-[22px] border-[3px] border-[#90754b] bg-[#d9decc] text-[#484c47]"
-              >
-                <Link
-                  href={cabin.slug}
-                  className="block h-[215px] w-full overflow-hidden rounded-b-[18px]"
-                >
-                  <img
-                    src={cabin.cardImage}
-                    alt={cabin.cardImageAlt}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition duration-500 hover:scale-105"
-                  />
-                </Link>
+        {/* 3. ASYMMETRIC FOREST ARCHITECTURE & PRIVILEGES BENTO (Ecobr / PineRiver inspired) */}
+        <section className="mx-auto max-w-[1400px] px-4 pt-24 sm:px-6 sm:pt-32">
+          <Reveal>
+            <div className="max-w-2xl">
+              <h2 className="font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
+                Камерная база отдыха «Хижина лесника»
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-[#a8b9ae]">
+                Продуманный загородный комфорт для спокойного семейного отдыха,
+                удалённой работы с видом на горы и зимних выездов на склоны.
+              </p>
+            </div>
+          </Reveal>
 
-                <div className="flex flex-1 flex-col px-6 pt-6 pb-7">
-                  <h3 className="font-moderustic text-[24px] leading-snug font-bold text-[#4a4e49]">
-                    <Link
-                      href={cabin.slug}
-                      className="transition hover:text-[#90754b]"
-                    >
-                      {cabin.cardTitle}
-                    </Link>
+          <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-12">
+            {/* Cell 1 (7 cols): Aerial Forest Territory + Interior */}
+            <Reveal className="flex lg:col-span-7">
+              <article className="flex w-full flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#102419] p-4 sm:p-5">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-12">
+                  <div className="aspect-[16/10] overflow-hidden rounded-2xl bg-[#08140d] sm:col-span-7 sm:aspect-auto sm:h-64">
+                    <img
+                      src="/images/brand/forest-aerial.jpg"
+                      alt="Вид сверху на дома базы отдыха Хижина лесника в буковом лесу"
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <div className="aspect-[16/10] overflow-hidden rounded-2xl bg-[#08140d] sm:col-span-5 sm:aspect-auto sm:h-64">
+                    <img
+                      src="/images/home/about-dining.jpg"
+                      alt="Тёплый деревянный интерьер и обеденная зона у панорамного окна"
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-5 px-1 pb-1">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-[#d49a5a]">
+                    <TreeEvergreen size={18} />
+                    <span>Закрытая лесная территория без случайных прохожих</span>
+                  </div>
+                  <h3 className="mt-2 font-moderustic text-xl font-bold text-[#f3f5f0] sm:text-2xl">
+                    Уединение в заповедном лесу в 5 минутах от центра Архыза
                   </h3>
-
-                  <p className="mt-2 font-moderustic text-[15.5px] font-medium text-[#2c2f2c]">
-                    {cabin.cardPrice}
+                  <p className="mt-2 text-sm leading-relaxed text-[#a8b9ae]">
+                    Дома окружены вековыми буками и соснами. У каждого коттеджа
+                    собственный огороженный двор, терраса с уличной мебелью,
+                    мангал с шампурами и парковка прямо у входа.
                   </p>
-
-                  <div className="mt-5 space-y-3 font-moderustic text-[15.5px] leading-snug text-[#6e736c]">
-                    <p>
-                      <span className="font-semibold text-[#5b6059]">
-                        Места:
-                      </span>{" "}
-                      {cabin.cardGuests}
-                    </p>
-                    <p>
-                      <span className="font-semibold text-[#5b6059]">
-                        Спальни:
-                      </span>{" "}
-                      {cabin.cardBedrooms}
-                    </p>
-                    <p>
-                      <span className="font-semibold text-[#5b6059]">
-                        Площадь:
-                      </span>{" "}
-                      {cabin.cardArea}
-                    </p>
-                    <p className="pt-0.5">{cabin.cardSubtitle}</p>
-                  </div>
-
-                  <div className="mt-auto flex justify-end pt-7">
-                    <Link
-                      href={cabin.slug}
-                      className="inline-flex h-[38px] items-center justify-center rounded-[7px] bg-[#90754b] px-4 font-moderustic text-[13px] font-medium uppercase tracking-wide text-white transition hover:bg-[#a68859]"
-                    >
-                      ПОДРОБНЕЕ О ДОМЕ
-                    </Link>
-                  </div>
                 </div>
               </article>
-            ))}
+            </Reveal>
+
+            {/* Cell 2 (5 cols): Long-stay -5% Privilege Card */}
+            <Reveal delay={0.08} className="flex lg:col-span-5">
+              <article className="flex w-full flex-col justify-between overflow-hidden rounded-3xl border border-[#d49a5a]/30 bg-[#163122] p-5 sm:p-6">
+                <div>
+                  <div className="aspect-[16/9] w-full overflow-hidden rounded-2xl bg-[#08140d]">
+                    <img
+                      src="/images/home/discount-festive.jpg"
+                      alt="Уютный вечер в домике со скидкой 5 процентов от 4 суток"
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+
+                  <div className="mt-5 flex items-center gap-2 text-sm font-semibold text-[#d49a5a]">
+                    <Percent size={18} weight="bold" />
+                    <span>Привилегия длительного отдыха</span>
+                  </div>
+
+                  <h3 className="mt-2 font-moderustic text-2xl font-bold text-[#f3f5f0]">
+                    Скидка 5% на все дома при бронировании от 4 суток
+                  </h3>
+
+                  <p className="mt-2 text-sm leading-relaxed text-[#d6e0d9]">
+                    Оставайтесь дольше без спешки: тариф автоматически учитывает
+                    скидку при прямом бронировании любого из трёх домов.
+                  </p>
+                </div>
+
+                <div className="mt-6">
+                  <a
+                    href="#booking"
+                    className="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#d49a5a] px-6 text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
+                  >
+                    <span>Рассчитать стоимость</span>
+                    <ArrowRight size={16} />
+                  </a>
+                </div>
+              </article>
+            </Reveal>
+
+            {/* Cell 3 (4 cols): Fast Wi-Fi + VPN */}
+            <Reveal delay={0.04} className="flex lg:col-span-4">
+              <article className="flex w-full flex-col justify-between rounded-3xl border border-white/10 bg-[#102419] p-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-[#163122] text-[#d49a5a]">
+                  <WifiHigh size={24} />
+                </div>
+                <div className="mt-6">
+                  <h3 className="font-moderustic text-lg font-bold text-[#f3f5f0]">
+                    Быстрый Wi-Fi с VPN и Smart-TV
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#a8b9ae]">
+                    Стабильный оптоволоконный канал для удалённой работы и
+                    созвонов, Яндекс Станция и телевизоры с подпиской
+                    Кинопоиск.
+                  </p>
+                </div>
+              </article>
+            </Reveal>
+
+            {/* Cell 4 (4 cols): Contactless 24/7 Check-in & Ski Dryers */}
+            <Reveal delay={0.1} className="flex lg:col-span-4">
+              <article className="flex w-full flex-col justify-between rounded-3xl border border-white/10 bg-[#102419] p-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-[#163122] text-[#d49a5a]">
+                  <Key size={24} />
+                </div>
+                <div className="mt-6">
+                  <h3 className="font-moderustic text-lg font-bold text-[#f3f5f0]">
+                    Бесконтактный заезд 24/7
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#a8b9ae]">
+                    Приезжайте в любое время без ожидания на стойке. В каждом
+                    доме есть электрическая сушилка для горнолыжных ботинок и
+                    одежды.
+                  </p>
+                </div>
+              </article>
+            </Reveal>
+
+            {/* Cell 5 (4 cols): Pet-Friendly with Welcome Kit */}
+            <Reveal delay={0.16} className="flex lg:col-span-4">
+              <article className="flex w-full flex-col justify-between rounded-3xl border border-white/10 bg-[#102419] p-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-[#163122] text-[#d49a5a]">
+                  <PawPrint size={24} />
+                </div>
+                <div className="mt-6">
+                  <h3 className="font-moderustic text-lg font-bold text-[#f3f5f0]">
+                    Pet-friendly и welcome-набор
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#a8b9ae]">
+                    Принимаем гостей с воспитанными питомцами любого размера и
+                    дарим фирменный набор от «Четыре лапы» с миской, лакомством
+                    и игрушкой.
+                  </p>
+                </div>
+              </article>
+            </Reveal>
           </div>
         </section>
 
-        {/* 4. WHO WE ARE ("КТО МЫ?") */}
-        <section className="mx-auto mt-24 max-w-[1300px] px-4 sm:mt-28 sm:px-6">
-          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-10">
-            {/* Left Column with Foliage Backdrop + Translucent Card */}
-            <div className="relative pb-10">
-              <img
-                src="/images/home/foliage-bg.png"
-                alt=""
-                aria-hidden="true"
-                loading="lazy"
-                className="pointer-events-none absolute top-20 right-0 bottom-0 left-0 h-[calc(100%-60px)] w-full object-cover object-top opacity-95 rounded-xl"
-              />
+        {/* 4. AUREKI-STYLE (#sez1) INTERACTIVE SEASONAL & IMPRESSIONS HUB */}
+        <section
+          id="sez1"
+          className="mx-auto max-w-[1400px] scroll-mt-24 px-4 pt-24 sm:px-6 sm:pt-32"
+        >
+          <Reveal>
+            <div className="max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d49a5a]">
+                Маршруты и сезоны Архыза
+              </p>
+              <h2 className="mt-3 font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
+                Впечатления рядом с базой в любое время года
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-[#a8b9ae]">
+                Переключайте сценарии отдыха: от зимних трасс Романтика и
+                снегоходов до водопадов, обсерватории САО РАН и горной бани на
+                дровах.
+              </p>
+            </div>
+          </Reveal>
 
-              <div className="relative z-10">
-                <p className="font-great-vibes text-[48px] leading-none text-[#dbd0bf] sm:text-[54px]">
-                  Кто мы?
+          <Reveal delay={0.08} className="mt-8">
+            <SeasonalExperiences />
+          </Reveal>
+        </section>
+
+        {/* 5. FULL-BLEED ARCHITECTURAL FILMSTRIP GALLERY (Single Marquee on Page) */}
+        <section id="gallery" className="scroll-mt-24 pt-24 sm:pt-32">
+          <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
+            <Reveal>
+              <div className="max-w-2xl">
+                <h2 className="font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
+                  Атмосфера территории и интерьеров
+                </h2>
+                <p className="mt-3 text-base leading-relaxed text-[#a8b9ae]">
+                  Нажмите на любой кадр, чтобы рассмотреть детали домов, террас
+                  и вечерней подсветки в полном размере.
                 </p>
-                <h1 className="mt-2 font-moderustic text-[34px] leading-[1.12] font-extrabold text-[#90754b] sm:text-[46px] lg:text-[48px]">
-                  База отдыха
-                  <br />
-                  &quot;Хижина лесника&quot; в
-                  <br />
-                  Архызе
-                </h1>
-
-                <div className="mt-10 max-w-[575px] rounded-[12px] bg-[#161714]/86 p-6 shadow-xl backdrop-blur-[2px] sm:p-8">
-                  <p className="font-moderustic text-[16.5px] leading-[1.6] text-white/90">
-                    База отдыха &quot;Хижина лесника&quot; представляет собой
-                    комплекс из 3-х домов, расположенных в живописном лесу.
-                    Вместимость от 4 до 7 гостей. Каждый дом имеет собственную
-                    огороженную территорию, парковку, а так же террасу с мебелью
-                    и мангальной зоной. Панорамные окна выходят на лес и горы
-                  </p>
-
-                  <div className="mt-5 flex flex-wrap items-center gap-2.5">
-                    <img
-                      src="/images/brand/ubook-badge.png"
-                      alt="Ubook.ru рекомендует"
-                      loading="lazy"
-                      className="h-[50px] w-auto rounded-[8px]"
-                    />
-                    <iframe
-                      src={`https://yandex.ru/sprav/widget/rating-badge/${SITE_CONFIG.yandexOrgId}?type=award`}
-                      width="150"
-                      height="50"
-                      frameBorder="0"
-                      title="Хорошее место 5.0 — Выбор пользователей Яндекса"
-                      className="rounded-[8px] bg-transparent"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  <div className="mt-2.5">
-                    <img
-                      src="/images/brand/101hotels-badge.png"
-                      alt="101Hotels.com рекомендует"
-                      loading="lazy"
-                      className="h-[38px] w-auto"
-                    />
-                  </div>
-                </div>
               </div>
-            </div>
-
-            {/* Right Column: Interior Photo + Phone/Book + 250+ Guests Badge */}
-            <div className="relative lg:pt-2">
-              <div className="relative">
-                <img
-                  src="/images/home/about-dining.jpg"
-                  alt='Уютная гостиная и обеденная зона на базе отдыха "Хижина лесника"'
-                  loading="lazy"
-                  className="h-[320px] w-full rounded-[24px] object-cover shadow-lg sm:h-[420px]"
-                />
-
-                {/* Overlapping 250+ Guests Pill Badge */}
-                <div className="mx-auto mt-6 flex h-[265px] w-[228px] flex-col items-center justify-center rounded-[120px] bg-[#494949] px-5 text-center text-white shadow-2xl sm:absolute sm:-right-2 sm:-bottom-32 sm:mt-0 xl:-right-4">
-                  <img
-                    src="/images/home/guests-ornament.png"
-                    alt=""
-                    aria-hidden="true"
-                    loading="lazy"
-                    className="h-[46px] w-[46px] object-contain"
-                  />
-                  <p className="mt-3 font-moderustic text-[58px] leading-none font-extrabold">
-                    250<span className="text-[44px] font-light">+</span>
-                  </p>
-                  <p className="mt-2 font-moderustic text-[13.5px] uppercase tracking-wide text-white/95">
-                    ДОВОЛЬНЫХ ГОСТЕЙ
-                  </p>
-                </div>
-              </div>
-
-              <div className="sm:pr-[205px]">
-                <AboutContactActions />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 5. GALLERY MARQUEE ("НАША БАЗА / ГАЛЕРЕЯ") */}
-        <section className="mt-24 sm:mt-32">
-          <div className="mx-auto max-w-[1300px] px-4 sm:px-6">
-            <p className="font-great-vibes text-[48px] leading-none text-[#dbd0bf] sm:text-[54px]">
-              Наша база
-            </p>
-            <h2 className="mt-2 font-moderustic text-[32px] leading-tight font-extrabold uppercase text-[#90754b] sm:text-[40px]">
-              ГАЛЕРЕЯ
-            </h2>
+            </Reveal>
           </div>
 
           <div className="mt-9">
@@ -328,184 +353,172 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 6. ADVANTAGES ("ПРЕИМУЩЕСТВА / ЗА ЧТО ЕЩЕ ВЫБИРАЮТ НАС?") */}
-        <section className="mx-auto mt-24 max-w-[1300px] px-4 sm:mt-28 sm:px-6">
-          <p className="font-great-vibes text-[48px] leading-none text-[#dbd0bf] sm:text-[54px]">
-            Преимущества
-          </p>
-          <h2 className="mt-2 font-moderustic text-[30px] leading-tight font-extrabold uppercase text-[#90754b] sm:text-[40px]">
-            ЗА ЧТО ЕЩЕ ВЫБИРАЮТ НАС?
-          </h2>
+        {/* 6. BLOG & GUIDES SECTION (Replaces standalone /blog page) */}
+        <section
+          id="blog"
+          className="mx-auto max-w-[1400px] scroll-mt-24 px-4 pt-24 sm:px-6 sm:pt-32"
+        >
+          <Reveal>
+            <div className="max-w-2xl">
+              <h2 className="font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
+                Блог и путеводители по Архызу
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-[#a8b9ae]">
+                Подробные маршруты на автомобиле и самолёте, а также подборка
+                живописных водопадов и локаций в нескольких минутах от нашей
+                базы.
+              </p>
+            </div>
+          </Reveal>
 
-          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1.35fr]">
-            {HOME_ADVANTAGES.map((adv) => (
-              <div
-                key={adv.id}
-                className="flex flex-col rounded-[22px] bg-[#d9decc] p-7 text-[#141414]"
-              >
-                <div className="flex h-[112px] w-[118px] items-center justify-center rounded-[20px] bg-white text-[#222] shadow-xs">
-                  {renderAdvantageIcon(adv.id)}
+          <Reveal delay={0.08} className="mt-9">
+            <BlogSection />
+          </Reveal>
+        </section>
+
+        {/* 7. TERRACE + VERIFIED AWARDS & FAQ SPLIT */}
+        <section
+          id="faq"
+          className="mx-auto max-w-[1400px] scroll-mt-24 px-4 pt-24 sm:px-6 sm:pt-32"
+        >
+          <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-12">
+            {/* Left 5 cols: Terrace Photo + Independent Ratings */}
+            <Reveal className="lg:col-span-5">
+              <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#102419] p-4 sm:p-5">
+                <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-[#08140d]">
+                  <img
+                    src="/images/home/faq-terrace.jpg"
+                    alt="Терраса домика с креслами на базе отдыха Хижина лесника"
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
                 </div>
 
-                <h3 className="mt-8 font-moderustic text-[21px] leading-snug font-extrabold text-[#90754b]">
-                  {adv.title}
-                </h3>
+                <div className="mt-5 px-1 pb-1">
+                  <h3 className="font-moderustic text-xl font-bold text-[#f3f5f0]">
+                    Рейтинг 5.0 и доверие 250+ семей
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#a8b9ae]">
+                    Нас отмечают наградой «Хорошее место» Яндекса и рекомендуют
+                    независимые сервисы бронирования за чистоту, тепло в домах и
+                    заботу о деталях.
+                  </p>
 
-                <p className="mt-3 font-moderustic text-[14.5px] leading-relaxed text-[#141414]">
-                  {adv.description}
+                  <div className="mt-5">
+                    <HospitalityAwards variant="cards" />
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Right 7 cols: FAQ Accordion */}
+            <Reveal delay={0.08} className="lg:col-span-7">
+              <div className="max-w-2xl">
+                <h2 className="font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
+                  Частые вопросы перед поездкой
+                </h2>
+                <p className="mt-3 text-base leading-relaxed text-[#a8b9ae]">
+                  Всё, что важно знать о размещении с питомцами, сушке
+                  горнолыжной экипировки, комплектации домов и дороге до
+                  склонов.
                 </p>
               </div>
-            ))}
-
-            <AdvantageContactCard />
-          </div>
-        </section>
-
-        {/* 7. 5% DISCOUNT PROMO BLOCK */}
-        <section className="mx-auto mt-20 w-[calc(100%-24px)] max-w-[1392px] rounded-[24px] bg-[#d9decc] px-6 py-10 sm:mt-24 sm:px-12 sm:py-14 lg:px-16 lg:py-16">
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
-            <div>
-              <img
-                src="/images/home/discount-festive.jpg"
-                alt="Уютная атмосфера отдыха со скидкой 5%"
-                loading="lazy"
-                className="h-[320px] w-full rounded-[24px] object-cover sm:h-[430px]"
-              />
-            </div>
-
-            <div>
-              <h2 className="font-moderustic text-[30px] leading-tight font-extrabold uppercase text-[#90754b] sm:text-[40px]">
-                СКИДКА НА ВСЕ ДОМИКИ
-              </h2>
-
-              {/* Exact Notched Lime Tag Image */}
-              <div
-                className="mt-1 inline-flex h-[82px] w-[155px] items-center justify-center bg-contain bg-center bg-no-repeat"
-                style={{
-                  backgroundImage: "url('/images/home/tpl25_3_2.png')",
-                }}
-              >
-                <span className="font-moderustic text-[52px] leading-none font-extrabold text-white">
-                  5%
-                </span>
-              </div>
-
-              <p className="mt-5 max-w-[520px] font-moderustic text-[16.5px] leading-relaxed text-[#7e6a48]">
-                Наша база предоставляет не просто оперативный и качественный
-                сервис, но и привлекательные скидки на проживание от 4-х дней
-              </p>
-
-              {/* Circular Timer Counters */}
-              <div className="mt-7 flex items-center gap-6">
-                {[
-                  { val: "00", label: "дней" },
-                  { val: "00", label: "часов" },
-                  { val: "00", label: "минут" },
-                ].map((unit) => (
-                  <div key={unit.label} className="text-center">
-                    <div className="flex h-[82px] w-[82px] items-center justify-center rounded-full bg-white font-moderustic text-[26px] text-[#3a3a3a] ring-4 ring-[#eceadd]">
-                      {unit.val}
-                    </div>
-                    <span className="mt-2 block font-moderustic text-[14px] text-[#7e6a48]">
-                      {unit.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
 
               <div className="mt-8">
-                <a
-                  href="#booking"
-                  className="inline-flex h-[68px] items-center justify-center rounded-[12px] bg-[#90754b] px-8 font-moderustic text-[13px] font-bold uppercase tracking-wide text-white transition hover:bg-[#a68859] sm:px-9"
-                >
-                  ХОЧУ ЗАБОНИРОВАТЬ ПРЯМО СЕЙЧАС!
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 8. FAQ SECTION ("ДОПОЛНИТЕЛЬНО УЗНАТЬ / ВОПРОС - ОТВЕТ") */}
-        <section className="mx-auto mt-24 max-w-[1300px] px-4 sm:mt-28 sm:px-6">
-          <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
-            <div>
-              <p className="font-great-vibes text-[48px] leading-[1.02] text-[#dbd0bf] sm:text-[52px]">
-                Дополнительно
-                <br />
-                узнать
-              </p>
-              <h2 className="mt-2 font-moderustic text-[32px] leading-tight font-extrabold uppercase text-[#90754b] sm:text-[40px]">
-                ВОПРОС - ОТВЕТ
-              </h2>
-
-              <div className="mt-10">
                 <FaqAccordion />
               </div>
-            </div>
-
-            <div className="lg:pt-2">
-              <img
-                src="/images/home/faq-terrace.jpg"
-                alt="Уютная терраса домика на базе отдыха Хижина лесника"
-                loading="lazy"
-                className="h-[420px] w-full rounded-[24px] object-cover shadow-lg sm:h-[520px]"
-              />
-            </div>
+            </Reveal>
           </div>
         </section>
 
-        {/* 9. GUEST REVIEWS + SEASONAL ACTIVITIES */}
-        <section className="mx-auto mt-24 max-w-[1300px] px-4 sm:mt-28 sm:px-6">
-          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-12">
-            {/* Left: Yandex Reviews Widget */}
-            <div>
-              <p className="font-great-vibes text-[46px] leading-none text-[#dbd0bf] sm:text-[52px]">
-                Мы ценим каждый отзыв!
-              </p>
-              <h2 className="mt-2 font-moderustic text-[32px] leading-tight font-extrabold uppercase text-[#90754b] sm:text-[40px]">
-                ОТЗЫВЫ ГОСТЕЙ
-              </h2>
-
-              <div className="mt-8 h-[640px] w-full max-w-[590px] overflow-hidden rounded-[12px] bg-white shadow-xl">
-                <iframe
-                  src={`https://yandex.ru/maps-reviews-widget/${SITE_CONFIG.yandexOrgId}?comments`}
-                  title="Отзывы гостей о базе отдыха Хижина лесника на Яндекс Картах"
-                  className="h-full w-full border-0"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            {/* Right: Seasonal Activities Marquee */}
-            <div className="min-w-0 overflow-hidden">
-              <p className="font-great-vibes text-[42px] leading-[1.08] text-[#dbd0bf] sm:text-[48px]">
-                Рядом с нами много интересных мест
-                <br />
-                для ваших ярких впечатлений
-              </p>
-              <h2 className="mt-2 font-moderustic text-[32px] leading-tight font-extrabold uppercase text-[#90754b] sm:text-[40px]">
-                СЕЗОННЫЕ АКТИВНОСТИ
-              </h2>
-
-              <div className="mt-8">
-                <SeasonalMarquee />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 10. FULL-WIDTH INTERACTIVE YANDEX MAP */}
+        {/* 8. DARK-FOREST GUEST REVIEWS + INTERACTIVE MAP & CONCIERGE */}
         <section
-          aria-label="Карта расположения базы отдыха Хижина лесника"
-          className="mt-20 h-[450px] w-full bg-[#e6eccf]"
+          id="reviews"
+          className="mx-auto max-w-[1400px] scroll-mt-24 px-4 pt-24 pb-20 sm:px-6 sm:pt-32 sm:pb-28"
         >
-          <iframe
-            src={`https://yandex.ru/map-widget/v1/?oid=${SITE_CONFIG.yandexOrgId}&ol=biz&ll=${SITE_CONFIG.coords.lng}%2C${SITE_CONFIG.coords.lat}&z=17`}
-            title="База отдыха Хижина лесника на Яндекс Картах"
-            className="h-full w-full border-0"
-            loading="lazy"
-            allowFullScreen
-          />
+          <Reveal>
+            <div className="max-w-2xl">
+              <h2 className="font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
+                Отзывы гостей и расположение в Архызе
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-[#a8b9ae]">
+                Удобный асфальтированный подъезд прямо к территории базы и
+                реальные впечатления гостей на Яндекс Картах.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="mt-10 grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12">
+            {/* Left 5 cols: Native Dark-Forest Guest Reviews */}
+            <Reveal className="flex lg:col-span-5">
+              <GuestReviews />
+            </Reveal>
+
+            {/* Right 7 cols: Map + Route Guide + Direct Concierge */}
+            <Reveal
+              delay={0.08}
+              className="flex flex-col justify-between gap-6 lg:col-span-7"
+            >
+              <div
+                id="contacts"
+                className="scroll-mt-24 overflow-hidden rounded-3xl border border-white/10 bg-[#102419] p-3 sm:p-4"
+              >
+                <div className="h-[370px] w-full overflow-hidden rounded-2xl bg-[#163122]">
+                  <iframe
+                    src={`https://yandex.ru/map-widget/v1/?oid=${SITE_CONFIG.yandexOrgId}&ol=biz&ll=${SITE_CONFIG.coords.lng}%2C${SITE_CONFIG.coords.lat}&z=17`}
+                    title="База отдыха Хижина лесника на Яндекс Картах"
+                    className="h-full w-full border-0"
+                    loading="lazy"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-white/10 bg-[#102419] p-6 sm:p-8">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                  <div className="flex items-start gap-3">
+                    <MapPin size={22} className="mt-0.5 shrink-0 text-[#d49a5a]" />
+                    <div>
+                      <p className="font-moderustic text-base font-bold text-[#f3f5f0]">
+                        {SITE_CONFIG.address}
+                      </p>
+                      <p className="mt-1 text-xs text-[#a8b9ae]">
+                        Координаты: {SITE_CONFIG.coords.lat},{" "}
+                        {SITE_CONFIG.coords.lng}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <CarProfile
+                      size={22}
+                      className="mt-0.5 shrink-0 text-[#d49a5a]"
+                    />
+                    <div>
+                      <p className="font-moderustic text-base font-bold text-[#f3f5f0]">
+                        Как добраться до базы
+                      </p>
+                      <Link
+                        href="/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety"
+                        className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-[#d49a5a] transition hover:text-[#e0ab6e]"
+                      >
+                        <span>Подробный гид по маршрутам 2026</span>
+                        <ArrowRight size={13} />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 border-t border-white/10 pt-6">
+                  <p className="mb-4 text-sm text-[#d6e0d9]">
+                    Остались вопросы по датам, трансферу или размещению с
+                    детьми? Свяжитесь с нами напрямую:
+                  </p>
+                  <AboutContactActions />
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </section>
       </main>
 
