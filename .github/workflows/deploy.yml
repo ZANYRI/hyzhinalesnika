@@ -6,6 +6,10 @@ on:
       - main
   workflow_dispatch:
 
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
 jobs:
   deploy:
     name: Build & Deploy via SSH
@@ -26,19 +30,36 @@ jobs:
           npm run build
 
       - name: Deploy to VPS over SSH
-        if: ${{ secrets.VPS_HOST != '' }}
+        if: ${{ secrets.VPS_HOST != '' && (secrets.VPS_SSH_KEY != '' || secrets.VPS_PASSWORD != '') }}
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
+          username: ${{ secrets.VPS_USER || 'root' }}
           key: ${{ secrets.VPS_SSH_KEY }}
+          password: ${{ secrets.VPS_PASSWORD }}
           port: ${{ secrets.VPS_PORT || 22 }}
+          script_stop: true
+          command_timeout: 15m
           script: |
-            set -e
-            cd ${{ secrets.VPS_APP_DIR || '/var/www/hyzhinalesnika' }}
+            set -euo pipefail
+            export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
+            cd "${{ secrets.VPS_APP_DIR || '/var/www/hyzhinalesnika' }}"
+            if [ ! -f .env ] && [ -f .env.example ]; then
+              cp .env.example .env
+            fi
             git fetch origin main
             git reset --hard origin/main
             npm ci
-            npm run build
-            pm2 reload ecosystem.config.cjs --update-env || pm2 start ecosystem.config.cjs
+            NODE_OPTIONS="--max-old-space-size=1536" npm run build
+            pm2 startOrReload ecosystem.config.cjs --update-env
             pm2 save
+            for i in 1 2 3 4 5; do
+              if curl -fsS http://127.0.0.1:3001 >/dev/null; then
+                echo "Healthcheck passed on port 3001"
+                exit 0
+              fi
+              sleep 2
+            done
+            echo "Healthcheck failed on port 3001"
+            pm2 logs hyzhinalesnika --lines 30 --nostream
+            exit 1
