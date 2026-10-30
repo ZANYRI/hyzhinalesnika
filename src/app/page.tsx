@@ -20,6 +20,7 @@ import { SeasonalExperiences } from "@/components/SeasonalExperiences";
 import { GalleryMarquee } from "@/components/GalleryMarquee";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { AboutContactActions } from "@/components/AboutContactActions";
+import { HospitalityAwards } from "@/components/HospitalityAwards";
 import { Reveal } from "@/components/Reveal";
 
 const HOME_JSON_LD = [
@@ -378,28 +379,8 @@ export default function HomePage() {
                     заботу о деталях.
                   </p>
 
-                  <div className="mt-5 flex flex-wrap items-center gap-3">
-                    <iframe
-                      src={`https://yandex.ru/sprav/widget/rating-badge/${SITE_CONFIG.yandexOrgId}?type=award`}
-                      width="150"
-                      height="50"
-                      frameBorder="0"
-                      title="Хорошее место 5.0 по оценкам гостей Яндекса"
-                      className="rounded-lg bg-transparent"
-                      loading="lazy"
-                    />
-                    <img
-                      src="/images/brand/ubook-badge.png"
-                      alt="Ubook.ru рекомендует"
-                      loading="lazy"
-                      className="h-[46px] w-auto rounded-lg"
-                    />
-                    <img
-                      src="/images/brand/101hotels-badge.png"
-                      alt="101Hotels.com рекомендует"
-                      loading="lazy"
-                      className="h-[36px] w-auto rounded-lg bg-white/95 px-2 py-1"
-                    />
+                  <div className="mt-5">
+                    <HospitalityAwards variant="cards" />
                   </div>
                 </div>
               </div>

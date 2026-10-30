@@ -9,6 +9,7 @@ import {
   WhatsappLogo,
 } from "@phosphor-icons/react/dist/ssr";
 import { NAV_ITEMS, SITE_CONFIG } from "@/data/site";
+import { HospitalityAwards } from "./HospitalityAwards";
 
 export function Footer() {
   return (
@@ -157,15 +158,7 @@ export function Footer() {
             </div>
 
             <div className="mt-6">
-              <iframe
-                src={`https://yandex.ru/sprav/widget/rating-badge/${SITE_CONFIG.yandexOrgId}?type=award`}
-                width="150"
-                height="50"
-                frameBorder="0"
-                title="Хорошее место 5.0 · Выбор пользователей Яндекса"
-                className="rounded-xl bg-transparent"
-                loading="lazy"
-              />
+              <HospitalityAwards variant="compact" />
             </div>
           </div>
         </div>
