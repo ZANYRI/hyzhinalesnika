@@ -79,10 +79,13 @@ sudo certbot --nginx -d hyzhinalesnika.ru -d www.hyzhinalesnika.ru
 
 В репозитории уже настроен workflow `.github/workflows/deploy.yml`. При каждом `git push` в ветку `main` GitHub сначала проверяет сборку, а затем подключается по SSH к серверу и обновляет сайт.
 
-Добавьте в репозитории на GitHub (**Settings → Secrets and variables → Actions**) следующие секреты:
+Добавьте в репозитории на GitHub (**Settings → Secrets and variables → Actions → Repository secrets**):
 
+Обязательные секреты:
 - `VPS_HOST` — IP-адрес вашего сервера
-- `VPS_USER` — SSH-пользователь (например, `deploy` или `root`)
 - `VPS_SSH_KEY` — приватный SSH-ключ для доступа к серверу
+
+Необязательные секреты (уже имеют значения по умолчанию в `deploy.yml`):
+- `VPS_USER` — SSH-пользователь (по умолчанию `root`)
 - `VPS_PORT` — SSH-порт (по умолчанию `22`)
 - `VPS_APP_DIR` — путь к папке проекта на сервере (по умолчанию `/var/www/hyzhinalesnika`)
