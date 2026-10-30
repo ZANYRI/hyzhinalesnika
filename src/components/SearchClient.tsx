@@ -9,7 +9,7 @@ import { BLOG_POSTS } from "@/data/blog";
 
 const SEARCH_INDEX = [
   ...CABIN_LIST.map((c) => ({
-    title: `${c.titlePrefix} ${c.titleHighlight}`,
+    title: `${c.treeEmoji} ${c.titlePrefix} ${c.titleHighlight}`,
     href: c.slug,
     snippet: `${c.cardPrice} · ${c.cardGuests} · ${c.introText}`,
   })),

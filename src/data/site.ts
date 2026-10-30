@@ -39,17 +39,17 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   {
-    label: 'Дом "Ива" для семьи',
+    label: '🌳 Дом «Ива» для семьи',
     href: "/dom-dlya-semi",
     row: 1,
   },
   {
-    label: 'Двухэтажный дом "Береза" для компании',
+    label: '🌳 Барнхаус «Берёза» для компании',
     href: "/dvuhetazhnyj-barnhouse",
     row: 1,
   },
   {
-    label: 'Шале "Бук" с панорамными окнами',
+    label: '🌳 Шале «Бук» с панорамными окнами',
     href: "/shale-s-vidom-na-gory",
     row: 2,
   },

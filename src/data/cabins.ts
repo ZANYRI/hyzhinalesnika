@@ -4,6 +4,7 @@ export interface CabinSpecRow {
 }
 
 export interface OtherCabinVariant {
+  treeEmoji: string;
   title: string;
   href: string;
   image: string;
@@ -15,6 +16,7 @@ export interface OtherCabinVariant {
 
 export interface CabinData {
   id: "iva" | "bereza" | "buk";
+  treeEmoji: string;
   slug: string;
   shortSlug: string;
   seoTitle: string;
@@ -75,6 +77,7 @@ function makeGallery(folder: string, count: number, baseAlt: string) {
 export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
   iva: {
     id: "iva",
+    treeEmoji: "🌳",
     slug: "/dom-dlya-semi",
     shortSlug: "/house",
     seoTitle: 'Уютный дом для семьи с детьми в Архызе | "Хижина лесника"',
@@ -149,6 +152,7 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
     gallery: makeGallery("house", 16, 'Дом «Ива» для семьи в Архызе'),
     otherVariants: [
       {
+        treeEmoji: "🌳",
         title: 'Барнхаус «Берёза»',
         href: "/dvuhetazhnyj-barnhouse",
         image: "/images/home/cabin-bereza.jpg",
@@ -159,6 +163,7 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
         priceFrom: "от 12 000 ₽ / сутки",
       },
       {
+        treeEmoji: "🌳",
         title: 'Шале «Бук»',
         href: "/shale-s-vidom-na-gory",
         image: "/images/home/cabin-buk.jpg",
@@ -172,6 +177,7 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
 
   bereza: {
     id: "bereza",
+    treeEmoji: "🌳",
     slug: "/dvuhetazhnyj-barnhouse",
     shortSlug: "/barnhouse",
     seoTitle:
@@ -248,6 +254,7 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
     gallery: makeGallery("barnhouse", 23, 'Двухэтажный дом «Берёза» Barnhouse'),
     otherVariants: [
       {
+        treeEmoji: "🌳",
         title: 'Дом «Ива»',
         href: "/dom-dlya-semi",
         image: "/images/home/cabin-iva.jpg",
@@ -258,6 +265,7 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
         priceFrom: "от 8 000 ₽ / сутки",
       },
       {
+        treeEmoji: "🌳",
         title: 'Шале «Бук»',
         href: "/shale-s-vidom-na-gory",
         image: "/images/home/cabin-buk.jpg",
@@ -271,6 +279,7 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
 
   buk: {
     id: "buk",
+    treeEmoji: "🌳",
     slug: "/shale-s-vidom-na-gory",
     shortSlug: "/shale",
     seoTitle: "Шале с панорамным видом на горы в Архызе | Аренда",
@@ -338,6 +347,7 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
     gallery: makeGallery("shale", 11, 'Шале «Бук» с панорамными окнами'),
     otherVariants: [
       {
+        treeEmoji: "🌳",
         title: 'Дом «Ива»',
         href: "/dom-dlya-semi",
         image: "/images/home/cabin-iva.jpg",
@@ -348,6 +358,7 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
         priceFrom: "от 8 000 ₽ / сутки",
       },
       {
+        treeEmoji: "🌳",
         title: 'Барнхаус «Берёза»',
         href: "/dvuhetazhnyj-barnhouse",
         image: "/images/home/cabin-bereza.jpg",
