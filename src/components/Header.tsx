@@ -2,9 +2,11 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { List, PhoneCall, X } from "@phosphor-icons/react";
 import { SITE_CONFIG } from "@/data/site";
 import { CallbackModal } from "./CallbackModal";
+import { navigateToSection } from "./CleanHashScroll";
 
 interface HeaderProps {
   variant?: "hero" | "inner";
@@ -12,17 +14,27 @@ interface HeaderProps {
 }
 
 const HEADER_LINKS = [
-  { label: "Дома", href: "/#cabins" },
-  { label: "Впечатления", href: "/#sez1" },
-  { label: "Галерея", href: "/#gallery" },
-  { label: "Блог", href: "/#blog" },
-  { label: "Отзывы", href: "/#reviews" },
-  { label: "Контакты", href: "/#contacts" },
+  { label: "Дома", target: "/#cabins" },
+  { label: "Впечатления", target: "/#sez1" },
+  { label: "Галерея", target: "/#gallery" },
+  { label: "Блог", target: "/#blog" },
+  { label: "Отзывы", target: "/#reviews" },
+  { label: "Контакты", target: "/#contacts" },
 ] as const;
 
 export function Header({ bookingAnchor = "#booking" }: HeaderProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [callbackOpen, setCallbackOpen] = useState(false);
+  const router = useRouter();
+
+  function handleNavClick(target: string) {
+    setDrawerOpen(false);
+    navigateToSection(
+      target,
+      router,
+      typeof window !== "undefined" ? window.location.pathname : "/"
+    );
+  }
 
   return (
     <>
@@ -56,13 +68,14 @@ export function Header({ bookingAnchor = "#booking" }: HeaderProps) {
             className="hidden items-center gap-6 lg:flex xl:gap-8"
           >
             {HEADER_LINKS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="whitespace-nowrap text-[13.5px] font-medium text-[#d6e0d9] transition hover:text-[#d49a5a]"
+              <button
+                key={item.target}
+                type="button"
+                onClick={() => handleNavClick(item.target)}
+                className="whitespace-nowrap text-[13.5px] font-medium text-[#d6e0d9] transition hover:text-[#d49a5a] cursor-pointer"
               >
                 {item.label}
-              </Link>
+              </button>
             ))}
           </nav>
 
@@ -85,12 +98,13 @@ export function Header({ bookingAnchor = "#booking" }: HeaderProps) {
               <PhoneCall size={18} />
             </button>
 
-            <a
-              href={bookingAnchor}
-              className="hidden whitespace-nowrap rounded-full bg-[#d49a5a] px-5 py-2.5 text-[13px] font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98] sm:inline-flex"
+            <button
+              type="button"
+              onClick={() => handleNavClick(bookingAnchor)}
+              className="hidden whitespace-nowrap rounded-full bg-[#d49a5a] px-5 py-2.5 text-[13px] font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98] sm:inline-flex cursor-pointer"
             >
               Забронировать
-            </a>
+            </button>
 
             <button
               type="button"
@@ -135,14 +149,14 @@ export function Header({ bookingAnchor = "#booking" }: HeaderProps) {
 
             <nav className="mt-6 flex flex-col gap-1">
               {HEADER_LINKS.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setDrawerOpen(false)}
-                  className="rounded-xl px-3 py-3 font-moderustic text-base font-medium text-[#f3f5f0] transition hover:bg-[#102419] hover:text-[#d49a5a]"
+                <button
+                  key={item.target}
+                  type="button"
+                  onClick={() => handleNavClick(item.target)}
+                  className="rounded-xl px-3 py-3 text-left font-moderustic text-base font-medium text-[#f3f5f0] transition hover:bg-[#102419] hover:text-[#d49a5a] cursor-pointer"
                 >
                   {item.label}
-                </Link>
+                </button>
               ))}
             </nav>
 
@@ -159,13 +173,13 @@ export function Header({ bookingAnchor = "#booking" }: HeaderProps) {
                 </span>
               </div>
 
-              <a
-                href={bookingAnchor}
-                onClick={() => setDrawerOpen(false)}
-                className="flex h-12 w-full items-center justify-center rounded-full bg-[#d49a5a] text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
+              <button
+                type="button"
+                onClick={() => handleNavClick(bookingAnchor)}
+                className="flex h-12 w-full items-center justify-center rounded-full bg-[#d49a5a] text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98] cursor-pointer"
               >
                 Забронировать
-              </a>
+              </button>
             </div>
           </div>
         </div>
