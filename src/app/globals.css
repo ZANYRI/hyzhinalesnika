@@ -258,3 +258,36 @@ body:not(:has([data-tid="Modal__root"])) [data-tid="Popup__root"] {
   --k-color-line-neutral-faint: rgba(243, 245, 240, 0.1);
   --k-color-line-neutral-pale: rgba(243, 245, 240, 0.18);
 }
+
+
+/* Cap Контур.Отель adults dropdown selection to 7 adults max (matching largest cabin capacity) */
+[data-tid="MenuItem__root"]:nth-child(n + 8):has(> [data-tid="MenuItem__content"] > svg) {
+  display: none !important;
+}
+
+@keyframes booking-bar-pulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(212, 154, 90, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 18px 48px rgba(0, 0, 0, 0.42);
+    border-color: rgba(212, 154, 90, 0.85);
+  }
+  70% {
+    box-shadow:
+      0 0 0 12px rgba(212, 154, 90, 0),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 18px 48px rgba(0, 0, 0, 0.42);
+    border-color: rgba(212, 154, 90, 0.55);
+  }
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(212, 154, 90, 0),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 18px 48px rgba(0, 0, 0, 0.36);
+  }
+}
+
+.booking-focus-pulse {
+  animation: booking-bar-pulse 1.3s ease-out;
+}

@@ -211,19 +211,13 @@ export function CabinShowcase() {
             </ul>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3 pt-2">
-            <a
-              href="#booking"
-              className="inline-flex h-12 flex-1 items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-6 text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
-            >
-              Забронировать
-            </a>
+          <div className="mt-8 pt-2">
             <Link
               href={cabin.slug}
-              className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-[#163122]/60 px-6 text-sm font-medium text-[#f3f5f0] transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a] active:scale-[0.98]"
+              className="inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border border-[#d49a5a]/45 bg-[#163122]/85 px-6 text-sm font-semibold text-[#f3f5f0] transition hover:border-[#d49a5a] hover:bg-[#d49a5a] hover:text-[#0a1911] active:scale-[0.98]"
             >
               <span>Планировка и фото</span>
-              <ArrowRight size={16} />
+              <ArrowRight size={16} weight="bold" />
             </Link>
           </div>
         </div>

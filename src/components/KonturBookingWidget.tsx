@@ -1,11 +1,18 @@
 "use client";
 
-import React, { useEffect, useId, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import { CalendarBlank, CaretDown, Users } from "@phosphor-icons/react";
 import { SITE_CONFIG } from "@/data/site";
 import {
   KONTUR_DARK_FOREST_COMMON,
   KonturAddConfig,
+  MAX_ADULTS_COUNT,
   mountKonturWidget,
 } from "@/lib/kontur-hotel";
 
@@ -15,6 +22,7 @@ export type KonturModuleVariant =
   | "roomsList"
   | "calendarHorizontal"
   | "calendarVertical"
+  | "calendarResponsive"
   | "mobileFloatingButton";
 
 interface KonturBookingWidgetProps {
@@ -104,8 +112,30 @@ const ROOMS_LIST_THEME: Record<string, unknown> = {
   },
 };
 
+const ADULTS_OPTIONS = Array.from({ length: MAX_ADULTS_COUNT }, (_, idx) => {
+  const count = idx + 1;
+  return {
+    value: String(count),
+    label: count === 1 ? "1 взрослый" : `${count} взрослых`,
+  };
+});
+
+function subscribeDesktopMedia(callback: () => void): () => void {
+  const mq = window.matchMedia("(min-width: 768px)");
+  mq.addEventListener("change", callback);
+  return () => mq.removeEventListener("change", callback);
+}
+
+function getDesktopMediaSnapshot(): boolean {
+  return window.matchMedia("(min-width: 768px)").matches;
+}
+
+function getDesktopMediaServerSnapshot(): boolean {
+  return true;
+}
+
 function buildKonturConfig(
-  variant: KonturModuleVariant,
+  variant: Exclude<KonturModuleVariant, "calendarResponsive">,
   container: string
 ): KonturAddConfig {
   switch (variant) {
@@ -159,14 +189,31 @@ export function KonturBookingWidget({
   className = "",
 }: KonturBookingWidgetProps) {
   const reactId = useId().replace(/[^a-zA-Z0-9_-]/g, "");
-  const containerId = customContainerId || `kontur-${variant}-${reactId}`;
+  const isDesktopViewport = useSyncExternalStore(
+    subscribeDesktopMedia,
+    getDesktopMediaSnapshot,
+    getDesktopMediaServerSnapshot
+  );
+
+  const resolvedVariant: Exclude<KonturModuleVariant, "calendarResponsive"> =
+    variant === "calendarResponsive"
+      ? isDesktopViewport
+        ? "calendarHorizontal"
+        : "calendarVertical"
+      : variant;
+
+  const containerId =
+    customContainerId || `kontur-${resolvedVariant}-${reactId}`;
+  const activeKey = `${containerId}:${resolvedVariant}`;
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const [mountedWidget, setMountedWidget] = useState(false);
+  const [mountedKey, setMountedKey] = useState<string | null>(null);
   const [originBlocked, setOriginBlocked] = useState(false);
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [adults, setAdults] = useState("2");
+
+  const mountedWidget = mountedKey === activeKey;
 
   useEffect(() => {
     let cancelled = false;
@@ -175,9 +222,11 @@ export function KonturBookingWidget({
 
     const el = containerRef.current;
     if (el) {
+      el.replaceChildren();
+
       const checkRendered = () => {
         if (!cancelled && el.childElementCount > 0) {
-          setMountedWidget(true);
+          setMountedKey(activeKey);
         }
       };
 
@@ -188,7 +237,7 @@ export function KonturBookingWidget({
       });
     }
 
-    const config = buildKonturConfig(variant, containerId);
+    const config = buildKonturConfig(resolvedVariant, containerId);
 
     mountKonturWidget(config)
       .then(({ allowed, cleanup }) => {
@@ -203,11 +252,11 @@ export function KonturBookingWidget({
           containerRef.current &&
           containerRef.current.childElementCount > 0
         ) {
-          setMountedWidget(true);
+          setMountedKey(activeKey);
         }
       })
       .catch(() => {
-        if (!cancelled) setMountedWidget(false);
+        if (!cancelled) setMountedKey(null);
       });
 
     return () => {
@@ -215,9 +264,9 @@ export function KonturBookingWidget({
       observer?.disconnect();
       cleanupWidget?.();
     };
-  }, [containerId, variant]);
+  }, [activeKey, containerId, resolvedVariant]);
 
-  if (variant === "mobileFloatingButton") {
+  if (resolvedVariant === "mobileFloatingButton") {
     return <div id={containerId} ref={containerRef} />;
   }
 
@@ -231,14 +280,14 @@ export function KonturBookingWidget({
   }
 
   const isFormVariant =
-    variant === "horizontalForm" || variant === "verticalForm";
+    resolvedVariant === "horizontalForm" || resolvedVariant === "verticalForm";
 
   const mountedContainerClass =
-    variant === "horizontalForm"
+    resolvedVariant === "horizontalForm"
       ? `kontur-forest-scope forest-glass w-full rounded-3xl px-5 py-4 sm:px-7 sm:py-5 lg:w-fit ${
           align === "center" ? "mx-auto" : ""
         }`
-      : variant === "verticalForm"
+      : resolvedVariant === "verticalForm"
         ? "kontur-forest-scope forest-glass mx-auto w-full max-w-md rounded-3xl p-5 sm:p-6"
         : "kontur-forest-scope w-full";
 
@@ -246,7 +295,7 @@ export function KonturBookingWidget({
     <section
       id={id}
       aria-label="Онлайн-бронирование Контур.Отель"
-      className={`mx-auto w-full max-w-[1400px] px-4 sm:px-6 ${className}`}
+      className={`mx-auto w-full max-w-[1400px] scroll-mt-28 px-4 sm:px-6 ${className}`}
     >
       {/* Live Контур.Отель container (kept at a stable JSX node position so portal root never remounts) */}
       <div
@@ -259,7 +308,7 @@ export function KonturBookingWidget({
       {!mountedWidget && isFormVariant && (
         <div
           className={`forest-glass w-full rounded-3xl p-5 sm:p-7 ${
-            variant === "verticalForm"
+            resolvedVariant === "verticalForm"
               ? "mx-auto max-w-md"
               : align === "center"
                 ? "mx-auto max-w-[980px]"
@@ -269,14 +318,14 @@ export function KonturBookingWidget({
           <form
             onSubmit={handleFallbackSubmit}
             className={
-              variant === "verticalForm"
+              resolvedVariant === "verticalForm"
                 ? "flex flex-col gap-4"
                 : "grid grid-cols-1 items-end gap-4 md:grid-cols-12"
             }
           >
             <div
               className={
-                variant === "verticalForm"
+                resolvedVariant === "verticalForm"
                   ? "flex flex-col gap-2"
                   : "flex flex-col gap-2 md:col-span-3"
               }
@@ -299,7 +348,7 @@ export function KonturBookingWidget({
 
             <div
               className={
-                variant === "verticalForm"
+                resolvedVariant === "verticalForm"
                   ? "flex flex-col gap-2"
                   : "flex flex-col gap-2 md:col-span-3"
               }
@@ -323,7 +372,7 @@ export function KonturBookingWidget({
 
             <div
               className={
-                variant === "verticalForm"
+                resolvedVariant === "verticalForm"
                   ? "flex flex-col gap-2"
                   : "flex flex-col gap-2 md:col-span-3"
               }
@@ -333,7 +382,7 @@ export function KonturBookingWidget({
                 className="flex items-center gap-1.5 text-xs font-medium text-[#a8b9ae]"
               >
                 <Users size={14} className="text-[#d49a5a]" />
-                <span>Гости</span>
+                <span>Взрослые</span>
               </label>
               <div className="relative">
                 <select
@@ -342,13 +391,11 @@ export function KonturBookingWidget({
                   onChange={(e) => setAdults(e.target.value)}
                   className="h-12 w-full appearance-none rounded-xl border border-white/15 bg-[#0a1911]/90 pr-9 pl-3.5 text-sm text-[#f3f5f0] outline-none transition focus:border-[#d49a5a] cursor-pointer"
                 >
-                  <option value="1">1 гость</option>
-                  <option value="2">2 гостя</option>
-                  <option value="3">3 гостя</option>
-                  <option value="4">4 гостя</option>
-                  <option value="5">5 гостей</option>
-                  <option value="6">6 гостей</option>
-                  <option value="7">7 гостей</option>
+                  {ADULTS_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </option>
+                  ))}
                 </select>
                 <CaretDown
                   size={15}
@@ -359,7 +406,7 @@ export function KonturBookingWidget({
 
             <div
               className={
-                variant === "verticalForm" ? "pt-1" : "md:col-span-3"
+                resolvedVariant === "verticalForm" ? "pt-1" : "md:col-span-3"
               }
             >
               <button

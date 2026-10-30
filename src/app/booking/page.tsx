@@ -49,23 +49,12 @@ export default function BookingPage() {
           className="mt-9 px-0 sm:px-0"
         />
 
-        {/* 2. Календарь доступности */}
-        <div className="mt-10 hidden md:block">
-          <KonturBookingWidget
-            id="availability-calendar-desktop"
-            variant="calendarHorizontal"
-            containerId="WidgetHorizontalAvailabilityCalendarId"
-            className="px-0 sm:px-0"
-          />
-        </div>
-        <div className="mt-10 md:hidden">
-          <KonturBookingWidget
-            id="availability-calendar-mobile"
-            variant="calendarVertical"
-            containerId="WidgetVerticalAvailabilityCalendarId"
-            className="px-0 sm:px-0"
-          />
-        </div>
+        {/* 2. Адаптивный календарь доступности (2 месяца на десктопе, 1 месяц на мобильных без скрытого контейнера) */}
+        <KonturBookingWidget
+          id="availability-calendar"
+          variant="calendarResponsive"
+          className="mt-10 px-0 sm:px-0"
+        />
 
         {/* 3. Полный список домов */}
         <KonturBookingWidget

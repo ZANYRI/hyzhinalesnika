@@ -1,5 +1,7 @@
 import { SITE_CONFIG } from "@/data/site";
 
+export const MAX_ADULTS_COUNT = 7;
+
 export type KonturWidgetType =
   | "bookingForm"
   | "roomsList"
@@ -177,12 +179,131 @@ export const KONTUR_DARK_FOREST_COMMON: Record<string, unknown> = {
 const accessCache = new Map<string, Promise<boolean>>();
 let scriptPromise: Promise<HotelWidgetGlobal> | null = null;
 let initializedHotelId: string | null = null;
+let adultsCapGuardInstalled = false;
+
+function parseAdultsMenuItemValue(item: Element): number | null {
+  const content = item.querySelector('[data-tid="MenuItem__content"]');
+  if (!content || !content.querySelector("svg")) {
+    return null;
+  }
+  const raw = (content.textContent || "").trim();
+  if (!/^\d+$/.test(raw)) {
+    return null;
+  }
+  return Number.parseInt(raw, 10);
+}
+
+/**
+ * Enforces a strict maximum of 7 adults in Контур.Отель's `AdultsCountSelect`
+ * dropdown (which otherwise defaults to `1..20`), matching the maximum capacity
+ * of the largest house on the base (Barnhouse «Берёза» — up to 7 guests).
+ */
+function installKonturAdultsCapGuard(): void {
+  if (typeof window === "undefined" || adultsCapGuardInstalled) {
+    return;
+  }
+  adultsCapGuardInstalled = true;
+
+  // Clamp incoming ?adultsCount= query param if greater than MAX_ADULTS_COUNT
+  try {
+    const url = new URL(window.location.href);
+    const rawAdults = url.searchParams.get("adultsCount");
+    if (rawAdults) {
+      const parsed = Number.parseInt(rawAdults, 10);
+      if (Number.isFinite(parsed) && parsed > MAX_ADULTS_COUNT) {
+        url.searchParams.set("adultsCount", String(MAX_ADULTS_COUNT));
+        window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+      }
+    }
+  } catch {
+    // Ignore URL replacement errors
+  }
+
+  const pruneAdultsItems = (root: ParentNode = document.body) => {
+    const items = root.querySelectorAll<HTMLElement>('[data-tid="MenuItem__root"]');
+    items.forEach((item) => {
+      const count = parseAdultsMenuItemValue(item);
+      if (count !== null && count > MAX_ADULTS_COUNT) {
+        item.style.setProperty("display", "none", "important");
+        item.setAttribute("aria-hidden", "true");
+        item.setAttribute("data-adults-capped", "true");
+        if (item instanceof HTMLButtonElement) {
+          item.disabled = true;
+        }
+      }
+    });
+  };
+
+  if (document.body) {
+    pruneAdultsItems(document.body);
+    const observer = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        for (const node of m.addedNodes) {
+          if (node instanceof HTMLElement) {
+            if (node.matches('[data-tid="MenuItem__root"]')) {
+              pruneAdultsItems(node.parentElement || document.body);
+            } else if (
+              node.querySelector('[data-tid="MenuItem__root"]')
+            ) {
+              pruneAdultsItems(node);
+            }
+          }
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  // Prevent clicking or ArrowDown-navigating past 7 inside AdultsCountSelect menu
+  document.addEventListener(
+    "click",
+    (e) => {
+      const target = e.target as Element | null;
+      const menuItem = target?.closest('[data-tid="MenuItem__root"]');
+      if (!menuItem) return;
+      const count = parseAdultsMenuItemValue(menuItem);
+      if (count !== null && count > MAX_ADULTS_COUNT) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    },
+    true
+  );
+
+  document.addEventListener(
+    "keydown",
+    (e) => {
+      if (e.key !== "ArrowDown") return;
+      const openMenus = document.querySelectorAll<HTMLElement>(
+        '[data-tid="Select__menu"]'
+      );
+      for (const menu of openMenus) {
+        const items = Array.from(
+          menu.querySelectorAll<HTMLElement>('[data-tid="MenuItem__root"]')
+        );
+        if (items.length <= MAX_ADULTS_COUNT) continue;
+        const firstVal = parseAdultsMenuItemValue(items[0]);
+        if (firstVal === null) continue;
+        // If item #7 is already focused/active or hovered at the bottom of visible list, stop ArrowDown
+        const seventh = items[MAX_ADULTS_COUNT - 1];
+        if (
+          seventh &&
+          (document.activeElement === seventh ||
+            seventh.getAttribute("data-visual-state-hover") !== null)
+        ) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }
+    },
+    true
+  );
+}
 
 /**
  * Checks whether Контур.Отель allows embedding the widget on the current origin
  * (e.g. returns `true` on https://hyzhinalesnika.ru, `false` on localhost unless
  * localhost is added to allowed domains in Контур.Отель settings).
- * Checking beforehand prevents widget.js from firing a console.error in Next.js Dev Overlay.
  */
 export function checkKonturWidgetAccess(
   hotelId: string = SITE_CONFIG.konturHotelId
@@ -226,6 +347,8 @@ export async function ensureKonturHotelInitialized(
   if (typeof window === "undefined") {
     return null;
   }
+
+  installKonturAdultsCapGuard();
 
   const allowedOnCurrentOrigin = await checkKonturWidgetAccess(hotelId);
   if (!allowedOnCurrentOrigin) {
@@ -349,14 +472,77 @@ export async function mountKonturWidget(
     allowed: true,
     cleanup: () => {
       if (!widgetId || !window.HotelWidget) return;
-      const el = document.getElementById(config.appearance.container);
-      if (el && el.childElementCount > 0) {
+      // Use captured `containerEl` reference because React detaches the node before useEffect cleanup
+      if (containerEl.childElementCount > 0) {
         try {
           window.HotelWidget.remove(widgetId);
         } catch {
-          // Ignore cleanup errors if container already detached
+          // Ignore cleanup errors if already removed
         }
       }
     },
   };
+}
+
+/**
+ * Highlights the `#booking` bar and opens Контур.Отель's interactive calendar
+ * (or opens the full booking modal immediately if both dates are already selected).
+ */
+export function activateKonturBookingSection(sectionEl: HTMLElement): void {
+  const pulseTarget =
+    sectionEl.querySelector<HTMLElement>(".forest-glass") || sectionEl;
+  pulseTarget.classList.remove("booking-focus-pulse");
+  // Trigger reflow so repeated clicks replay the amber highlight pulse
+  void pulseTarget.offsetWidth;
+  pulseTarget.classList.add("booking-focus-pulse");
+
+  const startField = sectionEl.querySelector<HTMLElement>(
+    '[data-tid="DateRangePicker__start"]'
+  );
+  const endField = sectionEl.querySelector<HTMLElement>(
+    '[data-tid="DateRangePicker__end"]'
+  );
+  const searchBtn = sectionEl.querySelector<HTMLButtonElement>(
+    ".WidgetBookingControlButtonContainer button"
+  );
+
+  const hasFormattedDate = (el: HTMLElement | null) =>
+    Boolean(el && /\d{2}\.\d{2}\.\d{4}/.test(el.textContent || ""));
+
+  if (startField || endField) {
+    if (hasFormattedDate(startField) && hasFormattedDate(endField) && searchBtn) {
+      searchBtn.click();
+      return;
+    }
+
+    const targetField = hasFormattedDate(startField) ? endField : startField;
+    if (targetField) {
+      const focusable =
+        targetField.querySelector<HTMLElement>(
+          '[tabindex]:not([tabindex="-1"]), input'
+        ) || targetField;
+      focusable.focus({ preventScroll: true });
+      focusable.click();
+      return;
+    }
+  }
+
+  if (searchBtn) {
+    searchBtn.click();
+    return;
+  }
+
+  // Fallback booking bar (e.g. non-whitelisted preview host or while script loads)
+  const dateInputs = Array.from(
+    sectionEl.querySelectorAll<HTMLInputElement>('input[type="date"]')
+  );
+  if (dateInputs.length > 0) {
+    const emptyInput = dateInputs.find((inp) => !inp.value) || dateInputs[0];
+    emptyInput.focus({ preventScroll: true });
+    try {
+      emptyInput.showPicker?.();
+    } catch {
+      // Ignore if browser restricts programmatic showPicker
+    }
+  }
 }

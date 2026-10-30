@@ -2,13 +2,35 @@
 
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { activateKonturBookingSection } from "@/lib/kontur-hotel";
 
 const PENDING_SCROLL_KEY = "hyzhina_scroll_target";
 
 export function scrollToSectionById(id: string): boolean {
-  if (typeof document === "undefined") return false;
+  if (typeof document === "undefined" || typeof window === "undefined") {
+    return false;
+  }
   const el = document.getElementById(id);
   if (!el) return false;
+
+  if (id === "booking") {
+    const rect = el.getBoundingClientRect();
+    const headerSafeTop = 96;
+    const calendarSafeBottom = window.innerHeight - 140;
+    const needsScroll =
+      rect.top < headerSafeTop || rect.bottom > calendarSafeBottom;
+
+    if (needsScroll) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      window.setTimeout(() => {
+        activateKonturBookingSection(el);
+      }, 360);
+    } else {
+      activateKonturBookingSection(el);
+    }
+    return true;
+  }
+
   el.scrollIntoView({ behavior: "smooth", block: "start" });
   return true;
 }
