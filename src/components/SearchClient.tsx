@@ -4,12 +4,21 @@ import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { ArrowRight, MagnifyingGlass } from "@phosphor-icons/react";
-import { CABIN_LIST } from "@/data/cabins";
+import { CABIN_LIST, type CabinId } from "@/data/cabins";
 import { BLOG_POSTS } from "@/data/blog";
+import { CabinTreeEmoji } from "./CabinTreeEmoji";
 
-const SEARCH_INDEX = [
+interface SearchEntry {
+  cabinId?: CabinId;
+  title: string;
+  href: string;
+  snippet: string;
+}
+
+const SEARCH_INDEX: SearchEntry[] = [
   ...CABIN_LIST.map((c) => ({
-    title: `${c.treeEmoji} ${c.titlePrefix} ${c.titleHighlight}`,
+    cabinId: c.id,
+    title: `${c.titlePrefix} ${c.titleHighlight}`,
     href: c.slug,
     snippet: `${c.cardPrice} · ${c.cardGuests} · ${c.introText}`,
   })),
@@ -79,6 +88,9 @@ export function SearchClient() {
             >
               <div>
                 <h2 className="font-moderustic text-lg font-bold text-[#f3f5f0] transition group-hover:text-[#d49a5a]">
+                  {item.cabinId && (
+                    <CabinTreeEmoji id={item.cabinId} className="mr-1.5" />
+                  )}
                   {item.title}
                 </h2>
                 <p className="mt-1.5 text-sm leading-relaxed text-[#a8b9ae]">

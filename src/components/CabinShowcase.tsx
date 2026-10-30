@@ -13,6 +13,7 @@ import {
 } from "@phosphor-icons/react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { CABIN_LIST } from "@/data/cabins";
+import { CabinTreeEmoji } from "./CabinTreeEmoji";
 
 export function CabinShowcase() {
   const [activeCabinIdx, setActiveCabinIdx] = useState(0);
@@ -70,7 +71,7 @@ export function CabinShowcase() {
                 />
               )}
               <span className="relative z-10 flex items-center gap-2">
-                <span aria-hidden="true">{item.treeEmoji}</span>
+                <CabinTreeEmoji id={item.id} />
                 <span>{item.cardTitle}</span>
                 <span
                   className={`text-xs font-normal ${
@@ -152,9 +153,7 @@ export function CabinShowcase() {
           <div>
             <div className="flex flex-wrap items-baseline justify-between gap-3">
               <h3 className="font-moderustic text-2xl font-bold tracking-tight text-[#f3f5f0] sm:text-3xl">
-                <span aria-hidden="true" className="mr-2">
-                  {cabin.treeEmoji}
-                </span>
+                <CabinTreeEmoji id={cabin.id} className="mr-2" />
                 {cabin.cardTitle}
               </h3>
               <span className="font-moderustic text-lg font-bold text-[#d49a5a] sm:text-xl">
@@ -254,9 +253,7 @@ export function CabinShowcase() {
               />
               <div>
                 <p className="font-moderustic text-base font-bold text-[#f3f5f0] transition group-hover:text-[#d49a5a]">
-                  <span aria-hidden="true" className="mr-1.5">
-                    {item.treeEmoji}
-                  </span>
+                  <CabinTreeEmoji id={item.id} className="mr-1.5" />
                   {item.cardTitle}
                 </p>
                 <p className="text-xs text-[#a8b9ae]">

@@ -19,6 +19,7 @@ import { Footer } from "./Footer";
 import { CabinGallerySlider } from "./CabinGallerySlider";
 import { KonturBookingWidget } from "./KonturBookingWidget";
 import { Reveal } from "./Reveal";
+import { CabinTreeEmoji } from "./CabinTreeEmoji";
 
 interface CabinDetailViewProps {
   cabin: CabinData;
@@ -66,9 +67,7 @@ export function CabinDetailView({ cabin }: CabinDetailViewProps) {
               </p>
 
               <h1 className="mt-3 font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
-                <span aria-hidden="true" className="mr-2">
-                  {cabin.treeEmoji}
-                </span>
+                <CabinTreeEmoji id={cabin.id} className="mr-2" />
                 {cabin.titlePrefix}{" "}
                 <span className="text-[#d49a5a]">{cabin.titleHighlight}</span>
               </h1>
@@ -260,9 +259,7 @@ export function CabinDetailView({ cabin }: CabinDetailViewProps) {
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
                       <h3 className="font-moderustic text-xl font-bold text-[#f3f5f0] transition group-hover:text-[#d49a5a]">
                         <Link href={variant.href}>
-                          <span aria-hidden="true" className="mr-1.5">
-                            {variant.treeEmoji}
-                          </span>
+                          <CabinTreeEmoji id={variant.id} className="mr-1.5" />
                           {variant.title}
                         </Link>
                       </h3>

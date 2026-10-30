@@ -10,6 +10,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import { NAV_ITEMS, SITE_CONFIG } from "@/data/site";
 import { HospitalityAwards } from "./HospitalityAwards";
+import { CabinTreeEmoji } from "./CabinTreeEmoji";
 
 export function Footer() {
   return (
@@ -87,6 +88,9 @@ export function Footer() {
                       href={item.href}
                       className="transition hover:text-[#d49a5a]"
                     >
+                      {item.cabinId && (
+                        <CabinTreeEmoji id={item.cabinId} className="mr-1.5" />
+                      )}
                       {item.label}
                     </Link>
                   )}

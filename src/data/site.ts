@@ -1,3 +1,5 @@
+import type { CabinId } from "./cabins";
+
 export const SITE_CONFIG = {
   name: 'База отдыха "Хижина лесника"',
   shortName: "Хижина лесника",
@@ -31,6 +33,7 @@ export const SITE_CONFIG = {
 } as const;
 
 export interface NavItem {
+  cabinId?: CabinId;
   label: string;
   href: string;
   external?: boolean;
@@ -39,17 +42,20 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   {
-    label: '🌳 Дом «Ива» для семьи',
+    cabinId: "iva",
+    label: 'Дом «Ива» для семьи',
     href: "/dom-dlya-semi",
     row: 1,
   },
   {
-    label: '🌳 Барнхаус «Берёза» для компании',
+    cabinId: "bereza",
+    label: 'Барнхаус «Берёза» для компании',
     href: "/dvuhetazhnyj-barnhouse",
     row: 1,
   },
   {
-    label: '🌳 Шале «Бук» с панорамными окнами',
+    cabinId: "buk",
+    label: 'Шале «Бук» с панорамными окнами',
     href: "/shale-s-vidom-na-gory",
     row: 2,
   },

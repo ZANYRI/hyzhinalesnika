@@ -4,6 +4,7 @@ import { NAV_ITEMS } from "@/data/site";
 import { BLOG_POSTS } from "@/data/blog";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { CabinTreeEmoji } from "@/components/CabinTreeEmoji";
 
 export const metadata: Metadata = {
   title: 'Карта сайта | База отдыха "Хижина лесника"',
@@ -69,6 +70,12 @@ export default function KartaSaytaPage() {
                         href={item.href}
                         className="transition hover:text-[#d49a5a]"
                       >
+                        {item.cabinId && (
+                          <CabinTreeEmoji
+                            id={item.cabinId}
+                            className="mr-1.5"
+                          />
+                        )}
                         {item.label}
                       </Link>
                     )}
