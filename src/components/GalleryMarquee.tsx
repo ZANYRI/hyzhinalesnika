@@ -34,7 +34,7 @@ export function GalleryMarquee() {
     <>
       <div className="marquee-container relative w-full overflow-hidden py-2">
         <div
-          className="marquee-track items-center gap-5"
+          className="marquee-track items-center gap-5 pr-5"
           style={{ ["--marquee-duration" as string]: "56s" }}
         >
           {doubled.map((item, idx) => (

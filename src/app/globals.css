@@ -143,12 +143,8 @@ body {
 .marquee-track {
   display: flex;
   width: max-content;
+  will-change: transform;
   animation: marquee-left var(--marquee-duration, 54s) linear infinite;
-}
-
-.marquee-container:hover .marquee-track,
-.marquee-track:hover {
-  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
