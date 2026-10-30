@@ -10,8 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/dom-dlya-semi", priority: 0.9 },
     { path: "/dvuhetazhnyj-barnhouse", priority: 0.9 },
     { path: "/shale-s-vidom-na-gory", priority: 0.9 },
-    { path: "/blog", priority: 0.8 },
-    { path: "/putevoditeli-marshruty", priority: 0.7 },
     {
       path: "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety",
       priority: 0.8,

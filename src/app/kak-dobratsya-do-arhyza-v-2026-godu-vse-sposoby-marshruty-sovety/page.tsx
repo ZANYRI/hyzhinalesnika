@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { KonturBookingWidget } from "@/components/KonturBookingWidget";
-import { EyeCount } from "@/components/BlogList";
+import { EyeCount } from "@/components/BlogSection";
 
 export const metadata: Metadata = {
   title:
@@ -31,7 +31,7 @@ export default function HowToGetToArkhyz2026Page() {
             Главная
           </Link>
           <span>/</span>
-          <Link href="/blog" className="transition hover:text-[#d49a5a]">
+          <Link href="/#blog" className="transition hover:text-[#d49a5a]">
             Блог
           </Link>
           <span>/</span>

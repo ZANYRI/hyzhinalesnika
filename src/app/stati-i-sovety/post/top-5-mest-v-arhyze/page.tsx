@@ -5,7 +5,7 @@ import { TOP_5_PLACES } from "@/data/blog";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { KonturBookingWidget } from "@/components/KonturBookingWidget";
-import { EyeCount } from "@/components/BlogList";
+import { EyeCount } from "@/components/BlogSection";
 
 export const metadata: Metadata = {
   title: 'ТОП-5 мест Архыза рядом с домиками | База отдыха "Хижина лесника"',
@@ -31,15 +31,8 @@ export default function Top5MestArhyzaPage() {
             Главная
           </Link>
           <span>/</span>
-          <Link href="/blog" className="transition hover:text-[#d49a5a]">
+          <Link href="/#blog" className="transition hover:text-[#d49a5a]">
             Блог
-          </Link>
-          <span>/</span>
-          <Link
-            href="/putevoditeli-marshruty"
-            className="transition hover:text-[#d49a5a]"
-          >
-            Путеводители / маршруты
           </Link>
           <span>/</span>
           <span className="text-[#f3f5f0]">ТОП-5 мест Архыза</span>

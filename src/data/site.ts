@@ -55,13 +55,12 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     label: "Отзывы",
-    href: SITE_CONFIG.yandexReviewsUrl,
-    external: true,
+    href: "/#reviews",
     row: 2,
   },
   {
     label: "Блог",
-    href: "/blog",
+    href: "/#blog",
     row: 2,
   },
 ];

@@ -18,9 +18,11 @@ import { KonturBookingWidget } from "@/components/KonturBookingWidget";
 import { CabinShowcase } from "@/components/CabinShowcase";
 import { SeasonalExperiences } from "@/components/SeasonalExperiences";
 import { GalleryMarquee } from "@/components/GalleryMarquee";
+import { BlogSection } from "@/components/BlogSection";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { AboutContactActions } from "@/components/AboutContactActions";
 import { HospitalityAwards } from "@/components/HospitalityAwards";
+import { GuestReviews } from "@/components/GuestReviews";
 import { Reveal } from "@/components/Reveal";
 
 const HOME_JSON_LD = [
@@ -131,7 +133,7 @@ export default function HomePage() {
         {/* 2. INTERACTIVE CABIN EXPLORER (Barskie Polya / PineRiver inspired) */}
         <section
           id="cabins"
-          className="mx-auto max-w-[1400px] px-4 pt-20 sm:px-6 sm:pt-28"
+          className="mx-auto max-w-[1400px] scroll-mt-24 px-4 pt-20 sm:px-6 sm:pt-28"
         >
           <Reveal>
             <div className="max-w-2xl">
@@ -331,7 +333,7 @@ export default function HomePage() {
         </section>
 
         {/* 5. FULL-BLEED ARCHITECTURAL FILMSTRIP GALLERY (Single Marquee on Page) */}
-        <section id="gallery" className="pt-24 sm:pt-32">
+        <section id="gallery" className="scroll-mt-24 pt-24 sm:pt-32">
           <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
             <Reveal>
               <div className="max-w-2xl">
@@ -351,10 +353,33 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 6. TERRACE + VERIFIED AWARDS & FAQ SPLIT */}
+        {/* 6. BLOG & GUIDES SECTION (Replaces standalone /blog page) */}
+        <section
+          id="blog"
+          className="mx-auto max-w-[1400px] scroll-mt-24 px-4 pt-24 sm:px-6 sm:pt-32"
+        >
+          <Reveal>
+            <div className="max-w-2xl">
+              <h2 className="font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
+                Блог и путеводители по Архызу
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-[#a8b9ae]">
+                Подробные маршруты на автомобиле и самолёте, а также подборка
+                живописных водопадов и локаций в нескольких минутах от нашей
+                базы.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.08} className="mt-9">
+            <BlogSection />
+          </Reveal>
+        </section>
+
+        {/* 7. TERRACE + VERIFIED AWARDS & FAQ SPLIT */}
         <section
           id="faq"
-          className="mx-auto max-w-[1400px] px-4 pt-24 sm:px-6 sm:pt-32"
+          className="mx-auto max-w-[1400px] scroll-mt-24 px-4 pt-24 sm:px-6 sm:pt-32"
         >
           <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-12">
             {/* Left 5 cols: Terrace Photo + Independent Ratings */}
@@ -406,10 +431,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 7. LIVE YANDEX REVIEWS + INTERACTIVE MAP & CONCIERGE */}
+        {/* 8. DARK-FOREST GUEST REVIEWS + INTERACTIVE MAP & CONCIERGE */}
         <section
-          id="contacts"
-          className="mx-auto max-w-[1400px] px-4 pt-24 pb-20 sm:px-6 sm:pt-32 sm:pb-28"
+          id="reviews"
+          className="mx-auto max-w-[1400px] scroll-mt-24 px-4 pt-24 pb-20 sm:px-6 sm:pt-32 sm:pb-28"
         >
           <Reveal>
             <div className="max-w-2xl">
@@ -424,23 +449,20 @@ export default function HomePage() {
           </Reveal>
 
           <div className="mt-10 grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12">
-            {/* Left 5 cols: Live Yandex Reviews Widget */}
+            {/* Left 5 cols: Native Dark-Forest Guest Reviews */}
             <Reveal className="flex lg:col-span-5">
-              <div className="flex w-full flex-col rounded-3xl border border-white/10 bg-[#102419] p-3 sm:p-4">
-                <div className="h-[600px] w-full overflow-hidden rounded-2xl bg-white">
-                  <iframe
-                    src={`https://yandex.ru/maps-reviews-widget/${SITE_CONFIG.yandexOrgId}?comments`}
-                    title="Отзывы гостей о базе отдыха Хижина лесника на Яндекс Картах"
-                    className="h-full w-full border-0"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
+              <GuestReviews />
             </Reveal>
 
             {/* Right 7 cols: Map + Route Guide + Direct Concierge */}
-            <Reveal delay={0.08} className="flex flex-col justify-between gap-6 lg:col-span-7">
-              <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#102419] p-3 sm:p-4">
+            <Reveal
+              delay={0.08}
+              className="flex flex-col justify-between gap-6 lg:col-span-7"
+            >
+              <div
+                id="contacts"
+                className="scroll-mt-24 overflow-hidden rounded-3xl border border-white/10 bg-[#102419] p-3 sm:p-4"
+              >
                 <div className="h-[370px] w-full overflow-hidden rounded-2xl bg-[#163122]">
                   <iframe
                     src={`https://yandex.ru/map-widget/v1/?oid=${SITE_CONFIG.yandexOrgId}&ol=biz&ll=${SITE_CONFIG.coords.lng}%2C${SITE_CONFIG.coords.lat}&z=17`}

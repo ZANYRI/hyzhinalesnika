@@ -12,17 +12,15 @@ interface HeaderProps {
 }
 
 const HEADER_LINKS = [
-  { label: 'Дом «Ива»', href: "/dom-dlya-semi", external: false },
-  { label: 'Барнхаус «Берёза»', href: "/dvuhetazhnyj-barnhouse", external: false },
-  { label: 'Шале «Бук»', href: "/shale-s-vidom-na-gory", external: false },
-  { label: "Впечатления", href: "/#sez1", external: false },
-  { label: "Блог", href: "/blog", external: false },
-  { label: "Отзывы", href: SITE_CONFIG.yandexReviewsUrl, external: true },
+  { label: "Дома", href: "/#cabins" },
+  { label: "Впечатления", href: "/#sez1" },
+  { label: "Галерея", href: "/#gallery" },
+  { label: "Блог", href: "/#blog" },
+  { label: "Отзывы", href: "/#reviews" },
+  { label: "Контакты", href: "/#contacts" },
 ] as const;
 
-export function Header({
-  bookingAnchor = "#booking",
-}: HeaderProps) {
+export function Header({ bookingAnchor = "#booking" }: HeaderProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [callbackOpen, setCallbackOpen] = useState(false);
 
@@ -55,29 +53,17 @@ export function Header({
           {/* Single-line Desktop Navigation */}
           <nav
             aria-label="Основное меню"
-            className="hidden items-center gap-5 lg:flex xl:gap-7"
+            className="hidden items-center gap-6 lg:flex xl:gap-8"
           >
-            {HEADER_LINKS.map((item) =>
-              item.external ? (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="whitespace-nowrap text-[13.5px] font-medium text-[#d6e0d9] transition hover:text-[#d49a5a]"
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="whitespace-nowrap text-[13.5px] font-medium text-[#d6e0d9] transition hover:text-[#d49a5a]"
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
+            {HEADER_LINKS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="whitespace-nowrap text-[13.5px] font-medium text-[#d6e0d9] transition hover:text-[#d49a5a]"
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
           {/* Right Actions */}
@@ -148,29 +134,16 @@ export function Header({
             </div>
 
             <nav className="mt-6 flex flex-col gap-1">
-              {HEADER_LINKS.map((item) =>
-                item.external ? (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setDrawerOpen(false)}
-                    className="rounded-xl px-3 py-3 font-moderustic text-base font-medium text-[#f3f5f0] transition hover:bg-[#102419] hover:text-[#d49a5a]"
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setDrawerOpen(false)}
-                    className="rounded-xl px-3 py-3 font-moderustic text-base font-medium text-[#f3f5f0] transition hover:bg-[#102419] hover:text-[#d49a5a]"
-                  >
-                    {item.label}
-                  </Link>
-                )
-              )}
+              {HEADER_LINKS.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setDrawerOpen(false)}
+                  className="rounded-xl px-3 py-3 font-moderustic text-base font-medium text-[#f3f5f0] transition hover:bg-[#102419] hover:text-[#d49a5a]"
+                >
+                  {item.label}
+                </Link>
+              ))}
             </nav>
 
             <div className="mt-auto space-y-4 border-t border-white/10 pt-5">

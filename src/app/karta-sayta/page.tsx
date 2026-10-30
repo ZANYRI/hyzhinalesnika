@@ -84,10 +84,10 @@ export default function KartaSaytaPage() {
               <ul className="mt-4 space-y-2.5 text-sm text-[#d6e0d9]">
                 <li>
                   <Link
-                    href="/putevoditeli-marshruty"
+                    href="/#blog"
                     className="transition hover:text-[#d49a5a]"
                   >
-                    Путеводители / маршруты
+                    Раздел «Блог» на главной
                   </Link>
                 </li>
                 {BLOG_POSTS.map((post) => (

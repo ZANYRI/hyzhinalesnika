@@ -32,7 +32,7 @@ export function GalleryMarquee() {
 
   return (
     <>
-      <div className="relative w-full overflow-hidden py-2">
+      <div className="marquee-container relative w-full overflow-hidden py-2">
         <div
           className="marquee-track items-center gap-5"
           style={{ ["--marquee-duration" as string]: "56s" }}
@@ -43,7 +43,7 @@ export function GalleryMarquee() {
               type="button"
               onClick={() => setLightboxIdx(idx % HOME_GALLERY.length)}
               aria-label={`Открыть фото: ${item.alt}`}
-              className={`group relative shrink-0 overflow-hidden rounded-3xl border border-white/10 bg-[#102419] focus:outline-none cursor-pointer ${
+              className={`relative shrink-0 overflow-hidden rounded-3xl border border-white/10 bg-[#102419] transition-colors hover:border-[#d49a5a]/55 focus:outline-none cursor-pointer ${
                 item.aspect === "portrait"
                   ? "h-[360px] w-[265px] sm:h-[430px] sm:w-[310px]"
                   : "h-[290px] w-[360px] sm:h-[345px] sm:w-[440px]"
@@ -53,7 +53,7 @@ export function GalleryMarquee() {
                 src={item.src}
                 alt={item.alt}
                 loading="lazy"
-                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                className="h-full w-full object-cover"
               />
             </button>
           ))}
