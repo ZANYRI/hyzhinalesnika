@@ -104,14 +104,6 @@ export function Footer() {
                   Онлайн-календарь дат
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/karta-sayta"
-                  className="transition hover:text-[#d49a5a]"
-                >
-                  Карта сайта
-                </Link>
-              </li>
             </ul>
           </div>
 

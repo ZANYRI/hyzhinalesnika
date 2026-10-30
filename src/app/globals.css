@@ -210,7 +210,6 @@ body {
   }
 }
 
-
 /* Scoped dark-forest tokens for inline Контур.Отель widgets & their floating popups */
 .kontur-forest-scope {
   color: #f3f5f0;
@@ -241,14 +240,43 @@ body {
   --k-color-line-inverted-accent-bold: rgba(243, 245, 240, 0.12);
 }
 
-body:not(:has([data-tid="Modal__root"])) [data-tid="Popup__root"] {
+/*
+ * Контур.Отель resets `div { box-sizing: initial }` inside `.rXVw0q` to undo host resets,
+ * but its `CalendarMonth` slide is a `<section>` with `padding: 0 12px` + JS content width.
+ * Restoring `content-box` on `<section>` + clipping `sliderViewport` prevents adjacent months
+ * (e.g. January columns) from bleeding into the 2-month calendar view.
+ */
+.kontur-forest-scope section {
+  box-sizing: content-box;
+}
+
+.kontur-forest-scope div:has(> div > div > section) {
+  overflow: hidden;
+}
+
+#availability-calendar .kontur-forest-scope > div > div > div {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Portaled Контур.Отель popups (`Select__menu`, `Popup__root`, `Tooltip__root`) when no light modal (`modal-container`) is open */
+body:not(:has([data-tid="modal-container"])) [data-tid="Popup__root"],
+body:not(:has([data-tid="modal-container"])) [data-tid="Select__menu"],
+body:not(:has([data-tid="modal-container"])) [data-tid="Tooltip__root"] {
+  color: #f3f5f0;
+  --bm-theme-whiteColor: #102419;
   --bm-theme-bgGrayLightColor: rgba(22, 49, 34, 0.85);
+  --bm-theme-bgGrayColor: rgba(22, 49, 34, 0.92);
+  --bm-theme-bgGrayDarkColor: #163122;
   --bm-theme-btnDisabledBg: rgba(243, 245, 240, 0.1);
   --bm-theme-btnDisabledTextColor: rgba(168, 185, 174, 0.48);
   --bm-theme-fontDisabledColor: rgba(168, 185, 174, 0.48);
   --bm-theme-fontBlackColor: #f3f5f0;
   --bm-theme-fontBlackActiveColor: #f3f5f0;
   --bm-theme-fontGrayColor: #a8b9ae;
+  --bm-theme-parameters-color: #d6e0d9;
+  --k-color-surface-base: #102419;
+  --k-color-surface-high: #102419;
   --k-color-text-neutral-heavy: #f3f5f0;
   --k-color-text-neutral-soft: #a8b9ae;
   --k-color-text-neutral-pale: rgba(168, 185, 174, 0.65);
@@ -259,6 +287,13 @@ body:not(:has([data-tid="Modal__root"])) [data-tid="Popup__root"] {
   --k-color-line-neutral-pale: rgba(243, 245, 240, 0.18);
 }
 
+/* Recolor monochrome black `<img src=".../static/*.svg">` bed & comfort icons on dark-forest surfaces */
+.kontur-forest-scope img[src*="static/"][src$=".svg"],
+body:not(:has([data-tid="modal-container"])) [data-tid="Popup__root"] img[src*="static/"][src$=".svg"],
+body:not(:has([data-tid="modal-container"])) [data-tid="Select__menu"] img[src*="static/"][src$=".svg"],
+body:not(:has([data-tid="modal-container"])) [data-tid="Tooltip__root"] img[src*="static/"][src$=".svg"] {
+  filter: brightness(0) invert(0.92);
+}
 
 /* Cap Контур.Отель adults dropdown selection to 7 adults max (matching largest cabin capacity) */
 [data-tid="MenuItem__root"]:nth-child(n + 8):has(> [data-tid="MenuItem__content"] > svg) {

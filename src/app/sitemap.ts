@@ -18,7 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/oferta", priority: 0.4 },
     { path: "/privacy-policy", priority: 0.4 },
     { path: "/users/agreement", priority: 0.3 },
-    { path: "/karta-sayta", priority: 0.3 },
   ];
 
   return routes.map((route) => ({

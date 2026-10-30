@@ -52,7 +52,7 @@ const CALENDAR_THEME: Record<string, unknown> = {
     bg: "#102419",
     border: "1px solid rgba(243, 245, 240, 0.1)",
     borderRadius: "24px",
-    padding: "22px 24px",
+    padding: "18px 20px 10px",
     boxShadow: "none",
     outline: "none",
   },
@@ -62,6 +62,9 @@ const CALENDAR_THEME: Record<string, unknown> = {
     borderRadius: "16px",
     padding: "12px 20px",
     boxShadow: "none",
+  },
+  parameters: {
+    color: "#d6e0d9",
   },
   monthName: {
     color: "#f3f5f0",
@@ -219,6 +222,22 @@ export function KonturBookingWidget({
     let cancelled = false;
     let cleanupWidget: (() => void) | undefined;
     let observer: MutationObserver | null = null;
+    let notifiedResize = false;
+
+    const triggerCalendarMeasure = () => {
+      if (
+        !notifiedResize &&
+        (resolvedVariant === "calendarHorizontal" ||
+          resolvedVariant === "calendarVertical")
+      ) {
+        notifiedResize = true;
+        requestAnimationFrame(() => {
+          if (!cancelled) {
+            window.dispatchEvent(new Event("resize"));
+          }
+        });
+      }
+    };
 
     const el = containerRef.current;
     if (el) {
@@ -227,6 +246,7 @@ export function KonturBookingWidget({
       const checkRendered = () => {
         if (!cancelled && el.childElementCount > 0) {
           setMountedKey(activeKey);
+          triggerCalendarMeasure();
         }
       };
 
@@ -253,6 +273,7 @@ export function KonturBookingWidget({
           containerRef.current.childElementCount > 0
         ) {
           setMountedKey(activeKey);
+          triggerCalendarMeasure();
         }
       })
       .catch(() => {
