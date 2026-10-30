@@ -69,10 +69,15 @@ const HOME_JSON_LD = [
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#0a1911] text-[#f3f5f0]">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_JSON_LD) }}
-      />
+      {HOME_JSON_LD.map((schema) => (
+        <script
+          key={schema["@type"]}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema).replace(/</g, "\\u003c"),
+          }}
+        />
+      ))}
 
       {/* Sticky Floating Glass Navigation */}
       <Header variant="hero" bookingAnchor="#booking" />
@@ -233,16 +238,6 @@ export default function HomePage() {
                     Оставайтесь дольше без спешки: тариф автоматически учитывает
                     скидку при прямом бронировании любого из трёх домов.
                   </p>
-                </div>
-
-                <div className="mt-6">
-                  <a
-                    href="#booking"
-                    className="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#d49a5a] px-6 text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
-                  >
-                    <span>Рассчитать стоимость</span>
-                    <ArrowRight size={16} />
-                  </a>
                 </div>
               </article>
             </Reveal>
