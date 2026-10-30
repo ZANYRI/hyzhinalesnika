@@ -13,7 +13,6 @@ import {
   Users,
 } from "@phosphor-icons/react/dist/ssr";
 import { BOOKING_RULES, CabinData } from "@/data/cabins";
-import { SITE_CONFIG } from "@/data/site";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { CabinGallerySlider } from "./CabinGallerySlider";
@@ -126,22 +125,6 @@ export function CabinDetailView({ cabin }: CabinDetailViewProps) {
                   </li>
                 ))}
               </ul>
-
-              {/* Actions */}
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a
-                  href="#booking"
-                  className="inline-flex h-12 flex-1 items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-6 text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
-                >
-                  Проверить свободные даты
-                </a>
-                <a
-                  href={SITE_CONFIG.phoneHref}
-                  className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full border border-white/15 bg-[#163122]/65 px-5 text-sm font-medium text-[#f3f5f0] transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a] active:scale-[0.98]"
-                >
-                  {SITE_CONFIG.phoneDisplay}
-                </a>
-              </div>
             </div>
           </div>
         </section>
