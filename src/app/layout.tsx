@@ -2,9 +2,11 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 import { SITE_CONFIG } from "@/data/site";
+import { AUTUMN_ATMOSPHERE } from "@/data/atmosphere";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { KonturBookingWidget } from "@/components/KonturBookingWidget";
 import { CleanHashScroll } from "@/components/CleanHashScroll";
+import { AutumnAtmosphere } from "@/components/AutumnAtmosphere";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
@@ -45,6 +47,7 @@ export default function RootLayout({
   return (
     <html lang="ru" data-scroll-behavior="smooth">
       <body className="min-h-screen bg-[#0a1911] font-montserrat text-[#f3f5f0] antialiased selection:bg-[#d49a5a] selection:text-[#0a1911]">
+        {AUTUMN_ATMOSPHERE.enabled && <AutumnAtmosphere />}
         {children}
         <Suspense fallback={null}>
           <CleanHashScroll />

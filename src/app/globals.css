@@ -180,3 +180,36 @@ body {
 .forest-scroll::-webkit-scrollbar-thumb:hover {
   background: rgba(212, 154, 90, 0.6);
 }
+
+/* Autumn forest mountain mist layers */
+@keyframes autumn-mist-drift {
+  0% {
+    transform: translate3d(-4%, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(4%, 1.5%, 0) scale(1.04);
+  }
+}
+
+.autumn-fog-upper {
+  background:
+    radial-gradient(58% 48% at 22% 18%, rgba(188, 208, 195, 0.085), transparent 72%),
+    radial-gradient(50% 42% at 78% 28%, rgba(212, 154, 90, 0.055), transparent 70%);
+  animation: autumn-mist-drift 34s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.autumn-fog-lower {
+  background:
+    radial-gradient(65% 58% at 30% 96%, rgba(176, 198, 184, 0.095), transparent 74%),
+    radial-gradient(60% 54% at 76% 94%, rgba(188, 206, 194, 0.075), transparent 72%);
+  animation: autumn-mist-drift 44s ease-in-out infinite alternate-reverse;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .autumn-fog-upper,
+  .autumn-fog-lower {
+    animation: none;
+  }
+}
