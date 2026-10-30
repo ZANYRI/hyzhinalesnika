@@ -4,7 +4,6 @@ import "./globals.css";
 import { SITE_CONFIG } from "@/data/site";
 import { AUTUMN_ATMOSPHERE } from "@/data/atmosphere";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import { KonturBookingWidget } from "@/components/KonturBookingWidget";
 import { CleanHashScroll } from "@/components/CleanHashScroll";
 import { AutumnAtmosphere } from "@/components/AutumnAtmosphere";
 
@@ -52,10 +51,6 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <CleanHashScroll />
         </Suspense>
-        <KonturBookingWidget
-          variant="mobileFloatingButton"
-          containerId="WidgetShowCheckAvailabilityButtonForMobileDevicesId"
-        />
         <ScrollToTop />
       </body>
     </html>
