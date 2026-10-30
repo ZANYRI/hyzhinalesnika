@@ -209,3 +209,52 @@ body {
     animation: none;
   }
 }
+
+
+/* Scoped dark-forest tokens for inline Контур.Отель widgets & their floating popups */
+.kontur-forest-scope {
+  color: #f3f5f0;
+  --k-color-surface-base: #102419;
+  --k-color-surface-high: #102419;
+  --k-color-text-neutral-heavy: #f3f5f0;
+  --k-color-text-neutral-soft: #a8b9ae;
+  --k-color-text-neutral-pale: rgba(168, 185, 174, 0.65);
+  --k-color-text-neutral-faint: rgba(168, 185, 174, 0.45);
+  --k-color-text-accent-heavy: #f3f5f0;
+  --k-color-text-accent-heavy-hover: #ffffff;
+  --k-color-text-inverted-neutral-heavy: #102419;
+  --k-color-shape-other-field: #0a1911;
+  --k-color-shape-other-field-hover: #132b1e;
+  --k-color-shape-other-field-pressed: #163122;
+  --k-color-shape-faint-neutral-alpha: rgba(22, 49, 34, 0.78);
+  --k-color-shape-pale-neutral-alpha: rgba(22, 49, 34, 0.92);
+  --k-color-shape-other-backless-hover: rgba(243, 245, 240, 0.08);
+  --k-color-shape-other-backless-pressed: rgba(243, 245, 240, 0.14);
+  --k-color-shape-bold-warning: #d49a5a;
+  --k-color-shape-bold-warning-hover: #e0ab6e;
+  --k-color-shape-bold-warning-pressed: #c38847;
+  --k-color-text-const-heavy-black: #0a1911;
+  --k-color-line-neutral-faint: rgba(243, 245, 240, 0.1);
+  --k-color-line-neutral-pale: rgba(243, 245, 240, 0.18);
+  --k-color-line-neutral-pale-hover: rgba(212, 154, 90, 0.55);
+  --k-color-line-accent-bold: #d49a5a;
+  --k-color-line-inverted-accent-bold: rgba(243, 245, 240, 0.12);
+}
+
+body:not(:has([data-tid="Modal__root"])) [data-tid="Popup__root"] {
+  --bm-theme-bgGrayLightColor: rgba(22, 49, 34, 0.85);
+  --bm-theme-btnDisabledBg: rgba(243, 245, 240, 0.1);
+  --bm-theme-btnDisabledTextColor: rgba(168, 185, 174, 0.48);
+  --bm-theme-fontDisabledColor: rgba(168, 185, 174, 0.48);
+  --bm-theme-fontBlackColor: #f3f5f0;
+  --bm-theme-fontBlackActiveColor: #f3f5f0;
+  --bm-theme-fontGrayColor: #a8b9ae;
+  --k-color-text-neutral-heavy: #f3f5f0;
+  --k-color-text-neutral-soft: #a8b9ae;
+  --k-color-text-neutral-pale: rgba(168, 185, 174, 0.65);
+  --k-color-text-accent-heavy: #f3f5f0;
+  --k-color-shape-faint-neutral-alpha: rgba(22, 49, 34, 0.85);
+  --k-color-shape-other-backless-hover: rgba(243, 245, 240, 0.08);
+  --k-color-line-neutral-faint: rgba(243, 245, 240, 0.1);
+  --k-color-line-neutral-pale: rgba(243, 245, 240, 0.18);
+}

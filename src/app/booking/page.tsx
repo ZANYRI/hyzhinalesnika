@@ -45,6 +45,7 @@ export default function BookingPage() {
           id="booking"
           variant="horizontalForm"
           containerId="WidgetHorizontalBlockId"
+          align="left"
           className="mt-9 px-0 sm:px-0"
         />
 

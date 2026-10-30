@@ -13,12 +13,14 @@ export interface KonturAddConfig {
   appearance: {
     container: string;
   };
+  theme?: Record<string, unknown>;
 }
 
 export interface HotelWidgetGlobal {
   init: (config: {
     hotelId: string;
     version: "2";
+    theme?: Record<string, unknown>;
     hooks?: {
       onError?: (e: unknown) => void;
       onInit?: () => void;
@@ -44,6 +46,133 @@ declare global {
 }
 
 const KONTUR_SCRIPT_SRC = "https://bookonline24.ru/widget.js";
+
+/**
+ * Global Контур.Отель v2 theme: styles primary booking CTAs in brand amber-cedar
+ * while keeping the full-screen checkout/payment modal high-contrast and legible.
+ */
+const KONTUR_GLOBAL_THEME: Record<string, unknown> = {
+  common: {
+    buttons: {
+      primary: {
+        bg: "#d49a5a",
+        hoverBg: "#e0ab6e",
+        activeBg: "#c38847",
+        textColor: "#0a1911",
+        hoverTextColor: "#0a1911",
+      },
+    },
+    controls: {
+      btnBorderRadius: "9999px",
+      inputBorderRadius: "12px",
+      selectBorderRadius: "12px",
+    },
+  },
+};
+
+/**
+ * Shared dark-forest ReactUI & BM color tokens applied to inline widgets mounted
+ * directly on the `#0a1911` / `#102419` pages (and their DatePicker / Select popups).
+ */
+export const KONTUR_DARK_FOREST_COMMON: Record<string, unknown> = {
+  colors: {
+    whiteColor: "#102419",
+    fontBlackColor: "#f3f5f0",
+    fontBlackActiveColor: "#f3f5f0",
+    fontGrayColor: "#a8b9ae",
+    fontDisabledColor: "rgba(168, 185, 174, 0.45)",
+    placeholderColor: "#a8b9ae",
+    bgGrayLightColor: "rgba(22, 49, 34, 0.78)",
+    bgGrayColor: "rgba(22, 49, 34, 0.92)",
+    bgGrayDarkColor: "#163122",
+    bgYellowLightColor: "rgba(212, 154, 90, 0.18)",
+    bgYellowColor: "#d49a5a",
+    fontYellowColor: "#e0ab6e",
+    bgGreenLightColor: "rgba(59, 128, 78, 0.25)",
+    bgGreenColor: "#469658",
+    fontGreenColor: "#8be09a",
+    bgBlueLightColor: "rgba(212, 154, 90, 0.16)",
+    bgBlueColor: "#d49a5a",
+    fontBlueColor: "#d49a5a",
+  },
+  base: {
+    bgDefault: "#102419",
+    bgDisabled: "rgba(16, 36, 25, 0.65)",
+    textColorDefault: "#f3f5f0",
+    textColorDisabled: "rgba(168, 185, 174, 0.45)",
+    textColorDisabledContrast: "rgba(168, 185, 174, 0.45)",
+    placeholderColor: "#a8b9ae",
+    placeholderColorLight: "rgba(168, 185, 174, 0.65)",
+    borderColorFocus: "#d49a5a",
+    outlineColorFocus: "transparent",
+    borderColorGrayLight: "rgba(243, 245, 240, 0.16)",
+    borderColorGrayDark: "rgba(243, 245, 240, 0.28)",
+    linkColor: "#d49a5a",
+    linkHoverColor: "#e0ab6e",
+    linkActiveColor: "#c38847",
+  },
+  buttons: {
+    primary: {
+      bg: "#d49a5a",
+      hoverBg: "#e0ab6e",
+      activeBg: "#c38847",
+      textColor: "#0a1911",
+      hoverTextColor: "#0a1911",
+    },
+    secondary: {
+      bg: "#0a1911",
+      hoverBg: "#163122",
+      activeBg: "#1c3d2a",
+      textColor: "#f3f5f0",
+      hoverTextColor: "#f3f5f0",
+      borderColor: "rgba(243, 245, 240, 0.16)",
+    },
+  },
+  controls: {
+    btnBorderRadius: "9999px",
+    inputBorderRadius: "12px",
+    selectBorderRadius: "12px",
+    inputBg: "#0a1911",
+    inputTextColor: "#f3f5f0",
+    inputColor: "#f3f5f0",
+    inputBorderColor: "rgba(243, 245, 240, 0.16)",
+    inputBorderColorHover: "rgba(212, 154, 90, 0.55)",
+    inputBorderColorFocus: "#d49a5a",
+    inputIconColor: "#d49a5a",
+    inputColorScheme: "dark",
+    dateInputMaskColor: "rgba(168, 185, 174, 0.45)",
+    datePickerOpenBtnColor: "#d49a5a",
+    selectHoverBg: "#163122",
+    selectActiveBg: "#1c3d2a",
+    btnMenuArrowColor: "#a8b9ae",
+    menuBgDefault: "#102419",
+    menuItemTextColor: "#f3f5f0",
+    menuItemHoverBg: "#163122",
+    menuItemSelectedBg: "#1c3d2a",
+    menuHeaderColor: "#a8b9ae",
+    menuSeparatorBorderColor: "rgba(243, 245, 240, 0.1)",
+    popupBackground: "#102419",
+    popupBorder: "1px solid rgba(243, 245, 240, 0.14)",
+    popupBorderRadius: "16px",
+    tooltipBg: "#102419",
+    tooltipTextColor: "#f3f5f0",
+    tooltipCloseBtnColor: "#a8b9ae",
+    tooltipCloseBtnHoverColor: "#f3f5f0",
+    calendarBg: "#102419",
+    calendarCellBg: "transparent",
+    calendarCellHoverBgColor: "#163122",
+    calendarCellHoverColor: "#f3f5f0",
+    calendarCellSelectedBgColor: "#d49a5a",
+    calendarCellSelectedFontColor: "#0a1911",
+    calendarCellWeekendColor: "#e0ab6e",
+    calendarMonthTitleBorderBottomColor: "rgba(243, 245, 240, 0.1)",
+    calendarBottomSeparatorBorderColor: "rgba(243, 245, 240, 0.1)",
+    rangeCalendarCellBg: "rgba(212, 154, 90, 0.2)",
+    rangeCalendarCellEndBg: "#d49a5a",
+    rangeCalendarCellEndColor: "#0a1911",
+    rangeCalendarCellHoverBg: "rgba(212, 154, 90, 0.32)",
+  },
+};
 
 const accessCache = new Map<string, Promise<boolean>>();
 let scriptPromise: Promise<HotelWidgetGlobal> | null = null;
@@ -168,6 +297,7 @@ export async function ensureKonturHotelInitialized(
     hw.init({
       hotelId,
       version: "2",
+      theme: KONTUR_GLOBAL_THEME,
       hooks: {
         onError: (e) => {
           console.warn("[Контур.Отель] onError", e);
