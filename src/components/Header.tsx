@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { NAV_ITEMS, SITE_CONFIG } from "@/data/site";
-import { CloseIcon, HamburgerIcon, PhoneOutlineIcon } from "./Icons";
+import { List, PhoneCall, X } from "@phosphor-icons/react";
+import { SITE_CONFIG } from "@/data/site";
 import { CallbackModal } from "./CallbackModal";
 
 interface HeaderProps {
@@ -11,179 +11,144 @@ interface HeaderProps {
   bookingAnchor?: string;
 }
 
+const HEADER_LINKS = [
+  { label: 'Дом «Ива»', href: "/dom-dlya-semi", external: false },
+  { label: 'Барнхаус «Берёза»', href: "/dvuhetazhnyj-barnhouse", external: false },
+  { label: 'Шале «Бук»', href: "/shale-s-vidom-na-gory", external: false },
+  { label: "Впечатления", href: "/#sez1", external: false },
+  { label: "Блог", href: "/blog", external: false },
+  { label: "Отзывы", href: SITE_CONFIG.yandexReviewsUrl, external: true },
+] as const;
+
 export function Header({
-  variant = "inner",
   bookingAnchor = "#booking",
 }: HeaderProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [callbackOpen, setCallbackOpen] = useState(false);
 
-  const isHero = variant === "hero";
-  const row1 = NAV_ITEMS.filter((item) => item.row === 1);
-  const row2 = NAV_ITEMS.filter((item) => item.row === 2);
-
   return (
     <>
-      {/* Mobile floating hamburger button (exact top-right bronze square as on live site) */}
-      <button
-        type="button"
-        onClick={() => setDrawerOpen(true)}
-        aria-label="Открыть меню"
-        className="fixed top-3 right-3 z-40 flex h-14 w-14 items-center justify-center rounded-xl bg-[#90754b] text-white shadow-lg transition hover:bg-[#a68859] lg:hidden cursor-pointer"
-      >
-        <HamburgerIcon className="w-6 h-5" />
-      </button>
-
-      <header
-        className={
-          isHero
-            ? "relative z-20 w-full px-5 pt-5 sm:px-8 sm:pt-7 lg:px-14 lg:pt-7"
-            : "mx-auto mt-4 w-[calc(100%-24px)] max-w-[1392px] rounded-[22px] bg-[#f6f7f5] px-5 py-4 text-[#23220b] shadow-md sm:px-8 lg:px-14 lg:py-5"
-        }
-      >
-        <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
-          {/* Logo rounded square */}
+      <div className="sticky top-3 z-40 mx-auto w-full max-w-[1400px] px-3 sm:px-6">
+        <header className="forest-glass flex h-[68px] w-full items-center justify-between gap-3 rounded-full px-3.5 sm:h-[72px] sm:px-5 lg:px-6">
+          {/* Brand Mark */}
           <Link
             href="/"
-            className="flex h-[108px] w-[118px] shrink-0 items-center justify-center rounded-[14px] bg-white p-2 shadow-xs transition hover:scale-[1.02]"
+            className="group flex shrink-0 items-center gap-3 focus:outline-none"
           >
-            <img
-              src="/images/brand/logo.png"
-              alt='База отдыха "Хижина лесника"'
-              className="h-auto w-full object-contain"
-            />
+            <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full bg-[#f3f5f0] p-1.5 transition group-hover:scale-[1.03]">
+              <img
+                src="/images/brand/logo.png"
+                alt='База отдыха "Хижина лесника"'
+                className="h-full w-full object-contain"
+              />
+            </span>
+            <span className="leading-tight">
+              <span className="block font-moderustic text-[15px] font-bold tracking-tight text-[#f3f5f0] sm:text-base">
+                Хижина лесника
+              </span>
+              <span className="block text-[11px] font-medium text-[#a8b9ae]">
+                Архыз · дома в лесу
+              </span>
+            </span>
           </Link>
 
-          {/* Desktop 2-row Navigation */}
+          {/* Single-line Desktop Navigation */}
           <nav
             aria-label="Основное меню"
-            className="hidden flex-1 flex-col justify-center px-4 lg:flex xl:px-8"
+            className="hidden items-center gap-5 lg:flex xl:gap-7"
           >
-            <div className="flex flex-wrap items-center gap-x-9 gap-y-2">
-              {row1.map((item) => (
+            {HEADER_LINKS.map((item) =>
+              item.external ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="whitespace-nowrap text-[13.5px] font-medium text-[#d6e0d9] transition hover:text-[#d49a5a]"
+                >
+                  {item.label}
+                </a>
+              ) : (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`font-moderustic text-[15.5px] font-normal transition ${
-                    isHero
-                      ? "text-white hover:text-[#dbd0bf]"
-                      : "text-[#23220b] hover:text-[#90754b]"
-                  }`}
+                  className="whitespace-nowrap text-[13.5px] font-medium text-[#d6e0d9] transition hover:text-[#d49a5a]"
                 >
                   {item.label}
                 </Link>
-              ))}
-            </div>
-            <div className="mt-4 flex flex-wrap items-center gap-x-9 gap-y-2">
-              {row2.map((item) =>
-                item.external ? (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`font-moderustic text-[15.5px] font-normal transition ${
-                      isHero
-                        ? "text-white hover:text-[#dbd0bf]"
-                        : "text-[#23220b] hover:text-[#90754b]"
-                    }`}
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`font-moderustic text-[15.5px] font-normal transition ${
-                      isHero
-                        ? "text-white hover:text-[#dbd0bf]"
-                        : "text-[#23220b] hover:text-[#90754b]"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                )
-              )}
-            </div>
+              )
+            )}
           </nav>
 
-          {/* Right side: Phone block + Book CTA */}
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            <div className="flex items-center gap-3.5">
-              <button
-                type="button"
-                onClick={() => setCallbackOpen(true)}
-                aria-label="Заказать обратный звонок"
-                className={`flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[11px] transition hover:scale-105 cursor-pointer ${
-                  isHero
-                    ? "bg-[#e8ebe6] text-[#5c5c5c]"
-                    : "bg-white text-[#5c5c5c] shadow-xs"
-                }`}
-              >
-                <PhoneOutlineIcon className="h-[19px] w-[19px]" />
-              </button>
-              <div className="text-left">
-                <a
-                  href={SITE_CONFIG.phoneHref}
-                  className={`block font-moderustic text-[19px] leading-tight transition ${
-                    isHero
-                      ? "font-semibold text-white hover:text-[#dbd0bf]"
-                      : "font-normal text-[#383314] hover:text-[#90754b]"
-                  }`}
-                >
-                  {SITE_CONFIG.phoneDisplay}
-                </a>
-                <span
-                  className={`block text-[13px] ${
-                    isHero ? "text-white/75" : "text-[#6b6b60]"
-                  }`}
-                >
-                  Отдел бронирования
-                </span>
-              </div>
-            </div>
+          {/* Right Actions */}
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <a
+              href={SITE_CONFIG.phoneHref}
+              className="hidden whitespace-nowrap text-sm font-semibold text-[#f3f5f0] transition hover:text-[#d49a5a] xl:inline-block"
+            >
+              {SITE_CONFIG.phoneDisplay}
+            </a>
 
-            {/* Book button (hidden on mobile hero where main CTA button is shown below, shown on sm/lg) */}
+            <button
+              type="button"
+              onClick={() => setCallbackOpen(true)}
+              aria-label="Обратный звонок"
+              title="Обратный звонок"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-[#f3f5f0] transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a] active:scale-[0.98] cursor-pointer"
+            >
+              <PhoneCall size={18} />
+            </button>
+
             <a
               href={bookingAnchor}
-              className={`hidden sm:inline-flex h-[60px] items-center justify-center rounded-[11px] px-8 font-moderustic text-[13px] font-semibold uppercase tracking-wider transition ${
-                isHero
-                  ? "bg-[#fffaf0] text-[#4b4b4b] hover:bg-[#f2eadb]"
-                  : "bg-[#396448] text-white hover:bg-[#2e533b]"
-              }`}
+              className="hidden whitespace-nowrap rounded-full bg-[#d49a5a] px-5 py-2.5 text-[13px] font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98] sm:inline-flex"
             >
-              ЗАБРОНИРОВАТЬ
+              Забронировать
             </a>
-          </div>
-        </div>
-      </header>
 
-      {/* Mobile Slide-Out Navigation Drawer */}
+            <button
+              type="button"
+              onClick={() => setDrawerOpen(true)}
+              aria-label="Открыть меню"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-[#f3f5f0] transition hover:border-white/30 lg:hidden cursor-pointer"
+            >
+              <List size={20} />
+            </button>
+          </div>
+        </header>
+      </div>
+
+      {/* Mobile Navigation Drawer */}
       {drawerOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/65 backdrop-blur-xs lg:hidden"
+          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm lg:hidden"
           onClick={() => setDrawerOpen(false)}
         >
           <div
-            className="ml-auto flex h-full w-[84%] max-w-sm flex-col bg-[#0e2618] p-6 text-white shadow-2xl"
+            className="ml-auto flex h-full w-[86%] max-w-sm flex-col border-l border-white/10 bg-[#0a1911] p-6 text-[#f3f5f0] shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between border-b border-white/15 pb-4">
-              <span className="font-moderustic text-sm font-bold uppercase tracking-wider text-[#90754b]">
-                Хижина лесника
-              </span>
+            <div className="flex items-center justify-between border-b border-white/10 pb-5">
+              <div>
+                <span className="block font-moderustic text-base font-bold text-[#f3f5f0]">
+                  Хижина лесника
+                </span>
+                <span className="block text-xs text-[#a8b9ae]">
+                  {SITE_CONFIG.addressShort}
+                </span>
+              </div>
               <button
                 type="button"
                 onClick={() => setDrawerOpen(false)}
                 aria-label="Закрыть меню"
-                className="rounded-lg p-2 text-white/80 hover:bg-white/10 hover:text-white cursor-pointer"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 bg-white/5 text-[#a8b9ae] hover:text-[#f3f5f0] cursor-pointer"
               >
-                <CloseIcon className="w-5 h-5" />
+                <X size={18} />
               </button>
             </div>
 
-            <nav className="mt-6 flex flex-col space-y-4">
-              {NAV_ITEMS.map((item) =>
+            <nav className="mt-6 flex flex-col gap-1">
+              {HEADER_LINKS.map((item) =>
                 item.external ? (
                   <a
                     key={item.href}
@@ -191,7 +156,7 @@ export function Header({
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setDrawerOpen(false)}
-                    className="font-moderustic text-base text-white/90 transition hover:text-[#dbd0bf]"
+                    className="rounded-xl px-3 py-3 font-moderustic text-base font-medium text-[#f3f5f0] transition hover:bg-[#102419] hover:text-[#d49a5a]"
                   >
                     {item.label}
                   </a>
@@ -200,7 +165,7 @@ export function Header({
                     key={item.href}
                     href={item.href}
                     onClick={() => setDrawerOpen(false)}
-                    className="font-moderustic text-base text-white/90 transition hover:text-[#dbd0bf]"
+                    className="rounded-xl px-3 py-3 font-moderustic text-base font-medium text-[#f3f5f0] transition hover:bg-[#102419] hover:text-[#d49a5a]"
                   >
                     {item.label}
                   </Link>
@@ -208,22 +173,23 @@ export function Header({
               )}
             </nav>
 
-            <div className="mt-auto border-t border-white/15 pt-5 space-y-4">
+            <div className="mt-auto space-y-4 border-t border-white/10 pt-5">
               <div>
                 <a
                   href={SITE_CONFIG.phoneHref}
-                  className="block font-moderustic text-lg font-semibold text-white"
+                  className="block font-moderustic text-lg font-bold text-[#f3f5f0]"
                 >
                   {SITE_CONFIG.phoneDisplay}
                 </a>
-                <span className="text-xs text-white/65">
-                  {SITE_CONFIG.address}
+                <span className="text-xs text-[#a8b9ae]">
+                  Ежедневно · отдел бронирования
                 </span>
               </div>
+
               <a
                 href={bookingAnchor}
                 onClick={() => setDrawerOpen(false)}
-                className="flex w-full items-center justify-center rounded-xl bg-[#90754b] py-3.5 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-[#a68859]"
+                className="flex h-12 w-full items-center justify-center rounded-full bg-[#d49a5a] text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
               >
                 Забронировать
               </a>

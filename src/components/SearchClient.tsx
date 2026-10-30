@@ -3,6 +3,7 @@
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { ArrowRight, MagnifyingGlass } from "@phosphor-icons/react";
 import { CABIN_LIST } from "@/data/cabins";
 import { BLOG_POSTS } from "@/data/blog";
 
@@ -10,12 +11,12 @@ const SEARCH_INDEX = [
   ...CABIN_LIST.map((c) => ({
     title: `${c.titlePrefix} ${c.titleHighlight}`,
     href: c.slug,
-    snippet: `${c.cardPrice} • ${c.cardGuests} • ${c.introText}`,
+    snippet: `${c.cardPrice} · ${c.cardGuests} · ${c.introText}`,
   })),
   ...BLOG_POSTS.map((p) => ({
     title: p.title,
     href: p.href,
-    snippet: p.excerpt || `Статья в блоге от ${p.date}`,
+    snippet: p.excerpt || `Материал в журнале от ${p.date}`,
   })),
 ];
 
@@ -35,42 +36,60 @@ export function SearchClient() {
   }, [query]);
 
   return (
-    <div className="mt-6 rounded-2xl bg-white p-6 text-[#232323] shadow-lg sm:p-10">
-      <h1 className="font-moderustic text-2xl font-extrabold text-[#0e2618] sm:text-3xl">
+    <div className="mt-6 rounded-3xl border border-white/10 bg-[#102419] p-6 sm:p-10">
+      <h1 className="font-moderustic text-2xl font-bold tracking-tight text-[#f3f5f0] sm:text-3xl">
         Поиск по сайту
       </h1>
 
       <div className="mt-5">
-        <input
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Введите название домика, маршрута или ключевое слово..."
-          className="w-full rounded-xl border border-[#cdd2c1] bg-[#fafbf8] px-4 py-3 text-base text-[#1c1c1c] outline-none transition focus:border-[#396448]"
-        />
+        <label
+          htmlFor="site-search-input"
+          className="mb-2 block text-xs font-medium text-[#a8b9ae]"
+        >
+          Поисковый запрос
+        </label>
+        <div className="relative">
+          <MagnifyingGlass
+            size={18}
+            className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-[#a8b9ae]"
+          />
+          <input
+            id="site-search-input"
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Название дома, водопад, маршрут..."
+            className="h-12 w-full rounded-xl border border-white/15 bg-[#0a1911] pr-4 pl-11 text-sm text-[#f3f5f0] placeholder:text-[#a8b9ae]/60 outline-none transition focus:border-[#d49a5a]"
+          />
+        </div>
       </div>
 
-      <div className="mt-7 space-y-4">
+      <div className="mt-7 space-y-3.5">
         {results.length === 0 ? (
-          <p className="text-sm text-[#666]">
-            По вашему запросу ничего не найдено. Попробуйте изменить запрос.
+          <p className="text-sm text-[#a8b9ae]">
+            По вашему запросу ничего не найдено. Попробуйте ввести другое
+            ключевое слово.
           </p>
         ) : (
           results.map((item) => (
-            <div
+            <Link
               key={item.href}
-              className="rounded-xl border border-[#e7eadf] p-4 transition hover:border-[#90754b]"
+              href={item.href}
+              className="group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-[#163122]/55 p-5 transition hover:border-[#d49a5a]/45"
             >
-              <Link
-                href={item.href}
-                className="font-moderustic text-lg font-bold text-[#396448] underline hover:text-[#90754b]"
-              >
-                {item.title}
-              </Link>
-              <p className="mt-1.5 text-sm leading-relaxed text-[#4b4b4b]">
-                {item.snippet}
-              </p>
-            </div>
+              <div>
+                <h2 className="font-moderustic text-lg font-bold text-[#f3f5f0] transition group-hover:text-[#d49a5a]">
+                  {item.title}
+                </h2>
+                <p className="mt-1.5 text-sm leading-relaxed text-[#a8b9ae]">
+                  {item.snippet}
+                </p>
+              </div>
+              <ArrowRight
+                size={18}
+                className="shrink-0 text-[#a8b9ae] transition group-hover:translate-x-0.5 group-hover:text-[#d49a5a]"
+              />
+            </Link>
           ))
         )}
       </div>

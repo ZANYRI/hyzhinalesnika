@@ -42,7 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" data-scroll-behavior="smooth">
-      <body className="min-h-screen bg-[#0e2618] font-moderustic text-[#f4f3ef] antialiased">
+      <body className="min-h-screen bg-[#0a1911] font-montserrat text-[#f3f5f0] antialiased selection:bg-[#d49a5a] selection:text-[#0a1911]">
         {children}
         <KonturBookingWidget
           variant="mobileFloatingButton"

@@ -1,20 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
+import { ArrowRight, CalendarBlank, Eye } from "@phosphor-icons/react";
 import { BlogPostSummary } from "@/data/blog";
 
 export function EyeCount({ views }: { views: number }) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-[13px] text-[#888]">
-      <svg
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        className="h-4 w-4 text-[#bdbdbd]"
-        aria-hidden="true"
-      >
-        <path d="M12 5c-5.5 0-9.8 4.2-11 7 1.2 2.8 5.5 7 11 7s9.8-4.2 11-7c-1.2-2.8-5.5-7-11-7zm0 11.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" />
-      </svg>
+    <span className="inline-flex items-center gap-1.5 text-xs text-[#a8b9ae]">
+      <Eye size={15} className="text-[#d49a5a]" />
       <span>{views}</span>
     </span>
   );
@@ -27,90 +21,91 @@ export function BlogList({
   posts: BlogPostSummary[];
   activeCategoryLabel?: string;
 }) {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const isGuidesOnly = Boolean(activeCategoryLabel);
 
   return (
-    <div className="mx-auto max-w-[1260px] px-4 pt-20 pb-20 sm:px-6 sm:pt-24">
-      {/* Top "Разделы" Button & Dropdown matching blog_0.png */}
-      <div className="relative inline-block">
-        <button
-          type="button"
-          onClick={() => setMenuOpen((o) => !o)}
-          className="inline-flex items-center gap-2.5 rounded-[5px] bg-white px-4 py-2 text-[14px] font-bold text-[#1456d8] shadow-xs transition hover:bg-[#f4f6fa] cursor-pointer"
-        >
-          <svg
-            viewBox="0 0 20 16"
-            fill="currentColor"
-            className="h-3.5 w-4"
-            aria-hidden="true"
-          >
-            <rect x="0" y="0" width="18" height="2.2" rx="1" />
-            <rect x="0" y="4.5" width="12" height="2.2" rx="1" />
-            <rect x="0" y="9" width="16" height="2.2" rx="1" />
-            <rect x="0" y="13.5" width="10" height="2.2" rx="1" />
-          </svg>
-          <span>{activeCategoryLabel || "Разделы"}</span>
-        </button>
-
-        {menuOpen && (
-          <div className="absolute left-0 z-20 mt-2 w-64 rounded-lg bg-white py-2 text-sm text-[#222] shadow-xl">
-            <Link
-              href="/blog"
-              onClick={() => setMenuOpen(false)}
-              className="block px-4 py-2.5 transition hover:bg-[#f3f5ef] hover:text-[#90754b]"
-            >
-              Все записи блога
-            </Link>
-            <Link
-              href="/putevoditeli-marshruty"
-              onClick={() => setMenuOpen(false)}
-              className="block px-4 py-2.5 transition hover:bg-[#f3f5ef] hover:text-[#90754b]"
-            >
-              Путеводители / маршруты
-            </Link>
-          </div>
-        )}
+    <div className="mx-auto max-w-[1400px] px-4 pt-10 pb-24 sm:px-6 sm:pt-14">
+      <div className="max-w-2xl">
+        <h1 className="font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
+          {activeCategoryLabel || "Журнал и путеводители по Архызу"}
+        </h1>
+        <p className="mt-3 text-base leading-relaxed text-[#a8b9ae]">
+          Проверенные маршруты, советы по дороге в горы и любимые локации рядом
+          с базой отдыха «Хижина лесника».
+        </p>
       </div>
 
-      {/* Blog Cards */}
-      <div className="mt-7 space-y-4">
+      {/* Category Filter Pills */}
+      <div className="mt-7 flex flex-wrap items-center gap-2.5">
+        <Link
+          href="/blog"
+          className={`rounded-full px-5 py-2.5 text-sm font-semibold transition active:scale-[0.98] ${
+            !isGuidesOnly
+              ? "bg-[#d49a5a] text-[#0a1911]"
+              : "border border-white/12 bg-[#102419] text-[#d6e0d9] hover:border-white/25 hover:text-[#f3f5f0]"
+          }`}
+        >
+          Все материалы
+        </Link>
+        <Link
+          href="/putevoditeli-marshruty"
+          className={`rounded-full px-5 py-2.5 text-sm font-semibold transition active:scale-[0.98] ${
+            isGuidesOnly
+              ? "bg-[#d49a5a] text-[#0a1911]"
+              : "border border-white/12 bg-[#102419] text-[#d6e0d9] hover:border-white/25 hover:text-[#f3f5f0]"
+          }`}
+        >
+          Путеводители / маршруты
+        </Link>
+      </div>
+
+      {/* Editorial Cards */}
+      <div className="mt-9 grid grid-cols-1 gap-6 md:grid-cols-2">
         {posts.map((post) => (
           <article
             key={post.slug}
-            className="rounded-[3px] bg-white px-6 py-5 text-[#333] shadow-sm sm:px-7 sm:py-6"
+            className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#102419] p-4 transition hover:border-[#d49a5a]/45 sm:p-5"
           >
-            <time className="block font-moderustic text-[13px] text-[#7a7a7a]">
-              {post.date}
-            </time>
-
-            <h2 className="mt-1">
+            <div>
               <Link
                 href={post.href}
-                className="font-moderustic text-[20px] leading-snug font-normal text-[#d89835] underline transition hover:text-[#90754b] sm:text-[21px]"
+                className="block aspect-[16/9] w-full overflow-hidden rounded-2xl bg-[#08140d]"
               >
-                {post.title}
-              </Link>
-            </h2>
-
-            <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-start">
-              <Link href={post.href} className="block shrink-0 overflow-hidden">
                 <img
                   src={post.thumbnail}
                   alt={post.title}
                   loading="lazy"
-                  className="h-[76px] w-[120px] object-cover transition hover:opacity-90"
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
               </Link>
 
+              <div className="mt-5 flex items-center justify-between gap-3 px-1">
+                <span className="inline-flex items-center gap-1.5 text-xs text-[#a8b9ae]">
+                  <CalendarBlank size={14} className="text-[#d49a5a]" />
+                  <time>{post.date}</time>
+                </span>
+                <EyeCount views={post.views} />
+              </div>
+
+              <h2 className="mt-3 px-1 font-moderustic text-xl font-bold leading-snug text-[#f3f5f0] transition group-hover:text-[#d49a5a] sm:text-2xl">
+                <Link href={post.href}>{post.title}</Link>
+              </h2>
+
               {post.excerpt && (
-                <p className="font-moderustic text-[16.5px] leading-relaxed text-[#4f4f4f]">
+                <p className="mt-2.5 px-1 text-sm leading-relaxed text-[#a8b9ae]">
                   {post.excerpt}
                 </p>
               )}
             </div>
 
-            <div className="mt-5 border-t border-[#efefef] pt-3">
-              <EyeCount views={post.views} />
+            <div className="mt-6 px-1 pb-1">
+              <Link
+                href={post.href}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#f3f5f0] transition group-hover:text-[#d49a5a]"
+              >
+                <span>Читать материал</span>
+                <ArrowRight size={14} />
+              </Link>
             </div>
           </article>
         ))}

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-[#0e2618] text-white">
+    <div className="min-h-screen bg-[#0a1911] text-[#f3f5f0]">
       <Header variant="inner" bookingAnchor="/#booking" />
       <main>
         <BlogList posts={BLOG_POSTS} />
