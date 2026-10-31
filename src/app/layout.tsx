@@ -1,10 +1,11 @@
+import { TimedBookingPopup } from "@/components/TimedBookingPopup";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 import { SITE_CONFIG } from "@/data/site";
 import { AUTUMN_ATMOSPHERE } from "@/data/atmosphere";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import { KonturBookingWidget } from "@/components/KonturBookingWidget";
+import { FloatingContacts } from "@/components/FloatingContacts";
 import { CleanHashScroll } from "@/components/CleanHashScroll";
 import { AutumnAtmosphere } from "@/components/AutumnAtmosphere";
 
@@ -52,10 +53,8 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <CleanHashScroll />
         </Suspense>
-        <KonturBookingWidget
-          variant="mobileFloatingButton"
-          containerId="WidgetShowCheckAvailabilityButtonForMobileDevicesId"
-        />
+        <Suspense fallback={null}><TimedBookingPopup /></Suspense>
+        <FloatingContacts />
         <ScrollToTop />
       </body>
     </html>

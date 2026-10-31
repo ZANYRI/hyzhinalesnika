@@ -6,11 +6,18 @@ export async function POST(request: Request) {
       name?: string;
       phone?: string;
       source?: string;
+      contactMethod?: string;
+      contactHandle?: string;
     };
 
-    const name = body.name?.trim();
-    const phone = body.phone?.trim();
-    const source = body.source?.trim() || "Обратная связь";
+    const name = typeof body.name === "string" ? body.name.trim().slice(0,100) : "";
+    const phone = typeof body.phone === "string" ? body.phone.trim().slice(0,30) : "";
+    const source = typeof body.source === "string" ? body.source.trim().slice(0,200) : "Обратная связь";
+    const contactMethod = body.contactMethod || "phone";
+    const contactHandle = typeof body.contactHandle === "string" ? body.contactHandle.trim().slice(0,150) : "";
+    if (!["phone","telegram","whatsapp","max"].includes(contactMethod) || (contactMethod!=="phone" && !contactHandle)) {
+      return NextResponse.json({ok:false,error:"Укажите контакт для выбранного мессенджера"},{status:400});
+    }
 
     if (!name || !phone) {
       return NextResponse.json(
@@ -24,13 +31,15 @@ export async function POST(request: Request) {
       `Форма: ${source}`,
       `Имя: ${name}`,
       `Телефон: ${phone}`,
+      `Способ связи: ${contactMethod}`,
+      ...(contactHandle ? [`Контакт в мессенджере: ${contactHandle}`] : []),
     ].join("\n");
 
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
 
     if (botToken && chatId) {
-      await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      const delivery = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -38,13 +47,9 @@ export async function POST(request: Request) {
           text: messageText,
         }),
       });
+      if (!delivery.ok) return NextResponse.json({ ok: false, error: "Не удалось доставить заявку" }, { status: 502 });
     } else {
-      console.info("[Lead Callback]", {
-        source,
-        name,
-        phone,
-        at: new Date().toISOString(),
-      });
+      return NextResponse.json({ ok: false, error: "Приём заявок временно недоступен. Позвоните нам." }, { status: 503 });
     }
 
     return NextResponse.json({ ok: true });

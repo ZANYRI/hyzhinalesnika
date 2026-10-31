@@ -31,7 +31,9 @@ export function scrollToSectionById(id: string): boolean {
     return true;
   }
 
-  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  // Align the actual house selector below the sticky header, past the section's decorative padding.
+  const target = id === "cabins" ? document.getElementById("cabin-selector") ?? el : el;
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
   return true;
 }
 

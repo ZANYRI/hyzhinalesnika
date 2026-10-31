@@ -5,11 +5,10 @@ import {
   EnvelopeSimple,
   MapPin,
   Phone,
-  TelegramLogo,
-  WhatsappLogo,
 } from "@phosphor-icons/react/dist/ssr";
 import { NAV_ITEMS, SITE_CONFIG } from "@/data/site";
 import { HospitalityAwards } from "./HospitalityAwards";
+import { SocialLinks } from "./SocialLinks";
 import { CabinTreeEmoji } from "./CabinTreeEmoji";
 
 export function Footer() {
@@ -42,27 +41,7 @@ export function Footer() {
               костровой зоной, панорамными окнами на горы и быстрым Wi-Fi.
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <a
-                href={SITE_CONFIG.whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-11 items-center gap-2.5 rounded-full border border-white/12 bg-[#102419] px-4 text-sm font-medium text-[#f3f5f0] transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a]"
-              >
-                <WhatsappLogo size={18} />
-                <span>WhatsApp</span>
-              </a>
-
-              <a
-                href={SITE_CONFIG.telegramHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-11 items-center gap-2.5 rounded-full border border-white/12 bg-[#102419] px-4 text-sm font-medium text-[#f3f5f0] transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a]"
-              >
-                <TelegramLogo size={18} />
-                <span>Telegram</span>
-              </a>
-            </div>
+            <SocialLinks className="mt-6 flex flex-wrap gap-3" />
           </div>
 
           {/* Navigation */}
