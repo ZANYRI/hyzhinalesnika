@@ -11,17 +11,16 @@ const activities = [
   {title:"Горнолыжные склоны", text:"Лыжи, сноуборд и панорамы гор. До склонов курорта Архыз — около 15 минут на автомобиле.", image:"/images/home/season-ski.jpg", category:"Горы", tag:"Зима в Архызе", href:"/#help"},
 ];
 export function SeasonalExperiences() {
-  return <div className="grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
-    {activities.map((activity,index) => <Link key={activity.title} href={activity.href} className={`group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-[#d7c7af] bg-[#f4eee3] text-[#213d31] transition hover:-translate-y-1 hover:border-[#d49a5a] hover:shadow-xl ${index===0 ? "lg:col-span-2" : ""}`}>
-      <div className="relative h-64 shrink-0 overflow-hidden bg-[#163122] sm:h-72 lg:h-80">
-        <img src={activity.image} alt="" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-        <span className="absolute top-4 left-4 rounded-full bg-[#f4eee3] px-3 py-2 text-[10px] font-semibold uppercase tracking-widest text-[#213d31] shadow-sm">{activity.category}</span>
+  return <div className="grid gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+    {activities.map(activity => <Link key={activity.title} href={activity.href} className="activity-wood-frame group flex h-full flex-col p-4 transition sm:p-5">
+      <div className="aspect-[16/10] overflow-hidden rounded-2xl bg-[#163122]">
+        <img src={activity.image} alt="" loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]" />
       </div>
-      <div className="flex flex-1 flex-col p-6 sm:p-7">
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#765331]">{activity.tag}</p>
-        <h3 className="mt-3 font-moderustic text-2xl font-bold leading-tight sm:text-[26px]">{activity.title}</h3>
-        <p className="mt-4 mb-6 max-w-xl text-[15px] leading-relaxed text-[#42594c]">{activity.text}</p>
-        <span className="mt-auto flex items-center justify-between gap-4 border-t border-[#213d31]/20 pt-4 text-sm font-semibold"><span>{activity.href==="/spa" ? "Выбрать отдых в СПА" : "Узнать подробности"}</span><ArrowUpRight size={21} className="shrink-0" /></span>
+      <div className="flex flex-1 flex-col pt-5">
+        <p className="text-[11px] font-medium uppercase tracking-widest text-[#d8ae7f]">{activity.tag}</p>
+        <h3 className="mt-2 font-moderustic text-xl font-semibold leading-snug text-[#f3f5f0]">{activity.title}</h3>
+        <p className="mt-3 mb-5 text-sm leading-relaxed text-[#bdcfc3]">{activity.text}</p>
+        <span className="mt-auto inline-flex items-center gap-2 text-xs font-semibold text-[#d8ae7f]">{activity.href==="/spa" ? "О СПА-комплексе" : "Подробнее"}<ArrowUpRight size={16}/></span>
       </div>
     </Link>)}
   </div>;

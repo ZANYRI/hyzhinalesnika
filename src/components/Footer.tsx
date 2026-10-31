@@ -9,7 +9,6 @@ import {
 import { NAV_ITEMS, SITE_CONFIG } from "@/data/site";
 import { HospitalityAwards } from "./HospitalityAwards";
 import { SocialLinks } from "./SocialLinks";
-import { CabinTreeEmoji } from "./CabinTreeEmoji";
 
 export function Footer() {
   return (
@@ -18,23 +17,15 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           {/* Brand & Messengers */}
           <div className="md:col-span-5">
-            <div className="flex items-center gap-3.5">
-              <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-[#f3f5f0] p-1.5">
-                <img
-                  src="/images/brand/logo.png"
-                  alt='База отдыха "Хижина лесника"'
-                  className="h-full w-full object-contain"
-                />
-              </span>
-              <div>
-                <p className="font-moderustic text-xl font-bold tracking-tight text-[#f3f5f0]">
-                  Хижина лесника
-                </p>
-                <p className="text-xs text-[#a8b9ae]">
-                  Уединённые дома в буковом лесу Архыза
-                </p>
-              </div>
-            </div>
+            <Link href="/" aria-label='База отдыха "Хижина лесника" — на главную' className="inline-flex transition hover:opacity-85">
+              <img
+                src="/images/brand/logo-wordmark-light.png"
+                alt='База отдыха "Хижина лесника"'
+                width={450}
+                height={132}
+                className="h-14 w-auto max-w-full object-contain sm:h-16"
+              />
+            </Link>
 
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-[#a8b9ae]">
               Три приватных дома со своей огороженной территорией, мангальной и
@@ -47,7 +38,7 @@ export function Footer() {
           {/* Navigation */}
           <div className="md:col-span-3">
             <p className="font-moderustic text-sm font-bold text-[#f3f5f0]">
-              Дома и разделы
+              Разделы
             </p>
             <ul className="mt-4 space-y-3 text-sm text-[#a8b9ae]">
               {NAV_ITEMS.map((item) => (
@@ -67,9 +58,6 @@ export function Footer() {
                       href={item.href}
                       className="transition hover:text-[#d49a5a]"
                     >
-                      {item.cabinId && (
-                        <CabinTreeEmoji id={item.cabinId} className="mr-1.5" />
-                      )}
                       {item.label}
                     </Link>
                   )}
