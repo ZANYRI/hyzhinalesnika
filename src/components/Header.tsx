@@ -40,27 +40,20 @@ export function Header(_props: HeaderProps) {
   return (
     <>
       <div className="sticky top-3 z-40 mx-auto w-full max-w-[1800px] px-3 sm:px-6">
-        <header className="forest-glass flex h-[68px] w-full items-center justify-between gap-3 rounded-full px-3.5 sm:h-[72px] sm:px-5 lg:px-6">
-          {/* Brand Mark */}
+        <header className="forest-glass flex h-[68px] w-full items-center justify-between gap-3 rounded-full px-4 sm:h-[72px] sm:px-6">
+          {/* Brand Wordmark Logo */}
           <Link
             href="/"
-            className="group flex shrink-0 items-center gap-3 focus:outline-none"
+            aria-label='База отдыха "Хижина лесника" — на главную'
+            className="group flex shrink-0 items-center pl-1 focus:outline-none"
           >
-            <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full bg-[#f3f5f0] p-1.5 transition group-hover:scale-[1.03]">
-              <img
-                src="/images/brand/logo.png"
-                alt='База отдыха "Хижина лесника"'
-                className="h-full w-full object-contain"
-              />
-            </span>
-            <span className="leading-tight">
-              <span className="block font-moderustic text-[15px] font-bold tracking-tight text-[#f3f5f0] sm:text-base">
-                Хижина лесника
-              </span>
-              <span className="block text-[11px] font-medium text-[#a8b9ae]">
-                Архыз · дома в лесу
-              </span>
-            </span>
+            <img
+              src="/images/brand/logo-wordmark-light.png"
+              alt='База отдыха "Хижина лесника"'
+              width={450}
+              height={132}
+              className="h-10 w-auto object-contain transition duration-200 group-hover:scale-[1.02] group-hover:opacity-95 sm:h-[50px]"
+            />
           </Link>
 
           {/* Single-line Desktop Navigation */}
@@ -130,14 +123,13 @@ export function Header(_props: HeaderProps) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-white/10 pb-5">
-              <div>
-                <span className="block font-moderustic text-base font-bold text-[#f3f5f0]">
-                  Хижина лесника
-                </span>
-                <span className="block text-xs text-[#a8b9ae]">
-                  {SITE_CONFIG.addressShort}
-                </span>
-              </div>
+              <img
+                src="/images/brand/logo-wordmark-light.png"
+                alt='База отдыха "Хижина лесника"'
+                width={450}
+                height={132}
+                className="h-9 w-auto object-contain"
+              />
               <button
                 type="button"
                 onClick={() => setDrawerOpen(false)}

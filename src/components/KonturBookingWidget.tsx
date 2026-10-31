@@ -7,13 +7,20 @@ import React, {
   useState,
   useSyncExternalStore,
 } from "react";
-import { CalendarBlank, CaretDown, Users } from "@phosphor-icons/react";
+import { CalendarBlank, CaretDown, Users, X } from "@phosphor-icons/react";
 import { SITE_CONFIG } from "@/data/site";
 import {
+  computeMaxValidCheckOutIso,
+  countNightsBetweenIso,
+  extractKonturCalendarDayInfo,
+  findKonturCalendarDayCell,
   KONTUR_DARK_FOREST_COMMON,
   KonturAddConfig,
+  KonturCalendarDayInfo,
   MAX_ADULTS_COUNT,
   mountKonturWidget,
+  openKonturCheckoutForDates,
+  paintKonturCalendarSelection,
 } from "@/lib/kontur-hotel";
 
 export type KonturModuleVariant =
@@ -30,6 +37,7 @@ interface KonturBookingWidgetProps {
   variant?: KonturModuleVariant;
   containerId?: string;
   align?: "center" | "left";
+  interactiveCalendar?: boolean;
   className?: string;
 }
 
@@ -123,6 +131,15 @@ const ADULTS_OPTIONS = Array.from({ length: MAX_ADULTS_COUNT }, (_, idx) => {
   };
 });
 
+function formatNightsLabel(nights: number): string {
+  const mod10 = nights % 10;
+  const mod100 = nights % 100;
+  if (mod10 === 1 && mod100 !== 11) {
+    return `${nights} сутки`;
+  }
+  return `${nights} суток`;
+}
+
 function subscribeDesktopMedia(callback: () => void): () => void {
   const mq = window.matchMedia("(min-width: 768px)");
   mq.addEventListener("change", callback);
@@ -189,6 +206,7 @@ export function KonturBookingWidget({
   variant = "horizontalForm",
   containerId: customContainerId,
   align = "center",
+  interactiveCalendar = false,
   className = "",
 }: KonturBookingWidgetProps) {
   const reactId = useId().replace(/[^a-zA-Z0-9_-]/g, "");
@@ -205,6 +223,11 @@ export function KonturBookingWidget({
         : "calendarVertical"
       : variant;
 
+  const isCalendarVariant =
+    resolvedVariant === "calendarHorizontal" ||
+    resolvedVariant === "calendarVertical";
+  const calendarInteractive = interactiveCalendar && isCalendarVariant;
+
   const containerId =
     customContainerId || `kontur-${resolvedVariant}-${reactId}`;
   const activeKey = `${containerId}:${resolvedVariant}`;
@@ -216,6 +239,27 @@ export function KonturBookingWidget({
   const [checkOut, setCheckOut] = useState("");
   const [adults, setAdults] = useState("2");
 
+  // Interactive date range state for `availabilityCalendar`
+  const [calSelection, setCalSelection] = useState<{
+    checkIn: KonturCalendarDayInfo | null;
+    checkOut: KonturCalendarDayInfo | null;
+  }>({ checkIn: null, checkOut: null });
+  const calSelectionRef = useRef(calSelection);
+  const hoverIsoRef = useRef<string | null>(null);
+  const activeHouseTitleRef = useRef<string>("");
+
+  useEffect(() => {
+    calSelectionRef.current = calSelection;
+    if (calendarInteractive && containerRef.current) {
+      paintKonturCalendarSelection(
+        containerRef.current,
+        calSelection.checkIn?.isoDate ?? null,
+        calSelection.checkOut?.isoDate ?? null,
+        hoverIsoRef.current
+      );
+    }
+  }, [calSelection, calendarInteractive]);
+
   const mountedWidget = mountedKey === activeKey;
 
   useEffect(() => {
@@ -225,11 +269,7 @@ export function KonturBookingWidget({
     let notifiedResize = false;
 
     const triggerCalendarMeasure = () => {
-      if (
-        !notifiedResize &&
-        (resolvedVariant === "calendarHorizontal" ||
-          resolvedVariant === "calendarVertical")
-      ) {
+      if (!notifiedResize && isCalendarVariant) {
         notifiedResize = true;
         requestAnimationFrame(() => {
           if (!cancelled) {
@@ -243,14 +283,43 @@ export function KonturBookingWidget({
     if (el) {
       el.replaceChildren();
 
-      const checkRendered = () => {
-        if (!cancelled && el.childElementCount > 0) {
-          setMountedKey(activeKey);
-          triggerCalendarMeasure();
+      const syncCalendarDom = () => {
+        if (cancelled || el.childElementCount === 0) return;
+        setMountedKey(activeKey);
+        triggerCalendarMeasure();
+
+        if (calendarInteractive) {
+          // Reset selection if user switched to a different house in the calendar filter dropdown
+          const selectBtn = el.querySelector<HTMLElement>(
+            '[data-tid="Select__root"] button'
+          );
+          const houseTitle = (selectBtn?.textContent || "").trim();
+          if (
+            houseTitle &&
+            activeHouseTitleRef.current &&
+            houseTitle !== activeHouseTitleRef.current
+          ) {
+            activeHouseTitleRef.current = houseTitle;
+            hoverIsoRef.current = null;
+            calSelectionRef.current = { checkIn: null, checkOut: null };
+            setCalSelection({ checkIn: null, checkOut: null });
+            paintKonturCalendarSelection(el, null, null, null);
+            return;
+          }
+          if (houseTitle) {
+            activeHouseTitleRef.current = houseTitle;
+          }
+
+          paintKonturCalendarSelection(
+            el,
+            calSelectionRef.current.checkIn?.isoDate ?? null,
+            calSelectionRef.current.checkOut?.isoDate ?? null,
+            hoverIsoRef.current
+          );
         }
       };
 
-      observer = new MutationObserver(checkRendered);
+      observer = new MutationObserver(syncCalendarDom);
       observer.observe(el, {
         childList: true,
         subtree: true,
@@ -274,6 +343,14 @@ export function KonturBookingWidget({
         ) {
           setMountedKey(activeKey);
           triggerCalendarMeasure();
+          if (calendarInteractive) {
+            paintKonturCalendarSelection(
+              containerRef.current,
+              calSelectionRef.current.checkIn?.isoDate ?? null,
+              calSelectionRef.current.checkOut?.isoDate ?? null,
+              hoverIsoRef.current
+            );
+          }
         }
       })
       .catch(() => {
@@ -285,7 +362,127 @@ export function KonturBookingWidget({
       observer?.disconnect();
       cleanupWidget?.();
     };
-  }, [activeKey, containerId, resolvedVariant]);
+  }, [
+    activeKey,
+    calendarInteractive,
+    containerId,
+    isCalendarVariant,
+    resolvedVariant,
+  ]);
+
+  // Interactive click & live hover-range preview handlers for `availabilityCalendar`
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!calendarInteractive || !el) return;
+
+    const handleClick = (e: MouseEvent) => {
+      const cell = findKonturCalendarDayCell(e.target, el);
+      if (!cell) return;
+      const info = extractKonturCalendarDayInfo(cell);
+      if (!info || info.isDisabled) return;
+
+      const current = calSelectionRef.current;
+
+      // 1. Starting a fresh check-in selection (or restarting after a completed range)
+      if (!current.checkIn || (current.checkIn && current.checkOut)) {
+        if (!info.hasPrice) return;
+        hoverIsoRef.current = null;
+        setCalSelection({ checkIn: info, checkOut: null });
+        return;
+      }
+
+      // 2. Clicking the active check-in day again clears selection
+      if (info.isoDate === current.checkIn.isoDate) {
+        hoverIsoRef.current = null;
+        setCalSelection({ checkIn: null, checkOut: null });
+        return;
+      }
+
+      // 3. Clicking an earlier available day moves check-in earlier
+      if (info.isoDate < current.checkIn.isoDate) {
+        if (!info.hasPrice) return;
+        hoverIsoRef.current = null;
+        setCalSelection({ checkIn: info, checkOut: null });
+        return;
+      }
+
+      // 4. Clicking a later day: validate contiguous availability up to check-out morning
+      const maxCheckOutIso = computeMaxValidCheckOutIso(
+        el,
+        current.checkIn.isoDate
+      );
+      if (maxCheckOutIso && info.isoDate > maxCheckOutIso) {
+        // User clicked across booked nights onto a later free block -> start new check-in there
+        if (info.hasPrice) {
+          hoverIsoRef.current = null;
+          setCalSelection({ checkIn: info, checkOut: null });
+        }
+        return;
+      }
+
+      // Valid check-out date! Lock range and open official Контур.Отель checkout modal
+      hoverIsoRef.current = null;
+      setCalSelection({ checkIn: current.checkIn, checkOut: info });
+      openKonturCheckoutForDates(
+        el,
+        current.checkIn.formattedDate,
+        info.formattedDate
+      );
+    };
+
+    const handlePointerMove = (e: PointerEvent) => {
+      const current = calSelectionRef.current;
+      if (!current.checkIn || current.checkOut) {
+        if (hoverIsoRef.current !== null) {
+          hoverIsoRef.current = null;
+          paintKonturCalendarSelection(
+            el,
+            current.checkIn?.isoDate ?? null,
+            current.checkOut?.isoDate ?? null,
+            null
+          );
+        }
+        return;
+      }
+
+      const cell = findKonturCalendarDayCell(e.target, el);
+      const info = cell ? extractKonturCalendarDayInfo(cell) : null;
+      const nextHoverIso =
+        info && !info.isDisabled ? info.isoDate : null;
+
+      if (nextHoverIso !== hoverIsoRef.current) {
+        hoverIsoRef.current = nextHoverIso;
+        paintKonturCalendarSelection(
+          el,
+          current.checkIn.isoDate,
+          null,
+          nextHoverIso
+        );
+      }
+    };
+
+    const handlePointerLeave = () => {
+      if (hoverIsoRef.current !== null) {
+        hoverIsoRef.current = null;
+        paintKonturCalendarSelection(
+          el,
+          calSelectionRef.current.checkIn?.isoDate ?? null,
+          calSelectionRef.current.checkOut?.isoDate ?? null,
+          null
+        );
+      }
+    };
+
+    el.addEventListener("click", handleClick);
+    el.addEventListener("pointermove", handlePointerMove);
+    el.addEventListener("pointerleave", handlePointerLeave);
+
+    return () => {
+      el.removeEventListener("click", handleClick);
+      el.removeEventListener("pointermove", handlePointerMove);
+      el.removeEventListener("pointerleave", handlePointerLeave);
+    };
+  }, [calendarInteractive]);
 
   if (resolvedVariant === "mobileFloatingButton") {
     return <div id={containerId} ref={containerRef} />;
@@ -300,6 +497,25 @@ export function KonturBookingWidget({
     );
   }
 
+  function handleResetCalendarSelection() {
+    hoverIsoRef.current = null;
+    setCalSelection({ checkIn: null, checkOut: null });
+  }
+
+  function handleReopenCalendarCheckout() {
+    if (
+      containerRef.current &&
+      calSelection.checkIn &&
+      calSelection.checkOut
+    ) {
+      openKonturCheckoutForDates(
+        containerRef.current,
+        calSelection.checkIn.formattedDate,
+        calSelection.checkOut.formattedDate
+      );
+    }
+  }
+
   const isFormVariant =
     resolvedVariant === "horizontalForm" || resolvedVariant === "verticalForm";
 
@@ -311,6 +527,14 @@ export function KonturBookingWidget({
       : resolvedVariant === "verticalForm"
         ? "kontur-forest-scope forest-glass mx-auto w-full max-w-md rounded-3xl p-5 sm:p-6"
         : "kontur-forest-scope w-full";
+
+  const selectedNights =
+    calSelection.checkIn && calSelection.checkOut
+      ? countNightsBetweenIso(
+          calSelection.checkIn.isoDate,
+          calSelection.checkOut.isoDate
+        )
+      : 0;
 
   return (
     <section
@@ -324,6 +548,68 @@ export function KonturBookingWidget({
         ref={containerRef}
         className={mountedWidget ? mountedContainerClass : "w-full"}
       />
+
+      {/* Interactive calendar status & action strip */}
+      {mountedWidget && calendarInteractive && (
+        <div className="mx-auto mt-4 flex w-full max-w-[910px] flex-col items-center justify-center">
+          {!calSelection.checkIn && (
+            <p className="text-center text-xs text-[#a8b9ae] sm:text-sm">
+              Нажмите на свободную дату в календаре, чтобы выбрать заезд и выезд
+            </p>
+          )}
+
+          {calSelection.checkIn && !calSelection.checkOut && (
+            <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-[#d49a5a]/40 bg-[#102419] px-5 py-2.5 text-xs text-[#f3f5f0] shadow-lg sm:text-sm">
+              <span>
+                Заезд:{" "}
+                <strong className="font-semibold text-[#d49a5a]">
+                  {calSelection.checkIn.formattedDate}
+                </strong>{" "}
+                — выберите дату выезда в календаре
+              </span>
+              <button
+                type="button"
+                onClick={handleResetCalendarSelection}
+                className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-[#a8b9ae] transition hover:border-white/30 hover:text-[#f3f5f0] cursor-pointer"
+              >
+                <X size={12} />
+                <span>Сбросить</span>
+              </button>
+            </div>
+          )}
+
+          {calSelection.checkIn && calSelection.checkOut && (
+            <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-[#d49a5a]/45 bg-[#102419] px-5 py-3 text-xs text-[#f3f5f0] shadow-lg sm:rounded-full sm:text-sm">
+              <span>
+                Выбрано:{" "}
+                <strong className="font-semibold text-[#d49a5a]">
+                  {calSelection.checkIn.formattedDate} —{" "}
+                  {calSelection.checkOut.formattedDate}
+                </strong>{" "}
+                <span className="text-[#a8b9ae]">
+                  ({formatNightsLabel(selectedNights)})
+                </span>
+              </span>
+              <button
+                type="button"
+                onClick={handleReopenCalendarCheckout}
+                className="inline-flex h-9 items-center justify-center rounded-full bg-[#d49a5a] px-4 text-xs font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98] sm:text-sm cursor-pointer"
+              >
+                Забронировать
+              </button>
+              <button
+                type="button"
+                onClick={handleResetCalendarSelection}
+                aria-label="Сбросить выбранные даты"
+                className="inline-flex h-9 items-center gap-1 rounded-full border border-white/15 bg-white/5 px-3 text-xs text-[#a8b9ae] transition hover:border-white/30 hover:text-[#f3f5f0] cursor-pointer"
+              >
+                <X size={13} />
+                <span>Сбросить</span>
+              </button>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Interactive architectural booking bar while widget mounts or on non-whitelisted preview hosts */}
       {!mountedWidget && isFormVariant && (
@@ -442,7 +728,7 @@ export function KonturBookingWidget({
       )}
 
       {!mountedWidget && !isFormVariant && (
-        <div className="rounded-3xl border border-white/10 bg-[#102419] p-8 text-center">
+        <div className="mx-auto max-w-[910px] rounded-3xl border border-white/10 bg-[#102419] p-8 text-center">
           <p className="mx-auto max-w-xl text-sm leading-relaxed text-[#a8b9ae]">
             {originBlocked
               ? "Встроенный календарь Контур.Отель активируется на основном домене hyzhinalesnika.ru. Вы можете открыть актуальную шахматку свободных дат напрямую:"
