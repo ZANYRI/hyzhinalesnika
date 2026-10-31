@@ -31,8 +31,8 @@ export default function Top5MestArhyzaPage() {
             Главная
           </Link>
           <span>/</span>
-          <Link href="/#blog" className="transition hover:text-[#d49a5a]">
-            Блог
+          <Link href="/news" className="transition hover:text-[#d49a5a]">
+            Новости
           </Link>
           <span>/</span>
           <span className="text-[#f3f5f0]">ТОП-5 мест Архыза</span>

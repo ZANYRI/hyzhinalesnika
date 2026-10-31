@@ -23,7 +23,7 @@ export function ScrollToTop() {
       animate={{ opacity: 1, scale: 1 }}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Наверх"
-      className="fixed right-5 bottom-20 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-[#163122]/90 text-[#f3f5f0] shadow-[0_14px_34px_rgba(0,0,0,0.45)] backdrop-blur-md transition hover:border-[#d49a5a]/60 hover:bg-[#d49a5a] hover:text-[#0a1911] active:scale-[0.98] sm:bottom-6 cursor-pointer"
+      className="fixed left-5 bottom-20 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-[#163122]/90 text-[#f3f5f0] shadow-[0_14px_34px_rgba(0,0,0,0.45)] backdrop-blur-md transition hover:border-[#d49a5a]/60 hover:bg-[#d49a5a] hover:text-[#0a1911] active:scale-[0.98] sm:bottom-6 cursor-pointer"
     >
       <ArrowUp size={20} weight="bold" />
     </motion.button>

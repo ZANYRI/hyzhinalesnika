@@ -13,6 +13,7 @@ import {
 } from "@phosphor-icons/react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { CABIN_LIST } from "@/data/cabins";
+import { PhotoDots } from "./PhotoDots";
 import { CabinTreeEmoji } from "./CabinTreeEmoji";
 
 export function CabinShowcase() {
@@ -21,10 +22,8 @@ export function CabinShowcase() {
   const reduce = useReducedMotion();
 
   const cabin = CABIN_LIST[activeCabinIdx];
-  const previewPhotos = [
-    { src: cabin.cardImage, alt: cabin.cardImageAlt },
-    ...cabin.gallery.slice(0, 4),
-  ];
+  // The card cover is already the first gallery photo, under a different filename.
+  const previewPhotos = cabin.gallery.filter((photo, index, photos) => photos.findIndex(item => item.src === photo.src) === index);
   const currentPhoto = previewPhotos[photoIdx % previewPhotos.length];
 
   function selectCabin(idx: number) {
@@ -44,9 +43,10 @@ export function CabinShowcase() {
     <div>
       {/* Interactive Cabin Selector Pills */}
       <div
+        id="cabin-selector"
         role="tablist"
         aria-label="Выбор дома"
-        className="flex flex-wrap items-center gap-2.5"
+        className="scroll-mt-24 flex flex-wrap items-center gap-2.5"
       >
         {CABIN_LIST.map((item, idx) => {
           const isActive = idx === activeCabinIdx;
@@ -89,7 +89,7 @@ export function CabinShowcase() {
       {/* Main Asymmetric Showcase Stage */}
       <div className="mt-7 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
         {/* Left 7 cols: Photo Stage + Filmstrip */}
-        <div className="flex flex-col justify-between rounded-3xl border border-white/10 bg-[#102419] p-3 sm:p-4 lg:col-span-7">
+        <div className="flex flex-col rounded-3xl border border-white/10 bg-[#102419] p-3 sm:p-4 lg:col-span-7 lg:self-start">
           <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-[#08140d]">
             <AnimatePresence mode="wait">
               <motion.img
@@ -122,34 +122,11 @@ export function CabinShowcase() {
               <CaretRight size={18} weight="bold" />
             </button>
           </div>
-
-          {/* 5-Thumbnail Filmstrip */}
-          <div className="mt-3 grid grid-cols-5 gap-2 sm:gap-3">
-            {previewPhotos.map((photo, idx) => (
-              <button
-                key={photo.src}
-                type="button"
-                onClick={() => setPhotoIdx(idx)}
-                aria-label={`Показать фото ${idx + 1}`}
-                className={`aspect-[4/3] overflow-hidden rounded-xl border transition cursor-pointer ${
-                  idx === photoIdx
-                    ? "border-[#d49a5a] opacity-100"
-                    : "border-transparent opacity-55 hover:opacity-90"
-                }`}
-              >
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-              </button>
-            ))}
-          </div>
+          <PhotoDots total={previewPhotos.length} current={photoIdx} onSelect={setPhotoIdx} />
         </div>
 
         {/* Right 5 cols: Architectural Spec & Action Panel */}
-        <div className="flex flex-col justify-between rounded-3xl border border-white/10 bg-[#102419] p-6 sm:p-8 lg:col-span-5">
+        <div className="flex flex-col justify-between rounded-3xl border border-white/10 bg-[#102419] p-5 sm:p-6 lg:col-span-5">
           <div>
             <div className="flex flex-wrap items-baseline justify-between gap-3">
               <h3 className="font-moderustic text-2xl font-bold tracking-tight text-[#f3f5f0] sm:text-3xl">
@@ -162,7 +139,7 @@ export function CabinShowcase() {
             </div>
 
             <p className="mt-3 text-sm leading-relaxed text-[#a8b9ae]">
-              {cabin.cardSubtitle}. {cabin.introText}
+              {cabin.cardSubtitle}.
             </p>
 
             {/* 3 Metric Tiles */}
@@ -211,7 +188,7 @@ export function CabinShowcase() {
             </ul>
           </div>
 
-          <div className="mt-8 pt-2">
+          <div className="mt-5">
             <Link
               href={cabin.slug}
               className="inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border border-[#d49a5a]/45 bg-[#163122]/85 px-6 text-sm font-semibold text-[#f3f5f0] transition hover:border-[#d49a5a] hover:bg-[#d49a5a] hover:text-[#0a1911] active:scale-[0.98]"
@@ -223,45 +200,7 @@ export function CabinShowcase() {
         </div>
       </div>
 
-      {/* SEO & Quick-Compare Directory Strip of All 3 Houses */}
-      <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-3">
-        {CABIN_LIST.map((item, idx) => (
-          <Link
-            key={item.id}
-            href={item.slug}
-            onMouseEnter={() => {
-              if (activeCabinIdx !== idx) selectCabin(idx);
-            }}
-            className={`group flex items-center justify-between gap-4 rounded-2xl border p-4 transition ${
-              idx === activeCabinIdx
-                ? "border-[#d49a5a]/45 bg-[#163122]"
-                : "border-white/10 bg-[#102419]/75 hover:border-white/25"
-            }`}
-          >
-            <div className="flex items-center gap-3.5">
-              <img
-                src={item.cardImage}
-                alt={item.cardImageAlt}
-                loading="lazy"
-                className="h-14 w-16 shrink-0 rounded-xl object-cover"
-              />
-              <div>
-                <p className="font-moderustic text-base font-bold text-[#f3f5f0] transition group-hover:text-[#d49a5a]">
-                  <CabinTreeEmoji id={item.id} className="mr-1.5" />
-                  {item.cardTitle}
-                </p>
-                <p className="text-xs text-[#a8b9ae]">
-                  {item.cardArea} · {item.cardGuests} · {item.cardPrice}
-                </p>
-              </div>
-            </div>
-            <ArrowRight
-              size={18}
-              className="shrink-0 text-[#a8b9ae] transition group-hover:translate-x-0.5 group-hover:text-[#d49a5a]"
-            />
-          </Link>
-        ))}
-      </div>
+
     </div>
   );
 }

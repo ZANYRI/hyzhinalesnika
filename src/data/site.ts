@@ -8,6 +8,8 @@ export const SITE_CONFIG = {
   phoneHref: "tel:+79280201001",
   whatsappHref: "https://wa.me/79280201001",
   telegramHref: "https://t.me/+79280201001",
+  instagramHref: "https://www.instagram.com/khizhina_lesnika/",
+  maxHref: process.env.NEXT_PUBLIC_MAX_URL || "",
   email: "hyzhinalesnika@mail.ru",
   address: "с. Архыз, ул. Лесная, 40",
   addressShort: "с. Архыз, ул. Лесная 40",
@@ -41,6 +43,9 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
+  { label: "Чем заняться", href: "/#sez1", row: 2 },
+  { label: "Специальные предложения", href: "/special-offers", row: 2 },
+  { label: "СПА и релакс", href: "/spa", row: 2 },
   {
     cabinId: "iva",
     label: 'Дом «Ива» для семьи',
@@ -65,8 +70,8 @@ export const NAV_ITEMS: NavItem[] = [
     row: 2,
   },
   {
-    label: "Блог",
-    href: "/#blog",
+    label: "Новости",
+    href: "/news",
     row: 2,
   },
 ];

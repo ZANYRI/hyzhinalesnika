@@ -32,11 +32,10 @@ export default function BookingPage() {
 
         <div className="mx-auto mt-5 max-w-2xl text-center">
           <h1 className="font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
-            Онлайн-бронирование домов
+            Добро пожаловать на базу отдыха «Хижина лесника»
           </h1>
           <p className="mt-3 text-base leading-relaxed text-[#a8b9ae]">
-            Выберите даты заезда и выезда прямо в календаре Контур.Отель. При
-            бронировании от 4 суток действует скидка 5%.
+            Бронирование у нас на сайте — это быстро, легко и без дополнительных комиссий! Самый актуальный календарь здесь! Бронируйте здесь и сейчас! Мы будем рады помочь Вам с выбором дома, дат отдыха и бронированием! Наш телефон <a href="tel:+79280201001" className="whitespace-nowrap text-[#d49a5a] underline">+7 (928) 020-10-01</a>.
           </p>
         </div>
 

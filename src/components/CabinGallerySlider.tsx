@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   CaretLeft,
   CaretRight,
   CornersOut,
   X,
 } from "@phosphor-icons/react";
+import { PhotoDots } from "./PhotoDots";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 interface CabinGallerySliderProps {
@@ -17,6 +18,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
   const [current, setCurrent] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const reduce = useReducedMotion();
+  const lightboxRef = useRef<HTMLDivElement>(null);
 
   const total = images.length;
 
@@ -30,13 +32,27 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
 
   useEffect(() => {
     if (!lightboxOpen) return;
+    const previous = document.activeElement as HTMLElement | null;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    lightboxRef.current?.querySelector<HTMLButtonElement>("button")?.focus();
     function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Tab") {
+        const controls = Array.from(lightboxRef.current?.querySelectorAll<HTMLButtonElement>("button") ?? []);
+        const first=controls[0], last=controls[controls.length-1];
+        if(e.shiftKey && document.activeElement===first){e.preventDefault();last?.focus();}
+        else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first?.focus();}
+      }
       if (e.key === "Escape") setLightboxOpen(false);
       if (e.key === "ArrowLeft") setCurrent((c) => (c - 1 + total) % total);
       if (e.key === "ArrowRight") setCurrent((c) => (c + 1) % total);
     }
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = overflow;
+      previous?.focus({preventScroll:true});
+    };
   }, [lightboxOpen, total]);
 
   const activeImage = images[current] ?? images[0];
@@ -44,12 +60,12 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
   return (
     <div className="rounded-3xl border border-white/10 bg-[#102419] p-3 sm:p-4">
       {/* Main Architectural Photo Stage */}
-      <div className="relative overflow-hidden rounded-2xl bg-[#08140d]">
+      <div className="relative grid gap-3 overflow-hidden rounded-2xl bg-[#08140d] lg:grid-cols-[2fr_1fr]">
         <button
           type="button"
           onClick={() => setLightboxOpen(true)}
           aria-label="Открыть фотографию во весь экран"
-          className="block aspect-[16/10] w-full overflow-hidden focus:outline-none cursor-zoom-in"
+          className="block aspect-[16/11] w-full overflow-hidden focus:outline-none cursor-zoom-in lg:row-span-2 lg:aspect-[16/10]"
         >
           <AnimatePresence mode="wait">
             <motion.img
@@ -64,6 +80,14 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
             />
           </AnimatePresence>
         </button>
+
+        {[1, 2].map(offset => {
+          const index=(current+offset)%total;
+          return <button key={offset} type="button" onClick={()=>{setCurrent(index);setLightboxOpen(true);}} aria-label={`Открыть фото ${index+1} во весь экран`} className="relative hidden min-h-0 overflow-hidden rounded-xl lg:block">
+            <img src={images[index].src} alt={images[index].alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition hover:scale-105"/>
+            {offset===2 && <span className="absolute right-3 bottom-3 rounded-full bg-[#0a1911]/80 px-3 py-2 text-xs text-white">Все {total} фото ↗</span>}
+          </button>;
+        })}
 
         <button
           type="button"
@@ -84,8 +108,10 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
         </button>
       </div>
 
+      <PhotoDots total={total} current={current} onSelect={setCurrent} />
+
       {/* Controls Bar */}
-      <div className="mt-3 flex items-center justify-between px-1 text-xs text-[#a8b9ae]">
+      <div className="mt-1 flex items-center justify-between px-1 text-xs text-[#a8b9ae]">
         <span>
           Кадр <strong className="text-[#f3f5f0]">{current + 1}</strong> из{" "}
           {total}
@@ -100,34 +126,11 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
         </button>
       </div>
 
-      {/* Thumbnail Strip */}
-      <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
-        {images.map((img, idx) => (
-          <button
-            key={img.src}
-            type="button"
-            onClick={() => setCurrent(idx)}
-            aria-label={`Фото ${idx + 1} из ${total}`}
-            aria-current={idx === current}
-            className={`h-16 w-22 shrink-0 overflow-hidden rounded-xl border transition cursor-pointer ${
-              idx === current
-                ? "border-[#d49a5a] opacity-100"
-                : "border-transparent opacity-50 hover:opacity-85"
-            }`}
-          >
-            <img
-              src={img.src}
-              alt={img.alt}
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
-          </button>
-        ))}
-      </div>
 
       {/* Fullscreen Lightbox */}
       {lightboxOpen && (
         <div
+          ref={lightboxRef}
           className="fixed inset-0 z-50 flex items-center justify-center bg-[#06100b]/92 p-4 backdrop-blur-md"
           onClick={() => setLightboxOpen(false)}
           role="dialog"

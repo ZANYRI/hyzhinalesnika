@@ -7,6 +7,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     { path: "", priority: 1.0 },
     { path: "/booking", priority: 0.9 },
+    { path: "/news", priority: 0.7 },
+    { path: "/special-offers", priority: 0.8 },
+    { path: "/spa", priority: 0.8 },
     { path: "/dom-dlya-semi", priority: 0.9 },
     { path: "/dvuhetazhnyj-barnhouse", priority: 0.9 },
     { path: "/shale-s-vidom-na-gory", priority: 0.9 },

@@ -15,12 +15,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/blog",
-        destination: "/#blog",
+        destination: "/news",
         permanent: true,
       },
       {
         source: "/putevoditeli-marshruty",
-        destination: "/#blog",
+        destination: "/news",
         permanent: true,
       },
     ];

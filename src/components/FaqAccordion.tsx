@@ -54,7 +54,7 @@ export function FaqAccordion() {
                   exit={reduce ? undefined : { height: 0, opacity: 0 }}
                   transition={{ duration: 0.24 }}
                 >
-                  <div className="border-t border-white/10 px-6 pt-4 pb-6 text-sm leading-relaxed text-[#a8b9ae] sm:text-[15px]">
+                  <div className="whitespace-pre-line border-t border-white/10 px-6 pt-4 pb-6 text-sm leading-relaxed text-[#a8b9ae] sm:text-[15px]">
                     {item.answer}
                   </div>
                 </motion.div>

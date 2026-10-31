@@ -15,14 +15,15 @@ interface HeaderProps {
 
 const HEADER_LINKS = [
   { label: "Дома", target: "/#cabins" },
-  { label: "Впечатления", target: "/#sez1" },
-  { label: "Галерея", target: "/#gallery" },
-  { label: "Блог", target: "/#blog" },
+  { label: "Чем заняться", target: "/#sez1" },
+  { label: "СПА и релакс", target: "/spa" },
+  { label: "Специальные предложения", target: "/special-offers" },
+  { label: "Новости", target: "/news" },
   { label: "Отзывы", target: "/#reviews" },
   { label: "Контакты", target: "/#contacts" },
 ] as const;
 
-export function Header({ bookingAnchor = "#booking" }: HeaderProps) {
+export function Header(_props: HeaderProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [callbackOpen, setCallbackOpen] = useState(false);
   const router = useRouter();
@@ -38,7 +39,7 @@ export function Header({ bookingAnchor = "#booking" }: HeaderProps) {
 
   return (
     <>
-      <div className="sticky top-3 z-40 mx-auto w-full max-w-[1400px] px-3 sm:px-6">
+      <div className="sticky top-3 z-40 mx-auto w-full max-w-[1800px] px-3 sm:px-6">
         <header className="forest-glass flex h-[68px] w-full items-center justify-between gap-3 rounded-full px-4 sm:h-[72px] sm:px-6">
           {/* Brand Wordmark Logo */}
           <Link
@@ -58,7 +59,7 @@ export function Header({ bookingAnchor = "#booking" }: HeaderProps) {
           {/* Single-line Desktop Navigation */}
           <nav
             aria-label="Основное меню"
-            className="hidden items-center gap-6 lg:flex xl:gap-8"
+            className="hidden items-center gap-4 2xl:flex"
           >
             {HEADER_LINKS.map((item) => (
               <button
@@ -76,7 +77,7 @@ export function Header({ bookingAnchor = "#booking" }: HeaderProps) {
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <a
               href={SITE_CONFIG.phoneHref}
-              className="hidden whitespace-nowrap text-sm font-semibold text-[#f3f5f0] transition hover:text-[#d49a5a] xl:inline-block"
+              className="hidden whitespace-nowrap text-sm font-semibold text-[#f3f5f0] transition hover:text-[#d49a5a] min-[1700px]:inline-block"
             >
               {SITE_CONFIG.phoneDisplay}
             </a>
@@ -91,19 +92,19 @@ export function Header({ bookingAnchor = "#booking" }: HeaderProps) {
               <PhoneCall size={18} />
             </button>
 
-            <button
-              type="button"
-              onClick={() => handleNavClick(bookingAnchor)}
+            <Link
+              href="/booking"
+              onClick={() => setDrawerOpen(false)}
               className="hidden whitespace-nowrap rounded-full bg-[#d49a5a] px-5 py-2.5 text-[13px] font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98] sm:inline-flex cursor-pointer"
             >
-              Забронировать
-            </button>
+              Проверить даты и забронировать
+            </Link>
 
             <button
               type="button"
               onClick={() => setDrawerOpen(true)}
               aria-label="Открыть меню"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-[#f3f5f0] transition hover:border-white/30 lg:hidden cursor-pointer"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-[#f3f5f0] transition hover:border-white/30 2xl:hidden cursor-pointer"
             >
               <List size={20} />
             </button>
@@ -114,7 +115,7 @@ export function Header({ bookingAnchor = "#booking" }: HeaderProps) {
       {/* Mobile Navigation Drawer */}
       {drawerOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm 2xl:hidden"
           onClick={() => setDrawerOpen(false)}
         >
           <div
@@ -165,13 +166,13 @@ export function Header({ bookingAnchor = "#booking" }: HeaderProps) {
                 </span>
               </div>
 
-              <button
-                type="button"
-                onClick={() => handleNavClick(bookingAnchor)}
+              <Link
+                href="/booking"
+                onClick={() => setDrawerOpen(false)}
                 className="flex h-12 w-full items-center justify-center rounded-full bg-[#d49a5a] text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98] cursor-pointer"
               >
-                Забронировать
-              </button>
+                Проверить даты и забронировать
+              </Link>
             </div>
           </div>
         </div>
