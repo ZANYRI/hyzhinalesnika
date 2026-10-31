@@ -382,3 +382,21 @@ body:not(:has([data-tid="modal-container"])) [data-tid="Tooltip__root"] img[src*
 .booking-focus-pulse {
   animation: booking-bar-pulse 1.3s ease-out;
 }
+
+/* A subtle wood-toned outline that preserves the dark activity cards. */
+.activity-wood-frame {
+  border: 1px solid transparent;
+  border-radius: 1.25rem;
+  background:
+    linear-gradient(#102419, #102419) padding-box,
+    repeating-linear-gradient(
+      12deg,
+      rgba(103, 76, 48, 0.6) 0px,
+      rgba(161, 121, 77, 0.65) 7px,
+      rgba(109, 78, 47, 0.5) 12px
+    ) border-box;
+}
+
+.activity-wood-frame:hover {
+  border-color: rgba(184, 140, 89, 0.7);
+}

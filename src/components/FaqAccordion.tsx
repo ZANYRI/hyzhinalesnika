@@ -6,11 +6,11 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { HOME_FAQ } from "@/data/home";
 
 export function FaqAccordion() {
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
   const reduce = useReducedMotion();
 
   return (
-    <div className="space-y-3">
+    <div className="grid items-start gap-3 md:grid-cols-2">
       {HOME_FAQ.map((item, idx) => {
         const isOpen = openIdx === idx;
         return (

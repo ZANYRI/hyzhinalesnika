@@ -1,4 +1,3 @@
-import { TimedBookingPopup } from "@/components/TimedBookingPopup";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -53,7 +52,6 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <CleanHashScroll />
         </Suspense>
-        <Suspense fallback={null}><TimedBookingPopup /></Suspense>
         <FloatingContacts />
         <ScrollToTop />
       </body>

@@ -69,11 +69,12 @@ export default function HomePage() {
         <p className="mt-5 max-w-2xl leading-relaxed text-[#d6e0d9] sm:text-lg">Своя терраса, тихие вечера у костра и горы рядом. Приезжайте с семьёй, вдвоём или в кругу друзей.</p>
         <Link href="/booking" className="mt-8 inline-flex rounded-full bg-[#d49a5a] px-7 py-4 text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e]">Проверить свободные даты</Link>
       </div>
-      <div className="relative z-10"><KonturBookingWidget id="booking" /></div>
     </section>
     <main>
       <HomeBenefits />
       <section id="cabins" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">
+        <p className="mb-4 text-center font-moderustic text-xl font-bold text-[#f3f5f0] sm:text-2xl">Забронировать онлайн</p>
+        <KonturBookingWidget id="booking" className="mb-10 px-0 sm:px-0" />
         <p className="text-xs uppercase tracking-[0.2em] text-[#d49a5a]">Ваш дом в Архызе</p>
         <h2 className="mt-3 font-moderustic text-3xl font-bold sm:text-4xl">Выберите свой дом в лесу</h2>
         <p className="mt-4 max-w-2xl text-[#a8b9ae]">Всего три дома — для семейного отдыха, романтических выходных и встреч с друзьями.</p>
@@ -87,7 +88,7 @@ export default function HomePage() {
       </section>
       <AudienceStories />
       <BookingAssistance />
-      <section id="faq" className="mx-auto max-w-[1000px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">
+      <section id="faq" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">
         <p className="text-xs uppercase tracking-[0.2em] text-[#d49a5a]">До встречи в лесу</p>
         <h2 className="mt-3 mb-9 font-moderustic text-3xl font-bold sm:text-4xl">Частые вопросы</h2>
         <FaqAccordion />
