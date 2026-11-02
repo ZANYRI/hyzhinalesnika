@@ -17,7 +17,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           {/* Brand & Messengers */}
           <div className="md:col-span-5">
-            <Link href="/" aria-label='База отдыха "Хижина лесника" — на главную' className="inline-flex transition hover:opacity-85">
+            <Link href="/" aria-label='База отдыха "Хижина лесника" – на главную' className="inline-flex transition hover:opacity-85">
               <img
                 src="/images/brand/logo-wordmark-light.png"
                 alt='База отдыха "Хижина лесника"'
@@ -165,6 +165,7 @@ export function Footer() {
             >
               Пользовательское соглашение
             </Link>
+            <Link href="/cookie-policy" className="transition hover:text-[#f3f5f0]">Использование cookie</Link>
           </div>
         </div>
       </div>

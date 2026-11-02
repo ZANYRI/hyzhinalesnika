@@ -24,7 +24,7 @@ export function BlogSection() {
         return (
           <article
             key={post.slug}
-            className={`group flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#102419] p-4 transition hover:border-[#d49a5a]/45 sm:p-5 ${
+            className={`group flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#173024] p-4 transition hover:border-[#d49a5a]/45 sm:p-5 ${
               isFeatured ? "lg:col-span-7" : "lg:col-span-5"
             }`}
           >

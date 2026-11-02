@@ -53,7 +53,7 @@ export function CallbackModal({
       aria-label={title}
     >
       <div
-        className="relative w-full max-w-md rounded-3xl border border-white/12 bg-[#102419] p-7 text-[#f3f5f0] shadow-[0_24px_64px_rgba(0,0,0,0.6)] sm:p-8"
+        className="relative w-full max-w-md rounded-3xl border border-white/12 bg-[#173024] p-7 text-[#f3f5f0] shadow-[0_24px_64px_rgba(0,0,0,0.6)] sm:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -78,7 +78,7 @@ export function CallbackModal({
         </p>
 
         {status === "sent" ? (
-          <div className="mt-6 rounded-2xl border border-[#d49a5a]/35 bg-[#163122] p-6 text-center">
+          <div className="mt-6 rounded-2xl border border-[#d49a5a]/35 bg-[#1d3b2b] p-6 text-center">
             <CheckCircle
               size={36}
               weight="fill"
@@ -98,7 +98,7 @@ export function CallbackModal({
                 setPhone("");
                 onClose();
               }}
-              className="mt-5 inline-flex h-11 items-center justify-center rounded-full bg-[#d49a5a] px-7 text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98] cursor-pointer"
+              className="mt-5 inline-flex h-11 items-center justify-center rounded-full bg-[#d49a5a] px-7 text-sm font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98] cursor-pointer"
             >
               Готово
             </button>
@@ -120,7 +120,7 @@ export function CallbackModal({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Например, Алексей"
-                className="h-12 w-full rounded-xl border border-white/15 bg-[#0a1911] px-4 text-sm text-[#f3f5f0] placeholder:text-[#7e9487] outline-none transition focus:border-[#d49a5a]"
+                className="h-12 w-full rounded-xl border border-white/15 bg-[#102219] px-4 text-sm text-[#f3f5f0] placeholder:text-[#7e9487] outline-none transition focus:border-[#d49a5a]"
               />
             </div>
 
@@ -139,7 +139,7 @@ export function CallbackModal({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="+7 (999) 000-00-00"
-                className="h-12 w-full rounded-xl border border-white/15 bg-[#0a1911] px-4 text-sm text-[#f3f5f0] placeholder:text-[#7e9487] outline-none transition focus:border-[#d49a5a]"
+                className="h-12 w-full rounded-xl border border-white/15 bg-[#102219] px-4 text-sm text-[#f3f5f0] placeholder:text-[#7e9487] outline-none transition focus:border-[#d49a5a]"
               />
             </div>
 
@@ -181,7 +181,7 @@ export function CallbackModal({
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-full bg-[#d49a5a] px-6 text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98] disabled:opacity-60 cursor-pointer"
+              className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-full bg-[#d49a5a] px-6 text-sm font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98] disabled:opacity-60 cursor-pointer"
             >
               {status === "submitting" ? "Отправляем..." : "Жду звонка"}
             </button>

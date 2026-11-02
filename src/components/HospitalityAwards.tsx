@@ -83,9 +83,9 @@ export function HospitalityAwards({
         href={SITE_CONFIG.yandexReviewsUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="group inline-flex items-center gap-3.5 rounded-2xl border border-[#d49a5a]/30 bg-[#102419] px-4 py-3 transition hover:border-[#d49a5a]/65"
+        className="group inline-flex items-center gap-3.5 rounded-2xl border border-[#d49a5a]/30 bg-[#173024] px-4 py-3 transition hover:border-[#d49a5a]/65"
       >
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#d49a5a]/25 bg-[#0a1911]">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#d49a5a]/25 bg-[#102219]">
           <LaurelEmblem />
         </span>
 
@@ -119,10 +119,10 @@ export function HospitalityAwards({
         href={SITE_CONFIG.yandexReviewsUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center justify-between gap-3 rounded-2xl border border-[#d49a5a]/35 bg-gradient-to-br from-[#163122] to-[#0d1f15] p-4 transition hover:border-[#d49a5a]/70"
+        className="group flex items-center justify-between gap-3 rounded-2xl border border-[#d49a5a]/35 bg-gradient-to-br from-[#1d3b2b] to-[#0d1f15] p-4 transition hover:border-[#d49a5a]/70"
       >
         <div className="flex items-center gap-3.5">
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#d49a5a]/30 bg-[#0a1911]/85 shadow-inner">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#d49a5a]/30 bg-[#102219]/85 shadow-inner">
             <LaurelEmblem />
           </span>
 
@@ -150,8 +150,8 @@ export function HospitalityAwards({
 
       {/* Secondary Verified Hospitality Plaques: Ubook.ru & 101Hotels.com */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#163122]/65 p-3.5">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-[#0a1911]/80 text-[#d49a5a]">
+        <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#1d3b2b]/65 p-3.5">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-[#102219]/80 text-[#d49a5a]">
             <SealCheck size={20} weight="duotone" />
           </span>
           <div className="min-w-0">
@@ -164,8 +164,8 @@ export function HospitalityAwards({
           </div>
         </div>
 
-        <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#163122]/65 p-3.5">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-[#0a1911]/80 text-[#d49a5a]">
+        <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#1d3b2b]/65 p-3.5">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-[#102219]/80 text-[#d49a5a]">
             <Medal size={20} weight="duotone" />
           </span>
           <div className="min-w-0">

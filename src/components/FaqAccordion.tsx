@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Minus, Plus } from "@phosphor-icons/react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { HOME_FAQ } from "@/data/home";
@@ -9,17 +9,30 @@ export function FaqAccordion() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const reduce = useReducedMotion();
 
+  useEffect(() => {
+    function openQuestion(event: Event) {
+      if ((event as CustomEvent<string>).detail === "pets") {
+        setOpenIdx(HOME_FAQ.findIndex(item => item.question === "Можно ли приезжать с питомцами?"));
+      }
+    }
+    window.addEventListener("hyzhina:open-faq", openQuestion);
+    // Covers a direct link opened before this component hydrates.
+    if (window.location.hash === "#faq-pets") openQuestion(new CustomEvent("hyzhina:open-faq", { detail: "pets" }));
+    return () => window.removeEventListener("hyzhina:open-faq", openQuestion);
+  }, []);
+
   return (
     <div className="grid items-start gap-3 md:grid-cols-2">
       {HOME_FAQ.map((item, idx) => {
         const isOpen = openIdx === idx;
         return (
           <div
+            id={item.question === "Можно ли приезжать с питомцами?" ? "faq-pets" : undefined}
             key={item.question}
-            className={`overflow-hidden rounded-2xl border transition ${
+            className={`scroll-mt-28 overflow-hidden rounded-2xl border transition ${
               isOpen
-                ? "border-[#d49a5a]/45 bg-[#163122]"
-                : "border-white/10 bg-[#102419] hover:border-white/20"
+                ? "border-[#d49a5a]/45 bg-[#1d3b2b]"
+                : "border-white/10 bg-[#173024] hover:border-white/20"
             }`}
           >
             <button
@@ -34,7 +47,7 @@ export function FaqAccordion() {
               <span
                 className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition ${
                   isOpen
-                    ? "border-[#d49a5a] bg-[#d49a5a] text-[#0a1911]"
+                    ? "border-[#d49a5a] bg-[#d49a5a] text-[#102219]"
                     : "border-white/15 bg-white/5 text-[#f3f5f0]"
                 }`}
               >

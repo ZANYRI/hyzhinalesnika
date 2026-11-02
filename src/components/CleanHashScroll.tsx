@@ -10,6 +10,10 @@ export function scrollToSectionById(id: string): boolean {
   if (typeof document === "undefined" || typeof window === "undefined") {
     return false;
   }
+  if (id === "faq-pets") {
+    window.dispatchEvent(new CustomEvent("hyzhina:open-faq", { detail: "pets" }));
+    document.querySelector<HTMLButtonElement>("#faq-pets button")?.focus({ preventScroll: true });
+  }
   const el = document.getElementById(id);
   if (!el) return false;
 
@@ -31,8 +35,8 @@ export function scrollToSectionById(id: string): boolean {
     return true;
   }
 
-  // Align the actual house selector below the sticky header, past the section's decorative padding.
-  const target = id === "cabins" ? document.getElementById("cabin-selector") ?? el : el;
+  // House navigation starts at the online booking heading.
+  const target = id === "cabins" ? document.getElementById("online-booking") ?? el : el;
   target.scrollIntoView({ behavior: "smooth", block: "start" });
   return true;
 }

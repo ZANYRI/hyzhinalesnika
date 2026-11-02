@@ -59,8 +59,8 @@ export function CabinShowcase() {
               onClick={() => selectCabin(idx)}
               className={`relative rounded-full px-5 py-3 text-left text-sm font-semibold transition active:scale-[0.98] cursor-pointer ${
                 isActive
-                  ? "text-[#0a1911]"
-                  : "border border-white/12 bg-[#102419] text-[#d6e0d9] hover:border-white/25 hover:text-[#f3f5f0]"
+                  ? "text-[#102219]"
+                  : "border border-white/12 bg-[#173024] text-[#d6e0d9] hover:border-white/25 hover:text-[#f3f5f0]"
               }`}
             >
               {isActive && (
@@ -75,7 +75,7 @@ export function CabinShowcase() {
                 <span>{item.cardTitle}</span>
                 <span
                   className={`text-xs font-normal ${
-                    isActive ? "text-[#0a1911]/80" : "text-[#a8b9ae]"
+                    isActive ? "text-[#102219]/80" : "text-[#a8b9ae]"
                   }`}
                 >
                   · {item.cardGuests}
@@ -89,7 +89,7 @@ export function CabinShowcase() {
       {/* Main Asymmetric Showcase Stage */}
       <div className="mt-7 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
         {/* Left 7 cols: Photo Stage + Filmstrip */}
-        <div className="flex flex-col rounded-3xl border border-white/10 bg-[#102419] p-3 sm:p-4 lg:col-span-7 lg:self-start">
+        <div className="flex flex-col rounded-3xl border border-white/10 bg-[#173024] p-3 sm:p-4 lg:col-span-7 lg:self-start">
           <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-[#08140d]">
             <AnimatePresence mode="wait">
               <motion.img
@@ -108,7 +108,7 @@ export function CabinShowcase() {
               type="button"
               onClick={prevPhoto}
               aria-label="Предыдущее фото дома"
-              className="absolute top-1/2 left-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[#0a1911]/75 text-[#f3f5f0] backdrop-blur-md transition hover:border-[#d49a5a] hover:text-[#d49a5a] active:scale-[0.98] cursor-pointer"
+              className="absolute top-1/2 left-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[#102219]/75 text-[#f3f5f0] backdrop-blur-md transition hover:border-[#d49a5a] hover:text-[#d49a5a] active:scale-[0.98] cursor-pointer"
             >
               <CaretLeft size={18} weight="bold" />
             </button>
@@ -117,7 +117,7 @@ export function CabinShowcase() {
               type="button"
               onClick={nextPhoto}
               aria-label="Следующее фото дома"
-              className="absolute top-1/2 right-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[#0a1911]/75 text-[#f3f5f0] backdrop-blur-md transition hover:border-[#d49a5a] hover:text-[#d49a5a] active:scale-[0.98] cursor-pointer"
+              className="absolute top-1/2 right-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[#102219]/75 text-[#f3f5f0] backdrop-blur-md transition hover:border-[#d49a5a] hover:text-[#d49a5a] active:scale-[0.98] cursor-pointer"
             >
               <CaretRight size={18} weight="bold" />
             </button>
@@ -126,7 +126,7 @@ export function CabinShowcase() {
         </div>
 
         {/* Right 5 cols: Architectural Spec & Action Panel */}
-        <div className="flex flex-col justify-between rounded-3xl border border-white/10 bg-[#102419] p-5 sm:p-6 lg:col-span-5">
+        <div className="flex flex-col justify-between rounded-3xl border border-white/10 bg-[#173024] p-5 sm:p-6 lg:col-span-5">
           <div>
             <div className="flex flex-wrap items-baseline justify-between gap-3">
               <h3 className="font-moderustic text-2xl font-bold tracking-tight text-[#f3f5f0] sm:text-3xl">
@@ -144,7 +144,7 @@ export function CabinShowcase() {
 
             {/* 3 Metric Tiles */}
             <div className="mt-6 grid grid-cols-3 gap-2.5">
-              <div className="rounded-2xl border border-white/8 bg-[#163122]/70 p-3.5">
+              <div className="rounded-2xl border border-white/8 bg-[#1d3b2b]/70 p-3.5">
                 <Users size={18} className="text-[#d49a5a]" />
                 <span className="mt-2 block text-xs text-[#a8b9ae]">Гости</span>
                 <span className="mt-0.5 block font-moderustic text-sm font-bold text-[#f3f5f0]">
@@ -152,7 +152,7 @@ export function CabinShowcase() {
                 </span>
               </div>
 
-              <div className="rounded-2xl border border-white/8 bg-[#163122]/70 p-3.5">
+              <div className="rounded-2xl border border-white/8 bg-[#1d3b2b]/70 p-3.5">
                 <Ruler size={18} className="text-[#d49a5a]" />
                 <span className="mt-2 block text-xs text-[#a8b9ae]">
                   Площадь
@@ -162,7 +162,7 @@ export function CabinShowcase() {
                 </span>
               </div>
 
-              <div className="rounded-2xl border border-white/8 bg-[#163122]/70 p-3.5">
+              <div className="rounded-2xl border border-white/8 bg-[#1d3b2b]/70 p-3.5">
                 <DoorOpen size={18} className="text-[#d49a5a]" />
                 <span className="mt-2 block text-xs text-[#a8b9ae]">
                   Планировка
@@ -191,7 +191,7 @@ export function CabinShowcase() {
           <div className="mt-5">
             <Link
               href={cabin.slug}
-              className="inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border border-[#d49a5a]/45 bg-[#163122]/85 px-6 text-sm font-semibold text-[#f3f5f0] transition hover:border-[#d49a5a] hover:bg-[#d49a5a] hover:text-[#0a1911] active:scale-[0.98]"
+              className="inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border border-[#d49a5a]/45 bg-[#1d3b2b]/85 px-6 text-sm font-semibold text-[#f3f5f0] transition hover:border-[#d49a5a] hover:bg-[#d49a5a] hover:text-[#102219] active:scale-[0.98]"
             >
               <span>Планировка и фото</span>
               <ArrowRight size={16} weight="bold" />
