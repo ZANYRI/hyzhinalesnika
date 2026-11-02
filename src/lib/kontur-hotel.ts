@@ -100,8 +100,8 @@ const KONTUR_GLOBAL_THEME: Record<string, unknown> = {
         bg: "#d49a5a",
         hoverBg: "#e0ab6e",
         activeBg: "#c38847",
-        textColor: "#0a1911",
-        hoverTextColor: "#0a1911",
+        textColor: "#102219",
+        hoverTextColor: "#102219",
       },
     },
     controls: {
@@ -114,19 +114,19 @@ const KONTUR_GLOBAL_THEME: Record<string, unknown> = {
 
 /**
  * Shared dark-forest ReactUI & BM color tokens applied to inline widgets mounted
- * directly on the `#0a1911` / `#102419` pages (and their DatePicker / Select popups).
+ * directly on the `#102219` / `#173024` pages (and their DatePicker / Select popups).
  */
 export const KONTUR_DARK_FOREST_COMMON: Record<string, unknown> = {
   colors: {
-    whiteColor: "#102419",
+    whiteColor: "#173024",
     fontBlackColor: "#f3f5f0",
     fontBlackActiveColor: "#f3f5f0",
     fontGrayColor: "#a8b9ae",
     fontDisabledColor: "rgba(168, 185, 174, 0.45)",
     placeholderColor: "#a8b9ae",
-    bgGrayLightColor: "rgba(22, 49, 34, 0.78)",
-    bgGrayColor: "rgba(22, 49, 34, 0.92)",
-    bgGrayDarkColor: "#163122",
+    bgGrayLightColor: "rgba(29, 59, 43, 0.78)",
+    bgGrayColor: "rgba(29, 59, 43, 0.92)",
+    bgGrayDarkColor: "#1d3b2b",
     bgYellowLightColor: "rgba(212, 154, 90, 0.18)",
     bgYellowColor: "#d49a5a",
     fontYellowColor: "#e0ab6e",
@@ -138,8 +138,8 @@ export const KONTUR_DARK_FOREST_COMMON: Record<string, unknown> = {
     fontBlueColor: "#d49a5a",
   },
   base: {
-    bgDefault: "#102419",
-    bgDisabled: "rgba(16, 36, 25, 0.65)",
+    bgDefault: "#173024",
+    bgDisabled: "rgba(23, 48, 36, 0.65)",
     textColorDefault: "#f3f5f0",
     textColorDisabled: "rgba(168, 185, 174, 0.45)",
     textColorDisabledContrast: "rgba(168, 185, 174, 0.45)",
@@ -158,12 +158,12 @@ export const KONTUR_DARK_FOREST_COMMON: Record<string, unknown> = {
       bg: "#d49a5a",
       hoverBg: "#e0ab6e",
       activeBg: "#c38847",
-      textColor: "#0a1911",
-      hoverTextColor: "#0a1911",
+      textColor: "#102219",
+      hoverTextColor: "#102219",
     },
     secondary: {
-      bg: "#0a1911",
-      hoverBg: "#163122",
+      bg: "#102219",
+      hoverBg: "#1d3b2b",
       activeBg: "#1c3d2a",
       textColor: "#f3f5f0",
       hoverTextColor: "#f3f5f0",
@@ -178,7 +178,7 @@ export const KONTUR_DARK_FOREST_COMMON: Record<string, unknown> = {
     btnBacklessHoverTextColor: "#a86f30",
     btnBacklessHoverBg: "rgba(212, 154, 90, 0.12)",
     btnBacklessActiveBg: "rgba(212, 154, 90, 0.2)",
-    inputBg: "#0a1911",
+    inputBg: "#102219",
     inputTextColor: "#f3f5f0",
     inputColor: "#f3f5f0",
     inputBorderColor: "rgba(243, 245, 240, 0.16)",
@@ -188,34 +188,34 @@ export const KONTUR_DARK_FOREST_COMMON: Record<string, unknown> = {
     inputColorScheme: "dark",
     dateInputMaskColor: "rgba(168, 185, 174, 0.45)",
     datePickerOpenBtnColor: "#d49a5a",
-    selectHoverBg: "#163122",
+    selectHoverBg: "#1d3b2b",
     selectActiveBg: "#1c3d2a",
     btnMenuArrowColor: "#a8b9ae",
-    menuBgDefault: "#102419",
+    menuBgDefault: "#173024",
     menuItemTextColor: "#f3f5f0",
-    menuItemHoverBg: "#163122",
+    menuItemHoverBg: "#1d3b2b",
     menuItemSelectedBg: "#1c3d2a",
     menuHeaderColor: "#a8b9ae",
     menuSeparatorBorderColor: "rgba(243, 245, 240, 0.1)",
-    popupBackground: "#102419",
+    popupBackground: "#173024",
     popupBorder: "1px solid rgba(243, 245, 240, 0.14)",
     popupBorderRadius: "16px",
-    tooltipBg: "#102419",
+    tooltipBg: "#173024",
     tooltipTextColor: "#f3f5f0",
     tooltipCloseBtnColor: "#a8b9ae",
     tooltipCloseBtnHoverColor: "#f3f5f0",
-    calendarBg: "#102419",
+    calendarBg: "#173024",
     calendarCellBg: "transparent",
-    calendarCellHoverBgColor: "#163122",
+    calendarCellHoverBgColor: "#1d3b2b",
     calendarCellHoverColor: "#f3f5f0",
     calendarCellSelectedBgColor: "#d49a5a",
-    calendarCellSelectedFontColor: "#0a1911",
+    calendarCellSelectedFontColor: "#102219",
     calendarCellWeekendColor: "#e0ab6e",
     calendarMonthTitleBorderBottomColor: "rgba(243, 245, 240, 0.1)",
     calendarBottomSeparatorBorderColor: "rgba(243, 245, 240, 0.1)",
     rangeCalendarCellBg: "rgba(212, 154, 90, 0.2)",
     rangeCalendarCellEndBg: "#d49a5a",
-    rangeCalendarCellEndColor: "#0a1911",
+    rangeCalendarCellEndColor: "#102219",
     rangeCalendarCellHoverBg: "rgba(212, 154, 90, 0.32)",
   },
 };
@@ -223,6 +223,7 @@ export const KONTUR_DARK_FOREST_COMMON: Record<string, unknown> = {
 const accessCache = new Map<string, Promise<boolean>>();
 let scriptPromise: Promise<HotelWidgetGlobal> | null = null;
 let initializedHotelId: string | null = null;
+let initializationPromise: Promise<HotelWidgetGlobal> | null = null;
 let adultsCapGuardInstalled = false;
 
 const MONTH_NAME_MAP: Record<string, number> = {
@@ -314,105 +315,26 @@ export function findKonturCalendarDayCell(
   return null;
 }
 
-/**
- * Extracts exact `{ year, monthIndex, day, isoDate, formattedDate, hasPrice, isDisabled }`
- * from a Контур.Отель `CalendarDay` DOM cell via its React Fiber props (with DOM fallback).
- */
-export function extractKonturCalendarDayInfo(
-  cell: HTMLElement
-): KonturCalendarDayInfo | null {
-  let day: number | null = null;
-  let monthIndex: number | null = null;
-  let year: number | null = null;
-  let hasPrice = false;
-  let isDisabled = false;
-  let foundDayProps = false;
-
-  let fiber = getReactFiber(cell);
-  let hops = 0;
-  while (fiber && hops < 16) {
-    const props = fiber.memoizedProps;
-    if (props) {
-      if (!foundDayProps && "day" in props && "disabled" in props) {
-        foundDayProps = true;
-        if (typeof props.day !== "number" || props.day < 1) {
-          return null;
-        }
-        day = props.day;
-        isDisabled = Boolean(props.disabled);
-        const data = props.data as { price?: unknown } | undefined;
-        hasPrice = !isDisabled && Boolean(data && data.price);
-      }
-      if (
-        typeof props.monthNumberFromZero === "number" &&
-        typeof props.year === "number"
-      ) {
-        monthIndex = props.monthNumberFromZero;
-        year = props.year;
-        break;
-      }
-    }
-    fiber = fiber.return;
-    hops++;
-  }
-
-  // Pure DOM fallback if Fiber props are unavailable
-  if (day === null) {
-    const numText = (cell.firstElementChild?.textContent || "").trim();
-    if (!/^\d{1,2}$/.test(numText)) {
-      return null;
-    }
-    day = Number.parseInt(numText, 10);
-    const subText = (cell.children[1]?.textContent || "").trim();
-    hasPrice = /\d/.test(subText);
-  }
-
-  if (monthIndex === null || year === null) {
-    const section = cell.closest("section");
-    const flipId = section?.parentElement?.getAttribute("data-flip-id") || "";
-    const titleText = (section?.firstElementChild?.textContent || "").trim();
-    const parsedFlip = parseMonthYearText(flipId);
-    const parsedTitle = parseMonthYearText(titleText);
-
-    monthIndex = parsedFlip.monthIndex ?? parsedTitle.monthIndex;
-    year = parsedFlip.year ?? parsedTitle.year;
-
-    if (monthIndex !== null && year === null) {
-      const now = new Date();
-      year =
-        monthIndex < now.getMonth() - 1
-          ? now.getFullYear() + 1
-          : now.getFullYear();
-    }
-  }
-
-  if (day === null || monthIndex === null || year === null) {
-    return null;
-  }
-
+/** Read rendered calendar values. React Fiber can point to alternate (stale) props
+ * after a house change, so it must not determine current availability. */
+export function extractKonturCalendarDayInfo(cell: HTMLElement): KonturCalendarDayInfo | null {
+  const dayText = (cell.firstElementChild?.textContent || "").trim();
+  if (!/^\d{1,2}$/.test(dayText)) return null;
+  const day = Number.parseInt(dayText, 10);
+  const section = cell.closest("section");
+  const month = parseMonthYearText(section?.parentElement?.getAttribute("data-flip-id") || "");
+  const title = parseMonthYearText(section?.firstElementChild?.textContent || "");
+  const monthIndex = month.monthIndex ?? title.monthIndex;
+  const year = month.year ?? title.year;
+  // Without an exact year, do not guess a bookable date.
+  if (monthIndex === null || year === null || day < 1 || day > new Date(year, monthIndex + 1, 0).getDate()) return null;
   const isoDate = `${year}-${pad2(monthIndex + 1)}-${pad2(day)}`;
-  const formattedDate = `${pad2(day)}.${pad2(monthIndex + 1)}.${year}`;
-
-  if (!foundDayProps) {
-    const now = new Date();
-    const todayIso = `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(
-      now.getDate()
-    )}`;
-    isDisabled = isoDate < todayIso;
-    if (isDisabled) {
-      hasPrice = false;
-    }
-  }
-
-  return {
-    year,
-    monthIndex,
-    day,
-    isoDate,
-    formattedDate,
-    hasPrice,
-    isDisabled,
-  };
+  const now = new Date();
+  const todayIso = `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())}`;
+  const isDisabled = isoDate < todayIso;
+  const priceText = (cell.children[1]?.textContent || "").replace(/[\s\u00a0]/g, "");
+  const hasPrice = !isDisabled && /\d/.test(priceText);
+  return { year, monthIndex, day, isoDate, formattedDate: `${pad2(day)}.${pad2(monthIndex + 1)}.${year}`, hasPrice, isDisabled };
 }
 
 /**
@@ -654,7 +576,7 @@ function parseAdultsMenuItemValue(item: Element): number | null {
 /**
  * Enforces a strict maximum of 7 adults in Контур.Отель's `AdultsCountSelect`
  * dropdown (which otherwise defaults to `1..20`), matching the maximum capacity
- * of the largest house on the base (Barnhouse «Берёза» — up to 7 guests).
+ * of the largest house on the base (Barnhouse «Берёза» – up to 7 guests).
  */
 function installKonturAdultsCapGuard(): void {
   if (typeof window === "undefined" || adultsCapGuardInstalled) {
@@ -791,7 +713,11 @@ export function checkKonturWidgetAccess(
         const data: unknown = await res.json();
         return data === true;
       })
-      .catch(() => false);
+      .then(allowed => {
+        if (!allowed) accessCache.delete(hotelId);
+        return allowed;
+      })
+      .catch(() => { accessCache.delete(hotelId); return false; });
 
     accessCache.set(hotelId, cached);
   }
@@ -840,6 +766,7 @@ export async function ensureKonturHotelInitialized(
       if (existing) {
         existing.addEventListener("load", finish);
         existing.addEventListener("error", () => {
+          existing.remove();
           scriptPromise = null;
           reject(new Error("Не удалось загрузить скрипт Контур.Отель"));
         });
@@ -861,6 +788,7 @@ export async function ensureKonturHotelInitialized(
         }
       };
       l.onerror = () => {
+        l.remove();
         scriptPromise = null;
         reject(
           new Error("Не удалось загрузить https://bookonline24.ru/widget.js")
@@ -878,31 +806,37 @@ export async function ensureKonturHotelInitialized(
 
   const hw = await scriptPromise;
 
-  if (initializedHotelId !== hotelId) {
-    hw.init({
-      hotelId,
-      version: "2",
-      theme: KONTUR_GLOBAL_THEME,
-      hooks: {
-        onError: (e) => {
-          console.warn("[Контур.Отель] onError", e);
-        },
-        onInit: () => {
-          if (process.env.NODE_ENV === "development") {
-            console.info("[Контур.Отель] onInit — модуль инициализирован");
-          }
-        },
-        onBooking: (v) => {
-          if (typeof window.ym === "function") {
-            window.ym(98987390, "reachGoal", "kontur_booking", v);
-          }
-        },
-      },
-    });
-    initializedHotelId = hotelId;
+  if (initializedHotelId === hotelId) return hw;
+  if (!initializationPromise) {
+    initializationPromise = new Promise<HotelWidgetGlobal>((resolve, reject) => {
+      const timeout = window.setTimeout(() => reject(new Error("Контур.Отель не завершил инициализацию")), 20_000);
+      try {
+        hw.init({
+          hotelId, version: "2", theme: KONTUR_GLOBAL_THEME,
+          hooks: {
+            onInit: () => {
+              window.clearTimeout(timeout);
+              initializedHotelId = hotelId;
+              resolve(hw);
+            },
+            onError: error => {
+              window.clearTimeout(timeout);
+              console.warn("[Контур.Отель] onError", error);
+              reject(new Error("Не удалось инициализировать Контур.Отель"));
+            },
+            onBooking: value => {
+              window.ym?.(98987390, "reachGoal", "kontur_booking", value);
+            },
+          },
+        });
+      } catch (error) {
+        window.clearTimeout(timeout);
+        reject(error);
+      }
+    }).catch(error => { initializationPromise = null; throw error; });
   }
+  return initializationPromise;
 
-  return hw;
 }
 
 export interface MountKonturResult {
@@ -916,32 +850,29 @@ export interface MountKonturResult {
  */
 export async function mountKonturWidget(
   config: KonturAddConfig,
-  hotelId: string = SITE_CONFIG.konturHotelId
+  hotelId: string = SITE_CONFIG.konturHotelId,
+  signal?: AbortSignal
 ): Promise<MountKonturResult> {
+  const containerEl = document.getElementById(config.appearance.container);
   const hw = await ensureKonturHotelInitialized(hotelId);
   if (!hw) {
     return { allowed: false, cleanup: () => {} };
   }
 
-  const containerEl = document.getElementById(config.appearance.container);
-  if (!containerEl) {
+  if (signal?.aborted || !containerEl || document.getElementById(config.appearance.container) !== containerEl) {
     return { allowed: true, cleanup: () => {} };
   }
 
   const widgetId = hw.add(config);
 
+  let removed = false;
   return {
     allowed: true,
     cleanup: () => {
-      if (!widgetId || !window.HotelWidget) return;
-      // Use captured `containerEl` reference because React detaches the node before useEffect cleanup
-      if (containerEl.childElementCount > 0) {
-        try {
-          window.HotelWidget.remove(widgetId);
-        } catch {
-          // Ignore cleanup errors if already removed
-        }
-      }
+      if (removed || !widgetId) return;
+      removed = true;
+      // Release SDK registrations even when React has already detached the host.
+      try { hw.remove(widgetId); } catch { /* Already removed by the SDK. */ }
     },
   };
 }

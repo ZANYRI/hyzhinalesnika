@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PawPrint, TreeEvergreen, Waves, ForkKnife, Gift, Star } from "@phosphor-icons/react/dist/ssr";
+import { PawPrint, TreeEvergreen, Waves, ForkKnife, CreditCard, Star } from "@phosphor-icons/react/dist/ssr";
 import { SITE_CONFIG } from "@/data/site";
 
 export function SplitMark() {
@@ -7,16 +7,16 @@ export function SplitMark() {
 }
 export function HeroBadges() {
   return <div className="flex flex-wrap justify-end gap-2 sm:gap-3">
-    <a href={SITE_CONFIG.yandexReviewsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-2xl border border-white/25 bg-[#f1ebdf] px-3 py-2 text-[#163122] shadow-lg sm:px-4"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#fc3f1d] text-xl font-bold text-white">Я</span><span className="text-xs leading-snug"><strong className="block">Хорошее место</strong><span className="flex items-center gap-1"><Star size={12} weight="fill" />5,0 · Яндекс</span></span></a>
-    <Link href="/special-offers#split" aria-label="Оплата через Яндекс Сплит" className="flex items-center rounded-2xl border border-white/25 bg-[#f1ebdf] px-3 py-2 text-[#163122] shadow-lg sm:px-4"><SplitMark /></Link>
+    <a href={SITE_CONFIG.yandexReviewsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-2xl border border-white/25 bg-[#f1ebdf] px-3 py-2 text-[#1d3b2b] shadow-lg sm:px-4"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#fc3f1d] text-xl font-bold text-white">Я</span><span className="text-xs leading-snug"><strong className="block">Хорошее место</strong><span className="flex items-center gap-1"><Star size={12} weight="fill" />5,0 · Яндекс</span></span></a>
+    <Link href="/split" aria-label="Оплата через Яндекс Сплит" className="flex items-center rounded-2xl border border-white/25 bg-[#f1ebdf] px-3 py-2 text-[#1d3b2b] shadow-lg sm:px-4"><SplitMark /></Link>
   </div>;
 }
 const benefits = [
-  {title:"Яндекс Сплит", text:"Забронируйте отдых сейчас и разделите оплату на удобные платежи.", icon:Gift, href:"/special-offers#split", note:"Путешествовать проще"},
-  {title:"Pet friendly", text:"Приезжайте с питомцем. Для него приготовим подарочный набор от «Четыре лапы».",icon:PawPrint,href:"/#faq",note:"Вместе со всей семьёй"},
-  {title:"Уединение в буковом лесу",text:"Заповедный лес Архыза и своя зона отдыха — в пяти минутах от центра посёлка.",icon:TreeEvergreen,href:"/#about",note:"Природа вокруг вас"},
-  {title:"СПА-комплекс",text:"Подогреваемый бассейн, джакузи, сауна и хамам — в 50 метрах от домиков.",icon:Waves,href:"/spa",note:"Время для себя"},
-  {title:"Ресторан и доставка",text:"Меню a la carte с 12:00 до 22:30. Завтрак в домик можно заказать с вечера.",icon:ForkKnife,href:"/spa#restaurant",note:"Отдых без бытовых забот"},
+  {title:"Яндекс Сплит", text:"Забронируйте отдых сейчас и разделите оплату на удобные платежи.", icon:CreditCard, href:"/split", note:"Путешествовать проще"},
+  {title:"Pet friendly", text:"Приезжайте с питомцем. Для него приготовим подарочный набор от «Четыре лапы».",icon:PawPrint,href:"/#faq-pets",note:"Вместе со всей семьёй"},
+  {title:"Уединение в буковом лесу",text:"Заповедный лес Архыза и своя зона отдыха – в пяти минутах от центра посёлка.",icon:TreeEvergreen,href:"/#about",note:"Природа вокруг вас"},
+  {title:"СПА-комплекс",text:"Подогреваемый бассейн, джакузи, сауна и хамам – в 100 метрах от домиков.",icon:Waves,href:"/spa",note:"Время для себя"},
+  {title:"Ресторан и доставка",text:"Меню a la carte с 12:00 до 22:30. Завтрак в домик можно заказать с вечера.",icon:ForkKnife,href:"/dining",note:"Отдых без бытовых забот"},
 ];
 export function HomeBenefits() {
   return <section id="benefits" className="mt-8 bg-[#eee8dc] py-16 text-[#213d31] sm:py-20">
@@ -33,9 +33,9 @@ export function HomeBenefits() {
   </section>;
 }
 const stories = [
- {title:"Семейный отдых",text:"Совместные завтраки, прогулки по буковому лесу и новые открытия для детей. Здесь есть время побыть рядом и услышать друг друга.",image:"/images/home/about-dining.jpg",alt:"Обеденная зона для семейных завтраков",position:"lg:pt-36"},
- {title:"Романтика для двоих",text:"Медленное утро с кофе, горы за окном и тихий вечер на террасе. Оставьте повседневные дела за пределами вашей поездки.",image:"/images/home/faq-terrace.jpg",alt:"Терраса для спокойного отдыха вдвоём",position:"lg:pt-64"},
- {title:"В кругу друзей",text:"Долгие разговоры у костра, ужин на свежем воздухе и общие приключения. Собирайте воспоминания, к которым захочется возвращаться.",image:"/images/home/gal-4.jpg",alt:"Зона отдыха у костра в лесу",position:"lg:pt-36"},
+ {href:"/dom-dlya-semi",title:"Семейный отдых",text:"Совместные завтраки, прогулки по буковому лесу и новые открытия для детей. Здесь есть время побыть рядом и услышать друг друга. Для семейного отдыха подойдёт дом «Ива».",image:"/images/home/about-dining.jpg",alt:"Обеденная зона для семейных завтраков",position:"lg:pt-36"},
+ {href:"/shale-s-vidom-na-gory",title:"Романтика для двоих",text:"Медленное утро с кофе, горы за окном и тихий вечер на террасе. Оставьте повседневные дела за пределами вашей поездки. Для романтики вдвоём подойдёт шале «Бук».",image:"/images/home/faq-terrace.jpg",alt:"Терраса для спокойного отдыха вдвоём",position:"lg:pt-64"},
+ {href:"/dvuhetazhnyj-barnhouse",title:"В кругу друзей",text:"Долгие разговоры у костра, ужин на свежем воздухе и общие приключения. Собирайте воспоминания, к которым захочется возвращаться. Для отдыха с друзьями подойдёт дом «Берёза».",image:"/images/home/gal-4.jpg",alt:"Зона отдыха у костра в лесу",position:"lg:pt-36"},
 ];
 export function AudienceStories() {
   return <section id="about" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">
@@ -43,13 +43,13 @@ export function AudienceStories() {
     <div className="relative overflow-hidden rounded-[2rem] bg-[#eee8dc]">
       <div className="relative z-10 mx-auto max-w-2xl px-6 py-10 text-center text-[#213d31] lg:absolute lg:top-0 lg:left-1/2 lg:w-[48%] lg:-translate-x-1/2 lg:rounded-b-[2rem] lg:bg-[#eee8dc] lg:px-10 lg:py-9">
         <TreeEvergreen size={30} weight="thin" className="mx-auto mb-4" />
-        <h2 className="font-moderustic text-2xl font-medium leading-snug sm:text-3xl">Отдых, который хочется <span className="font-semibold italic text-[#9a714c]">повторить</span></h2>
+        <h2 className="font-moderustic text-2xl font-medium leading-snug sm:text-3xl">Отдых, который хочется <span className="font-semibold text-[#9a714c]">повторить</span></h2>
         <p className="mt-3 text-sm leading-relaxed opacity-75">Вдвоём, с семьёй или в кругу друзей. Ближе к природе и друг к другу.</p>
       </div>
-      <div className="grid lg:grid-cols-3">{stories.map(story => <article key={story.title} className={`group relative flex min-h-[420px] items-end overflow-hidden p-7 sm:p-9 lg:min-h-[660px] ${story.position}`}>
+      <div className="grid lg:grid-cols-3">{stories.map(story => <Link href={story.href} key={story.title} className={`group relative flex min-h-[420px] items-end overflow-hidden p-7 sm:p-9 lg:min-h-[660px] ${story.position}`}>
         <img src={story.image} alt={story.alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/45 to-[#06130d]/15" />
-        <div className="relative"><h3 className="font-moderustic text-2xl font-bold">{story.title}</h3><p className="mt-4 text-sm leading-relaxed text-[#e2e8df]">{story.text}</p></div>
-      </article>)}</div>
+        <div className="relative"><h3 className="font-moderustic text-2xl font-bold">{story.title}</h3><p className="mt-4 text-sm leading-relaxed text-[#e2e8df]">{story.text}</p><span className="mt-5 inline-block text-sm font-semibold text-[#e6c7a0]">Посмотреть дом ↗</span></div>
+      </Link>)}</div>
     </div>
   </section>;
 }

@@ -1,8 +1,9 @@
+import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 import { PRIVACY_BLOCKS } from "@/data/legal";
 import { LegalDocumentView } from "@/components/LegalDocumentView";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocialMetadata({
   title:
     'Политика обработки персональных данных | База отдыха "Хижина лесника"',
   description:
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/privacy-policy",
   },
-};
+});
 
 export default function PrivacyPolicyPage() {
   return (

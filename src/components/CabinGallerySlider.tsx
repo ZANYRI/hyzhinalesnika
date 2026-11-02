@@ -58,7 +58,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
   const activeImage = images[current] ?? images[0];
 
   return (
-    <div className="rounded-3xl border border-white/10 bg-[#102419] p-3 sm:p-4">
+    <div className="rounded-3xl border border-white/10 bg-[#173024] p-3 sm:p-4">
       {/* Main Architectural Photo Stage */}
       <div className="relative grid gap-3 overflow-hidden rounded-2xl bg-[#08140d] lg:grid-cols-[2fr_1fr]">
         <button
@@ -85,7 +85,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
           const index=(current+offset)%total;
           return <button key={offset} type="button" onClick={()=>{setCurrent(index);setLightboxOpen(true);}} aria-label={`Открыть фото ${index+1} во весь экран`} className="relative hidden min-h-0 overflow-hidden rounded-xl lg:block">
             <img src={images[index].src} alt={images[index].alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition hover:scale-105"/>
-            {offset===2 && <span className="absolute right-3 bottom-3 rounded-full bg-[#0a1911]/80 px-3 py-2 text-xs text-white">Все {total} фото ↗</span>}
+            {offset===2 && <span className="absolute right-3 bottom-3 rounded-full bg-[#102219]/80 px-3 py-2 text-xs text-white">Все {total} фото ↗</span>}
           </button>;
         })}
 
@@ -93,7 +93,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
           type="button"
           onClick={prev}
           aria-label="Предыдущее фото"
-          className="absolute top-1/2 left-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[#0a1911]/75 text-[#f3f5f0] backdrop-blur-md transition hover:border-[#d49a5a] hover:text-[#d49a5a] active:scale-[0.98] cursor-pointer"
+          className="absolute top-1/2 left-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[#102219]/75 text-[#f3f5f0] backdrop-blur-md transition hover:border-[#d49a5a] hover:text-[#d49a5a] active:scale-[0.98] cursor-pointer"
         >
           <CaretLeft size={18} weight="bold" />
         </button>
@@ -102,7 +102,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
           type="button"
           onClick={next}
           aria-label="Следующее фото"
-          className="absolute top-1/2 right-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[#0a1911]/75 text-[#f3f5f0] backdrop-blur-md transition hover:border-[#d49a5a] hover:text-[#d49a5a] active:scale-[0.98] cursor-pointer"
+          className="absolute top-1/2 right-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[#102219]/75 text-[#f3f5f0] backdrop-blur-md transition hover:border-[#d49a5a] hover:text-[#d49a5a] active:scale-[0.98] cursor-pointer"
         >
           <CaretRight size={18} weight="bold" />
         </button>
@@ -111,11 +111,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
       <PhotoDots total={total} current={current} onSelect={setCurrent} />
 
       {/* Controls Bar */}
-      <div className="mt-1 flex items-center justify-between px-1 text-xs text-[#a8b9ae]">
-        <span>
-          Кадр <strong className="text-[#f3f5f0]">{current + 1}</strong> из{" "}
-          {total}
-        </span>
+      <div className="mt-1 flex items-center justify-end px-1 text-xs text-[#a8b9ae]">
         <button
           type="button"
           onClick={() => setLightboxOpen(true)}
@@ -135,7 +131,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
           onClick={() => setLightboxOpen(false)}
           role="dialog"
           aria-modal="true"
-          aria-label="Просмотр фотографии дома"
+          aria-label="Просмотр фотографии"
         >
           <button
             type="button"
@@ -153,7 +149,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
               prev();
             }}
             aria-label="Предыдущее фото"
-            className="absolute left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-[#102419]/90 text-[#f3f5f0] shadow-lg transition hover:border-[#d49a5a] hover:text-[#d49a5a] cursor-pointer"
+            className="absolute left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-[#173024]/90 text-[#f3f5f0] shadow-lg transition hover:border-[#d49a5a] hover:text-[#d49a5a] cursor-pointer"
           >
             <CaretLeft size={22} weight="bold" />
           </button>
@@ -179,7 +175,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
               next();
             }}
             aria-label="Следующее фото"
-            className="absolute right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-[#102419]/90 text-[#f3f5f0] shadow-lg transition hover:border-[#d49a5a] hover:text-[#d49a5a] cursor-pointer"
+            className="absolute right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-[#173024]/90 text-[#f3f5f0] shadow-lg transition hover:border-[#d49a5a] hover:text-[#d49a5a] cursor-pointer"
           >
             <CaretRight size={22} weight="bold" />
           </button>

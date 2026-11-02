@@ -1,0 +1,15 @@
+{
+  "/": { "file": "home.jpg", "title": "Три дома в буковом лесу Архыза", "photo": "/images/home/hero-bg.webp" },
+  "/booking": { "file": "booking.jpg", "title": "Забронируйте свой отдых в Архызе", "photo": "/images/home/hero-bg.webp" },
+  "/dom-dlya-semi": { "file": "iva.jpg", "title": "Дом «Ива» · Для семейного отдыха", "photo": "/images/home/cabin-iva.jpg" },
+  "/dvuhetazhnyj-barnhouse": { "file": "bereza.jpg", "title": "Дом «Берёза» · Для вашей компании", "photo": "/images/home/cabin-bereza.jpg" },
+  "/shale-s-vidom-na-gory": { "file": "buk.jpg", "title": "Шале «Бук» · Время для двоих", "photo": "/images/home/cabin-buk.jpg" },
+  "/spa": { "file": "spa.jpg", "title": "СПА и релакс рядом с домом", "photo": "/images/partners/spa/spa-01.webp" },
+  "/dining": { "file": "dining.jpg", "title": "Ресторан и завтрак в домик", "photo": "/images/partners/dining/bar-mural.webp" },
+  "/split": { "file": "split.jpg", "title": "Отдых с оплатой частями", "photo": "/images/home/faq-terrace.jpg" },
+  "/special-offers": { "file": "offers.jpg", "title": "Особенные предложения для гостей", "photo": "/images/home/discount-festive.jpg" },
+  "/news": { "file": "news.jpg", "title": "Новости и маршруты по Архызу", "photo": "/images/brand/forest-aerial.jpg" },
+  "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety": { "file": "travel-guide.jpg", "title": "Как добраться до Архыза", "photo": "/images/blog/how-to-get-cover.jpg" },
+  "/stati-i-sovety/post/top-5-mest-v-arhyze": { "file": "places-guide.jpg", "title": "Пять мест рядом с нашими домами", "photo": "/images/blog/top5-baritovy.png" },
+  "default": { "file": "brand.jpg", "title": "База отдыха «Хижина лесника»", "photo": "/images/home/hero-bg.webp" }
+}

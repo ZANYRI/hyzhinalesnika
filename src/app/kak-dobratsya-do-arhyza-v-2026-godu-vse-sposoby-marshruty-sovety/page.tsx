@@ -1,3 +1,4 @@
+import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/Header";
@@ -5,7 +6,7 @@ import { Footer } from "@/components/Footer";
 import { KonturBookingWidget } from "@/components/KonturBookingWidget";
 import { EyeCount } from "@/components/BlogSection";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocialMetadata({
   title:
     'Как добраться до Архыза в 2026 году: все способы, маршруты, советы | "Хижина лесника"',
   description:
@@ -14,33 +15,18 @@ export const metadata: Metadata = {
     canonical:
       "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety",
   },
-};
+});
 
 export default function HowToGetToArkhyz2026Page() {
   return (
-    <div className="min-h-screen bg-[#0a1911] text-[#f3f5f0]">
+    <div className="min-h-screen bg-[#102219] text-[#f3f5f0]">
       <Header variant="inner" bookingAnchor="#booking" />
 
       <main className="mx-auto max-w-[1260px] px-4 pt-10 pb-20 sm:px-6 sm:pt-14">
         {/* Breadcrumbs */}
-        <nav
-          aria-label="Хлебные крошки"
-          className="flex flex-wrap items-center gap-2 text-xs text-[#a8b9ae]"
-        >
-          <Link href="/" className="transition hover:text-[#d49a5a]">
-            Главная
-          </Link>
-          <span>/</span>
-          <Link href="/news" className="transition hover:text-[#d49a5a]">
-            Новости
-          </Link>
-          <span>/</span>
-          <span className="text-[#f3f5f0]">
-            Как добраться до Архыза в 2026 году
-          </span>
-        </nav>
 
-        <article className="mt-6 rounded-3xl border border-white/10 bg-[#102419] p-6 sm:p-10 lg:p-12">
+
+        <article className="mt-6 rounded-3xl border border-white/10 bg-[#173024] p-6 sm:p-10 lg:p-12">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
             <span className="text-xs text-[#a8b9ae]">
               Опубликовано: 17.01.2026
@@ -61,7 +47,7 @@ export default function HowToGetToArkhyz2026Page() {
           </p>
 
           {/* Table of Contents */}
-          <div className="mt-8 rounded-2xl border border-white/10 bg-[#163122]/65 p-6">
+          <div className="mt-8 rounded-2xl border border-white/10 bg-[#1d3b2b]/65 p-6">
             <h2 className="font-moderustic text-lg font-bold text-[#f3f5f0]">
               Содержание гида
             </h2>
@@ -112,7 +98,7 @@ export default function HowToGetToArkhyz2026Page() {
             </p>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-              <div className="rounded-2xl border border-white/10 bg-[#163122]/55 p-5">
+              <div className="rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5">
                 <h3 className="font-moderustic text-lg font-bold text-[#d49a5a]">
                   Из Ставрополя
                 </h3>
@@ -126,7 +112,7 @@ export default function HowToGetToArkhyz2026Page() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-[#163122]/55 p-5">
+              <div className="rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5">
                 <h3 className="font-moderustic text-lg font-bold text-[#d49a5a]">
                   Из Минеральных Вод и Пятигорска
                 </h3>
@@ -140,7 +126,7 @@ export default function HowToGetToArkhyz2026Page() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-[#163122]/55 p-5">
+              <div className="rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5">
                 <h3 className="font-moderustic text-lg font-bold text-[#d49a5a]">
                   Из Ростова-на-Дону и Краснодара
                 </h3>
@@ -281,7 +267,7 @@ export default function HowToGetToArkhyz2026Page() {
             </h2>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-              <div className="rounded-2xl border border-white/10 bg-[#163122]/55 p-5">
+              <div className="rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5">
                 <h3 className="font-moderustic text-base font-bold text-[#f3f5f0]">
                   Как состояние трассы А-155 на подъезде к Архызу?
                 </h3>
@@ -291,7 +277,7 @@ export default function HowToGetToArkhyz2026Page() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-[#163122]/55 p-5">
+              <div className="rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5">
                 <h3 className="font-moderustic text-base font-bold text-[#f3f5f0]">
                   Где ближайшие зарядные станции для электромобилей?
                 </h3>
@@ -301,7 +287,7 @@ export default function HowToGetToArkhyz2026Page() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-[#163122]/55 p-5">
+              <div className="rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5">
                 <h3 className="font-moderustic text-base font-bold text-[#f3f5f0]">
                   Можно ли доехать на поезде?
                 </h3>

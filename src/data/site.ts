@@ -44,6 +44,8 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Чем заняться", href: "/#sez1", row: 2 },
   { label: "Специальные предложения", href: "/special-offers", row: 2 },
   { label: "СПА и релакс", href: "/spa", row: 2 },
+  { label: "Питание", href: "/dining", row: 2 },
+  { label: "Яндекс Сплит", href: "/split", row: 2 },
   {
     label: "Отзывы",
     href: "/#reviews",

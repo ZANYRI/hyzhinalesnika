@@ -73,9 +73,9 @@
 }
 
 :root {
-  --bg-canvas: #0a1911;
-  --bg-surface: #102419;
-  --bg-surface-2: #163122;
+  --bg-canvas: #102219;
+  --bg-surface: #173024;
+  --bg-surface-2: #1d3b2b;
   --text-primary: #f3f5f0;
   --text-secondary: #a8b9ae;
   --accent-amber: #d49a5a;
@@ -83,9 +83,9 @@
 }
 
 @theme inline {
-  --color-forest: #0a1911;
-  --color-surface: #102419;
-  --color-surface-2: #163122;
+  --color-forest: #102219;
+  --color-surface: #173024;
+  --color-surface-2: #1d3b2b;
   --color-bone: #f3f5f0;
   --color-mist: #a8b9ae;
   --color-amber-cedar: #d49a5a;
@@ -97,12 +97,12 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #0a1911;
+  background-color: #102219;
   color-scheme: dark;
 }
 
 body {
-  background-color: #0a1911;
+  background-color: #102219;
   color: #f3f5f0;
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
   overflow-x: hidden;
@@ -112,8 +112,8 @@ body {
 .forest-glass {
   background: linear-gradient(
       135deg,
-      rgba(22, 49, 34, 0.78),
-      rgba(10, 25, 17, 0.84)
+      rgba(29, 59, 43, 0.78),
+      rgba(16, 34, 25, 0.84)
     );
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
@@ -125,7 +125,7 @@ body {
 
 @media (prefers-reduced-transparency: reduce) {
   .forest-glass {
-    background: #102419;
+    background: #173024;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
@@ -156,7 +156,7 @@ body {
 /* Subtle dark-forest scrollbar for internal scrollable feeds */
 .forest-scroll {
   scrollbar-width: thin;
-  scrollbar-color: rgba(212, 154, 90, 0.35) rgba(10, 25, 17, 0.5);
+  scrollbar-color: rgba(212, 154, 90, 0.35) rgba(16, 34, 25, 0.5);
 }
 
 .forest-scroll::-webkit-scrollbar {
@@ -164,7 +164,7 @@ body {
 }
 
 .forest-scroll::-webkit-scrollbar-track {
-  background: rgba(10, 25, 17, 0.5);
+  background: rgba(16, 34, 25, 0.5);
   border-radius: 9999px;
 }
 
@@ -213,26 +213,26 @@ body {
 /* Scoped dark-forest tokens for inline Контур.Отель widgets & their floating popups */
 .kontur-forest-scope {
   color: #f3f5f0;
-  --k-color-surface-base: #102419;
-  --k-color-surface-high: #102419;
+  --k-color-surface-base: #173024;
+  --k-color-surface-high: #173024;
   --k-color-text-neutral-heavy: #f3f5f0;
   --k-color-text-neutral-soft: #a8b9ae;
   --k-color-text-neutral-pale: rgba(168, 185, 174, 0.65);
   --k-color-text-neutral-faint: rgba(168, 185, 174, 0.45);
   --k-color-text-accent-heavy: #f3f5f0;
   --k-color-text-accent-heavy-hover: #ffffff;
-  --k-color-text-inverted-neutral-heavy: #102419;
-  --k-color-shape-other-field: #0a1911;
+  --k-color-text-inverted-neutral-heavy: #173024;
+  --k-color-shape-other-field: #102219;
   --k-color-shape-other-field-hover: #132b1e;
-  --k-color-shape-other-field-pressed: #163122;
-  --k-color-shape-faint-neutral-alpha: rgba(22, 49, 34, 0.78);
-  --k-color-shape-pale-neutral-alpha: rgba(22, 49, 34, 0.92);
+  --k-color-shape-other-field-pressed: #1d3b2b;
+  --k-color-shape-faint-neutral-alpha: rgba(29, 59, 43, 0.78);
+  --k-color-shape-pale-neutral-alpha: rgba(29, 59, 43, 0.92);
   --k-color-shape-other-backless-hover: rgba(243, 245, 240, 0.08);
   --k-color-shape-other-backless-pressed: rgba(243, 245, 240, 0.14);
   --k-color-shape-bold-warning: #d49a5a;
   --k-color-shape-bold-warning-hover: #e0ab6e;
   --k-color-shape-bold-warning-pressed: #c38847;
-  --k-color-text-const-heavy-black: #0a1911;
+  --k-color-text-const-heavy-black: #102219;
   --k-color-line-neutral-faint: rgba(243, 245, 240, 0.1);
   --k-color-line-neutral-pale: rgba(243, 245, 240, 0.18);
   --k-color-line-neutral-pale-hover: rgba(212, 154, 90, 0.55);
@@ -293,7 +293,7 @@ body {
 
 .kontur-forest-scope [data-hl-selected="start"] > div:nth-child(-n + 2),
 .kontur-forest-scope [data-hl-selected="end"] > div:nth-child(-n + 2) {
-  color: #0a1911 !important;
+  color: #102219 !important;
   font-weight: 700 !important;
 }
 
@@ -304,7 +304,7 @@ body {
 }
 
 .kontur-forest-scope [data-hl-selected="preview-end"] > div:nth-child(-n + 2) {
-  color: #0a1911 !important;
+  color: #102219 !important;
   font-weight: 600 !important;
 }
 
@@ -320,10 +320,10 @@ body:not(:has([data-tid="modal-container"])) [data-tid="Popup__root"],
 body:not(:has([data-tid="modal-container"])) [data-tid="Select__menu"],
 body:not(:has([data-tid="modal-container"])) [data-tid="Tooltip__root"] {
   color: #f3f5f0;
-  --bm-theme-whiteColor: #102419;
-  --bm-theme-bgGrayLightColor: rgba(22, 49, 34, 0.85);
-  --bm-theme-bgGrayColor: rgba(22, 49, 34, 0.92);
-  --bm-theme-bgGrayDarkColor: #163122;
+  --bm-theme-whiteColor: #173024;
+  --bm-theme-bgGrayLightColor: rgba(29, 59, 43, 0.85);
+  --bm-theme-bgGrayColor: rgba(29, 59, 43, 0.92);
+  --bm-theme-bgGrayDarkColor: #1d3b2b;
   --bm-theme-btnDisabledBg: rgba(243, 245, 240, 0.1);
   --bm-theme-btnDisabledTextColor: rgba(168, 185, 174, 0.48);
   --bm-theme-fontDisabledColor: rgba(168, 185, 174, 0.48);
@@ -331,13 +331,13 @@ body:not(:has([data-tid="modal-container"])) [data-tid="Tooltip__root"] {
   --bm-theme-fontBlackActiveColor: #f3f5f0;
   --bm-theme-fontGrayColor: #a8b9ae;
   --bm-theme-parameters-color: #d6e0d9;
-  --k-color-surface-base: #102419;
-  --k-color-surface-high: #102419;
+  --k-color-surface-base: #173024;
+  --k-color-surface-high: #173024;
   --k-color-text-neutral-heavy: #f3f5f0;
   --k-color-text-neutral-soft: #a8b9ae;
   --k-color-text-neutral-pale: rgba(168, 185, 174, 0.65);
   --k-color-text-accent-heavy: #f3f5f0;
-  --k-color-shape-faint-neutral-alpha: rgba(22, 49, 34, 0.85);
+  --k-color-shape-faint-neutral-alpha: rgba(29, 59, 43, 0.85);
   --k-color-shape-other-backless-hover: rgba(243, 245, 240, 0.08);
   --k-color-line-neutral-faint: rgba(243, 245, 240, 0.1);
   --k-color-line-neutral-pale: rgba(243, 245, 240, 0.18);
@@ -388,7 +388,7 @@ body:not(:has([data-tid="modal-container"])) [data-tid="Tooltip__root"] img[src*
   border: 1px solid transparent;
   border-radius: 1.25rem;
   background:
-    linear-gradient(#102419, #102419) padding-box,
+    linear-gradient(#173024, #173024) padding-box,
     repeating-linear-gradient(
       12deg,
       rgba(103, 76, 48, 0.6) 0px,

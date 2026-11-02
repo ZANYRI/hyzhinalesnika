@@ -1,16 +1,17 @@
+import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 import { CABINS } from "@/data/cabins";
 import { CabinDetailView } from "@/components/CabinDetailView";
 
 const cabin = CABINS.iva;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocialMetadata({
   title: cabin.seoTitle,
   description: cabin.seoDescription,
   alternates: {
     canonical: cabin.slug,
   },
-};
+});
 
 export default function HouseAliasPage() {
   return <CabinDetailView cabin={cabin} />;

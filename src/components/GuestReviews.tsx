@@ -68,7 +68,7 @@ function FiveStars({ size = 14 }: { size?: number }) {
 
 export function GuestReviews() {
   return (
-    <div className="flex h-full w-full flex-col justify-between rounded-3xl border border-white/10 bg-[#102419] p-5 sm:p-7">
+    <div className="flex h-full w-full flex-col justify-between rounded-3xl border border-white/10 bg-[#173024] p-5 sm:p-7">
       {/* Top Rating Header */}
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
         <div className="flex items-center gap-4">
@@ -87,7 +87,7 @@ export function GuestReviews() {
           href={SITE_CONFIG.yandexReviewsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-4 text-xs font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
+          className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-4 text-xs font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
         >
           Оставить отзыв
         </a>
@@ -98,11 +98,11 @@ export function GuestReviews() {
         {YANDEX_REVIEWS.map((review) => (
           <article
             key={review.id}
-            className="rounded-2xl border border-white/8 bg-[#163122]/65 p-4 transition hover:border-white/15"
+            className="rounded-2xl border border-white/8 bg-[#1d3b2b]/65 p-4 transition hover:border-white/15"
           >
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-3">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#d49a5a]/35 bg-[#0a1911] font-moderustic text-xs font-bold text-[#d49a5a]">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#d49a5a]/35 bg-[#102219] font-moderustic text-xs font-bold text-[#d49a5a]">
                   {review.initials}
                 </span>
                 <div>
@@ -131,7 +131,7 @@ export function GuestReviews() {
           href={SITE_CONFIG.yandexReviewsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex h-11 w-full items-center justify-center gap-2 rounded-full border border-white/12 bg-[#163122]/60 px-5 text-xs font-semibold text-[#f3f5f0] transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a]"
+          className="group flex h-11 w-full items-center justify-center gap-2 rounded-full border border-white/12 bg-[#1d3b2b]/60 px-5 text-xs font-semibold text-[#f3f5f0] transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a]"
         >
           <span>Больше отзывов на Яндекс Картах</span>
           <ArrowUpRight

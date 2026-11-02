@@ -57,7 +57,7 @@ const BOOKING_FORM_THEME: Record<string, unknown> = {
 const CALENDAR_THEME: Record<string, unknown> = {
   common: KONTUR_DARK_FOREST_COMMON,
   container: {
-    bg: "#102419",
+    bg: "#173024",
     border: "1px solid rgba(243, 245, 240, 0.1)",
     borderRadius: "24px",
     padding: "18px 20px 10px",
@@ -65,7 +65,7 @@ const CALENDAR_THEME: Record<string, unknown> = {
     outline: "none",
   },
   filterContainer: {
-    bg: "#163122",
+    bg: "#1d3b2b",
     border: "1px solid rgba(243, 245, 240, 0.08)",
     borderRadius: "16px",
     padding: "12px 20px",
@@ -86,19 +86,19 @@ const CALENDAR_THEME: Record<string, unknown> = {
     activeWeekendColor: "#e0ab6e",
   },
   arrowButtons: {
-    bg: "#163122",
+    bg: "#1d3b2b",
     bgHover: "#1f432f",
     bgActive: "#d49a5a",
     color: "#f3f5f0",
     colorHover: "#d49a5a",
-    colorActive: "#0a1911",
+    colorActive: "#102219",
   },
 };
 
 const ROOMS_LIST_THEME: Record<string, unknown> = {
   common: KONTUR_DARK_FOREST_COMMON,
   container: {
-    bg: "#102419",
+    bg: "#173024",
     border: "1px solid rgba(243, 245, 240, 0.1)",
     borderRadius: "24px",
     padding: "16px 24px",
@@ -235,6 +235,8 @@ export function KonturBookingWidget({
 
   const [mountedKey, setMountedKey] = useState<string | null>(null);
   const [originBlocked, setOriginBlocked] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [adults, setAdults] = useState("2");
@@ -264,6 +266,7 @@ export function KonturBookingWidget({
 
   useEffect(() => {
     let cancelled = false;
+    const controller = new AbortController();
     let cleanupWidget: (() => void) | undefined;
     let observer: MutationObserver | null = null;
     let notifiedResize = false;
@@ -323,12 +326,13 @@ export function KonturBookingWidget({
       observer.observe(el, {
         childList: true,
         subtree: true,
+        characterData: true,
       });
     }
 
     const config = buildKonturConfig(resolvedVariant, containerId);
 
-    mountKonturWidget(config)
+    mountKonturWidget(config, undefined, controller.signal)
       .then(({ allowed, cleanup }) => {
         if (cancelled) {
           cleanup();
@@ -354,16 +358,18 @@ export function KonturBookingWidget({
         }
       })
       .catch(() => {
-        if (!cancelled) setMountedKey(null);
+        if (!cancelled) { setMountedKey(null); setLoadError(true); }
       });
 
     return () => {
       cancelled = true;
+      controller.abort();
       observer?.disconnect();
       cleanupWidget?.();
     };
   }, [
     activeKey,
+    loadAttempt,
     calendarInteractive,
     containerId,
     isCalendarVariant,
@@ -382,19 +388,20 @@ export function KonturBookingWidget({
       if (!info || info.isDisabled) return;
 
       const current = calSelectionRef.current;
+      const select = (value: typeof current) => { calSelectionRef.current = value; setCalSelection(value); };
 
       // 1. Starting a fresh check-in selection (or restarting after a completed range)
       if (!current.checkIn || (current.checkIn && current.checkOut)) {
         if (!info.hasPrice) return;
         hoverIsoRef.current = null;
-        setCalSelection({ checkIn: info, checkOut: null });
+        select({ checkIn: info, checkOut: null });
         return;
       }
 
       // 2. Clicking the active check-in day again clears selection
       if (info.isoDate === current.checkIn.isoDate) {
         hoverIsoRef.current = null;
-        setCalSelection({ checkIn: null, checkOut: null });
+        select({ checkIn: null, checkOut: null });
         return;
       }
 
@@ -402,7 +409,7 @@ export function KonturBookingWidget({
       if (info.isoDate < current.checkIn.isoDate) {
         if (!info.hasPrice) return;
         hoverIsoRef.current = null;
-        setCalSelection({ checkIn: info, checkOut: null });
+        select({ checkIn: info, checkOut: null });
         return;
       }
 
@@ -415,14 +422,14 @@ export function KonturBookingWidget({
         // User clicked across booked nights onto a later free block -> start new check-in there
         if (info.hasPrice) {
           hoverIsoRef.current = null;
-          setCalSelection({ checkIn: info, checkOut: null });
+          select({ checkIn: info, checkOut: null });
         }
         return;
       }
 
       // Valid check-out date! Lock range and open official Контур.Отель checkout modal
       hoverIsoRef.current = null;
-      setCalSelection({ checkIn: current.checkIn, checkOut: info });
+      select({ checkIn: current.checkIn, checkOut: info });
       openKonturCheckoutForDates(
         el,
         current.checkIn.formattedDate,
@@ -559,13 +566,13 @@ export function KonturBookingWidget({
           )}
 
           {calSelection.checkIn && !calSelection.checkOut && (
-            <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-[#d49a5a]/40 bg-[#102419] px-5 py-2.5 text-xs text-[#f3f5f0] shadow-lg sm:text-sm">
+            <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-[#d49a5a]/40 bg-[#173024] px-5 py-2.5 text-xs text-[#f3f5f0] shadow-lg sm:text-sm">
               <span>
                 Заезд:{" "}
                 <strong className="font-semibold text-[#d49a5a]">
                   {calSelection.checkIn.formattedDate}
                 </strong>{" "}
-                — выберите дату выезда в календаре
+                – выберите дату выезда в календаре
               </span>
               <button
                 type="button"
@@ -579,11 +586,11 @@ export function KonturBookingWidget({
           )}
 
           {calSelection.checkIn && calSelection.checkOut && (
-            <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-[#d49a5a]/45 bg-[#102419] px-5 py-3 text-xs text-[#f3f5f0] shadow-lg sm:rounded-full sm:text-sm">
+            <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-[#d49a5a]/45 bg-[#173024] px-5 py-3 text-xs text-[#f3f5f0] shadow-lg sm:rounded-full sm:text-sm">
               <span>
                 Выбрано:{" "}
                 <strong className="font-semibold text-[#d49a5a]">
-                  {calSelection.checkIn.formattedDate} —{" "}
+                  {calSelection.checkIn.formattedDate} –{" "}
                   {calSelection.checkOut.formattedDate}
                 </strong>{" "}
                 <span className="text-[#a8b9ae]">
@@ -593,7 +600,7 @@ export function KonturBookingWidget({
               <button
                 type="button"
                 onClick={handleReopenCalendarCheckout}
-                className="inline-flex h-9 items-center justify-center rounded-full bg-[#d49a5a] px-4 text-xs font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98] sm:text-sm cursor-pointer"
+                className="inline-flex h-9 items-center justify-center rounded-full bg-[#d49a5a] px-4 text-xs font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98] sm:text-sm cursor-pointer"
               >
                 Забронировать
               </button>
@@ -649,7 +656,7 @@ export function KonturBookingWidget({
                 type="date"
                 value={checkIn}
                 onChange={(e) => setCheckIn(e.target.value)}
-                className="h-12 w-full rounded-xl border border-white/15 bg-[#0a1911]/90 px-3.5 text-sm text-[#f3f5f0] outline-none transition focus:border-[#d49a5a]"
+                className="h-12 w-full rounded-xl border border-white/15 bg-[#102219]/90 px-3.5 text-sm text-[#f3f5f0] outline-none transition focus:border-[#d49a5a]"
               />
             </div>
 
@@ -673,7 +680,7 @@ export function KonturBookingWidget({
                 min={checkIn || undefined}
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
-                className="h-12 w-full rounded-xl border border-white/15 bg-[#0a1911]/90 px-3.5 text-sm text-[#f3f5f0] outline-none transition focus:border-[#d49a5a]"
+                className="h-12 w-full rounded-xl border border-white/15 bg-[#102219]/90 px-3.5 text-sm text-[#f3f5f0] outline-none transition focus:border-[#d49a5a]"
               />
             </div>
 
@@ -696,7 +703,7 @@ export function KonturBookingWidget({
                   id={`${containerId}-guests`}
                   value={adults}
                   onChange={(e) => setAdults(e.target.value)}
-                  className="h-12 w-full appearance-none rounded-xl border border-white/15 bg-[#0a1911]/90 pr-9 pl-3.5 text-sm text-[#f3f5f0] outline-none transition focus:border-[#d49a5a] cursor-pointer"
+                  className="h-12 w-full appearance-none rounded-xl border border-white/15 bg-[#102219]/90 pr-9 pl-3.5 text-sm text-[#f3f5f0] outline-none transition focus:border-[#d49a5a] cursor-pointer"
                 >
                   {ADULTS_OPTIONS.map((opt) => (
                     <option key={opt.value} value={opt.value}>
@@ -718,7 +725,7 @@ export function KonturBookingWidget({
             >
               <button
                 type="submit"
-                className="flex h-12 w-full items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-6 text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98] cursor-pointer"
+                className="flex h-12 w-full items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-6 text-sm font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98] cursor-pointer"
               >
                 Проверить даты
               </button>
@@ -728,17 +735,18 @@ export function KonturBookingWidget({
       )}
 
       {!mountedWidget && !isFormVariant && (
-        <div className="mx-auto max-w-[910px] rounded-3xl border border-white/10 bg-[#102419] p-8 text-center">
+        <div className="mx-auto max-w-[910px] rounded-3xl border border-white/10 bg-[#173024] p-8 text-center">
           <p className="mx-auto max-w-xl text-sm leading-relaxed text-[#a8b9ae]">
             {originBlocked
               ? "Встроенный календарь Контур.Отель активируется на основном домене hyzhinalesnika.ru. Вы можете открыть актуальную шахматку свободных дат напрямую:"
-              : "Загружаем актуальный календарь свободных дат Контур.Отель..."}
+              : loadError ? "Не удалось загрузить календарь. Повторите загрузку или откройте официальный календарь бронирования." : "Загружаем актуальный календарь свободных дат Контур.Отель..."}
           </p>
+          {(loadError || originBlocked) && <button type="button" onClick={() => { setLoadError(false); setOriginBlocked(false); setLoadAttempt(value => value + 1); }} className="mt-4 block w-full text-sm text-[#d49a5a] underline">Повторить загрузку</button>}
           <a
             href={SITE_CONFIG.konturBookingPortalUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-7 text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
+            className="mt-5 inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-7 text-sm font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
           >
             Открыть календарь бронирования
           </a>

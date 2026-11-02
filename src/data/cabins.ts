@@ -50,8 +50,8 @@ export const BOOKING_RULES = [
   },
   {
     icon: "/images/brand/rule-clock.svg",
-    title: "Бесплатный перенос за 14 дней",
-    text: "Перенос или отмена с возвратом предоплаты доступны не позднее 14 дней до даты заезда.",
+    title: "Бесплатный перенос за 7 дней",
+    text: "Перенос или отмена с возвратом предоплаты доступны не позднее 7 дней до даты заезда.",
   },
   {
     icon: "/images/brand/rule-nosmoke.svg",
@@ -186,7 +186,7 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
     cardTitle: 'Барнхаус «Берёза»',
     cardPrice: "от 12 000 ₽ / сутки",
     cardGuests: "до 7 гостей",
-    cardBedrooms: "3 комнаты · 2 этажа",
+    cardBedrooms: "2 спальни + гостиная",
     cardArea: "81 м²",
     cardSubtitle: "Двухэтажный Barnhouse с беседкой для большой семьи или компании",
     cardImage: "/images/home/cabin-bereza.jpg",

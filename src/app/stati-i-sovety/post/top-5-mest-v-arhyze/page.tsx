@@ -1,3 +1,4 @@
+import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Clock, Compass } from "@phosphor-icons/react/dist/ssr";
@@ -7,38 +8,25 @@ import { Footer } from "@/components/Footer";
 import { KonturBookingWidget } from "@/components/KonturBookingWidget";
 import { EyeCount } from "@/components/BlogSection";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocialMetadata({
   title: 'ТОП-5 мест Архыза рядом с домиками | База отдыха "Хижина лесника"',
   description:
     "Откройте для себя 5 красивейших мест недалеко от базы отдыха Хижина Лесника: Баритовый водопад, Ферма Альпак, Казачий водопад, Канатная дорога и Обсерватория.",
   alternates: {
     canonical: "/stati-i-sovety/post/top-5-mest-v-arhyze",
   },
-};
+});
 
 export default function Top5MestArhyzaPage() {
   return (
-    <div className="min-h-screen bg-[#0a1911] text-[#f3f5f0]">
+    <div className="min-h-screen bg-[#102219] text-[#f3f5f0]">
       <Header variant="inner" bookingAnchor="#booking" />
 
       <main className="mx-auto max-w-[1260px] px-4 pt-10 pb-20 sm:px-6 sm:pt-14">
         {/* Breadcrumbs */}
-        <nav
-          aria-label="Хлебные крошки"
-          className="flex flex-wrap items-center gap-2 text-xs text-[#a8b9ae]"
-        >
-          <Link href="/" className="transition hover:text-[#d49a5a]">
-            Главная
-          </Link>
-          <span>/</span>
-          <Link href="/news" className="transition hover:text-[#d49a5a]">
-            Новости
-          </Link>
-          <span>/</span>
-          <span className="text-[#f3f5f0]">ТОП-5 мест Архыза</span>
-        </nav>
 
-        <article className="mt-6 rounded-3xl border border-white/10 bg-[#102419] p-6 sm:p-10 lg:p-12">
+
+        <article className="mt-6 rounded-3xl border border-white/10 bg-[#173024] p-6 sm:p-10 lg:p-12">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
             <span className="text-xs text-[#a8b9ae]">
               Опубликовано: 24.06.2025
@@ -61,7 +49,7 @@ export default function Top5MestArhyzaPage() {
             {TOP_5_PLACES.map((place) => (
               <section
                 key={place.num}
-                className="grid grid-cols-1 items-center gap-6 rounded-2xl border border-white/10 bg-[#163122]/55 p-5 sm:p-6 lg:grid-cols-12"
+                className="grid grid-cols-1 items-center gap-6 rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5 sm:p-6 lg:grid-cols-12"
               >
                 <div className="aspect-[16/10] w-full overflow-hidden rounded-xl bg-[#08140d] lg:col-span-5">
                   <img
@@ -107,7 +95,7 @@ export default function Top5MestArhyzaPage() {
                       href={place.routeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full bg-[#d49a5a] px-5 text-xs font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
+                      className="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full bg-[#d49a5a] px-5 text-xs font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
                     >
                       <span>Построить маршрут от базы</span>
                       <ArrowUpRight size={14} weight="bold" />
@@ -118,7 +106,7 @@ export default function Top5MestArhyzaPage() {
             ))}
           </div>
 
-          <section className="mt-10 rounded-2xl border border-[#d49a5a]/30 bg-[#163122] p-6 sm:p-8">
+          <section className="mt-10 rounded-2xl border border-[#d49a5a]/30 bg-[#1d3b2b] p-6 sm:p-8">
             <h2 className="font-moderustic text-xl font-bold text-[#f3f5f0] sm:text-2xl">
               Спланируйте своё путешествие в Архыз
             </h2>

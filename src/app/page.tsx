@@ -56,28 +56,29 @@ const HOME_JSON_LD = [
 ];
 
 export default function HomePage() {
-  return <div className="min-h-screen bg-[#0a1911] text-[#f3f5f0]">
+  return <div className="min-h-screen bg-[#102219] text-[#f3f5f0]">
     {HOME_JSON_LD.map(schema => <script key={schema["@type"]} type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(schema).replace(/</g, "\\u003c")}} />)}
     <Header variant="hero" />
     <section className="relative -mt-[80px] flex min-h-[100dvh] flex-col justify-between overflow-hidden pt-28 pb-10 sm:-mt-[84px] sm:pt-32">
       <img src="/images/home/hero-bg.webp" alt="Дома базы отдыха Хижина лесника в буковом лесу Архыза" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a1911]/65 via-[#0a1911]/40 to-[#0a1911]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#102219]/65 via-[#102219]/40 to-[#102219]" />
       <div className="relative z-10 mx-auto flex w-full max-w-[1400px] justify-end px-4 sm:px-6"><HeroBadges /></div>
       <div className="relative z-10 mx-auto my-auto w-full max-w-[1400px] px-4 py-12 sm:px-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d49a5a]">Хижина лесника · Архыз, ул. Лесная 40</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d49a5a]">База отдыха Хижина лесника</p>
         <h1 className="mt-4 max-w-3xl font-moderustic text-4xl font-bold leading-[1.08] sm:text-5xl lg:text-6xl">Три уединённых дома<br />в буковом лесу Архыза</h1>
         <p className="mt-5 max-w-2xl leading-relaxed text-[#d6e0d9] sm:text-lg">Своя терраса, тихие вечера у костра и горы рядом. Приезжайте с семьёй, вдвоём или в кругу друзей.</p>
-        <Link href="/booking" className="mt-8 inline-flex rounded-full bg-[#d49a5a] px-7 py-4 text-sm font-semibold text-[#0a1911] transition hover:bg-[#e0ab6e]">Проверить свободные даты</Link>
+        <Link href="/booking" className="mt-8 inline-flex rounded-full bg-[#d49a5a] px-7 py-4 text-sm font-semibold text-[#102219] transition hover:bg-[#e0ab6e]">Проверить свободные даты</Link>
       </div>
     </section>
     <main>
       <HomeBenefits />
-      <section id="cabins" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">
-        <p className="mb-4 text-center font-moderustic text-xl font-bold text-[#f3f5f0] sm:text-2xl">Забронировать онлайн</p>
+      <AudienceStories />
+      <section id="cabins" className="mx-auto max-w-[1400px] px-4 pt-12 sm:px-6 sm:pt-16">
+        <h2 id="online-booking" className="mb-4 scroll-mt-28 text-center font-moderustic text-2xl font-bold leading-tight text-[#f3f5f0] sm:text-3xl">Забронировать онлайн</h2>
         <KonturBookingWidget id="booking" className="mb-10 px-0 sm:px-0" />
         <p className="text-xs uppercase tracking-[0.2em] text-[#d49a5a]">Ваш дом в Архызе</p>
         <h2 className="mt-3 font-moderustic text-3xl font-bold sm:text-4xl">Выберите свой дом в лесу</h2>
-        <p className="mt-4 max-w-2xl text-[#a8b9ae]">Всего три дома — для семейного отдыха, романтических выходных и встреч с друзьями.</p>
+        <p className="mt-4 max-w-2xl text-[#a8b9ae]">Всего три дома – для семейного отдыха, романтических выходных и встреч с друзьями.</p>
         <div className="mt-8"><CabinShowcase /></div>
       </section>
       <section id="sez1" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">
@@ -86,7 +87,6 @@ export default function HomePage() {
         <p className="mt-4 mb-8 max-w-2xl text-[#a8b9ae]">Начните утро с прогулки по буковому лесу, отправьтесь навстречу горам или посвятите день себе в СПА.</p>
         <SeasonalExperiences />
       </section>
-      <AudienceStories />
       <BookingAssistance />
       <section id="faq" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">
         <p className="text-xs uppercase tracking-[0.2em] text-[#d49a5a]">До встречи в лесу</p>
@@ -123,9 +123,9 @@ export default function HomePage() {
             >
               <div
                 id="contacts"
-                className="scroll-mt-24 overflow-hidden rounded-3xl border border-white/10 bg-[#102419] p-3 sm:p-4"
+                className="scroll-mt-24 overflow-hidden rounded-3xl border border-white/10 bg-[#173024] p-3 sm:p-4"
               >
-                <div className="h-[370px] w-full overflow-hidden rounded-2xl bg-[#163122]">
+                <div className="h-[370px] w-full overflow-hidden rounded-2xl bg-[#1d3b2b]">
                   <iframe
                     src={`https://yandex.ru/map-widget/v1/?oid=${SITE_CONFIG.yandexOrgId}&ol=biz&ll=${SITE_CONFIG.coords.lng}%2C${SITE_CONFIG.coords.lat}&z=17`}
                     title="База отдыха Хижина лесника на Яндекс Картах"
@@ -136,7 +136,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="rounded-3xl border border-white/10 bg-[#102419] p-6 sm:p-8">
+              <div className="rounded-3xl border border-white/10 bg-[#173024] p-6 sm:p-8">
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div className="flex items-start gap-3">
                     <MapPin size={22} className="mt-0.5 shrink-0 text-[#d49a5a]" />

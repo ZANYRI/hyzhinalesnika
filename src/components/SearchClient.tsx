@@ -45,7 +45,7 @@ export function SearchClient() {
   }, [query]);
 
   return (
-    <div className="mt-6 rounded-3xl border border-white/10 bg-[#102419] p-6 sm:p-10">
+    <div className="mt-6 rounded-3xl border border-white/10 bg-[#173024] p-6 sm:p-10">
       <h1 className="font-moderustic text-2xl font-bold tracking-tight text-[#f3f5f0] sm:text-3xl">
         Поиск по сайту
       </h1>
@@ -68,7 +68,7 @@ export function SearchClient() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Название дома, водопад, маршрут..."
-            className="h-12 w-full rounded-xl border border-white/15 bg-[#0a1911] pr-4 pl-11 text-sm text-[#f3f5f0] placeholder:text-[#a8b9ae]/60 outline-none transition focus:border-[#d49a5a]"
+            className="h-12 w-full rounded-xl border border-white/15 bg-[#102219] pr-4 pl-11 text-sm text-[#f3f5f0] placeholder:text-[#a8b9ae]/60 outline-none transition focus:border-[#d49a5a]"
           />
         </div>
       </div>
@@ -84,7 +84,7 @@ export function SearchClient() {
             <Link
               key={item.href}
               href={item.href}
-              className="group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-[#163122]/55 p-5 transition hover:border-[#d49a5a]/45"
+              className="group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5 transition hover:border-[#d49a5a]/45"
             >
               <div>
                 <h2 className="font-moderustic text-lg font-bold text-[#f3f5f0] transition group-hover:text-[#d49a5a]">
