@@ -22,50 +22,7 @@
   .cabin-photo-enter { animation: none; }
 }
 
-/* Local self-hosted fonts */
-@font-face {
-  font-family: "Moderustic";
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/moderustic-300.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Moderustic";
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/moderustic-400.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Moderustic";
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/moderustic-500.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Moderustic";
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/moderustic-600.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Moderustic";
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/moderustic-700.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Moderustic";
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/moderustic-800.woff2") format("woff2");
-}
-
+/* Local font faces and full-character fallbacks live in font-subsets.css. */
 :root {
   --bg-canvas: #102219;
   --bg-surface: #173024;

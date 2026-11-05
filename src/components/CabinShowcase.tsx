@@ -92,7 +92,7 @@ export function CabinShowcase() {
               <div
                 key={currentPhoto.src}
                 className={`relative h-full w-full ${photoIdx !== 0 || activeCabinIdx !== 0 ? "cabin-photo-enter" : ""}`}
-              ><Image src={currentPhoto.src} alt={currentPhoto.alt} fill sizes="(min-width: 1024px) 65vw, 100vw" loading="lazy" className="object-cover" /></div>
+              ><Image src={currentPhoto.src} alt={currentPhoto.alt} fill sizes="(min-width: 1400px) 742px, (min-width: 1024px) calc(58.333333vw - 75.333333px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)" loading="lazy" className="object-cover" /></div>
 
             <button
               type="button"

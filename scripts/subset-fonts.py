@@ -1,4 +1,4 @@
-"""Build deterministic Montserrat web subsets from the existing local fonts.
+"""Build deterministic Montserrat and Moderustic web subsets from local fonts.
 
 Regeneration only: pip install -r scripts/font-tools-requirements.txt
 Then: python scripts/subset-fonts.py [--check]
@@ -79,8 +79,10 @@ def main():
     faces, manifest = [], {"fontToolsVersion": fontTools.__version__, "fonts": []}
     if not args.check:
         TARGET.mkdir(parents=True, exist_ok=True)
-    for weight in [400, 500, 600, 700]:
-        source = FONTS / f"montserrat-{weight}.woff2"
+    font_variants = [("Montserrat", weight) for weight in [400, 500, 600, 700]]
+    font_variants += [("Moderustic", weight) for weight in [300, 400, 500, 600, 700, 800]]
+    for family, weight in font_variants:
+        source = FONTS / f"{family.lower()}-{weight}.woff2"
         original = TTFont(source, recalcTimestamp=False)
         all_codes = set(original.getBestCmap())
         core = {c for c in all_codes if any(a <= c <= b for a, b in CORE_RANGES)}
@@ -103,7 +105,7 @@ def main():
         payload = buffer.getvalue()
         verify_metrics(original, TTFont(io.BytesIO(payload)), core)
         digest = hashlib.sha256(payload).hexdigest()[:12]
-        filename = f"montserrat-{weight}-ru-latin.{digest}.woff2"
+        filename = f"{family.lower()}-{weight}-ru-latin.{digest}.woff2"
         target = TARGET / filename
         if args.check:
             assert target.read_bytes() == payload, f"Regenerate {target}"
@@ -111,7 +113,7 @@ def main():
             target.write_bytes(payload)
         for src, points in [(f"/fonts/{source.name}", extended), (f"/fonts/subsets/{filename}", core)]:
             faces.append(f'''@font-face {{
-  font-family: "Montserrat";
+  font-family: "{family}";
   font-weight: {weight};
   font-style: normal;
   font-display: swap;
@@ -119,7 +121,7 @@ def main():
   unicode-range: {unicode_range(points)};
 }}''')
         manifest["fonts"].append({
-            "weight": weight, "source": source.name, "subset": filename,
+            "family": family, "weight": weight, "source": source.name, "subset": filename,
             "sourceBytes": source.stat().st_size, "subsetBytes": len(payload),
             "sourceSha256": hashlib.sha256(source.read_bytes()).hexdigest(),
             "subsetSha256": hashlib.sha256(payload).hexdigest(),

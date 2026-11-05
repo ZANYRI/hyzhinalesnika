@@ -1,22 +1,6 @@
-"use client";
-
-import { useEffect } from "react";
 import { HOME_FAQ } from "@/data/home";
 
 export function FaqAccordion() {
-  useEffect(() => {
-    function openPets() {
-      const question = document.querySelector<HTMLDetailsElement>("#faq-pets");
-      if (question) question.open = true;
-    }
-    function openQuestion(event: Event) {
-      if ((event as CustomEvent<string>).detail === "pets") openPets();
-    }
-    window.addEventListener("hyzhina:open-faq", openQuestion);
-    if (window.location.hash === "#faq-pets") openPets();
-    return () => window.removeEventListener("hyzhina:open-faq", openQuestion);
-  }, []);
-
   return <div className="grid items-start gap-3 md:grid-cols-2">
     {HOME_FAQ.map(item => <details
       name="home-faq"

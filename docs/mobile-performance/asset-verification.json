@@ -1,0 +1,57 @@
+{
+  "hero": {
+    "original": "/images/home/hero-mobile.7dd5e3d36e8c.avif",
+    "optimized": "/images/home/hero-mobile.ed0ed5f52e37.avif",
+    "beforeBytes": 85114,
+    "afterBytes": 56717,
+    "width": 576,
+    "height": 1024,
+    "sourceUnchanged": true,
+    "webpUnchanged": true
+  },
+  "moderustic": [
+    {
+      "weight": 300,
+      "before": 20968,
+      "after": 14656,
+      "source": "moderustic-300.woff2",
+      "subset": "moderustic-300-ru-latin.c7a504b07f25.woff2"
+    },
+    {
+      "weight": 400,
+      "before": 20812,
+      "after": 14624,
+      "source": "moderustic-400.woff2",
+      "subset": "moderustic-400-ru-latin.3874d33939e5.woff2"
+    },
+    {
+      "weight": 500,
+      "before": 21208,
+      "after": 14880,
+      "source": "moderustic-500.woff2",
+      "subset": "moderustic-500-ru-latin.2f8413c7dbdd.woff2"
+    },
+    {
+      "weight": 600,
+      "before": 21228,
+      "after": 14768,
+      "source": "moderustic-600.woff2",
+      "subset": "moderustic-600-ru-latin.a6e2795c4626.woff2"
+    },
+    {
+      "weight": 700,
+      "before": 21216,
+      "after": 14804,
+      "source": "moderustic-700.woff2",
+      "subset": "moderustic-700-ru-latin.fd1def8e7265.woff2"
+    },
+    {
+      "weight": 800,
+      "before": 20880,
+      "after": 14592,
+      "source": "moderustic-800.woff2",
+      "subset": "moderustic-800-ru-latin.d1db2d4c9e6d.woff2"
+    }
+  ],
+  "fontFallbackVerified": "Browser loaded core Moderustic subsets on homepage; document.fonts.load with À requested original moderustic-700.woff2. FontTools --check verifies outlines, metrics, codepoint coverage and license metadata."
+}

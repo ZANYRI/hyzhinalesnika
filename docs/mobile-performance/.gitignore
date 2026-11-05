@@ -1,0 +1,13 @@
+*
+!.gitignore
+!.gitattributes
+!README.md
+!changes.diff
+!comparison.json
+!final-lighthouse-summary.json
+!mobile-qa.json
+!image-font-browser-qa.json
+!checks.json
+!seo-verification.json
+!protected-content.json
+!asset-verification.json

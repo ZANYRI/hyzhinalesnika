@@ -773,7 +773,7 @@ export function KonturBookingWidget({
             href={SITE_CONFIG.konturBookingPortalUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-7 text-sm font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
+            className="mt-5 inline-flex min-h-12 max-w-full items-center justify-center rounded-full bg-[#d49a5a] px-4 py-3 text-center text-sm leading-snug font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98] sm:px-7"
           >
             Открыть календарь бронирования
           </a>

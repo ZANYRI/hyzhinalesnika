@@ -1,0 +1,278 @@
+[
+  {
+    "port": 3122,
+    "width": 390,
+    "dpr": 2,
+    "h1": {
+      "x": 16,
+      "y": 318.75,
+      "width": 358,
+      "height": 155.5,
+      "top": 318.75,
+      "right": 374,
+      "bottom": 474.25,
+      "left": 16
+    },
+    "cta": {
+      "x": 16,
+      "y": 604.25,
+      "width": 267.046875,
+      "height": 52,
+      "top": 604.25,
+      "right": 283.046875,
+      "bottom": 656.25,
+      "left": 16
+    },
+    "fonts": [
+      "montserrat-400-ru-latin.aa39b1bb5898.woff2",
+      "montserrat-700-ru-latin.f85509486bd8.woff2",
+      "moderustic-700.woff2",
+      "montserrat-600-ru-latin.e93e6829692e.woff2",
+      "moderustic-500.woff2",
+      "moderustic-600.woff2",
+      "montserrat-500-ru-latin.9d2d4cf51323.woff2"
+    ],
+    "images": [
+      {
+        "width": 358,
+        "currentSrc": "http://localhost:3122/_next/image?url=%2Fimages%2Fhome%2Fstory-romance.webp&w=828&q=60",
+        "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+      },
+      {
+        "width": 332,
+        "currentSrc": "http://localhost:3122/_next/image?url=%2Fimages%2Fhouse%2F01.jpg&w=828&q=75",
+        "sizes": "(min-width: 1024px) 65vw, 100vw"
+      }
+    ]
+  },
+  {
+    "port": 3130,
+    "width": 390,
+    "dpr": 2,
+    "h1": {
+      "x": 16,
+      "y": 318.75,
+      "width": 358,
+      "height": 155.5,
+      "top": 318.75,
+      "right": 374,
+      "bottom": 474.25,
+      "left": 16
+    },
+    "cta": {
+      "x": 16,
+      "y": 604.25,
+      "width": 267.046875,
+      "height": 52,
+      "top": 604.25,
+      "right": 283.046875,
+      "bottom": 656.25,
+      "left": 16
+    },
+    "fonts": [
+      "montserrat-400-ru-latin.aa39b1bb5898.woff2",
+      "montserrat-700-ru-latin.f85509486bd8.woff2",
+      "moderustic-700-ru-latin.fd1def8e7265.woff2",
+      "montserrat-600-ru-latin.e93e6829692e.woff2",
+      "moderustic-600-ru-latin.a6e2795c4626.woff2",
+      "moderustic-500-ru-latin.2f8413c7dbdd.woff2",
+      "montserrat-500-ru-latin.9d2d4cf51323.woff2"
+    ],
+    "images": [
+      {
+        "width": 358,
+        "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fstory-romance.webp&w=750&q=60",
+        "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+      },
+      {
+        "width": 332,
+        "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhouse%2F01.jpg&w=750&q=75",
+        "sizes": "(min-width: 1400px) 742px, (min-width: 1024px) calc(58.333333vw - 75.333333px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)"
+      }
+    ]
+  },
+  {
+    "port": 3122,
+    "width": 768,
+    "dpr": 1,
+    "h1": {
+      "x": 24,
+      "y": 388.421875,
+      "width": 720,
+      "height": 103.65625,
+      "top": 388.421875,
+      "right": 744,
+      "bottom": 492.078125,
+      "left": 24
+    },
+    "cta": {
+      "x": 24,
+      "y": 602.578125,
+      "width": 267.046875,
+      "height": 52,
+      "top": 602.578125,
+      "right": 291.046875,
+      "bottom": 654.578125,
+      "left": 24
+    },
+    "fonts": [
+      "montserrat-400-ru-latin.aa39b1bb5898.woff2",
+      "montserrat-500-ru-latin.9d2d4cf51323.woff2",
+      "montserrat-600-ru-latin.e93e6829692e.woff2",
+      "moderustic-700.woff2",
+      "montserrat-700-ru-latin.f85509486bd8.woff2",
+      "moderustic-500.woff2",
+      "moderustic-600.woff2"
+    ],
+    "images": [
+      {
+        "width": 720,
+        "currentSrc": "http://localhost:3122/_next/image?url=%2Fimages%2Fhome%2Fstory-romance.webp&w=384&q=60",
+        "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+      },
+      {
+        "width": 686,
+        "currentSrc": "http://localhost:3122/_next/image?url=%2Fimages%2Fhouse%2F01.jpg&w=828&q=75",
+        "sizes": "(min-width: 1024px) 65vw, 100vw"
+      }
+    ]
+  },
+  {
+    "port": 3130,
+    "width": 768,
+    "dpr": 1,
+    "h1": {
+      "x": 24,
+      "y": 388.421875,
+      "width": 720,
+      "height": 103.65625,
+      "top": 388.421875,
+      "right": 744,
+      "bottom": 492.078125,
+      "left": 24
+    },
+    "cta": {
+      "x": 24,
+      "y": 602.578125,
+      "width": 267.046875,
+      "height": 52,
+      "top": 602.578125,
+      "right": 291.046875,
+      "bottom": 654.578125,
+      "left": 24
+    },
+    "fonts": [
+      "montserrat-400-ru-latin.aa39b1bb5898.woff2",
+      "montserrat-600-ru-latin.e93e6829692e.woff2",
+      "montserrat-500-ru-latin.9d2d4cf51323.woff2",
+      "montserrat-700-ru-latin.f85509486bd8.woff2",
+      "moderustic-700-ru-latin.fd1def8e7265.woff2",
+      "moderustic-500-ru-latin.2f8413c7dbdd.woff2",
+      "moderustic-600-ru-latin.a6e2795c4626.woff2"
+    ],
+    "images": [
+      {
+        "width": 720,
+        "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fstory-romance.webp&w=750&q=60",
+        "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+      },
+      {
+        "width": 686,
+        "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhouse%2F01.jpg&w=750&q=75",
+        "sizes": "(min-width: 1400px) 742px, (min-width: 1024px) calc(58.333333vw - 75.333333px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)"
+      }
+    ]
+  },
+  {
+    "port": 3130,
+    "width": 1024,
+    "dpr": 1,
+    "h1": {
+      "x": 24,
+      "y": 375.453125,
+      "width": 768,
+      "height": 129.59375,
+      "top": 375.453125,
+      "right": 792,
+      "bottom": 505.046875,
+      "left": 24
+    },
+    "cta": {
+      "x": 24,
+      "y": 615.546875,
+      "width": 267.046875,
+      "height": 52,
+      "top": 615.546875,
+      "right": 291.046875,
+      "bottom": 667.546875,
+      "left": 24
+    },
+    "fonts": [
+      "montserrat-400-ru-latin.aa39b1bb5898.woff2",
+      "montserrat-500-ru-latin.9d2d4cf51323.woff2",
+      "montserrat-600-ru-latin.e93e6829692e.woff2",
+      "moderustic-700-ru-latin.fd1def8e7265.woff2",
+      "montserrat-700-ru-latin.f85509486bd8.woff2",
+      "moderustic-600-ru-latin.a6e2795c4626.woff2",
+      "moderustic-500-ru-latin.2f8413c7dbdd.woff2"
+    ],
+    "images": [
+      {
+        "width": 325.328125,
+        "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fstory-romance.webp&w=384&q=60",
+        "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+      },
+      {
+        "width": 522,
+        "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhouse%2F01.jpg&w=640&q=75",
+        "sizes": "(min-width: 1400px) 742px, (min-width: 1024px) calc(58.333333vw - 75.333333px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)"
+      }
+    ]
+  },
+  {
+    "port": 3130,
+    "width": 1440,
+    "dpr": 1,
+    "h1": {
+      "x": 44,
+      "y": 349.453125,
+      "width": 768,
+      "height": 129.59375,
+      "top": 349.453125,
+      "right": 812,
+      "bottom": 479.046875,
+      "left": 44
+    },
+    "cta": {
+      "x": 44,
+      "y": 589.546875,
+      "width": 267.046875,
+      "height": 52,
+      "top": 589.546875,
+      "right": 311.046875,
+      "bottom": 641.546875,
+      "left": 44
+    },
+    "fonts": [
+      "montserrat-400-ru-latin.aa39b1bb5898.woff2",
+      "montserrat-500-ru-latin.9d2d4cf51323.woff2",
+      "moderustic-700-ru-latin.fd1def8e7265.woff2",
+      "montserrat-600-ru-latin.e93e6829692e.woff2",
+      "montserrat-700-ru-latin.f85509486bd8.woff2",
+      "moderustic-600-ru-latin.a6e2795c4626.woff2",
+      "moderustic-500-ru-latin.2f8413c7dbdd.woff2"
+    ],
+    "images": [
+      {
+        "width": 450.65625,
+        "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fstory-romance.webp&w=640&q=60",
+        "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
+      },
+      {
+        "width": 741.328125,
+        "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhouse%2F01.jpg&w=750&q=75",
+        "sizes": "(min-width: 1400px) 742px, (min-width: 1024px) calc(58.333333vw - 75.333333px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)"
+      }
+    ]
+  }
+]

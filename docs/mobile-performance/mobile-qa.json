@@ -1,0 +1,429 @@
+{
+  "scope": "Local production build; external partner requests blocked for layout and navigation checks. Does not validate live booking provider.",
+  "viewports": [
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "h1": {
+        "x": 16,
+        "y": 313.3125,
+        "width": 288,
+        "height": 194.375,
+        "top": 313.3125,
+        "right": 304,
+        "bottom": 507.6875,
+        "left": 16
+      },
+      "images": [
+        {
+          "alt": "Лес и горы Архыза в тумане",
+          "width": 286,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(50vw - 34px), calc(100vw - 34px)",
+          "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fforest-seclusion.webp&w=640&q=60"
+        },
+        {
+          "alt": "Бокалы у костра на террасе дома",
+          "width": 288,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Романтический вечер на террасе шале – иллюстрация по фотографии",
+          "width": 288,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Вечерний костёр и кресла во дворе дома",
+          "width": 288,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Дом «Ива» для семьи в Архызе, фото 1",
+          "width": 262,
+          "sizes": "(min-width: 1400px) 742px, (min-width: 1024px) calc(58.333333vw - 75.333333px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)",
+          "currentSrc": ""
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "h1": {
+        "x": 16,
+        "y": 318.75,
+        "width": 358,
+        "height": 155.5,
+        "top": 318.75,
+        "right": 374,
+        "bottom": 474.25,
+        "left": 16
+      },
+      "images": [
+        {
+          "alt": "Лес и горы Архыза в тумане",
+          "width": 356,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(50vw - 34px), calc(100vw - 34px)",
+          "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fforest-seclusion.webp&w=750&q=60"
+        },
+        {
+          "alt": "Бокалы у костра на террасе дома",
+          "width": 358,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Романтический вечер на террасе шале – иллюстрация по фотографии",
+          "width": 358,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Вечерний костёр и кресла во дворе дома",
+          "width": 358,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Дом «Ива» для семьи в Архызе, фото 1",
+          "width": 332,
+          "sizes": "(min-width: 1400px) 742px, (min-width: 1024px) calc(58.333333vw - 75.333333px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)",
+          "currentSrc": ""
+        }
+      ]
+    },
+    {
+      "width": 412,
+      "scrollWidth": 412,
+      "h1": {
+        "x": 16,
+        "y": 318.75,
+        "width": 380,
+        "height": 155.5,
+        "top": 318.75,
+        "right": 396,
+        "bottom": 474.25,
+        "left": 16
+      },
+      "images": [
+        {
+          "alt": "Лес и горы Архыза в тумане",
+          "width": 378,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(50vw - 34px), calc(100vw - 34px)",
+          "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fforest-seclusion.webp&w=828&q=60"
+        },
+        {
+          "alt": "Бокалы у костра на террасе дома",
+          "width": 380,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Романтический вечер на террасе шале – иллюстрация по фотографии",
+          "width": 380,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Вечерний костёр и кресла во дворе дома",
+          "width": 380,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Дом «Ива» для семьи в Архызе, фото 1",
+          "width": 354,
+          "sizes": "(min-width: 1400px) 742px, (min-width: 1024px) calc(58.333333vw - 75.333333px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)",
+          "currentSrc": ""
+        }
+      ]
+    },
+    {
+      "width": 640,
+      "scrollWidth": 640,
+      "h1": {
+        "x": 24,
+        "y": 362.421875,
+        "width": 592,
+        "height": 103.65625,
+        "top": 362.421875,
+        "right": 616,
+        "bottom": 466.078125,
+        "left": 24
+      },
+      "images": [
+        {
+          "alt": "Лес и горы Архыза в тумане",
+          "width": 286,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(50vw - 34px), calc(100vw - 34px)",
+          "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fforest-seclusion.webp&w=640&q=60"
+        },
+        {
+          "alt": "Бокалы у костра на террасе дома",
+          "width": 592,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Романтический вечер на террасе шале – иллюстрация по фотографии",
+          "width": 592,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Вечерний костёр и кресла во дворе дома",
+          "width": 592,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Дом «Ива» для семьи в Архызе, фото 1",
+          "width": 558,
+          "sizes": "(min-width: 1400px) 742px, (min-width: 1024px) calc(58.333333vw - 75.333333px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)",
+          "currentSrc": ""
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "h1": {
+        "x": 24,
+        "y": 388.421875,
+        "width": 720,
+        "height": 103.65625,
+        "top": 388.421875,
+        "right": 744,
+        "bottom": 492.078125,
+        "left": 24
+      },
+      "images": [
+        {
+          "alt": "Лес и горы Архыза в тумане",
+          "width": 350,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(50vw - 34px), calc(100vw - 34px)",
+          "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fforest-seclusion.webp&w=750&q=60"
+        },
+        {
+          "alt": "Бокалы у костра на террасе дома",
+          "width": 720,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Романтический вечер на террасе шале – иллюстрация по фотографии",
+          "width": 720,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Вечерний костёр и кресла во дворе дома",
+          "width": 720,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": ""
+        },
+        {
+          "alt": "Дом «Ива» для семьи в Архызе, фото 1",
+          "width": 686,
+          "sizes": "(min-width: 1400px) 742px, (min-width: 1024px) calc(58.333333vw - 75.333333px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)",
+          "currentSrc": ""
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024,
+      "h1": {
+        "x": 24,
+        "y": 375.453125,
+        "width": 768,
+        "height": 129.59375,
+        "top": 375.453125,
+        "right": 792,
+        "bottom": 505.046875,
+        "left": 24
+      },
+      "images": [
+        {
+          "alt": "Лес и горы Архыза в тумане",
+          "width": 312.65625,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(50vw - 34px), calc(100vw - 34px)",
+          "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fforest-seclusion.webp&w=750&q=60"
+        },
+        {
+          "alt": "Бокалы у костра на террасе дома",
+          "width": 325.328125,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fstory-romance.webp&w=750&q=60"
+        },
+        {
+          "alt": "Романтический вечер на террасе шале – иллюстрация по фотографии",
+          "width": 325.328125,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fstory-romance-chalet-night.webp&w=750&q=60"
+        },
+        {
+          "alt": "Вечерний костёр и кресла во дворе дома",
+          "width": 325.34375,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fstory-friends.webp&w=750&q=60"
+        },
+        {
+          "alt": "Дом «Ива» для семьи в Архызе, фото 1",
+          "width": 522,
+          "sizes": "(min-width: 1400px) 742px, (min-width: 1024px) calc(58.333333vw - 75.333333px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)",
+          "currentSrc": ""
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "h1": {
+        "x": 44,
+        "y": 349.453125,
+        "width": 768,
+        "height": 129.59375,
+        "top": 349.453125,
+        "right": 812,
+        "bottom": 479.046875,
+        "left": 44
+      },
+      "images": [
+        {
+          "alt": "Лес и горы Архыза в тумане",
+          "width": 438,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(50vw - 34px), calc(100vw - 34px)",
+          "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fforest-seclusion.webp&w=1080&q=60"
+        },
+        {
+          "alt": "Бокалы у костра на террасе дома",
+          "width": 450.65625,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fstory-romance.webp&w=1080&q=60"
+        },
+        {
+          "alt": "Романтический вечер на террасе шале – иллюстрация по фотографии",
+          "width": 450.671875,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fstory-romance-chalet-night.webp&w=1080&q=60"
+        },
+        {
+          "alt": "Вечерний костёр и кресла во дворе дома",
+          "width": 450.65625,
+          "sizes": "(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)",
+          "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fhome%2Fstory-friends.webp&w=1080&q=60"
+        },
+        {
+          "alt": "Дом «Ива» для семьи в Архызе, фото 1",
+          "width": 741.328125,
+          "sizes": "(min-width: 1400px) 742px, (min-width: 1024px) calc(58.333333vw - 75.333333px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)",
+          "currentSrc": ""
+        }
+      ]
+    },
+    {
+      "pathname": "/booking",
+      "width": 320,
+      "scrollWidth": 320
+    },
+    {
+      "pathname": "/booking",
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "pathname": "/booking",
+      "width": 768,
+      "scrollWidth": 768
+    },
+    {
+      "pathname": "/dom-dlya-semi",
+      "width": 320,
+      "scrollWidth": 320
+    },
+    {
+      "pathname": "/dom-dlya-semi",
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "pathname": "/dom-dlya-semi",
+      "width": 768,
+      "scrollWidth": 768
+    },
+    {
+      "pathname": "/shale-s-vidom-na-gory",
+      "width": 320,
+      "scrollWidth": 320
+    },
+    {
+      "pathname": "/shale-s-vidom-na-gory",
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "pathname": "/shale-s-vidom-na-gory",
+      "width": 768,
+      "scrollWidth": 768
+    },
+    {
+      "pathname": "/dvuhetazhnyj-barnhouse",
+      "width": 320,
+      "scrollWidth": 320
+    },
+    {
+      "pathname": "/dvuhetazhnyj-barnhouse",
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "pathname": "/dvuhetazhnyj-barnhouse",
+      "width": 768,
+      "scrollWidth": 768
+    },
+    {
+      "pathname": "/spa",
+      "width": 320,
+      "scrollWidth": 320
+    },
+    {
+      "pathname": "/spa",
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "pathname": "/spa",
+      "width": 768,
+      "scrollWidth": 768
+    },
+    {
+      "pathname": "/dining",
+      "width": 320,
+      "scrollWidth": 320
+    },
+    {
+      "pathname": "/dining",
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "pathname": "/dining",
+      "width": 768,
+      "scrollWidth": 768
+    }
+  ],
+  "scenarios": [
+    "10 FAQ answers initially closed; native click and Enter toggle",
+    "Pet Friendly opens and focuses pets answer",
+    "Direct pets fragment opens answer",
+    "Public pets event works",
+    "Cross-page pending pets navigation works",
+    "Mobile menu closes and Дома scrolls to online booking heading",
+    "All 3 house tabs, next photo and dots work",
+    "FAQ content and native toggling work without JavaScript"
+  ],
+  "errors": [],
+  "passed": true
+}

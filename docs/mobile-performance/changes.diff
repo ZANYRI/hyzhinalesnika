@@ -1,0 +1,481 @@
+diff --git a/public/fonts/subsets/manifest.json b/public/fonts/subsets/manifest.json
+index 22712ef..979f1ab 100644
+--- a/public/fonts/subsets/manifest.json
++++ b/public/fonts/subsets/manifest.json
+@@ -2,6 +2,7 @@
+   "fontToolsVersion": "4.60.2",
+   "fonts": [
+     {
++      "family": "Montserrat",
+       "weight": 400,
+       "source": "montserrat-400.woff2",
+       "subset": "montserrat-400-ru-latin.aa39b1bb5898.woff2",
+@@ -15,6 +16,7 @@
+       "fallbackRange": "U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-017F, U+018F, U+0192, U+01A0-01A1, U+01AF-01B0, U+01B7, U+01C4-01CE, U+01D3-01D4, U+01E4-01EB, U+01EE-01EF, U+01FA-021B, U+021E-021F, U+022A-022D, U+0230-0233, U+0237, U+0259, U+0292, U+02B9-02BC, U+02BE-02BF, U+02C6-02CC, U+02D8-02DD, U+0394, U+03A9, U+03BC, U+03C0, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0462-0463, U+046A-046B, U+0472-0475, U+048A-04C4, U+04C6-04FF, U+0510-0513, U+051A-051D, U+0524-0529, U+052E-052F, U+1E08-1E09, U+1E0C-1E0F, U+1E14-1E17, U+1E1C-1E1D, U+1E20-1E21, U+1E24-1E25, U+1E2A-1E2B, U+1E2E-1E2F, U+1E36-1E37, U+1E3A-1E3B, U+1E42-1E49, U+1E4C-1E53, U+1E5A-1E5B, U+1E5E-1E69, U+1E6C-1E6F, U+1E78-1E7B, U+1E80-1E85, U+1E8E-1E8F, U+1E92-1E93, U+1E97, U+1E9E, U+1EA0-1EF9, U+2070, U+2074-2079, U+2080-2089, U+20A1, U+20A3-20A4, U+20A6-20A7, U+20A9, U+20AB, U+20AD-20AE, U+20B1-20B2, U+20B4-20B5, U+20B8-20BA, U+20BC, U+2113, U+2126, U+212A-212B, U+212E, U+2153-2154, U+215B-215E, U+2202, U+2205-2206, U+220F, U+2211, U+2215, U+2219-221A, U+221E, U+222B, U+2248, U+2260, U+2264-2265, U+25A0-25A1, U+25B2-25B3, U+25B6-25B7, U+25BC-25BD, U+25C0-25C1, U+25C6-25C7, U+25CA, U+27E8-27E9, U+A78B-A78C, U+FB01-FB02"
+     },
+     {
++      "family": "Montserrat",
+       "weight": 500,
+       "source": "montserrat-500.woff2",
+       "subset": "montserrat-500-ru-latin.9d2d4cf51323.woff2",
+@@ -28,6 +30,7 @@
+       "fallbackRange": "U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-017F, U+018F, U+0192, U+01A0-01A1, U+01AF-01B0, U+01B7, U+01C4-01CE, U+01D3-01D4, U+01E4-01EB, U+01EE-01EF, U+01FA-021B, U+021E-021F, U+022A-022D, U+0230-0233, U+0237, U+0259, U+0292, U+02B9-02BC, U+02BE-02BF, U+02C6-02CC, U+02D8-02DD, U+0394, U+03A9, U+03BC, U+03C0, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0462-0463, U+046A-046B, U+0472-0475, U+048A-04C4, U+04C6-04FF, U+0510-0513, U+051A-051D, U+0524-0529, U+052E-052F, U+1E08-1E09, U+1E0C-1E0F, U+1E14-1E17, U+1E1C-1E1D, U+1E20-1E21, U+1E24-1E25, U+1E2A-1E2B, U+1E2E-1E2F, U+1E36-1E37, U+1E3A-1E3B, U+1E42-1E49, U+1E4C-1E53, U+1E5A-1E5B, U+1E5E-1E69, U+1E6C-1E6F, U+1E78-1E7B, U+1E80-1E85, U+1E8E-1E8F, U+1E92-1E93, U+1E97, U+1E9E, U+1EA0-1EF9, U+2070, U+2074-2079, U+2080-2089, U+20A1, U+20A3-20A4, U+20A6-20A7, U+20A9, U+20AB, U+20AD-20AE, U+20B1-20B2, U+20B4-20B5, U+20B8-20BA, U+20BC, U+2113, U+2126, U+212A-212B, U+212E, U+2153-2154, U+215B-215E, U+2202, U+2205-2206, U+220F, U+2211, U+2215, U+2219-221A, U+221E, U+222B, U+2248, U+2260, U+2264-2265, U+25A0-25A1, U+25B2-25B3, U+25B6-25B7, U+25BC-25BD, U+25C0-25C1, U+25C6-25C7, U+25CA, U+27E8-27E9, U+A78B-A78C, U+FB01-FB02"
+     },
+     {
++      "family": "Montserrat",
+       "weight": 600,
+       "source": "montserrat-600.woff2",
+       "subset": "montserrat-600-ru-latin.e93e6829692e.woff2",
+@@ -41,6 +44,7 @@
+       "fallbackRange": "U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-017F, U+018F, U+0192, U+01A0-01A1, U+01AF-01B0, U+01B7, U+01C4-01CE, U+01D3-01D4, U+01E4-01EB, U+01EE-01EF, U+01FA-021B, U+021E-021F, U+022A-022D, U+0230-0233, U+0237, U+0259, U+0292, U+02B9-02BC, U+02BE-02BF, U+02C6-02CC, U+02D8-02DD, U+0394, U+03A9, U+03BC, U+03C0, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0462-0463, U+046A-046B, U+0472-0475, U+048A-04C4, U+04C6-04FF, U+0510-0513, U+051A-051D, U+0524-0529, U+052E-052F, U+1E08-1E09, U+1E0C-1E0F, U+1E14-1E17, U+1E1C-1E1D, U+1E20-1E21, U+1E24-1E25, U+1E2A-1E2B, U+1E2E-1E2F, U+1E36-1E37, U+1E3A-1E3B, U+1E42-1E49, U+1E4C-1E53, U+1E5A-1E5B, U+1E5E-1E69, U+1E6C-1E6F, U+1E78-1E7B, U+1E80-1E85, U+1E8E-1E8F, U+1E92-1E93, U+1E97, U+1E9E, U+1EA0-1EF9, U+2070, U+2074-2079, U+2080-2089, U+20A1, U+20A3-20A4, U+20A6-20A7, U+20A9, U+20AB, U+20AD-20AE, U+20B1-20B2, U+20B4-20B5, U+20B8-20BA, U+20BC, U+2113, U+2126, U+212A-212B, U+212E, U+2153-2154, U+215B-215E, U+2202, U+2205-2206, U+220F, U+2211, U+2215, U+2219-221A, U+221E, U+222B, U+2248, U+2260, U+2264-2265, U+25A0-25A1, U+25B2-25B3, U+25B6-25B7, U+25BC-25BD, U+25C0-25C1, U+25C6-25C7, U+25CA, U+27E8-27E9, U+A78B-A78C, U+FB01-FB02"
+     },
+     {
++      "family": "Montserrat",
+       "weight": 700,
+       "source": "montserrat-700.woff2",
+       "subset": "montserrat-700-ru-latin.f85509486bd8.woff2",
+@@ -52,6 +56,90 @@
+       "subsetCodepoints": 267,
+       "coreRange": "U+0000, U+000D, U+0020-007E, U+00A0-00BF, U+00D7, U+00E0, U+00E9, U+0300-0304, U+0306-030C, U+030F, U+0311-0312, U+031B, U+0323-0324, U+0326-0328, U+032E, U+0331, U+0335-0338, U+0401, U+0410-044F, U+0451, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2052, U+20AC, U+20BD, U+2116, U+2122, U+2190-2199, U+2212",
+       "fallbackRange": "U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-017F, U+018F, U+0192, U+01A0-01A1, U+01AF-01B0, U+01B7, U+01C4-01CE, U+01D3-01D4, U+01E4-01EB, U+01EE-01EF, U+01FA-021B, U+021E-021F, U+022A-022D, U+0230-0233, U+0237, U+0259, U+0292, U+02B9-02BC, U+02BE-02BF, U+02C6-02CC, U+02D8-02DD, U+0394, U+03A9, U+03BC, U+03C0, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0462-0463, U+046A-046B, U+0472-0475, U+048A-04C4, U+04C6-04FF, U+0510-0513, U+051A-051D, U+0524-0529, U+052E-052F, U+1E08-1E09, U+1E0C-1E0F, U+1E14-1E17, U+1E1C-1E1D, U+1E20-1E21, U+1E24-1E25, U+1E2A-1E2B, U+1E2E-1E2F, U+1E36-1E37, U+1E3A-1E3B, U+1E42-1E49, U+1E4C-1E53, U+1E5A-1E5B, U+1E5E-1E69, U+1E6C-1E6F, U+1E78-1E7B, U+1E80-1E85, U+1E8E-1E8F, U+1E92-1E93, U+1E97, U+1E9E, U+1EA0-1EF9, U+2070, U+2074-2079, U+2080-2089, U+20A1, U+20A3-20A4, U+20A6-20A7, U+20A9, U+20AB, U+20AD-20AE, U+20B1-20B2, U+20B4-20B5, U+20B8-20BA, U+20BC, U+2113, U+2126, U+212A-212B, U+212E, U+2153-2154, U+215B-215E, U+2202, U+2205-2206, U+220F, U+2211, U+2215, U+2219-221A, U+221E, U+222B, U+2248, U+2260, U+2264-2265, U+25A0-25A1, U+25B2-25B3, U+25B6-25B7, U+25BC-25BD, U+25C0-25C1, U+25C6-25C7, U+25CA, U+27E8-27E9, U+A78B-A78C, U+FB01-FB02"
++    },
++    {
++      "family": "Moderustic",
++      "weight": 300,
++      "source": "moderustic-300.woff2",
++      "subset": "moderustic-300-ru-latin.c7a504b07f25.woff2",
++      "sourceBytes": 20968,
++      "subsetBytes": 14656,
++      "sourceSha256": "cfc80f2201917279e1e24d18f0862d11b5f621f7f6e9efb33f68e2290889b9c0",
++      "subsetSha256": "c7a504b07f2550c6a21cfb871811efac90d499ff7cbbe5f71c3b128065ee1c68",
++      "sourceCodepoints": 396,
++      "subsetCodepoints": 219,
++      "coreRange": "U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A5-00AC, U+00AE-00BF, U+00D7, U+00E0, U+00E9, U+0300-0301, U+0303-0304, U+0308, U+0401, U+0410-044F, U+0451, U+2009, U+2013-2014, U+2018-201A, U+201C-201E, U+2022, U+2026, U+2039-203A, U+2044, U+20AC, U+2116, U+2122, U+2212",
++      "fallbackRange": "U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0490-0493, U+0496-049B, U+04A0-04A3, U+04AA-04AB, U+04AE-04B3, U+04B6-04B7, U+04BA-04BB, U+04C0-04C2, U+04CF-04DF, U+04E2-04F5, U+04F8-04F9, U+0500-0501, U+0510-0511, U+051A-051D, U+2074, U+20B4"
++    },
++    {
++      "family": "Moderustic",
++      "weight": 400,
++      "source": "moderustic-400.woff2",
++      "subset": "moderustic-400-ru-latin.3874d33939e5.woff2",
++      "sourceBytes": 20812,
++      "subsetBytes": 14624,
++      "sourceSha256": "58bff3ebb47805ec6e313e6ea4b29aa1193a66a14845892d7a020daedb58ffc8",
++      "subsetSha256": "3874d33939e56d22ea6099ae53238f6d400ad08bb1d4518ec2de2ace334de7df",
++      "sourceCodepoints": 396,
++      "subsetCodepoints": 219,
++      "coreRange": "U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A5-00AC, U+00AE-00BF, U+00D7, U+00E0, U+00E9, U+0300-0301, U+0303-0304, U+0308, U+0401, U+0410-044F, U+0451, U+2009, U+2013-2014, U+2018-201A, U+201C-201E, U+2022, U+2026, U+2039-203A, U+2044, U+20AC, U+2116, U+2122, U+2212",
++      "fallbackRange": "U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0490-0493, U+0496-049B, U+04A0-04A3, U+04AA-04AB, U+04AE-04B3, U+04B6-04B7, U+04BA-04BB, U+04C0-04C2, U+04CF-04DF, U+04E2-04F5, U+04F8-04F9, U+0500-0501, U+0510-0511, U+051A-051D, U+2074, U+20B4"
++    },
++    {
++      "family": "Moderustic",
++      "weight": 500,
++      "source": "moderustic-500.woff2",
++      "subset": "moderustic-500-ru-latin.2f8413c7dbdd.woff2",
++      "sourceBytes": 21208,
++      "subsetBytes": 14880,
++      "sourceSha256": "6b95a5b51976afccd55e92f1949f8328a0aef6fdca6d7f6bb10125630e5e4c11",
++      "subsetSha256": "2f8413c7dbdd1ca944f078cb76fe22c83fa9a3325df3b8582eb7f4630f6919dc",
++      "sourceCodepoints": 396,
++      "subsetCodepoints": 219,
++      "coreRange": "U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A5-00AC, U+00AE-00BF, U+00D7, U+00E0, U+00E9, U+0300-0301, U+0303-0304, U+0308, U+0401, U+0410-044F, U+0451, U+2009, U+2013-2014, U+2018-201A, U+201C-201E, U+2022, U+2026, U+2039-203A, U+2044, U+20AC, U+2116, U+2122, U+2212",
++      "fallbackRange": "U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0490-0493, U+0496-049B, U+04A0-04A3, U+04AA-04AB, U+04AE-04B3, U+04B6-04B7, U+04BA-04BB, U+04C0-04C2, U+04CF-04DF, U+04E2-04F5, U+04F8-04F9, U+0500-0501, U+0510-0511, U+051A-051D, U+2074, U+20B4"
++    },
++    {
++      "family": "Moderustic",
++      "weight": 600,
++      "source": "moderustic-600.woff2",
++      "subset": "moderustic-600-ru-latin.a6e2795c4626.woff2",
++      "sourceBytes": 21228,
++      "subsetBytes": 14768,
++      "sourceSha256": "9feb94e83440fd934a9b3d4e1d111dcd79a8b4456d0385753bae7417cb50b203",
++      "subsetSha256": "a6e2795c4626ef6c8b51bd186d4700be3c2261d71ce5214458e8a5a57912a740",
++      "sourceCodepoints": 396,
++      "subsetCodepoints": 219,
++      "coreRange": "U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A5-00AC, U+00AE-00BF, U+00D7, U+00E0, U+00E9, U+0300-0301, U+0303-0304, U+0308, U+0401, U+0410-044F, U+0451, U+2009, U+2013-2014, U+2018-201A, U+201C-201E, U+2022, U+2026, U+2039-203A, U+2044, U+20AC, U+2116, U+2122, U+2212",
++      "fallbackRange": "U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0490-0493, U+0496-049B, U+04A0-04A3, U+04AA-04AB, U+04AE-04B3, U+04B6-04B7, U+04BA-04BB, U+04C0-04C2, U+04CF-04DF, U+04E2-04F5, U+04F8-04F9, U+0500-0501, U+0510-0511, U+051A-051D, U+2074, U+20B4"
++    },
++    {
++      "family": "Moderustic",
++      "weight": 700,
++      "source": "moderustic-700.woff2",
++      "subset": "moderustic-700-ru-latin.fd1def8e7265.woff2",
++      "sourceBytes": 21216,
++      "subsetBytes": 14804,
++      "sourceSha256": "18c6457cf156925dead4e1ee10be3124854c3b1e31a8643c8f9ef9043ba59f90",
++      "subsetSha256": "fd1def8e7265b76589b9d0ee1005a495c39550b7be03a2c5f9f78f72c3230873",
++      "sourceCodepoints": 396,
++      "subsetCodepoints": 219,
++      "coreRange": "U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A5-00AC, U+00AE-00BF, U+00D7, U+00E0, U+00E9, U+0300-0301, U+0303-0304, U+0308, U+0401, U+0410-044F, U+0451, U+2009, U+2013-2014, U+2018-201A, U+201C-201E, U+2022, U+2026, U+2039-203A, U+2044, U+20AC, U+2116, U+2122, U+2212",
++      "fallbackRange": "U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0490-0493, U+0496-049B, U+04A0-04A3, U+04AA-04AB, U+04AE-04B3, U+04B6-04B7, U+04BA-04BB, U+04C0-04C2, U+04CF-04DF, U+04E2-04F5, U+04F8-04F9, U+0500-0501, U+0510-0511, U+051A-051D, U+2074, U+20B4"
++    },
++    {
++      "family": "Moderustic",
++      "weight": 800,
++      "source": "moderustic-800.woff2",
++      "subset": "moderustic-800-ru-latin.d1db2d4c9e6d.woff2",
++      "sourceBytes": 20880,
++      "subsetBytes": 14592,
++      "sourceSha256": "7e6708e921b91b942700f10fb450657762c9239669626c85c0c27da68d8dbe5a",
++      "subsetSha256": "d1db2d4c9e6db34ef1ec3683911d128cc782ec3c155190146e6fc2beb0e2ad92",
++      "sourceCodepoints": 396,
++      "subsetCodepoints": 219,
++      "coreRange": "U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A5-00AC, U+00AE-00BF, U+00D7, U+00E0, U+00E9, U+0300-0301, U+0303-0304, U+0308, U+0401, U+0410-044F, U+0451, U+2009, U+2013-2014, U+2018-201A, U+201C-201E, U+2022, U+2026, U+2039-203A, U+2044, U+20AC, U+2116, U+2122, U+2212",
++      "fallbackRange": "U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0490-0493, U+0496-049B, U+04A0-04A3, U+04AA-04AB, U+04AE-04B3, U+04B6-04B7, U+04BA-04BB, U+04C0-04C2, U+04CF-04DF, U+04E2-04F5, U+04F8-04F9, U+0500-0501, U+0510-0511, U+051A-051D, U+2074, U+20B4"
+     }
+   ]
+ }
+diff --git a/scripts/prepare-hero.mjs b/scripts/prepare-hero.mjs
+index 1260383..92558d1 100644
+--- a/scripts/prepare-hero.mjs
++++ b/scripts/prepare-hero.mjs
+@@ -17,7 +17,12 @@ const width = Math.round(height * 9 / 16);
+ const crop = { left: Math.floor((metadata.width - width) / 2), top: 0, width, height };
+ const result = { sourceSha256: createHash("sha256").update(input).digest("hex"), width, height };
+ for (const format of ["avif", "webp"]) {
+-  const bytes = await sharp(input).extract(crop).toFormat(format, { quality: format === "avif" ? 45 : 60 }).toBuffer();
++  // The portrait is a darkened background, so use a smaller AVIF while keeping
++  // the same photo, dimensions and crop. The WebP compatibility file stays
++  // at its existing quality. Encoding happens offline, never during a request.
++  const bytes = await sharp(input).extract(crop).toFormat(format, format === "avif"
++    ? { quality: 35, effort: 6 }
++    : { quality: 60 }).toBuffer();
+   const hash = createHash("sha256").update(bytes).digest("hex").slice(0, 12);
+   const name = `hero-mobile.${hash}.${format}`;
+   const destination = new URL(`../public/images/home/${name}`, import.meta.url);
+diff --git a/scripts/subset-fonts.py b/scripts/subset-fonts.py
+index 946a068..cbd6be9 100644
+--- a/scripts/subset-fonts.py
++++ b/scripts/subset-fonts.py
+@@ -1,4 +1,4 @@
+-"""Build deterministic Montserrat web subsets from the existing local fonts.
++"""Build deterministic Montserrat and Moderustic web subsets from local fonts.
+ 
+ Regeneration only: pip install -r scripts/font-tools-requirements.txt
+ Then: python scripts/subset-fonts.py [--check]
+@@ -79,8 +79,10 @@ def main():
+     faces, manifest = [], {"fontToolsVersion": fontTools.__version__, "fonts": []}
+     if not args.check:
+         TARGET.mkdir(parents=True, exist_ok=True)
+-    for weight in [400, 500, 600, 700]:
+-        source = FONTS / f"montserrat-{weight}.woff2"
++    font_variants = [("Montserrat", weight) for weight in [400, 500, 600, 700]]
++    font_variants += [("Moderustic", weight) for weight in [300, 400, 500, 600, 700, 800]]
++    for family, weight in font_variants:
++        source = FONTS / f"{family.lower()}-{weight}.woff2"
+         original = TTFont(source, recalcTimestamp=False)
+         all_codes = set(original.getBestCmap())
+         core = {c for c in all_codes if any(a <= c <= b for a, b in CORE_RANGES)}
+@@ -103,7 +105,7 @@ def main():
+         payload = buffer.getvalue()
+         verify_metrics(original, TTFont(io.BytesIO(payload)), core)
+         digest = hashlib.sha256(payload).hexdigest()[:12]
+-        filename = f"montserrat-{weight}-ru-latin.{digest}.woff2"
++        filename = f"{family.lower()}-{weight}-ru-latin.{digest}.woff2"
+         target = TARGET / filename
+         if args.check:
+             assert target.read_bytes() == payload, f"Regenerate {target}"
+@@ -111,7 +113,7 @@ def main():
+             target.write_bytes(payload)
+         for src, points in [(f"/fonts/{source.name}", extended), (f"/fonts/subsets/{filename}", core)]:
+             faces.append(f'''@font-face {{
+-  font-family: "Montserrat";
++  font-family: "{family}";
+   font-weight: {weight};
+   font-style: normal;
+   font-display: swap;
+@@ -119,7 +121,7 @@ def main():
+   unicode-range: {unicode_range(points)};
+ }}''')
+         manifest["fonts"].append({
+-            "weight": weight, "source": source.name, "subset": filename,
++            "family": family, "weight": weight, "source": source.name, "subset": filename,
+             "sourceBytes": source.stat().st_size, "subsetBytes": len(payload),
+             "sourceSha256": hashlib.sha256(source.read_bytes()).hexdigest(),
+             "subsetSha256": hashlib.sha256(payload).hexdigest(),
+diff --git a/src/app/font-subsets.css b/src/app/font-subsets.css
+index 70a6a37..bb6af18 100644
+--- a/src/app/font-subsets.css
++++ b/src/app/font-subsets.css
+@@ -63,3 +63,99 @@
+   src: url("/fonts/subsets/montserrat-700-ru-latin.f85509486bd8.woff2") format("woff2");
+   unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00BF, U+00D7, U+00E0, U+00E9, U+0300-0304, U+0306-030C, U+030F, U+0311-0312, U+031B, U+0323-0324, U+0326-0328, U+032E, U+0331, U+0335-0338, U+0401, U+0410-044F, U+0451, U+2007-200B, U+2010, U+2012-2015, U+2018-201A, U+201C-201E, U+2020-2022, U+2026, U+2030, U+2032-2033, U+2039-203A, U+2044, U+2052, U+20AC, U+20BD, U+2116, U+2122, U+2190-2199, U+2212;
+ }
++@font-face {
++  font-family: "Moderustic";
++  font-weight: 300;
++  font-style: normal;
++  font-display: swap;
++  src: url("/fonts/moderustic-300.woff2") format("woff2");
++  unicode-range: U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0490-0493, U+0496-049B, U+04A0-04A3, U+04AA-04AB, U+04AE-04B3, U+04B6-04B7, U+04BA-04BB, U+04C0-04C2, U+04CF-04DF, U+04E2-04F5, U+04F8-04F9, U+0500-0501, U+0510-0511, U+051A-051D, U+2074, U+20B4;
++}
++@font-face {
++  font-family: "Moderustic";
++  font-weight: 300;
++  font-style: normal;
++  font-display: swap;
++  src: url("/fonts/subsets/moderustic-300-ru-latin.c7a504b07f25.woff2") format("woff2");
++  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A5-00AC, U+00AE-00BF, U+00D7, U+00E0, U+00E9, U+0300-0301, U+0303-0304, U+0308, U+0401, U+0410-044F, U+0451, U+2009, U+2013-2014, U+2018-201A, U+201C-201E, U+2022, U+2026, U+2039-203A, U+2044, U+20AC, U+2116, U+2122, U+2212;
++}
++@font-face {
++  font-family: "Moderustic";
++  font-weight: 400;
++  font-style: normal;
++  font-display: swap;
++  src: url("/fonts/moderustic-400.woff2") format("woff2");
++  unicode-range: U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0490-0493, U+0496-049B, U+04A0-04A3, U+04AA-04AB, U+04AE-04B3, U+04B6-04B7, U+04BA-04BB, U+04C0-04C2, U+04CF-04DF, U+04E2-04F5, U+04F8-04F9, U+0500-0501, U+0510-0511, U+051A-051D, U+2074, U+20B4;
++}
++@font-face {
++  font-family: "Moderustic";
++  font-weight: 400;
++  font-style: normal;
++  font-display: swap;
++  src: url("/fonts/subsets/moderustic-400-ru-latin.3874d33939e5.woff2") format("woff2");
++  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A5-00AC, U+00AE-00BF, U+00D7, U+00E0, U+00E9, U+0300-0301, U+0303-0304, U+0308, U+0401, U+0410-044F, U+0451, U+2009, U+2013-2014, U+2018-201A, U+201C-201E, U+2022, U+2026, U+2039-203A, U+2044, U+20AC, U+2116, U+2122, U+2212;
++}
++@font-face {
++  font-family: "Moderustic";
++  font-weight: 500;
++  font-style: normal;
++  font-display: swap;
++  src: url("/fonts/moderustic-500.woff2") format("woff2");
++  unicode-range: U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0490-0493, U+0496-049B, U+04A0-04A3, U+04AA-04AB, U+04AE-04B3, U+04B6-04B7, U+04BA-04BB, U+04C0-04C2, U+04CF-04DF, U+04E2-04F5, U+04F8-04F9, U+0500-0501, U+0510-0511, U+051A-051D, U+2074, U+20B4;
++}
++@font-face {
++  font-family: "Moderustic";
++  font-weight: 500;
++  font-style: normal;
++  font-display: swap;
++  src: url("/fonts/subsets/moderustic-500-ru-latin.2f8413c7dbdd.woff2") format("woff2");
++  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A5-00AC, U+00AE-00BF, U+00D7, U+00E0, U+00E9, U+0300-0301, U+0303-0304, U+0308, U+0401, U+0410-044F, U+0451, U+2009, U+2013-2014, U+2018-201A, U+201C-201E, U+2022, U+2026, U+2039-203A, U+2044, U+20AC, U+2116, U+2122, U+2212;
++}
++@font-face {
++  font-family: "Moderustic";
++  font-weight: 600;
++  font-style: normal;
++  font-display: swap;
++  src: url("/fonts/moderustic-600.woff2") format("woff2");
++  unicode-range: U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0490-0493, U+0496-049B, U+04A0-04A3, U+04AA-04AB, U+04AE-04B3, U+04B6-04B7, U+04BA-04BB, U+04C0-04C2, U+04CF-04DF, U+04E2-04F5, U+04F8-04F9, U+0500-0501, U+0510-0511, U+051A-051D, U+2074, U+20B4;
++}
++@font-face {
++  font-family: "Moderustic";
++  font-weight: 600;
++  font-style: normal;
++  font-display: swap;
++  src: url("/fonts/subsets/moderustic-600-ru-latin.a6e2795c4626.woff2") format("woff2");
++  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A5-00AC, U+00AE-00BF, U+00D7, U+00E0, U+00E9, U+0300-0301, U+0303-0304, U+0308, U+0401, U+0410-044F, U+0451, U+2009, U+2013-2014, U+2018-201A, U+201C-201E, U+2022, U+2026, U+2039-203A, U+2044, U+20AC, U+2116, U+2122, U+2212;
++}
++@font-face {
++  font-family: "Moderustic";
++  font-weight: 700;
++  font-style: normal;
++  font-display: swap;
++  src: url("/fonts/moderustic-700.woff2") format("woff2");
++  unicode-range: U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0490-0493, U+0496-049B, U+04A0-04A3, U+04AA-04AB, U+04AE-04B3, U+04B6-04B7, U+04BA-04BB, U+04C0-04C2, U+04CF-04DF, U+04E2-04F5, U+04F8-04F9, U+0500-0501, U+0510-0511, U+051A-051D, U+2074, U+20B4;
++}
++@font-face {
++  font-family: "Moderustic";
++  font-weight: 700;
++  font-style: normal;
++  font-display: swap;
++  src: url("/fonts/subsets/moderustic-700-ru-latin.fd1def8e7265.woff2") format("woff2");
++  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A5-00AC, U+00AE-00BF, U+00D7, U+00E0, U+00E9, U+0300-0301, U+0303-0304, U+0308, U+0401, U+0410-044F, U+0451, U+2009, U+2013-2014, U+2018-201A, U+201C-201E, U+2022, U+2026, U+2039-203A, U+2044, U+20AC, U+2116, U+2122, U+2212;
++}
++@font-face {
++  font-family: "Moderustic";
++  font-weight: 800;
++  font-style: normal;
++  font-display: swap;
++  src: url("/fonts/moderustic-800.woff2") format("woff2");
++  unicode-range: U+00C0-00D6, U+00D8-00DF, U+00E1-00E8, U+00EA-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0400, U+0402-040F, U+0450, U+0452-045F, U+0490-0493, U+0496-049B, U+04A0-04A3, U+04AA-04AB, U+04AE-04B3, U+04B6-04B7, U+04BA-04BB, U+04C0-04C2, U+04CF-04DF, U+04E2-04F5, U+04F8-04F9, U+0500-0501, U+0510-0511, U+051A-051D, U+2074, U+20B4;
++}
++@font-face {
++  font-family: "Moderustic";
++  font-weight: 800;
++  font-style: normal;
++  font-display: swap;
++  src: url("/fonts/subsets/moderustic-800-ru-latin.d1db2d4c9e6d.woff2") format("woff2");
++  unicode-range: U+0000, U+000D, U+0020-007E, U+00A0-00A3, U+00A5-00AC, U+00AE-00BF, U+00D7, U+00E0, U+00E9, U+0300-0301, U+0303-0304, U+0308, U+0401, U+0410-044F, U+0451, U+2009, U+2013-2014, U+2018-201A, U+201C-201E, U+2022, U+2026, U+2039-203A, U+2044, U+20AC, U+2116, U+2122, U+2212;
++}
+diff --git a/src/app/globals.css b/src/app/globals.css
+index 236e716..7340c88 100644
+--- a/src/app/globals.css
++++ b/src/app/globals.css
+@@ -22,50 +22,7 @@
+   .cabin-photo-enter { animation: none; }
+ }
+ 
+-/* Local self-hosted fonts */
+-@font-face {
+-  font-family: "Moderustic";
+-  font-weight: 300;
+-  font-style: normal;
+-  font-display: swap;
+-  src: url("/fonts/moderustic-300.woff2") format("woff2");
+-}
+-@font-face {
+-  font-family: "Moderustic";
+-  font-weight: 400;
+-  font-style: normal;
+-  font-display: swap;
+-  src: url("/fonts/moderustic-400.woff2") format("woff2");
+-}
+-@font-face {
+-  font-family: "Moderustic";
+-  font-weight: 500;
+-  font-style: normal;
+-  font-display: swap;
+-  src: url("/fonts/moderustic-500.woff2") format("woff2");
+-}
+-@font-face {
+-  font-family: "Moderustic";
+-  font-weight: 600;
+-  font-style: normal;
+-  font-display: swap;
+-  src: url("/fonts/moderustic-600.woff2") format("woff2");
+-}
+-@font-face {
+-  font-family: "Moderustic";
+-  font-weight: 700;
+-  font-style: normal;
+-  font-display: swap;
+-  src: url("/fonts/moderustic-700.woff2") format("woff2");
+-}
+-@font-face {
+-  font-family: "Moderustic";
+-  font-weight: 800;
+-  font-style: normal;
+-  font-display: swap;
+-  src: url("/fonts/moderustic-800.woff2") format("woff2");
+-}
+-
++/* Local font faces and full-character fallbacks live in font-subsets.css. */
+ :root {
+   --bg-canvas: #102219;
+   --bg-surface: #173024;
+diff --git a/src/components/CabinShowcase.tsx b/src/components/CabinShowcase.tsx
+index ce59633..5f3fd6c 100644
+--- a/src/components/CabinShowcase.tsx
++++ b/src/components/CabinShowcase.tsx
+@@ -92,7 +92,7 @@ export function CabinShowcase() {
+               <div
+                 key={currentPhoto.src}
+                 className={`relative h-full w-full ${photoIdx !== 0 || activeCabinIdx !== 0 ? "cabin-photo-enter" : ""}`}
+-              ><Image src={currentPhoto.src} alt={currentPhoto.alt} fill sizes="(min-width: 1024px) 65vw, 100vw" loading="lazy" className="object-cover" /></div>
++              ><Image src={currentPhoto.src} alt={currentPhoto.alt} fill sizes="(min-width: 1400px) 742px, (min-width: 1024px) calc(58.333333vw - 75.333333px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)" loading="lazy" className="object-cover" /></div>
+ 
+             <button
+               type="button"
+diff --git a/src/components/CleanHashScroll.tsx b/src/components/CleanHashScroll.tsx
+index e9db463..af36247 100644
+--- a/src/components/CleanHashScroll.tsx
++++ b/src/components/CleanHashScroll.tsx
+@@ -6,11 +6,17 @@ import { activateKonturBookingSection } from "@/lib/kontur-hotel";
+ 
+ const PENDING_SCROLL_KEY = "hyzhina_scroll_target";
+ 
++function openPetsQuestion() {
++  const question = document.querySelector<HTMLDetailsElement>("#faq-pets");
++  if (question && !question.open) question.open = true;
++}
++
+ export function scrollToSectionById(id: string): boolean {
+   if (typeof document === "undefined" || typeof window === "undefined") {
+     return false;
+   }
+   if (id === "faq-pets") {
++    openPetsQuestion();
+     window.dispatchEvent(new CustomEvent("hyzhina:open-faq", { detail: "pets" }));
+     document.querySelector<HTMLElement>("#faq-pets summary")?.focus({ preventScroll: true });
+   }
+@@ -84,6 +90,16 @@ export function CleanHashScroll() {
+   const pathname = usePathname();
+   const router = useRouter();
+ 
++  // FAQ markup stays entirely server-rendered. This existing navigation
++  // controller also handles the optional public event used by Pet Friendly.
++  useEffect(() => {
++    const openQuestion = (event: Event) => {
++      if ((event as CustomEvent<string>).detail === "pets") openPetsQuestion();
++    };
++    window.addEventListener("hyzhina:open-faq", openQuestion);
++    return () => window.removeEventListener("hyzhina:open-faq", openQuestion);
++  }, []);
++
+   // Handle initial hash in URL or pending cross-page section scroll
+   useEffect(() => {
+     let targetId: string | null = null;
+diff --git a/src/components/FaqAccordion.tsx b/src/components/FaqAccordion.tsx
+index aa91942..f03e3c1 100644
+--- a/src/components/FaqAccordion.tsx
++++ b/src/components/FaqAccordion.tsx
+@@ -1,22 +1,6 @@
+-"use client";
+-
+-import { useEffect } from "react";
+ import { HOME_FAQ } from "@/data/home";
+ 
+ export function FaqAccordion() {
+-  useEffect(() => {
+-    function openPets() {
+-      const question = document.querySelector<HTMLDetailsElement>("#faq-pets");
+-      if (question) question.open = true;
+-    }
+-    function openQuestion(event: Event) {
+-      if ((event as CustomEvent<string>).detail === "pets") openPets();
+-    }
+-    window.addEventListener("hyzhina:open-faq", openQuestion);
+-    if (window.location.hash === "#faq-pets") openPets();
+-    return () => window.removeEventListener("hyzhina:open-faq", openQuestion);
+-  }, []);
+-
+   return <div className="grid items-start gap-3 md:grid-cols-2">
+     {HOME_FAQ.map(item => <details
+       name="home-faq"
+diff --git a/src/components/HomeSections.tsx b/src/components/HomeSections.tsx
+index 493e8e0..77ed737 100644
+--- a/src/components/HomeSections.tsx
++++ b/src/components/HomeSections.tsx
+@@ -26,7 +26,7 @@ export function HomeBenefits() {
+       <h2 className="mt-3 max-w-3xl font-moderustic text-3xl font-bold sm:text-4xl">Заботимся о вашем комфорте</h2>
+       <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+         {benefits.map(b => <Link key={b.title} href={b.href} className={`group relative isolate flex min-h-64 flex-col justify-between overflow-hidden rounded-2xl border border-[#d6c7b1] p-6 transition hover:-translate-y-1 hover:shadow-lg ${b.image ? "min-h-80 bg-[#213d31] text-[#f3eee3] lg:row-span-2 lg:min-h-full" : "bg-[#faf7f0]"}`}>
+-          {b.image && <><Image fill quality={60} fetchPriority="low" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" src={b.image} alt="Лес и горы Архыза в тумане" loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-105"/><div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/35 to-[#06130d]/30"/></>}
++          {b.image && <><Image fill quality={60} fetchPriority="low" sizes="(min-width: 1024px) 33vw, (min-width: 640px) calc(50vw - 34px), calc(100vw - 34px)" src={b.image} alt="Лес и горы Архыза в тумане" loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-105"/><div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/35 to-[#06130d]/30"/></>}
+           <div className="flex items-start justify-between gap-4"><span className={`text-xs uppercase tracking-widest ${b.image ? "text-[#e5ecdf]" : "opacity-80"}`}>{b.note}</span><b.icon size={48} weight="thin" className="shrink-0 opacity-75" /></div>
+           <div className="mt-7"><h3 className="font-moderustic text-2xl font-bold">{b.title}</h3><p className={`mt-3 max-w-md text-sm leading-relaxed ${b.image ? "text-[#e5ecdf]" : "opacity-80"}`}>{b.text}</p><span className="mt-5 inline-block text-xs font-semibold">Подробнее ↗</span></div>
+         </Link>)}
+@@ -49,7 +49,7 @@ export function AudienceStories() {
+         <p className="mt-3 text-sm leading-relaxed opacity-75">Вдвоём, с семьёй или в кругу друзей. Ближе к природе и друг к другу.</p>
+       </div>
+       <div className="grid lg:grid-cols-3">{stories.map(story => <Link href={story.href} key={story.title} className={`group relative flex min-h-[420px] items-end overflow-hidden p-7 sm:p-9 lg:min-h-[660px] ${story.position}`}>
+-        <Image fill quality={60} fetchPriority="low" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" src={story.image} alt={story.alt} loading="lazy" style={{objectPosition:story.imagePosition}} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/45 to-[#06130d]/15" />
++        <Image fill quality={60} fetchPriority="low" sizes="(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)" src={story.image} alt={story.alt} loading="lazy" style={{objectPosition:story.imagePosition}} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/45 to-[#06130d]/15" />
+         <div className="relative"><h3 className="font-moderustic text-2xl font-bold">{story.title}</h3><p className="mt-4 text-sm leading-relaxed text-[#e2e8df]">{story.text}</p><span className="mt-5 inline-block text-sm font-semibold text-[#e6c7a0]">Посмотреть дом ↗</span></div>
+       </Link>)}</div>
+     </div>
+diff --git a/src/components/KonturBookingWidget.tsx b/src/components/KonturBookingWidget.tsx
+index e505bf7..2010252 100644
+--- a/src/components/KonturBookingWidget.tsx
++++ b/src/components/KonturBookingWidget.tsx
+@@ -773,7 +773,7 @@ export function KonturBookingWidget({
+             href={SITE_CONFIG.konturBookingPortalUrl}
+             target="_blank"
+             rel="noopener noreferrer"
+-            className="mt-5 inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-7 text-sm font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
++            className="mt-5 inline-flex min-h-12 max-w-full items-center justify-center rounded-full bg-[#d49a5a] px-4 py-3 text-center text-sm leading-snug font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98] sm:px-7"
+           >
+             Открыть календарь бронирования
+           </a>
+diff --git a/src/data/hero-media.json b/src/data/hero-media.json
+index f065cc3..9857632 100644
+--- a/src/data/hero-media.json
++++ b/src/data/hero-media.json
+@@ -2,6 +2,6 @@
+   "sourceSha256": "46476a6d86153d880efd2dd51b43b9bb7d44153628b49c632e663f67a0c68c0d",
+   "width": 576,
+   "height": 1024,
+-  "avif": "/images/home/hero-mobile.7dd5e3d36e8c.avif",
++  "avif": "/images/home/hero-mobile.ed0ed5f52e37.avif",
+   "webp": "/images/home/hero-mobile.3b3eafbdb33e.webp"
+ }

@@ -1,0 +1,30 @@
+[
+  {
+    "form": "mobile",
+    "scores": {
+      "performance": 92,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 3301.295,
+    "tbt": 40,
+    "cls": 0.001071997454106104,
+    "bytes": 777040,
+    "failedBestPractices": []
+  },
+  {
+    "form": "desktop",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 723.59,
+    "tbt": 0,
+    "cls": 0.004174020444794676,
+    "bytes": 902195,
+    "failedBestPractices": []
+  }
+]

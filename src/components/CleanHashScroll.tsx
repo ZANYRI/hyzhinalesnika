@@ -6,11 +6,17 @@ import { activateKonturBookingSection } from "@/lib/kontur-hotel";
 
 const PENDING_SCROLL_KEY = "hyzhina_scroll_target";
 
+function openPetsQuestion() {
+  const question = document.querySelector<HTMLDetailsElement>("#faq-pets");
+  if (question && !question.open) question.open = true;
+}
+
 export function scrollToSectionById(id: string): boolean {
   if (typeof document === "undefined" || typeof window === "undefined") {
     return false;
   }
   if (id === "faq-pets") {
+    openPetsQuestion();
     window.dispatchEvent(new CustomEvent("hyzhina:open-faq", { detail: "pets" }));
     document.querySelector<HTMLElement>("#faq-pets summary")?.focus({ preventScroll: true });
   }
@@ -83,6 +89,16 @@ export function navigateToSection(
 export function CleanHashScroll() {
   const pathname = usePathname();
   const router = useRouter();
+
+  // FAQ markup stays entirely server-rendered. This existing navigation
+  // controller also handles the optional public event used by Pet Friendly.
+  useEffect(() => {
+    const openQuestion = (event: Event) => {
+      if ((event as CustomEvent<string>).detail === "pets") openPetsQuestion();
+    };
+    window.addEventListener("hyzhina:open-faq", openQuestion);
+    return () => window.removeEventListener("hyzhina:open-faq", openQuestion);
+  }, []);
 
   // Handle initial hash in URL or pending cross-page section scroll
   useEffect(() => {

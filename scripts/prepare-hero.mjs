@@ -17,7 +17,12 @@ const width = Math.round(height * 9 / 16);
 const crop = { left: Math.floor((metadata.width - width) / 2), top: 0, width, height };
 const result = { sourceSha256: createHash("sha256").update(input).digest("hex"), width, height };
 for (const format of ["avif", "webp"]) {
-  const bytes = await sharp(input).extract(crop).toFormat(format, { quality: format === "avif" ? 45 : 60 }).toBuffer();
+  // The portrait is a darkened background, so use a smaller AVIF while keeping
+  // the same photo, dimensions and crop. The WebP compatibility file stays
+  // at its existing quality. Encoding happens offline, never during a request.
+  const bytes = await sharp(input).extract(crop).toFormat(format, format === "avif"
+    ? { quality: 35, effort: 6 }
+    : { quality: 60 }).toBuffer();
   const hash = createHash("sha256").update(bytes).digest("hex").slice(0, 12);
   const name = `hero-mobile.${hash}.${format}`;
   const destination = new URL(`../public/images/home/${name}`, import.meta.url);
