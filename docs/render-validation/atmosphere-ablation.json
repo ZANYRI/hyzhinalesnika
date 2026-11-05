@@ -1,0 +1,134 @@
+[
+  {
+    "disabled": false,
+    "lcp": {
+      "time": 2452,
+      "url": "https://hyzhinalesnika.ru/images/home/hero-mobile.7dd5e3d36e8c.avif",
+      "size": 324480
+    },
+    "blockedCanvas": 0,
+    "entries": [
+      {
+        "time": 2440,
+        "url": "",
+        "size": 46629
+      },
+      {
+        "time": 2452,
+        "url": "https://hyzhinalesnika.ru/images/home/hero-mobile.7dd5e3d36e8c.avif",
+        "size": 324480
+      }
+    ],
+    "resources": 26
+  },
+  {
+    "disabled": true,
+    "lcp": {
+      "time": 4724,
+      "url": "https://hyzhinalesnika.ru/images/home/hero-mobile.7dd5e3d36e8c.avif",
+      "size": 324480
+    },
+    "blockedCanvas": 1,
+    "entries": [
+      {
+        "time": 2692,
+        "url": "",
+        "size": 46629
+      },
+      {
+        "time": 4724,
+        "url": "https://hyzhinalesnika.ru/images/home/hero-mobile.7dd5e3d36e8c.avif",
+        "size": 324480
+      }
+    ],
+    "resources": 32
+  },
+  {
+    "disabled": false,
+    "lcp": {
+      "time": 3964,
+      "url": "https://hyzhinalesnika.ru/images/home/hero-mobile.7dd5e3d36e8c.avif",
+      "size": 324480
+    },
+    "blockedCanvas": 0,
+    "entries": [
+      {
+        "time": 2528,
+        "url": "",
+        "size": 46629
+      },
+      {
+        "time": 3964,
+        "url": "https://hyzhinalesnika.ru/images/home/hero-mobile.7dd5e3d36e8c.avif",
+        "size": 324480
+      }
+    ],
+    "resources": 32
+  },
+  {
+    "disabled": true,
+    "lcp": {
+      "time": 3524,
+      "url": "https://hyzhinalesnika.ru/images/home/hero-mobile.7dd5e3d36e8c.avif",
+      "size": 324480
+    },
+    "blockedCanvas": 1,
+    "entries": [
+      {
+        "time": 1692,
+        "url": "",
+        "size": 46629
+      },
+      {
+        "time": 3524,
+        "url": "https://hyzhinalesnika.ru/images/home/hero-mobile.7dd5e3d36e8c.avif",
+        "size": 324480
+      }
+    ],
+    "resources": 32
+  },
+  {
+    "disabled": false,
+    "lcp": {
+      "time": 3460,
+      "url": "https://hyzhinalesnika.ru/images/home/hero-mobile.7dd5e3d36e8c.avif",
+      "size": 324480
+    },
+    "blockedCanvas": 0,
+    "entries": [
+      {
+        "time": 1536,
+        "url": "",
+        "size": 46629
+      },
+      {
+        "time": 3460,
+        "url": "https://hyzhinalesnika.ru/images/home/hero-mobile.7dd5e3d36e8c.avif",
+        "size": 324480
+      }
+    ],
+    "resources": 32
+  },
+  {
+    "disabled": true,
+    "lcp": {
+      "time": 4540,
+      "url": "https://hyzhinalesnika.ru/images/home/hero-mobile.7dd5e3d36e8c.avif",
+      "size": 324480
+    },
+    "blockedCanvas": 1,
+    "entries": [
+      {
+        "time": 2280,
+        "url": "",
+        "size": 46629
+      },
+      {
+        "time": 4540,
+        "url": "https://hyzhinalesnika.ru/images/home/hero-mobile.7dd5e3d36e8c.avif",
+        "size": 324480
+      }
+    ],
+    "resources": 32
+  }
+]

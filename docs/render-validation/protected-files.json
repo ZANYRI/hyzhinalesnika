@@ -1,0 +1,52 @@
+[
+  {
+    "file": "src/data/cabins.ts",
+    "unchanged": true,
+    "sha256": "aaed76ea8814095b9b755dc77d53e8e0e64a8dfc7c00427c4e2eee9e193fc452"
+  },
+  {
+    "file": "src/data/site.ts",
+    "unchanged": true,
+    "sha256": "85ce093c1531dc6ed430118b7262427c2f414246d7bd7907068816fd316636d3"
+  },
+  {
+    "file": "src/data/legal.ts",
+    "unchanged": true,
+    "sha256": "625ff97942cb62329b9f8a224e704f2f55033c54c90213b848e05c3a37089375"
+  },
+  {
+    "file": "src/data/consents.ts",
+    "unchanged": true,
+    "sha256": "78d564532ffbd96df0afdfc712c3610dce509864419ba52d78524015b73b57c4"
+  },
+  {
+    "file": "src/data/consents-archive.ts",
+    "unchanged": true,
+    "sha256": "96f5ebdc954931bfce07dbad9c294fdf0673c8dcd6ea808e5a1a173dc25f1a7f"
+  },
+  {
+    "file": "src/lib/contact-consents.ts",
+    "unchanged": true,
+    "sha256": "b30386f2fed4782955aaf39d6001ed3f570df9e744652322c141a69f7f1d2962"
+  },
+  {
+    "file": "src/lib/contact-journal.ts",
+    "unchanged": true,
+    "sha256": "fbc32e730a6e85b737bc769c7460fdcd9ebdfc8047d8ce1b7991332483ce44d7"
+  },
+  {
+    "file": "src/components/ContactConsentFields.tsx",
+    "unchanged": true,
+    "sha256": "71956ca69557e2ba4cfc11c49457242d9ed53792bdc459ebef3d844e9b6b8af0"
+  },
+  {
+    "file": "src/components/SecurityDepositNote.tsx",
+    "unchanged": true,
+    "sha256": "6a876e46b929a4a289933c3d56002ea9b54d45f4a55e6765b1509461f0aabec6"
+  },
+  {
+    "file": "src/app/api/contact/route.ts",
+    "unchanged": true,
+    "sha256": "3aad6ba934379fb76a39cc8003737401ec7dd72d501daa9aba662d872e8ac9df"
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "path": "/dom-dlya-semi",
+    "heroInitial": [],
+    "heroAfterFooter": [],
+    "overflow": false,
+    "backToHouses": {
+      "path": "/",
+      "headingTop": 136.75
+    }
+  },
+  {
+    "path": "/dvuhetazhnyj-barnhouse",
+    "heroInitial": [],
+    "heroAfterFooter": [],
+    "overflow": false,
+    "backToHouses": {
+      "path": "/",
+      "headingTop": 151.75
+    }
+  },
+  {
+    "path": "/shale-s-vidom-na-gory",
+    "heroInitial": [],
+    "heroAfterFooter": [],
+    "overflow": false,
+    "backToHouses": {
+      "path": "/",
+      "headingTop": 151.75
+    }
+  },
+  {
+    "path": "/dining",
+    "heroInitial": [],
+    "heroAfterFooter": [],
+    "overflow": false
+  },
+  {
+    "path": "/split",
+    "heroInitial": [],
+    "heroAfterFooter": [],
+    "overflow": false
+  }
+]

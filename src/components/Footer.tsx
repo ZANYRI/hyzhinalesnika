@@ -18,7 +18,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           {/* Brand & Messengers */}
           <div className="min-w-0 md:col-span-5">
-            <Link href="/" aria-label='База отдыха "Хижина лесника" – на главную' className="inline-flex transition hover:opacity-85">
+            <Link href="/" prefetch={false} aria-label='База отдыха "Хижина лесника" – на главную' className="inline-flex transition hover:opacity-85">
               <Image
                 src="/images/brand/logo-wordmark-light.png"
                 alt='База отдыха "Хижина лесника"'
@@ -57,6 +57,7 @@ export function Footer() {
                   ) : (
                     <Link
                       href={item.href}
+                      prefetch={item.href.startsWith("/#") ? false : "auto"}
                       className="transition hover:text-[#d49a5a]"
                     >
                       {item.label}
