@@ -34,6 +34,7 @@ export function Header({ variant = "inner" }: HeaderProps) {
           {/* Brand Wordmark Logo */}
           <Link
             href="/"
+            prefetch={false}
             aria-label='База отдыха "Хижина лесника" – на главную'
             className="group flex shrink-0 items-center pl-1 focus:outline-none"
           >
@@ -52,7 +53,7 @@ export function Header({ variant = "inner" }: HeaderProps) {
             className="order-3 hidden w-full flex-wrap items-center justify-center gap-x-4 gap-y-2 md:flex xl:order-none xl:w-auto xl:flex-nowrap xl:gap-2 2xl:gap-3"
           >
             {HEADER_LINKS.map((item) => (
-              <Link key={item.target} href={item.target} onClick={() => setDrawerOpen(false)}
+              <Link key={item.target} href={item.target} prefetch={item.target.startsWith("/#") ? false : "auto"} onClick={() => setDrawerOpen(false)}
                 className="whitespace-nowrap text-xs font-medium 2xl:text-[13.5px] text-[#d6e0d9] transition hover:text-[#d49a5a] cursor-pointer"
               >
                 {item.label}</Link>
@@ -109,7 +110,7 @@ export function Header({ variant = "inner" }: HeaderProps) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-white/10 pb-5">
-              <Link href="/" onClick={() => setDrawerOpen(false)} aria-label='База отдыха "Хижина лесника" – на главную'>
+              <Link href="/" prefetch={false} onClick={() => setDrawerOpen(false)} aria-label='База отдыха "Хижина лесника" – на главную'>
               <Image
                 src="/images/brand/logo-wordmark-light.png"
                 alt='База отдыха "Хижина лесника"'
@@ -130,7 +131,7 @@ export function Header({ variant = "inner" }: HeaderProps) {
 
             <nav className="mt-6 flex flex-col gap-1">
               {HEADER_LINKS.map((item) => (
-                <Link key={item.target} href={item.target} onClick={() => setDrawerOpen(false)}
+                <Link key={item.target} href={item.target} prefetch={item.target.startsWith("/#") ? false : "auto"} onClick={() => setDrawerOpen(false)}
                   className="rounded-xl px-3 py-3 text-left font-moderustic text-base font-medium text-[#f3f5f0] transition hover:bg-[#173024] hover:text-[#d49a5a] cursor-pointer"
                 >
                   {item.label}</Link>

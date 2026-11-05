@@ -1,0 +1,80 @@
+[
+  {
+    "name": "before-1",
+    "environment": "local production build through identical HTTP/2 proxies; SDK origin restricted",
+    "scores": {
+      "performance": 90,
+      "accessibility": 100,
+      "seo": 100
+    },
+    "lcp": 3603.7219999999998,
+    "cls": 0.001071997454106104,
+    "tbt": 48,
+    "bytes": 823022
+  },
+  {
+    "name": "after-1",
+    "environment": "local production build through identical HTTP/2 proxies; SDK origin restricted",
+    "scores": {
+      "performance": 92,
+      "accessibility": 100,
+      "seo": 100
+    },
+    "lcp": 3311.507,
+    "cls": 0.001071997454106104,
+    "tbt": 21.5,
+    "bytes": 822744
+  },
+  {
+    "name": "before-2",
+    "environment": "local production build through identical HTTP/2 proxies; SDK origin restricted",
+    "scores": {
+      "performance": 90,
+      "accessibility": 100,
+      "seo": 100
+    },
+    "lcp": 3604.442,
+    "cls": 0.001071997454106104,
+    "tbt": 21,
+    "bytes": 823031
+  },
+  {
+    "name": "after-2",
+    "environment": "local production build through identical HTTP/2 proxies; SDK origin restricted",
+    "scores": {
+      "performance": 90,
+      "accessibility": 100,
+      "seo": 100
+    },
+    "lcp": 3605.541,
+    "cls": 0.001071997454106104,
+    "tbt": 30,
+    "bytes": 822715
+  },
+  {
+    "name": "before-3",
+    "environment": "local production build through identical HTTP/2 proxies; SDK origin restricted",
+    "scores": {
+      "performance": 90,
+      "accessibility": 100,
+      "seo": 100
+    },
+    "lcp": 3601.2165,
+    "cls": 0.001071997454106104,
+    "tbt": 22.5,
+    "bytes": 823021
+  },
+  {
+    "name": "after-3",
+    "environment": "local production build through identical HTTP/2 proxies; SDK origin restricted",
+    "scores": {
+      "performance": 90,
+      "accessibility": 100,
+      "seo": 100
+    },
+    "lcp": 3602.678,
+    "cls": 0.001071997454106104,
+    "tbt": 22.5,
+    "bytes": 822739
+  }
+]

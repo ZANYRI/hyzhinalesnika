@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-11-05T15:45:28.043Z",
+  "mode": "Isolated browser; own production domain routed to local production build; live public Kontur SDK; no submissions",
+  "cases": [
+    {
+      "name": "before",
+      "port": 3117,
+      "idleBooking": {
+        "heroRequests": [
+          "https://hyzhinalesnika.ru/images/home/hero-mobile.7dd5e3d36e8c.avif"
+        ],
+        "homeRscRequests": [
+          "https://hyzhinalesnika.ru/?_rsc=OaJHm5citSthPR5D",
+          "https://hyzhinalesnika.ru/?_rsc=Ul_ZwpFc9VbgGTXs"
+        ],
+        "sdkLoaded": true,
+        "prefetchedResources": [
+          {
+            "name": "https://hyzhinalesnika.ru/?_rsc=OaJHm5citSthPR5D",
+            "encodedBodySize": 330,
+            "transferSize": 630
+          },
+          {
+            "name": "https://hyzhinalesnika.ru/images/home/hero-mobile.7dd5e3d36e8c.avif",
+            "encodedBodySize": 85114,
+            "transferSize": 85414
+          },
+          {
+            "name": "https://hyzhinalesnika.ru/?_rsc=Ul_ZwpFc9VbgGTXs",
+            "encodedBodySize": 91539,
+            "transferSize": 91839
+          }
+        ]
+      },
+      "housesNavigation": {
+        "url": "https://hyzhinalesnika.ru/",
+        "bookingHeadingTop": 111.75,
+        "overflow": false,
+        "drawerClosed": true
+      },
+      "heroRequestsAfterNavigation": 1,
+      "logoNavigation": "Три уединённых дома\nв буковом лесу Архыза",
+      "pageErrors": []
+    },
+    {
+      "name": "after",
+      "port": 3120,
+      "idleBooking": {
+        "heroRequests": [],
+        "homeRscRequests": [],
+        "sdkLoaded": true,
+        "prefetchedResources": []
+      },
+      "housesNavigation": {
+        "url": "https://hyzhinalesnika.ru/",
+        "bookingHeadingTop": 111.75,
+        "overflow": false,
+        "drawerClosed": true
+      },
+      "heroRequestsAfterNavigation": 1,
+      "logoNavigation": "Три уединённых дома\nв буковом лесу Архыза",
+      "pageErrors": []
+    }
+  ]
+}

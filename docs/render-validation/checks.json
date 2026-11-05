@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-05T15:47:57.276Z",
+  "typecheck": {
+    "exitCode": 0
+  },
+  "lint": {
+    "exitCode": 0,
+    "errors": 0,
+    "existingWarnings": 3
+  },
+  "build": {
+    "status": 0,
+    "existingWarnings": 2
+  },
+  "seo": {
+    "result": "SEO PASS: 17 pages; 27 internal targets; 6 redirects; www; 404; metadata; schema; SSR FAQ; responsive hero."
+  },
+  "bookingUnit": {
+    "exitCode": 0
+  },
+  "contact": {
+    "exitCode": 0
+  },
+  "productionModified": false
+}

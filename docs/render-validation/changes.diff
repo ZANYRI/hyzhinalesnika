@@ -1,0 +1,108 @@
+diff --git a/src/app/dining/page.tsx b/src/app/dining/page.tsx
+index 358a588..7506bc7 100644
+--- a/src/app/dining/page.tsx
++++ b/src/app/dining/page.tsx
+@@ -39,7 +39,7 @@ export default function DiningPage() {
+         <span className="block px-5 py-4 text-sm font-semibold text-[#213d31]">Меню à la carte ↗</span>
+       </a>
+     </section>
+-    <section id="breakfast" className="mt-16 grid scroll-mt-28 overflow-hidden rounded-3xl bg-[#eee8dc] text-[#213d31] lg:grid-cols-2"><Image width={1500} height={889} sizes="(min-width: 1024px) 50vw, 100vw" src="/images/home/about-dining.jpg" alt="Обеденная зона домика для завтрака" loading="lazy" className="h-full min-h-72 w-full object-cover"/><div className="p-7 sm:p-10"><Coffee size={38} weight="thin"/><p className="mt-5 text-xs uppercase tracking-widest opacity-65">Утро без спешки</p><h2 className="mt-3 font-moderustic text-3xl font-bold">Завтрак в ваш домик</h2><p className="mt-5 leading-relaxed">Для завтраков с доставкой мы сотрудничаем с другим рестораном. Закажите завтрак с вечера, чтобы утром остаться в уюте своего дома.</p><ol className="mt-6 list-inside list-decimal space-y-3 text-sm leading-relaxed"><li>Свяжитесь с нами накануне вечером.</li><li>Уточните меню, количество порций, стоимость и время доставки.</li><li>Подтвердите заказ и встречайте завтрак в домике.</li></ol><p className="mt-5 text-sm leading-relaxed opacity-75">Сообщите о пищевых ограничениях при заказе. Меню и возможность доставки уточняем для выбранной даты.</p><Link href="/#help" className="mt-7 inline-block rounded-full bg-[#213d31] px-6 py-3 text-sm font-semibold text-white">Узнать о завтраке</Link></div></section>
++    <section id="breakfast" className="mt-16 grid scroll-mt-28 overflow-hidden rounded-3xl bg-[#eee8dc] text-[#213d31] lg:grid-cols-2"><Image width={1500} height={889} sizes="(min-width: 1024px) 50vw, 100vw" src="/images/home/about-dining.jpg" alt="Обеденная зона домика для завтрака" loading="lazy" className="h-full min-h-72 w-full object-cover"/><div className="p-7 sm:p-10"><Coffee size={38} weight="thin"/><p className="mt-5 text-xs uppercase tracking-widest opacity-65">Утро без спешки</p><h2 className="mt-3 font-moderustic text-3xl font-bold">Завтрак в ваш домик</h2><p className="mt-5 leading-relaxed">Для завтраков с доставкой мы сотрудничаем с другим рестораном. Закажите завтрак с вечера, чтобы утром остаться в уюте своего дома.</p><ol className="mt-6 list-inside list-decimal space-y-3 text-sm leading-relaxed"><li>Свяжитесь с нами накануне вечером.</li><li>Уточните меню, количество порций, стоимость и время доставки.</li><li>Подтвердите заказ и встречайте завтрак в домике.</li></ol><p className="mt-5 text-sm leading-relaxed opacity-75">Сообщите о пищевых ограничениях при заказе. Меню и возможность доставки уточняем для выбранной даты.</p><Link href="/#help" prefetch={false} className="mt-7 inline-block rounded-full bg-[#213d31] px-6 py-3 text-sm font-semibold text-white">Узнать о завтраке</Link></div></section>
+     <BookingAssistance />
+   </ContentPage>}</>;
+ }
+diff --git a/src/app/split/page.tsx b/src/app/split/page.tsx
+index 2e91f08..86d49f8 100644
+--- a/src/app/split/page.tsx
++++ b/src/app/split/page.tsx
+@@ -17,7 +17,7 @@ const steps = [
+ 
+ export default function SplitPage() {
+   return <><PageStructuredData metadata={metadata} />{<ContentPage title="Отдых сейчас, оплата частями" eyebrow="Яндекс Сплит" description="Планируйте поездку в Архыз и распределяйте оплату отдыха на несколько платежей. Поможем подобрать дом и оформить бронирование.">
+-    <section className="grid gap-8 rounded-3xl bg-[#eee8dc] p-7 text-[#213d31] sm:p-12 lg:grid-cols-2"><div><SplitMark/><h2 className="mt-7 font-moderustic text-3xl font-bold sm:text-4xl">Больше времени для отдыха</h2><p className="mt-5 leading-relaxed">Можно оформить оплату проживания частями через Яндекс Сплит на срок до 6 месяцев. Условия вашего бронирования уточнит менеджер; доступный вариант оплаты и точный график отобразятся при оформлении.</p><Link href="/#help" className="mt-7 inline-block rounded-full bg-[#213d31] px-6 py-4 text-sm font-semibold text-white">Связаться с менеджером</Link></div><div className="flex flex-col justify-center rounded-2xl border border-[#c9bda9] p-6"><p className="font-moderustic text-2xl font-bold">Все условия до подтверждения</p><p className="mt-4 leading-relaxed">Доступность сервиса и лимит Яндекс определяет индивидуально. До оплаты вы увидите итоговую сумму, размер первого платежа и даты следующих списаний.</p><a href="https://yandex.ru/support/split/ru/conditions" target="_blank" rel="noopener noreferrer" className="mt-5 text-sm underline underline-offset-4">Условия сервиса Яндекс Сплит ↗</a></div></section>
++    <section className="grid gap-8 rounded-3xl bg-[#eee8dc] p-7 text-[#213d31] sm:p-12 lg:grid-cols-2"><div><SplitMark/><h2 className="mt-7 font-moderustic text-3xl font-bold sm:text-4xl">Больше времени для отдыха</h2><p className="mt-5 leading-relaxed">Можно оформить оплату проживания частями через Яндекс Сплит на срок до 6 месяцев. Условия вашего бронирования уточнит менеджер; доступный вариант оплаты и точный график отобразятся при оформлении.</p><Link href="/#help" prefetch={false} className="mt-7 inline-block rounded-full bg-[#213d31] px-6 py-4 text-sm font-semibold text-white">Связаться с менеджером</Link></div><div className="flex flex-col justify-center rounded-2xl border border-[#c9bda9] p-6"><p className="font-moderustic text-2xl font-bold">Все условия до подтверждения</p><p className="mt-4 leading-relaxed">Доступность сервиса и лимит Яндекс определяет индивидуально. До оплаты вы увидите итоговую сумму, размер первого платежа и даты следующих списаний.</p><a href="https://yandex.ru/support/split/ru/conditions" target="_blank" rel="noopener noreferrer" className="mt-5 text-sm underline underline-offset-4">Условия сервиса Яндекс Сплит ↗</a></div></section>
+     <section className="mt-16"><h2 className="font-moderustic text-3xl font-bold">Четыре шага до вашей поездки</h2><ol className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{steps.map((step,i)=><li key={step.title} className="rounded-2xl border border-white/10 bg-[#173024] p-6"><span className="text-sm text-[#d49a5a]">0{i+1}</span><h3 className="mt-6 font-moderustic text-xl font-bold">{step.title}</h3><p className="mt-4 text-sm leading-relaxed text-[#bdcfc3]">{step.text}</p></li>)}</ol></section>
+     <section className="mt-16 max-w-3xl"><h2 className="mb-6 font-moderustic text-3xl font-bold">Частые вопросы о Сплите</h2>{[
+       {q:"Каким будет первый платёж?",a:"Сумма первого платежа и полный график отобразятся на странице оформления. Ознакомьтесь с ними перед подтверждением."},
+diff --git a/src/components/CabinDetailView.tsx b/src/components/CabinDetailView.tsx
+index 1359b80..c4825f8 100644
+--- a/src/components/CabinDetailView.tsx
++++ b/src/components/CabinDetailView.tsx
+@@ -14,7 +14,7 @@ export function CabinDetailView({cabin}:{cabin:CabinData}) {
+     <Header variant="inner" />
+     <main className="pt-10 pb-10 sm:pt-16">
+       <section className="mx-auto max-w-[1400px] px-4 sm:px-6">
+-        <Link href="/#cabins" className="inline-flex items-center gap-2 text-xs text-[#a8b9ae] hover:text-[#d49a5a]"><ArrowLeft size={14}/>Все дома</Link>
++        <Link href="/#cabins" prefetch={false} className="inline-flex items-center gap-2 text-xs text-[#a8b9ae] hover:text-[#d49a5a]"><ArrowLeft size={14}/>Все дома</Link>
+         <div className="mt-8 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+           <div><p className="text-xs uppercase tracking-[0.2em] text-[#d49a5a]">Архыз · Хижина лесника</p><h1 className="mt-4 font-moderustic text-4xl font-bold leading-tight sm:text-6xl lg:text-7xl">{cabin.cardTitle}</h1><p className="mt-4 max-w-2xl leading-relaxed text-[#a8b9ae]">{cabin.cardSubtitle}</p></div>
+         </div>
+@@ -52,7 +52,7 @@ export function CabinDetailView({cabin}:{cabin:CabinData}) {
+       </section>
+       <section id="stay-rules" className="mt-20 scroll-mt-28 bg-[#eee8dc] py-14 text-[#213d31] sm:py-20"><div className="mx-auto max-w-[1400px] px-4 sm:px-6"><p className="text-xs uppercase tracking-[0.2em] text-[#9a714c]">Перед поездкой</p><h2 className="mt-3 font-moderustic text-3xl font-bold">Условия спокойного отдыха</h2><div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{BOOKING_RULES.map(rule=><article key={rule.title} className="rounded-2xl border border-[#c9bda9] p-6"><Image src={rule.icon} alt="" width={40} height={40} loading="lazy" className="mb-5 h-10 w-10"/><h3 className="font-moderustic text-lg font-bold">{rule.title}</h3><p className="mt-3 text-sm leading-relaxed opacity-75">{rule.text}</p></article>)}</div><p className="mt-6 flex items-center gap-2 text-sm"><Clock size={18}/>Заезд с 15:00 · выезд до 11:00</p><Link href="/oferta" className="mt-4 inline-block text-xs underline">Полные условия бронирования</Link></div></section>
+       <BookingAssistance/>
+-      <section className="mx-auto mt-20 max-w-[1400px] px-4 sm:px-6"><div className="flex flex-wrap items-end justify-between gap-4"><h2 className="font-moderustic text-3xl font-bold">Ещё два повода приехать</h2><Link href="/#cabins" className="text-sm text-[#d49a5a]">Все дома ↗</Link></div><div className="mt-8 grid gap-5 md:grid-cols-2">{CABIN_LIST.filter(other=>other.id!==cabin.id).map(other=><Link key={other.id} href={other.slug} className="group overflow-hidden rounded-3xl border border-white/10 bg-[#173024]"><div className="relative aspect-[16/9] overflow-hidden"><Image fill sizes="(min-width: 768px) 50vw, 100vw" src={other.cardImage} alt={other.cardImageAlt} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105"/></div><div className="p-6"><p className="text-xs text-[#a8b9ae]">{other.cardArea} · {other.cardGuests}</p><div className="mt-3 flex flex-wrap items-center justify-between gap-3"><h3 className="font-moderustic text-2xl font-bold">{other.cardTitle}</h3><ArrowUpRight size={22} className="text-[#d49a5a]"/></div><p className="mt-3 text-sm text-[#d49a5a]">{other.cardPrice}</p></div></Link>)}</div></section>
++      <section className="mx-auto mt-20 max-w-[1400px] px-4 sm:px-6"><div className="flex flex-wrap items-end justify-between gap-4"><h2 className="font-moderustic text-3xl font-bold">Ещё два повода приехать</h2><Link href="/#cabins" prefetch={false} className="text-sm text-[#d49a5a]">Все дома ↗</Link></div><div className="mt-8 grid gap-5 md:grid-cols-2">{CABIN_LIST.filter(other=>other.id!==cabin.id).map(other=><Link key={other.id} href={other.slug} className="group overflow-hidden rounded-3xl border border-white/10 bg-[#173024]"><div className="relative aspect-[16/9] overflow-hidden"><Image fill sizes="(min-width: 768px) 50vw, 100vw" src={other.cardImage} alt={other.cardImageAlt} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105"/></div><div className="p-6"><p className="text-xs text-[#a8b9ae]">{other.cardArea} · {other.cardGuests}</p><div className="mt-3 flex flex-wrap items-center justify-between gap-3"><h3 className="font-moderustic text-2xl font-bold">{other.cardTitle}</h3><ArrowUpRight size={22} className="text-[#d49a5a]"/></div><p className="mt-3 text-sm text-[#d49a5a]">{other.cardPrice}</p></div></Link>)}</div></section>
+     </main><Footer/>
+   </div>;
+ }
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index 20a9c95..2319007 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -18,7 +18,7 @@ export function Footer() {
+         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
+           {/* Brand & Messengers */}
+           <div className="min-w-0 md:col-span-5">
+-            <Link href="/" aria-label='База отдыха "Хижина лесника" – на главную' className="inline-flex transition hover:opacity-85">
++            <Link href="/" prefetch={false} aria-label='База отдыха "Хижина лесника" – на главную' className="inline-flex transition hover:opacity-85">
+               <Image
+                 src="/images/brand/logo-wordmark-light.png"
+                 alt='База отдыха "Хижина лесника"'
+@@ -57,6 +57,7 @@ export function Footer() {
+                   ) : (
+                     <Link
+                       href={item.href}
++                      prefetch={item.href.startsWith("/#") ? false : "auto"}
+                       className="transition hover:text-[#d49a5a]"
+                     >
+                       {item.label}
+diff --git a/src/components/Header.tsx b/src/components/Header.tsx
+index d5254a7..fae1281 100644
+--- a/src/components/Header.tsx
++++ b/src/components/Header.tsx
+@@ -34,6 +34,7 @@ export function Header({ variant = "inner" }: HeaderProps) {
+           {/* Brand Wordmark Logo */}
+           <Link
+             href="/"
++            prefetch={false}
+             aria-label='База отдыха "Хижина лесника" – на главную'
+             className="group flex shrink-0 items-center pl-1 focus:outline-none"
+           >
+@@ -52,7 +53,7 @@ export function Header({ variant = "inner" }: HeaderProps) {
+             className="order-3 hidden w-full flex-wrap items-center justify-center gap-x-4 gap-y-2 md:flex xl:order-none xl:w-auto xl:flex-nowrap xl:gap-2 2xl:gap-3"
+           >
+             {HEADER_LINKS.map((item) => (
+-              <Link key={item.target} href={item.target} onClick={() => setDrawerOpen(false)}
++              <Link key={item.target} href={item.target} prefetch={item.target.startsWith("/#") ? false : "auto"} onClick={() => setDrawerOpen(false)}
+                 className="whitespace-nowrap text-xs font-medium 2xl:text-[13.5px] text-[#d6e0d9] transition hover:text-[#d49a5a] cursor-pointer"
+               >
+                 {item.label}</Link>
+@@ -109,7 +110,7 @@ export function Header({ variant = "inner" }: HeaderProps) {
+             onClick={(e) => e.stopPropagation()}
+           >
+             <div className="flex items-center justify-between border-b border-white/10 pb-5">
+-              <Link href="/" onClick={() => setDrawerOpen(false)} aria-label='База отдыха "Хижина лесника" – на главную'>
++              <Link href="/" prefetch={false} onClick={() => setDrawerOpen(false)} aria-label='База отдыха "Хижина лесника" – на главную'>
+               <Image
+                 src="/images/brand/logo-wordmark-light.png"
+                 alt='База отдыха "Хижина лесника"'
+@@ -130,7 +131,7 @@ export function Header({ variant = "inner" }: HeaderProps) {
+ 
+             <nav className="mt-6 flex flex-col gap-1">
+               {HEADER_LINKS.map((item) => (
+-                <Link key={item.target} href={item.target} onClick={() => setDrawerOpen(false)}
++                <Link key={item.target} href={item.target} prefetch={item.target.startsWith("/#") ? false : "auto"} onClick={() => setDrawerOpen(false)}
+                   className="rounded-xl px-3 py-3 text-left font-moderustic text-base font-medium text-[#f3f5f0] transition hover:bg-[#173024] hover:text-[#d49a5a] cursor-pointer"
+                 >
+                   {item.label}</Link>

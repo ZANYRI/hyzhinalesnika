@@ -1,0 +1,31 @@
+[
+  {
+    "path": "/dom-dlya-semi",
+    "heroInitial": [],
+    "heroAfterFooter": []
+  },
+  {
+    "path": "/dvuhetazhnyj-barnhouse",
+    "heroInitial": [],
+    "heroAfterFooter": []
+  },
+  {
+    "path": "/shale-s-vidom-na-gory",
+    "heroInitial": [],
+    "heroAfterFooter": []
+  },
+  {
+    "path": "/dining",
+    "heroInitial": [],
+    "heroAfterFooter": []
+  },
+  {
+    "path": "/split",
+    "heroInitial": [
+      "http://localhost:3120/images/home/hero-mobile.7dd5e3d36e8c.avif"
+    ],
+    "heroAfterFooter": [
+      "http://localhost:3120/images/home/hero-mobile.7dd5e3d36e8c.avif"
+    ]
+  }
+]
