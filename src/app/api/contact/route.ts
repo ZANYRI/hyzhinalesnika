@@ -3,8 +3,6 @@ import { randomUUID } from "node:crypto";
 import { validateContactConsents, consentEvidence, ConsentValidationError } from "@/lib/contact-consents";
 import { recordContactEvent } from "@/lib/contact-journal";
 
-export const runtime = "nodejs";
-
 function clean(value: unknown, length: number) {
   return typeof value === "string" ? value.replace(/[\u0000-\u001f\u007f]/g, " ").trim().slice(0, length) : "";
 }
