@@ -39,6 +39,13 @@ export interface CabinData {
   introHighlightWord?: string;
   specs: CabinSpecRow[];
   gallery: { src: string; alt: string }[];
+  videoTour?: {
+    title: string;
+    src: string;
+    poster: string;
+    width: number;
+    height: number;
+  };
   otherVariants: OtherCabinVariant[];
 }
 
@@ -150,6 +157,13 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
       },
     ],
     gallery: makeGallery("house", 16, 'Дом «Ива» для семьи в Архызе'),
+    videoTour: {
+      title: "Видеообзор дома «Ива»",
+      src: "/videos/cabins/iva-tour.mp4",
+      poster: "/images/cabin-tours/iva-tour.webp",
+      width: 720,
+      height: 1186,
+    },
     otherVariants: [
       {
         id: "bereza",
@@ -251,6 +265,13 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
       },
     ],
     gallery: makeGallery("barnhouse", 23, 'Двухэтажный дом «Берёза» Barnhouse'),
+    videoTour: {
+      title: "Видеообзор барнхауса «Берёза»",
+      src: "/videos/cabins/bereza-tour.mp4",
+      poster: "/images/cabin-tours/bereza-tour.webp",
+      width: 720,
+      height: 1280,
+    },
     otherVariants: [
       {
         id: "iva",

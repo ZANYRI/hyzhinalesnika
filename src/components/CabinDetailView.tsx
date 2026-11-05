@@ -20,6 +20,20 @@ export function CabinDetailView({cabin}:{cabin:CabinData}) {
         <div className="mt-7 mb-8 flex flex-wrap gap-x-7 gap-y-3 text-xs text-[#d6e0d9] sm:text-sm"><span className="inline-flex items-center gap-2"><Users size={19} className="text-[#d49a5a]"/>{cabin.cardGuests}</span><span className="inline-flex items-center gap-2"><Ruler size={19} className="text-[#d49a5a]"/>{cabin.cardArea}</span><span className="inline-flex items-center gap-2"><DoorOpen size={19} className="text-[#d49a5a]"/>{cabin.cardBedrooms}</span><span className="inline-flex items-center gap-2"><PawPrint size={19} className="text-[#d49a5a]"/>Можно с питомцами</span></div>
         <CabinGallerySlider images={photos}/>
       </section>
+      {cabin.videoTour && <section aria-labelledby="cabin-video-heading" className="mx-auto mt-14 max-w-[1400px] px-4 sm:px-6">
+        <div className="grid items-center gap-8 rounded-[2rem] border border-white/10 bg-[#173024] p-6 sm:p-9 lg:grid-cols-[1fr_minmax(0,24rem)] lg:gap-14 lg:p-12">
+          <div className="max-w-xl">
+            <p className="text-xs uppercase tracking-[0.2em] text-[#d49a5a]">Знакомство до поездки</p>
+            <h2 id="cabin-video-heading" className="mt-4 font-moderustic text-3xl font-bold sm:text-4xl">{cabin.videoTour.title}</h2>
+            <p className="mt-5 leading-relaxed text-[#b7c6bd]">Посмотрите, как устроен дом: пройдитесь по комнатам, загляните на террасу и почувствуйте атмосферу вашего будущего отдыха.</p>
+            <p className="mt-4 text-sm leading-relaxed text-[#a8b9ae]">Включите обзор в удобное время. Видео можно развернуть на весь экран.</p>
+          </div>
+          <video controls playsInline preload="none" poster={cabin.videoTour.poster} width={cabin.videoTour.width} height={cabin.videoTour.height} aria-label={cabin.videoTour.title} className="mx-auto max-h-[75vh] w-full max-w-sm rounded-2xl bg-[#0b1710] object-contain">
+            <source src={cabin.videoTour.src} type="video/mp4"/>
+            Ваш браузер не поддерживает воспроизведение видео. <a href={cabin.videoTour.src}>Открыть видеообзор</a>.
+          </video>
+        </div>
+      </section>}
       <section className="mx-auto mt-14 grid max-w-[1400px] items-start gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-8">
           <div id="description" className="scroll-mt-28"><p className="text-xs uppercase tracking-[0.2em] text-[#d49a5a]">Место для вашей истории</p><h2 className="mt-4 font-moderustic text-3xl font-bold sm:text-4xl">Пространство, в котором хорошо</h2><p className="mt-6 leading-relaxed text-[#b7c6bd] sm:text-lg">{cabin.introText}</p>
