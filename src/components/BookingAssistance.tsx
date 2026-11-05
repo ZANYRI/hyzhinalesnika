@@ -1,21 +1,28 @@
 "use client";
-import Link from "next/link";
+import { ContactConsentFields } from "./ContactConsentFields";
+import { contactConsentSelection } from "@/data/consents";
 import { useState } from "react";
 import { TreeEvergreen } from "@phosphor-icons/react";
 import { SITE_CONFIG } from "@/data/site";
 
 export function BookingAssistance() {
   const [status, setStatus] = useState<"idle"|"sending"|"sent"|"error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
+    if (data.get("callbackConsent") !== "on") return;
+    setErrorMessage("");
     setStatus("sending");
     try {
-      const response = await fetch("/api/contact", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:data.get("name"),phone:data.get("phone"),source:"Подбор дома на главной"})});
-      if (!response.ok) throw new Error("Delivery failed");
+      const response = await fetch("/api/contact", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:data.get("name"),phone:data.get("phone"),source:"Помощь с подбором дома",consents:contactConsentSelection(data)})});
+      if (!response.ok) {
+        const result = await response.json().catch(() => null);
+        throw new Error(result?.error || "Не удалось отправить заявку. Пожалуйста, позвоните нам.");
+      }
       setStatus("sent"); form.reset();
-    } catch { setStatus("error"); }
+    } catch (error) { setErrorMessage(error instanceof Error ? error.message : "Не удалось отправить заявку."); setStatus("error"); }
   }
   return <section id="help" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">
     <div className="relative overflow-hidden rounded-[2rem] border border-[#d49a5a]/25 bg-[#1d3b2b] px-5 py-14 sm:px-12 sm:py-20">
@@ -29,8 +36,8 @@ export function BookingAssistance() {
         {status === "sent" ? <p role="status" className="mt-8 rounded-2xl border border-[#d49a5a]/40 p-6">Спасибо! Заявка отправлена. Мы свяжемся с вами.</p> : <form onSubmit={submit} className="mt-8 space-y-4 text-left">
           <label className="block text-sm">Ваше имя<input name="name" required maxLength={100} autoComplete="given-name" placeholder="Как к вам обращаться" className="mt-2 h-14 w-full rounded-xl border border-white/25 bg-[#102219]/40 px-4 outline-none focus:border-[#d49a5a]" /></label>
           <label className="block text-sm">Телефон<input name="phone" type="tel" required minLength={10} maxLength={30} autoComplete="tel" placeholder="+7 (___) ___-__-__" className="mt-2 h-14 w-full rounded-xl border border-white/25 bg-[#102219]/40 px-4 outline-none focus:border-[#d49a5a]" /></label>
-          <label className="flex items-start gap-3 text-xs leading-relaxed text-[#d6e0d9]"><input type="checkbox" required name="consent" className="mt-1 h-4 w-4 shrink-0 accent-[#d49a5a]" /><span>Согласен(на) на обработку персональных данных и с <Link href="/privacy-policy" className="underline">политикой обработки персональных данных</Link>.</span></label>
-          {status === "error" && <p role="alert" className="rounded-xl bg-red-950/50 p-3 text-sm text-red-200">Не удалось отправить заявку. Пожалуйста, позвоните нам: <a href={SITE_CONFIG.phoneHref} className="underline">{SITE_CONFIG.phoneDisplay}</a>.</p>}
+          <ContactConsentFields />
+          {status === "error" && <p role="alert" className="rounded-xl bg-red-950/50 p-3 text-sm text-red-200">{errorMessage} <a href={SITE_CONFIG.phoneHref} className="underline">{SITE_CONFIG.phoneDisplay}</a>.</p>}
           <button type="submit" disabled={status === "sending"} className="min-h-14 w-full cursor-pointer rounded-full bg-[#d49a5a] px-6 py-4 text-sm font-semibold text-[#102219] transition hover:bg-[#e0ab6e] disabled:opacity-60">{status === "sending" ? "Отправляем…" : "Получить помощь с бронированием"}</button>
         </form>}
       </div>

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { KonturBookingWidget } from "@/components/KonturBookingWidget";
+import { SecurityDepositNote } from "@/components/SecurityDepositNote";
 
 export const metadata: Metadata = withSocialMetadata({
   title: 'Онлайн-бронирование домиков в Архызе | База отдыха "Хижина лесника"',
@@ -32,6 +33,8 @@ export default function BookingPage() {
           <p className="flex items-center gap-2.5"><span aria-hidden="true" className="h-4 w-4 shrink-0 rounded border border-[#d49a5a] bg-[#d49a5a]" /><span>Жёлтая подсветка – есть свободные места</span></p>
           <p className="flex items-center gap-2.5"><span aria-hidden="true" className="h-4 w-4 shrink-0 rounded border border-white/30 bg-[#173024]" /><span>Без подсветки – свободных мест нет</span></p>
         </div>
+
+        <SecurityDepositNote className="mx-auto mt-7 max-w-[910px] bg-[#173024] text-[#c3d0c7]" />
 
         {/* 1. Центрированный интерактивный календарь доступности */}
         <KonturBookingWidget

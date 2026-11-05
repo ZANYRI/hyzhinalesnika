@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   whatsappHref: "https://wa.me/79280201001",
   telegramHref: "https://t.me/+79280201001",
   instagramHref: "https://www.instagram.com/khizhina_lesnika/",
-  maxHref: process.env.NEXT_PUBLIC_MAX_URL || "",
+  maxHref: process.env.NEXT_PUBLIC_MAX_URL || "https://max.ru/u/f9LHodD0cOLhp88k6oe2BRuONbv23skDRZzFtTD3BHCeTxJyG4cuUeMhHkA",
   email: "hyzhinalesnika@mail.ru",
   address: "с. Архыз, ул. Лесная, 40",
   addressShort: "с. Архыз, ул. Лесная 40",

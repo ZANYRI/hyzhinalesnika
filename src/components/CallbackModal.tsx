@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
+import { ContactConsentFields } from "./ContactConsentFields";
+import { contactConsentSelection } from "@/data/consents";
 import { CheckCircle, PhoneCall, X } from "@phosphor-icons/react";
 
 interface CallbackModalProps {
@@ -17,26 +18,30 @@ export function CallbackModal({
 }: CallbackModalProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [agreed, setAgreed] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "sent" | "error">(
     "idle"
   );
 
   if (!open) return null;
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!name.trim() || !phone.trim() || !agreed) return;
+    const data = new FormData(e.currentTarget);
+    if (!name.trim() || !phone.trim() || data.get("callbackConsent") !== "on") return;
+    setErrorMessage("");
     setStatus("submitting");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, source: title }),
+        body: JSON.stringify({ name, phone, source: title, consents: contactConsentSelection(data) }),
       });
       if (res.ok) {
         setStatus("sent");
       } else {
+        const result = await res.json().catch(() => null);
+        setErrorMessage(result?.error || "Не удалось отправить заявку. Позвоните нам: +7 (928) 020-10-01.");
         setStatus("error");
       }
     } catch {
@@ -53,7 +58,7 @@ export function CallbackModal({
       aria-label={title}
     >
       <div
-        className="relative w-full max-w-md rounded-3xl border border-white/12 bg-[#173024] p-7 text-[#f3f5f0] shadow-[0_24px_64px_rgba(0,0,0,0.6)] sm:p-8"
+        className="relative max-h-[calc(100dvh-2rem)] w-full max-w-md overflow-y-auto rounded-3xl border border-white/12 bg-[#173024] p-7 text-[#f3f5f0] shadow-[0_24px_64px_rgba(0,0,0,0.6)] sm:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -117,6 +122,8 @@ export function CallbackModal({
                 name="name"
                 type="text"
                 required
+                maxLength={100}
+                autoComplete="given-name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Например, Алексей"
@@ -136,6 +143,9 @@ export function CallbackModal({
                 name="phone"
                 type="tel"
                 required
+                minLength={10}
+                maxLength={30}
+                autoComplete="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="+7 (999) 000-00-00"
@@ -143,38 +153,11 @@ export function CallbackModal({
               />
             </div>
 
-            <label className="flex items-start gap-2.5 pt-1 text-xs leading-relaxed text-[#a8b9ae] cursor-pointer">
-              <input
-                type="checkbox"
-                required
-                checked={agreed}
-                onChange={(e) => setAgreed(e.target.checked)}
-                className="mt-0.5 h-4 w-4 accent-[#d49a5a]"
-              />
-              <span>
-                Согласен(а) с{" "}
-                <Link
-                  href="/users/agreement"
-                  onClick={onClose}
-                  className="text-[#f3f5f0] underline decoration-[#d49a5a]/60 hover:text-[#d49a5a]"
-                >
-                  пользовательским соглашением
-                </Link>{" "}
-                и{" "}
-                <Link
-                  href="/privacy-policy"
-                  onClick={onClose}
-                  className="text-[#f3f5f0] underline decoration-[#d49a5a]/60 hover:text-[#d49a5a]"
-                >
-                  политикой обработки персональных данных
-                </Link>
-              </span>
-            </label>
+            <ContactConsentFields />
 
             {status === "error" && (
               <p className="rounded-xl border border-red-400/30 bg-red-950/40 px-3.5 py-2.5 text-xs text-red-200">
-                Не удалось отправить заявку. Позвоните нам по номеру +7 (928)
-                020-10-01.
+                {errorMessage || "Не удалось отправить заявку. Позвоните нам: +7 (928) 020-10-01."}
               </p>
             )}
 
