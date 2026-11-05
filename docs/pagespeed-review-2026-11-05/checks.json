@@ -1,0 +1,37 @@
+[
+  {
+    "name": "typecheck",
+    "status": 0
+  },
+  {
+    "name": "lint",
+    "status": 0,
+    "warnings": 3
+  },
+  {
+    "name": "build",
+    "status": 0,
+    "notes": [
+      "Existing contact-journal.ts filesystem tracing warnings remain."
+    ]
+  },
+  {
+    "name": "test:seo",
+    "status": 0,
+    "pages": 17,
+    "internalTargets": 27,
+    "redirects": 6
+  },
+  {
+    "name": "axe targeted badge verification",
+    "status": 0,
+    "viewports": [
+      412,
+      1280
+    ],
+    "beforeViolation": "label-content-name-mismatch",
+    "afterViolations": [],
+    "accessibleName": "Сплит",
+    "visibleTextAndDimensionsUnchanged": true
+  }
+]

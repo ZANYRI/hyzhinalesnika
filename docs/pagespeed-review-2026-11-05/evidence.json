@@ -1,0 +1,395 @@
+{
+  "reports": [
+    {
+      "page": "/",
+      "reportUrl": "https://pagespeed.web.dev/analysis/https-hyzhinalesnika-ru/vzq8iuyfl2?hl=ru&form_factor=mobile",
+      "fetchTime": "2026-11-05T19:42:20.720Z",
+      "lighthouseVersion": "13.6.0",
+      "benchmarkIndex": 1327,
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 1.2
+      },
+      "scores": {
+        "performance": 96,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100,
+        "agentic-browsing": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 1244,
+        "largest-contentful-paint": 2406,
+        "total-blocking-time": 3.5,
+        "cumulative-layout-shift": 0.001516888778430187,
+        "speed-index": 4013.465488688483
+      },
+      "sourceSha256": "effa07e830eaa6783c50bc53206ca2727812a0bf9b685247bb74bebd33c8101b"
+    },
+    {
+      "page": "/booking",
+      "reportUrl": "https://pagespeed.web.dev/analysis/https-hyzhinalesnika-ru-booking/xslfb03w69?hl=ru&form_factor=mobile",
+      "fetchTime": "2026-11-05T19:37:41.983Z",
+      "lighthouseVersion": "13.6.0",
+      "benchmarkIndex": 835.5,
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 1.2
+      },
+      "scores": {
+        "performance": 91,
+        "accessibility": 100,
+        "best-practices": 77,
+        "seo": 100,
+        "agentic-browsing": 100
+      },
+      "metrics": {
+        "first-contentful-paint": 930.0096829394915,
+        "largest-contentful-paint": 930.0096829394915,
+        "total-blocking-time": 289.5,
+        "cumulative-layout-shift": 0.04287500673512164,
+        "speed-index": 4614.433984672062
+      },
+      "sourceSha256": "c5a807950d4a1d4f29a37a043971211df59d5fa3c84a622865854baeee8ba7fa"
+    }
+  ],
+  "evidence": {
+    "cookie": [
+      {
+        "name": "ngtoken",
+        "url": "https://metrika.kontur.ru/static/js/cds.html"
+      }
+    ],
+    "issues": [
+      {
+        "issueType": "Cookie",
+        "subItems": {
+          "items": [
+            {
+              "url": "https://metrika.kontur.ru/static/js/cds.html"
+            }
+          ],
+          "type": "subitems"
+        }
+      }
+    ],
+    "longTasks": [
+      {
+        "duration": 353,
+        "startTime": 8742.234052793458,
+        "url": "https://bookonline24.ru/widget.js"
+      },
+      {
+        "duration": 145,
+        "startTime": 9311.234052793458,
+        "url": "https://bookonline24.ru/widget.js"
+      },
+      {
+        "duration": 108,
+        "startTime": 9203.234052793458,
+        "url": "https://bookonline24.ru/widget.js"
+      },
+      {
+        "duration": 92,
+        "startTime": 3457.0508354323315,
+        "url": "https://hyzhinalesnika.ru/_next/static/chunks/3l_qmp-61z4yc.js"
+      },
+      {
+        "duration": 73,
+        "startTime": 9602.234052793458,
+        "url": "https://bookonline24.ru/widget.js"
+      },
+      {
+        "duration": 57,
+        "startTime": 3549.0508354323315,
+        "url": "https://hyzhinalesnika.ru/_next/static/chunks/20box33a0_n53.js"
+      },
+      {
+        "duration": 52,
+        "startTime": 9121.234052793458,
+        "url": "https://bookonline24.ru/widget.js"
+      }
+    ],
+    "cache": [
+      {
+        "cacheLifetimeMs": 0,
+        "totalBytes": 816545,
+        "url": "https://bookonline24.ru/widget.js",
+        "wastedBytes": 816545
+      },
+      {
+        "cacheLifetimeMs": 0,
+        "totalBytes": 3049,
+        "url": "https://bookonline24.ru/static/62a2b06d367dd39987b6.svg",
+        "wastedBytes": 3049
+      },
+      {
+        "cacheLifetimeMs": 0,
+        "totalBytes": 2931,
+        "url": "https://bookonline24.ru/static/3bdf267596e179fa8a86.svg",
+        "wastedBytes": 2931
+      },
+      {
+        "cacheLifetimeMs": 0,
+        "totalBytes": 2860,
+        "url": "https://bookonline24.ru/static/4cae993ad69b5790741e.svg",
+        "wastedBytes": 2860
+      }
+    ],
+    "unsizedImages": [
+      {
+        "node": {
+          "boundingRect": {
+            "bottom": 904,
+            "height": 16,
+            "left": 177,
+            "right": 192,
+            "top": 888,
+            "width": 15
+          },
+          "lhId": "1-39-IMG",
+          "nodeLabel": "Двуспальная кровать king size",
+          "path": "1,HTML,1,BODY,6,DIV,1,MAIN,4,SECTION,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,1,DIV,0,DIV,0,SPAN,0,DIV,0,DIV,0,DIV,2,DIV,0,DIV,0,SPAN,0,SPAN,0,IMG",
+          "selector": "div.k9b3OU > span > span.pb1eHD > img",
+          "snippet": "<img class=\"\" data-tid=\"DoubleKing\" src=\"https://bookonline24.ru/static/62a2b06d367dd39987b6.svg\" alt=\"Двуспальная кровать king size\" style=\"display: block;\">",
+          "type": "node"
+        },
+        "url": "https://bookonline24.ru/static/62a2b06d367dd39987b6.svg"
+      },
+      {
+        "node": {
+          "boundingRect": {
+            "bottom": 904,
+            "height": 16,
+            "left": 204,
+            "right": 219,
+            "top": 888,
+            "width": 15
+          },
+          "lhId": "1-40-IMG",
+          "nodeLabel": "Односпальная кровать",
+          "path": "1,HTML,1,BODY,6,DIV,1,MAIN,4,SECTION,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,1,DIV,0,DIV,0,SPAN,0,DIV,0,DIV,0,DIV,2,DIV,0,DIV,2,SPAN,0,SPAN,0,IMG",
+          "selector": "div.k9b3OU > span > span.pb1eHD > img",
+          "snippet": "<img class=\"\" data-tid=\"Single\" src=\"https://bookonline24.ru/static/4cae993ad69b5790741e.svg\" alt=\"Односпальная кровать\" style=\"display: block;\">",
+          "type": "node"
+        },
+        "url": "https://bookonline24.ru/static/4cae993ad69b5790741e.svg"
+      },
+      {
+        "node": {
+          "boundingRect": {
+            "bottom": 904,
+            "height": 16,
+            "left": 221,
+            "right": 236,
+            "top": 888,
+            "width": 15
+          },
+          "lhId": "1-41-IMG",
+          "nodeLabel": "Двуспальная кровать",
+          "path": "1,HTML,1,BODY,6,DIV,1,MAIN,4,SECTION,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,1,DIV,0,DIV,0,SPAN,0,DIV,0,DIV,0,DIV,2,DIV,0,DIV,3,SPAN,0,SPAN,0,IMG",
+          "selector": "div.k9b3OU > span > span.pb1eHD > img",
+          "snippet": "<img class=\"\" data-tid=\"Double\" src=\"https://bookonline24.ru/static/3bdf267596e179fa8a86.svg\" alt=\"Двуспальная кровать\" style=\"display: block;\">",
+          "type": "node"
+        },
+        "url": "https://bookonline24.ru/static/3bdf267596e179fa8a86.svg"
+      }
+    ],
+    "homeLcpBreakdown": {
+      "items": [
+        {
+          "headings": [
+            {
+              "key": "label",
+              "label": "Этап",
+              "valueType": "text"
+            },
+            {
+              "key": "duration",
+              "label": "Длительность",
+              "valueType": "ms"
+            }
+          ],
+          "items": [
+            {
+              "duration": 250.147,
+              "label": "Time to First Byte",
+              "subpart": "timeToFirstByte"
+            },
+            {
+              "duration": 1578.15,
+              "label": "Задержка загрузки ресурса",
+              "subpart": "resourceLoadDelay"
+            },
+            {
+              "duration": 121.886,
+              "label": "Продолжительность загрузки ресурса",
+              "subpart": "resourceLoadDuration"
+            },
+            {
+              "duration": 212.398,
+              "label": "Задержка при отрисовке элемента",
+              "subpart": "elementRenderDelay"
+            }
+          ],
+          "type": "table"
+        },
+        {
+          "boundingRect": {
+            "bottom": 811,
+            "height": 823,
+            "left": 0,
+            "right": 412,
+            "top": -12,
+            "width": 412
+          },
+          "lhId": "page-0-IMG",
+          "nodeLabel": "Дома базы отдыха Хижина лесника в буковом лесу Архыза",
+          "path": "1,HTML,1,BODY,5,DIV,2,SECTION,0,PICTURE,2,IMG",
+          "selector": "div.min-h-screen > section.relative > picture > img.absolute",
+          "snippet": "<img alt=\"Дома базы отдыха Хижина лесника в буковом лесу Архыза\" fetchpriority=\"high\" loading=\"eager\" decoding=\"async\" data-nimg=\"fill\" class=\"absolute inset-0 h-full w-full object-cover\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" sizes=\"(max-aspect-ratio: 3/2) 150vh, 100vw\" srcset=\"/_next/image?url=%2Fimages%2Fhome%2Fhero-bg.jpg&amp;w=640&amp;q=60 640w, /_next/im…\" src=\"https://hyzhinalesnika.ru/images/home/hero-mobile.ed0ed5f52e37.avif\">",
+          "type": "node"
+        }
+      ],
+      "type": "list"
+    },
+    "homeLcpDiscovery": {
+      "items": [
+        {
+          "items": {
+            "eagerlyLoaded": {
+              "label": "Не используйте loading=lazy для ресурсов LCP.",
+              "value": true
+            },
+            "priorityHinted": {
+              "label": "Свойству fetchpriority присвоено значение \"high\"",
+              "value": true
+            },
+            "requestDiscoverable": {
+              "label": "Запрос можно найти в исходном документе",
+              "value": true
+            }
+          },
+          "type": "checklist"
+        },
+        {
+          "boundingRect": {
+            "bottom": 811,
+            "height": 823,
+            "left": 0,
+            "right": 412,
+            "top": -12,
+            "width": 412
+          },
+          "lhId": "page-0-IMG",
+          "nodeLabel": "Дома базы отдыха Хижина лесника в буковом лесу Архыза",
+          "path": "1,HTML,1,BODY,5,DIV,2,SECTION,0,PICTURE,2,IMG",
+          "selector": "div.min-h-screen > section.relative > picture > img.absolute",
+          "snippet": "<img alt=\"Дома базы отдыха Хижина лесника в буковом лесу Архыза\" fetchpriority=\"high\" loading=\"eager\" decoding=\"async\" data-nimg=\"fill\" class=\"absolute inset-0 h-full w-full object-cover\" style=\"position: absolute; height: 100%; width: 100%; inset: 0px;\" sizes=\"(max-aspect-ratio: 3/2) 150vh, 100vw\" srcset=\"/_next/image?url=%2Fimages%2Fhome%2Fhero-bg.jpg&amp;w=640&amp;q=60 640w, /_next/im…\" src=\"https://hyzhinalesnika.ru/images/home/hero-mobile.ed0ed5f52e37.avif\">",
+          "type": "node"
+        }
+      ],
+      "type": "list"
+    },
+    "homeInitialRequests": [
+      {
+        "cache": "none",
+        "entity": "hyzhinalesnika.ru",
+        "experimentalFromMainFrame": true,
+        "finished": true,
+        "mimeType": "text/html",
+        "networkEndTime": 1815.5909999907017,
+        "networkRequestTime": 0.7839999943971634,
+        "priority": "VeryHigh",
+        "protocol": "h2",
+        "rendererStartTime": 0,
+        "resourceSize": 442923,
+        "resourceType": "Document",
+        "sessionTargetType": "page",
+        "statusCode": 200,
+        "transferSize": 83414,
+        "url": "https://hyzhinalesnika.ru/"
+      },
+      {
+        "cache": "none",
+        "entity": "hyzhinalesnika.ru",
+        "experimentalFromMainFrame": true,
+        "finished": true,
+        "isLinkPreload": true,
+        "mimeType": "image/avif",
+        "networkEndTime": 1950.0359999835491,
+        "networkRequestTime": 1829.4559999853373,
+        "priority": "High",
+        "protocol": "h2",
+        "rendererStartTime": 1828.1499999910593,
+        "resourceSize": 56717,
+        "resourceType": "Image",
+        "sessionTargetType": "page",
+        "statusCode": 200,
+        "transferSize": 57060,
+        "url": "https://hyzhinalesnika.ru/images/home/hero-mobile.ed0ed5f52e37.avif"
+      }
+    ],
+    "labelMismatch": {
+      "debugData": {
+        "impact": "serious",
+        "tags": [
+          "cat.semantics",
+          "wcag21a",
+          "wcag253",
+          "EN-301-549",
+          "EN-9.2.5.3",
+          "RGAAv4",
+          "RGAA-6.1.5"
+        ],
+        "type": "debugdata"
+      },
+      "headings": [
+        {
+          "key": "node",
+          "label": "Неподходящие элементы",
+          "subItemsHeading": {
+            "key": "relatedNode",
+            "valueType": "node"
+          },
+          "valueType": "node"
+        }
+      ],
+      "items": [
+        {
+          "node": {
+            "boundingRect": {
+              "bottom": 151,
+              "height": 51,
+              "left": 244,
+              "right": 396,
+              "top": 100,
+              "width": 152
+            },
+            "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name",
+            "lhId": "1-0-A",
+            "nodeLabel": "Я\nСплит",
+            "path": "1,HTML,1,BODY,5,DIV,2,SECTION,2,DIV,0,DIV,1,A",
+            "selector": "section.relative > div.relative > div.flex > a.flex",
+            "snippet": "<a aria-label=\"Яндекс Сплит: оплата отдыха частями\" class=\"flex items-center rounded-2xl border border-white/25 bg-[#f1ebdf] px-3 py-…\" href=\"/split\">",
+            "type": "node"
+          }
+        }
+      ],
+      "type": "table"
+    }
+  },
+  "runtimeFix": {
+    "file": "src/components/HomeSections.tsx",
+    "change": "Remove overriding aria-label from the /split hero badge. Use its existing visible text as the accessible link name. Decorative logo remains aria-hidden.",
+    "productionChanged": false
+  }
+}

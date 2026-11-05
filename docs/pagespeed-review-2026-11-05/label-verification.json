@@ -1,0 +1,74 @@
+[
+  {
+    "version": "production",
+    "text": "ЯСплит",
+    "href": "/split",
+    "ariaLabel": "Яндекс Сплит: оплата отдыха частями",
+    "decorative": "true",
+    "height": 51,
+    "accessibleSnapshot": "- 'link \"Яндекс Сплит: оплата отдыха частями\"':\n  - /url: /split\n  - text: Сплит",
+    "violations": [
+      "label-content-name-mismatch"
+    ],
+    "passes": [
+      "link-name"
+    ],
+    "inapplicable": [],
+    "viewportWidth": 412,
+    "badgeWidth": 152.46875
+  },
+  {
+    "version": "local",
+    "text": "ЯСплит",
+    "href": "/split",
+    "ariaLabel": null,
+    "decorative": "true",
+    "height": 51,
+    "accessibleSnapshot": "- link \"Сплит\":\n  - /url: /split",
+    "violations": [],
+    "passes": [
+      "link-name"
+    ],
+    "inapplicable": [
+      "label-content-name-mismatch"
+    ],
+    "viewportWidth": 412,
+    "badgeWidth": 152.46875
+  },
+  {
+    "version": "production",
+    "text": "ЯСплит",
+    "href": "/split",
+    "ariaLabel": "Яндекс Сплит: оплата отдыха частями",
+    "decorative": "true",
+    "height": 51,
+    "accessibleSnapshot": "- 'link \"Яндекс Сплит: оплата отдыха частями\"':\n  - /url: /split\n  - text: Сплит",
+    "violations": [
+      "label-content-name-mismatch"
+    ],
+    "passes": [
+      "link-name"
+    ],
+    "inapplicable": [],
+    "viewportWidth": 1280,
+    "badgeWidth": 160.46875
+  },
+  {
+    "version": "local",
+    "text": "ЯСплит",
+    "href": "/split",
+    "ariaLabel": null,
+    "decorative": "true",
+    "height": 51,
+    "accessibleSnapshot": "- link \"Сплит\":\n  - /url: /split",
+    "violations": [],
+    "passes": [
+      "link-name"
+    ],
+    "inapplicable": [
+      "label-content-name-mismatch"
+    ],
+    "viewportWidth": 1280,
+    "badgeWidth": 160.46875
+  }
+]
