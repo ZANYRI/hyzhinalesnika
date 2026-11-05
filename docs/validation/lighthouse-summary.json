@@ -1,41 +1,41 @@
 [
   {
     "name": "home-1",
-    "environment": "local production build; booking SDK restricted on localhost",
+    "environment": "local production build via HTTP/2 proxy; SDK restricted; temporary untrusted local TLS",
     "scores": {
-      "performance": 82,
+      "performance": 90,
       "accessibility": 100,
       "seo": 100
     },
-    "lcp": 4853.6358,
-    "cls": 0.001160491559314071,
-    "tbt": 34,
-    "bytes": 1124663
+    "lcp": 3607.379,
+    "cls": 0.001071997454106104,
+    "tbt": 39,
+    "bytes": 823031
   },
   {
     "name": "home-2",
-    "environment": "local production build; booking SDK restricted on localhost",
+    "environment": "local production build via HTTP/2 proxy; SDK restricted; temporary untrusted local TLS",
     "scores": {
-      "performance": 83,
+      "performance": 90,
       "accessibility": 100,
       "seo": 100
     },
-    "lcp": 4810.46025,
+    "lcp": 3603.8935,
     "cls": 0.001071997454106104,
-    "tbt": 41,
-    "bytes": 1124658
+    "tbt": 20,
+    "bytes": 823031
   },
   {
-    "name": "booking",
-    "environment": "local production build; booking SDK restricted on localhost",
+    "name": "home-3",
+    "environment": "local production build via HTTP/2 proxy; SDK restricted; temporary untrusted local TLS",
     "scores": {
-      "performance": 100,
+      "performance": 90,
       "accessibility": 100,
       "seo": 100
     },
-    "lcp": 756.2733000000001,
-    "cls": 0.042959560261131076,
-    "tbt": 11,
-    "bytes": 461444
+    "lcp": 3603.111,
+    "cls": 0.001071997454106104,
+    "tbt": 17.5,
+    "bytes": 823022
   }
 ]

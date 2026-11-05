@@ -1,0 +1,12 @@
+{
+  "heroRequestCount": 1,
+  "heroRequests": [
+    "http://localhost:3113/_next/image?url=%2Fimages%2Fhome%2Fhero-bg.jpg&w=640&q=60"
+  ],
+  "decoded": true,
+  "preload": 1,
+  "consentInitiallyChecked": false,
+  "inputSize": "16px",
+  "consentLinkStatus": 200,
+  "closed": true
+}

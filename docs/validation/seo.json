@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-11-05T13:39:13.777Z",
-  "base": "http://localhost:3112",
+  "checkedAt": "2026-11-05T14:56:29.772Z",
+  "base": "http://localhost:3117",
   "pages": [
     {
       "path": "/",
@@ -16,7 +16,7 @@
         "FAQPage"
       ],
       "images": 17,
-      "bytes": 280861
+      "bytes": 281512
     },
     {
       "path": "/consents/callback/2026-11-05-1",

@@ -1,0 +1,18 @@
+{
+  "portrait": {
+    "src": "http://localhost:3115/images/home/hero-mobile.7dd5e3d36e8c.avif",
+    "natural": [
+      576,
+      1024
+    ],
+    "complete": true
+  },
+  "landscape": {
+    "src": "http://localhost:3115/_next/image?url=%2Fimages%2Fhome%2Fhero-bg.jpg&w=1080&q=60",
+    "complete": true
+  },
+  "requests": [
+    "http://localhost:3115/images/home/hero-mobile.7dd5e3d36e8c.avif",
+    "http://localhost:3115/_next/image?url=%2Fimages%2Fhome%2Fhero-bg.jpg&w=1080&q=60"
+  ]
+}

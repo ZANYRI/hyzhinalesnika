@@ -52,6 +52,16 @@ for (const url of urls) {
     assert.ok(tags(html, "a").some(tag => attr(tag, "href") === "/spa"), "Crawlable navigation");
     const hero = images.find(tag => attr(tag, "alt").includes("буковом лесу Архыза"));
     assert.ok(attr(hero, "srcset"), "Responsive hero image");
+    const portraitSources = tags(html, "source").filter(tag => attr(tag, "srcset").includes("hero-mobile."));
+    assert.equal(portraitSources.length, 2, "Portrait AVIF and WebP sources available");
+    for (const source of portraitSources) {
+      assert.ok(attr(source, "media").includes("max-aspect-ratio: 9/16"), "Crop only used where cover framing stays identical");
+      const media = await get(attr(source, "srcset"));
+      assert.equal(media.status, 200, "Portrait derivative exists");
+      assert.match(media.headers.get("cache-control"), /immutable/, "Hashed portrait cached immutably");
+      assert.ok(media.headers.get("content-type")?.includes(attr(source, "type")));
+      await media.arrayBuffer();
+    }
   }
   for (const tag of tags(html, "a")) {
     const href = attr(tag, "href");
@@ -97,6 +107,15 @@ for (const font of fontManifest.fonts) {
   const response = await get(`/fonts/subsets/${font.subset}`);
   assert.equal(response.status, 200);
   assert.match(response.headers.get("cache-control"), /max-age=31536000.*immutable/, "Versioned font cached immutably");
+}
+// The same responsive URL must negotiate formats without breaking older clients.
+const heroUrl = new URL("/_next/image?url=%2Fimages%2Fhome%2Fhero-bg.jpg&w=750&q=60", base);
+for (const [accept, mime] of [["image/avif,image/webp", "image/avif"], ["image/webp", "image/webp"], ["image/jpeg", "image/jpeg"]]) {
+  const response = await fetch(heroUrl, { headers: { Accept: accept } });
+  assert.equal(response.status, 200, `Hero image available: ${accept}`);
+  assert.ok(response.headers.get("content-type")?.includes(mime), `Negotiated image format: ${mime}`);
+  assert.match(response.headers.get("vary"), /accept/i, "Proxy caches distinguish supported image formats");
+  await response.arrayBuffer();
 }
 if (process.env.SEO_REPORT_PATH) await writeFile(process.env.SEO_REPORT_PATH, JSON.stringify({ checkedAt: new Date().toISOString(), base, pages: rows, internalLinks: [...links], redirects: aliases, result: "passed" }, null, 2));
 console.log(`SEO PASS: ${rows.length} pages; ${links.size} internal targets; 6 redirects; www; 404; metadata; schema; SSR FAQ; responsive hero.`);
