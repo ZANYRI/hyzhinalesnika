@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-05T16:58:50.493Z",
+  "baseCommit": "fb78d78ebb7e1fc7fc53e8611ce3d01893c55174",
+  "typecheck": {
+    "exitCode": 0
+  },
+  "lint": {
+    "exitCode": 0,
+    "existingWarnings": 3
+  },
+  "build": {
+    "status": 0,
+    "existingWarnings": 2
+  },
+  "booking": {
+    "exitCode": 0
+  },
+  "contact": {
+    "exitCode": 0
+  },
+  "seo": {
+    "result": "SEO PASS: 17 pages; 27 internal targets; 6 redirects; www; 404; metadata; schema; SSR FAQ; responsive hero."
+  },
+  "productionChanged": false
+}

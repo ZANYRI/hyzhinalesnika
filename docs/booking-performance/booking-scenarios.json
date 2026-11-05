@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-11-05T16:55:51.363Z",
+  "mode": "Isolated browser; own production domain routed to local production build; live public Kontur SDK; no submissions",
+  "cases": [
+    {
+      "name": "after",
+      "idleBooking": {
+        "heroRequests": [],
+        "homeRscRequests": [],
+        "sdkLoaded": true,
+        "prefetchedResources": []
+      },
+      "housesNavigation": {
+        "url": "https://hyzhinalesnika.ru/",
+        "bookingHeadingTop": 111.75,
+        "overflow": false,
+        "drawerClosed": true
+      },
+      "logoNavigation": "Три уединённых дома\nв буковом лесу Архыза",
+      "pageErrors": []
+    },
+    {
+      "house": "Двухэтажный дом \"Береза\"",
+      "range": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "modalHeader": "Бронирование\n15.11.2026\n18.11.2026\n2 взрослых\nПроверить наличие\nОстался последний номер\nДвухэтажный дом \"Береза\"\n80 м²\n7\n3\nПодробнее\n3 комнаты: \n3 cпальни\nПрост",
+      "rateSelectable": true
+    },
+    {
+      "house": "Дом \"Ива\"",
+      "range": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "modalHeader": "Бронирование\n08.11.2026\n11.11.2026\n2 взрослых\nПроверить наличие\nОстался последний номер\nДом \"Ива\"\n40 м²\n5\nПодробнее\n3 комнаты: \n3 cпальни\nЭтот дом создан для те",
+      "rateSelectable": true
+    },
+    {
+      "house": "Шале \"Бук\"",
+      "range": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "modalHeader": "Бронирование\n10.11.2026\n13.11.2026\n2 взрослых\nПроверить наличие\nОстался последний номер\nШале \"Бук\"\n40 м²\n4\nПодробнее\n3 комнаты: \n2 cпальни, \nгостиная\nПросыпатьс",
+      "rateSelectable": true
+    }
+  ]
+}

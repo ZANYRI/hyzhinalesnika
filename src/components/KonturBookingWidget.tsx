@@ -9,6 +9,7 @@ import React, {
 } from "react";
 import { CalendarBlank, CaretDown, Users, X } from "@phosphor-icons/react";
 import { SITE_CONFIG } from "@/data/site";
+import { labelKonturWidget } from "@/lib/kontur-accessibility";
 import {
   computeMaxValidCheckOutIso,
   countNightsBetweenIso,
@@ -311,6 +312,7 @@ export function KonturBookingWidget({
 
       const syncCalendarDom = () => {
         if (cancelled || el.childElementCount === 0) return;
+        labelKonturWidget(el);
         setMountedKey(activeKey);
         triggerCalendarMeasure();
 
@@ -370,6 +372,7 @@ export function KonturBookingWidget({
         ) {
           setMountedKey(activeKey);
           triggerCalendarMeasure();
+          labelKonturWidget(containerRef.current);
           if (calendarInteractive) {
             paintKonturCalendarSelection(
               containerRef.current,

@@ -1,0 +1,64 @@
+[
+  {
+    "name": "before",
+    "environment": "Local production source via isolated production-origin routing; real public SDK; accessibility/SEO audit only, no performance claims",
+    "scores": {
+      "accessibility": 89,
+      "seo": 92
+    },
+    "errors": [
+      {
+        "id": "image-alt",
+        "score": 0,
+        "nodes": [
+          {
+            "selector": "div.k9b3OU > span > span.pb1eHD > img",
+            "snippet": "<img class=\"\" data-tid=\"DoubleKing\" src=\"https://bookonline24.ru/static/62a2b06d367dd39987b6.svg\" style=\"display: block;\">"
+          },
+          {
+            "selector": "div.k9b3OU > span > span.pb1eHD > img",
+            "snippet": "<img class=\"\" data-tid=\"Single\" src=\"https://bookonline24.ru/static/4cae993ad69b5790741e.svg\" style=\"display: block;\">"
+          },
+          {
+            "selector": "div.k9b3OU > span > span.pb1eHD > img",
+            "snippet": "<img class=\"\" data-tid=\"Double\" src=\"https://bookonline24.ru/static/3bdf267596e179fa8a86.svg\" style=\"display: block;\">"
+          }
+        ]
+      },
+      {
+        "id": "button-name",
+        "score": 0,
+        "nodes": [
+          {
+            "selector": "div._9PeHjV > div > span.react-ui-button-root > button.react-ui-96sw0c",
+            "snippet": "<button data-tid=\"Button__rootElement\" type=\"button\" class=\"react-ui-96sw0c\" tabindex=\"0\">"
+          },
+          {
+            "selector": "div.SB8lTw > div.HM0N4l > div.Qw2KqO > button.ijO13t",
+            "snippet": "<button class=\"ijO13t\">"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "after",
+    "environment": "Local production source via isolated production-origin routing; real public SDK; accessibility/SEO audit only, no performance claims",
+    "scores": {
+      "accessibility": 100,
+      "seo": 100
+    },
+    "errors": [
+      {
+        "id": "image-alt",
+        "score": 1,
+        "nodes": []
+      },
+      {
+        "id": "button-name",
+        "score": 1,
+        "nodes": []
+      }
+    ]
+  }
+]

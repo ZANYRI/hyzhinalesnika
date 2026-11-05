@@ -1,0 +1,6 @@
+lighthouse-*.json
+browser.json
+sdk-dom-before.json
+sdk-profile-before.json
+*.png
+*.html

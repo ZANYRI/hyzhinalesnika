@@ -9,6 +9,8 @@ const source = ts.transpileModule(fs.readFileSync("src/lib/kontur-hotel.ts", "ut
 
 class Cell {
   constructor(day, price, month = "ноябрь 2099") {
+    this.attributes = new Map();
+    this.writes = 0;
     this.children = [{ textContent: String(day) }, { textContent: price }];
     this.firstElementChild = this.children[0];
     this.section = {
@@ -17,6 +19,10 @@ class Cell {
     };
   }
   closest() { return this.section; }
+  getAttribute(name) { return this.attributes.get(name) ?? null; }
+  hasAttribute(name) { return this.attributes.has(name); }
+  setAttribute(name, value) { this.writes++; this.attributes.set(name, value); }
+  removeAttribute(name) { this.writes++; this.attributes.delete(name); }
 }
 
 const hosts = new Map();
@@ -40,7 +46,7 @@ vm.runInNewContext(source, {
 
 // Missing years are rejected, rather than silently booking a guessed year.
 async function run() {
-  const { extractKonturCalendarDayInfo, mountKonturWidget, countNightsBetweenIso } = exportsObject;
+  const { extractKonturCalendarDayInfo, mountKonturWidget, countNightsBetweenIso, paintKonturCalendarSelection } = exportsObject;
   const cell = new Cell(2, "8 320");
   cell["__reactFiber$test"] = { memoizedProps: { day: 2, disabled: true, data: {} }, return: null };
   assert.equal(extractKonturCalendarDayInfo(cell).hasPrice, true);
@@ -52,6 +58,24 @@ async function run() {
   assert.equal(extractKonturCalendarDayInfo(new Cell(31, "12000", "февраль 2099")), null);
   assert.equal(extractKonturCalendarDayInfo(new Cell(1, "12000", "ноябрь")), null);
   assert.equal(countNightsBetweenIso("2028-02-28", "2028-03-01"), 2);
+
+  const days = [new Cell(2, "10000"), new Cell(3, "10000"), new Cell(4, "пн")];
+  const calendar = { querySelectorAll: () => [{ querySelectorAll: () => [{ childElementCount: 28, children: days }] }] };
+  paintKonturCalendarSelection(calendar, null, null, null);
+  const writes = () => days.reduce((sum, day) => sum + day.writes, 0);
+  assert.equal(days[0].getAttribute("data-hl-clickable"), "true");
+  assert.equal(days[2].hasAttribute("data-hl-clickable"), false);
+  const initialWrites = writes();
+  paintKonturCalendarSelection(calendar, null, null, null);
+  assert.equal(writes(), initialWrites, "Repainting the same state does not write DOM attributes again");
+  paintKonturCalendarSelection(calendar, "2099-11-02", null, "2099-11-03");
+  assert.equal(days[0].getAttribute("data-hl-selected"), "start");
+  assert.equal(days[1].getAttribute("data-hl-selected"), "preview-end");
+  assert.equal(days[2].getAttribute("data-hl-clickable"), "true", "Checkout on the unavailable boundary morning stays allowed");
+  days[1].children[1].textContent = "пн";
+  paintKonturCalendarSelection(calendar, null, null, null);
+  assert.equal(days[1].hasAttribute("data-hl-clickable"), false, "Changed house availability removes stale clickable state");
+  assert.ok(days.every(day => !day.hasAttribute("data-hl-selected")), "Reset removes previous range markers");
 
   hosts.set("calendar", {});
   hosts.set("rooms", {});
@@ -69,7 +93,7 @@ async function run() {
   hosts.clear();
   results.forEach(result => result.cleanup());
   assert.deepEqual(removals, ["widget-1", "widget-2"], "Detached hosts still release SDK instances");
-  console.log("PASS booking: house availability updates, exact dates, shared initialization, cancellation and cleanup");
+  console.log("PASS booking: availability changes, range reset, idempotent paint, exact dates, shared initialization, cancellation and cleanup");
 }
 
 run().catch(error => { console.error(error); process.exitCode = 1; });

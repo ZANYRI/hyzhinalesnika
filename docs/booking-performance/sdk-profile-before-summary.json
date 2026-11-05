@@ -1,0 +1,50 @@
+{
+  "environment": "Public production; mobile 390x844; isolated MutationObserver and setAttribute instrumentation",
+  "observers": [
+    {
+      "calls": 12,
+      "ms": 7.9000000059604645,
+      "maxMs": 1.0999999940395355,
+      "target": "kontur-calendarVertical-_R_b9bsnnb_"
+    },
+    {
+      "calls": 19,
+      "ms": 0.19999998807907104,
+      "maxMs": 0.09999999403953552,
+      "target": "BODY"
+    },
+    {
+      "calls": 1,
+      "ms": 0.09999999403953552,
+      "maxMs": 0.09999999403953552,
+      "target": "DIV"
+    },
+    {
+      "calls": 2,
+      "ms": 0,
+      "maxMs": 0,
+      "target": "DIV"
+    },
+    {
+      "calls": 2,
+      "ms": 0,
+      "maxMs": 0,
+      "target": "DIV"
+    },
+    {
+      "calls": 0,
+      "ms": 0,
+      "maxMs": 0
+    },
+    {
+      "calls": 1,
+      "ms": 0.09999999403953552,
+      "maxMs": 0.09999999403953552,
+      "target": "WidgetRoomsListId"
+    }
+  ],
+  "writes": {
+    "total": 120,
+    "unchanged": 80
+  }
+}

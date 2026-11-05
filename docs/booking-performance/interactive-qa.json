@@ -1,0 +1,43 @@
+{
+  "initialWrites": {
+    "total": 40,
+    "unchanged": 0
+  },
+  "monthBefore": [
+    "октябрь 2026",
+    "ноябрь 2026",
+    "декабрь 2026"
+  ],
+  "monthAfter": [
+    "ноябрь 2026",
+    "декабрь 2026",
+    "январь 2027"
+  ],
+  "monthRestored": [
+    "октябрь 2026",
+    "ноябрь 2026",
+    "декабрь 2026"
+  ],
+  "houseDetails": "Двухэтажный дом \"Береза\"",
+  "selectionBeforeSwitch": 1,
+  "selectionAfterSwitch": 0,
+  "bedsAfterSwitch": [
+    {
+      "id": "DoubleKing",
+      "alt": "Двуспальная кровать king size"
+    },
+    {
+      "id": "Double",
+      "alt": "Двуспальная кровать"
+    },
+    {
+      "id": "Single",
+      "alt": "Односпальная кровать"
+    }
+  ],
+  "missingAlt": 0,
+  "finalWrites": {
+    "total": 120,
+    "unchanged": 0
+  }
+}

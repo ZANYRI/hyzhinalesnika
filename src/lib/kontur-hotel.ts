@@ -430,8 +430,10 @@ export function paintKonturCalendarSelection(
         : info.hasPrice);
 
     if (canClick) {
-      cell.setAttribute("data-hl-clickable", "true");
-    } else {
+      if (cell.getAttribute("data-hl-clickable") !== "true") {
+        cell.setAttribute("data-hl-clickable", "true");
+      }
+    } else if (cell.hasAttribute("data-hl-clickable")) {
       cell.removeAttribute("data-hl-clickable");
     }
 
@@ -452,8 +454,10 @@ export function paintKonturCalendarSelection(
     }
 
     if (selectedState) {
-      cell.setAttribute("data-hl-selected", selectedState);
-    } else {
+      if (cell.getAttribute("data-hl-selected") !== selectedState) {
+        cell.setAttribute("data-hl-selected", selectedState);
+      }
+    } else if (cell.hasAttribute("data-hl-selected")) {
       cell.removeAttribute("data-hl-selected");
     }
   }
