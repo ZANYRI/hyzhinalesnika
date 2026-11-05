@@ -1,0 +1,56 @@
+[
+  {
+    "port": 3130,
+    "dpr": 1.75,
+    "viewport": 412,
+    "width": 354,
+    "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fbarnhouse%2F01.jpg&w=750&q=75",
+    "sizes": "(min-width: 1400px) 880px, (min-width: 1024px) 65vw, 100vw",
+    "bytes": 36795
+  },
+  {
+    "port": 3130,
+    "dpr": 2,
+    "viewport": 390,
+    "width": 332,
+    "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fbarnhouse%2F01.jpg&w=828&q=75",
+    "sizes": "(min-width: 1400px) 880px, (min-width: 1024px) 65vw, 100vw",
+    "bytes": 44018
+  },
+  {
+    "port": 3130,
+    "dpr": 1.75,
+    "viewport": 768,
+    "width": 686,
+    "currentSrc": "http://localhost:3130/_next/image?url=%2Fimages%2Fbarnhouse%2F01.jpg&w=1920&q=75",
+    "sizes": "(min-width: 1400px) 880px, (min-width: 1024px) 65vw, 100vw",
+    "bytes": 86943
+  },
+  {
+    "port": 3134,
+    "dpr": 1.75,
+    "viewport": 412,
+    "width": 354,
+    "currentSrc": "http://localhost:3134/_next/image?url=%2Fimages%2Fbarnhouse%2F01.jpg&w=640&q=75",
+    "sizes": "(min-width: 1400px) 871px, (min-width: 1024px) calc(66.666667vw - 62.666667px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)",
+    "bytes": 27370
+  },
+  {
+    "port": 3134,
+    "dpr": 2,
+    "viewport": 390,
+    "width": 332,
+    "currentSrc": "http://localhost:3134/_next/image?url=%2Fimages%2Fbarnhouse%2F01.jpg&w=750&q=75",
+    "sizes": "(min-width: 1400px) 871px, (min-width: 1024px) calc(66.666667vw - 62.666667px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)",
+    "bytes": 37051
+  },
+  {
+    "port": 3134,
+    "dpr": 1.75,
+    "viewport": 768,
+    "width": 686,
+    "currentSrc": "http://localhost:3134/_next/image?url=%2Fimages%2Fbarnhouse%2F01.jpg&w=1920&q=75",
+    "sizes": "(min-width: 1400px) 871px, (min-width: 1024px) calc(66.666667vw - 62.666667px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)",
+    "bytes": 87632
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "bereza",
+    "scores": {
+      "performance": 95,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 3002.506,
+    "tbt": 31,
+    "cls": 0.0002509001904855088,
+    "bytes": 520487,
+    "failedAccessibility": []
+  },
+  {
+    "name": "buk",
+    "scores": {
+      "performance": 96,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 2704.641,
+    "tbt": 19,
+    "cls": 0.0002260524472361003,
+    "bytes": 477006,
+    "failedAccessibility": []
+  },
+  {
+    "name": "iva",
+    "scores": {
+      "performance": 95,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 3002.83,
+    "tbt": 18,
+    "cls": 0.0002578250117784897,
+    "bytes": 497791,
+    "failedAccessibility": []
+  }
+]

@@ -1,0 +1,189 @@
+{
+  "siteGuruReference": {
+    "score": 93,
+    "home": 83,
+    "booking": 85,
+    "completedAt": "2026-11-05 18:41:49"
+  },
+  "liveProfiles": [
+    {
+      "name": "home",
+      "scores": {
+        "performance": 96,
+        "accessibility": 100,
+        "seo": 100
+      },
+      "lcp": 2021.075,
+      "fcp": 1924.075,
+      "tbt": 69.99999999999977,
+      "cls": 0.001071997454106104,
+      "bytes": 786057,
+      "metrics": {
+        "firstContentfulPaint": 1924,
+        "largestContentfulPaint": 2021,
+        "interactive": 3544,
+        "speedIndex": 3494,
+        "totalBlockingTime": 70,
+        "maxPotentialFID": 90,
+        "cumulativeLayoutShift": 0.001071997454106104,
+        "cumulativeLayoutShiftMainFrame": 0.001071997454106104,
+        "lcpLoadDelay": 0,
+        "lcpLoadDuration": 704,
+        "timeToFirstByte": 1121,
+        "observedTimeOrigin": 0,
+        "observedTimeOriginTs": 219042611794,
+        "observedNavigationStart": 0,
+        "observedNavigationStartTs": 219042611794,
+        "observedFirstPaint": 1761,
+        "observedFirstPaintTs": 219044372705,
+        "observedFirstContentfulPaint": 1761,
+        "observedFirstContentfulPaintTs": 219044372705,
+        "observedFirstContentfulPaintAllFrames": 1761,
+        "observedFirstContentfulPaintAllFramesTs": 219044372705,
+        "observedLargestContentfulPaint": 1778,
+        "observedLargestContentfulPaintTs": 219044390032,
+        "observedLargestContentfulPaintAllFrames": 1778,
+        "observedLargestContentfulPaintAllFramesTs": 219044390032,
+        "observedTraceEnd": 7487,
+        "observedTraceEndTs": 219050099097,
+        "observedLoad": 3978,
+        "observedLoadTs": 219046589596,
+        "observedDomContentLoaded": 1676,
+        "observedDomContentLoadedTs": 219044288016,
+        "observedCumulativeLayoutShift": 0.001071997454106104,
+        "observedCumulativeLayoutShiftMainFrame": 0.001071997454106104,
+        "observedFirstVisualChange": 1765,
+        "observedFirstVisualChangeTs": 219044376794,
+        "observedLastVisualChange": 7474,
+        "observedLastVisualChangeTs": 219050085794,
+        "observedSpeedIndex": 1946,
+        "observedSpeedIndexTs": 219044557574
+      }
+    },
+    {
+      "name": "booking",
+      "scores": {
+        "performance": 80,
+        "accessibility": 100,
+        "seo": 100
+      },
+      "lcp": 1355.0835000000002,
+      "fcp": 1355.0835000000002,
+      "tbt": 674.2425000000003,
+      "cls": 0.04287500673512164,
+      "bytes": 1372393,
+      "metrics": {
+        "firstContentfulPaint": 1355,
+        "largestContentfulPaint": 1355,
+        "interactive": 9361,
+        "speedIndex": 4657,
+        "totalBlockingTime": 674,
+        "maxPotentialFID": 424,
+        "cumulativeLayoutShift": 0.04287500673512164,
+        "cumulativeLayoutShiftMainFrame": 0.04287500673512164,
+        "timeToFirstByte": 660,
+        "observedTimeOrigin": 0,
+        "observedTimeOriginTs": 219061398018,
+        "observedNavigationStart": 0,
+        "observedNavigationStartTs": 219061398018,
+        "observedFirstPaint": 1003,
+        "observedFirstPaintTs": 219062401030,
+        "observedFirstContentfulPaint": 1003,
+        "observedFirstContentfulPaintTs": 219062401030,
+        "observedFirstContentfulPaintAllFrames": 1003,
+        "observedFirstContentfulPaintAllFramesTs": 219062401030,
+        "observedLargestContentfulPaint": 1003,
+        "observedLargestContentfulPaintTs": 219062401030,
+        "observedLargestContentfulPaintAllFrames": 1003,
+        "observedLargestContentfulPaintAllFramesTs": 219062401030,
+        "observedTraceEnd": 5941,
+        "observedTraceEndTs": 219067338656,
+        "observedLoad": 1189,
+        "observedLoadTs": 219062586940,
+        "observedDomContentLoaded": 972,
+        "observedDomContentLoadedTs": 219062369883,
+        "observedCumulativeLayoutShift": 0.04287500673512164,
+        "observedCumulativeLayoutShiftMainFrame": 0.04287500673512164,
+        "observedFirstVisualChange": 303,
+        "observedFirstVisualChangeTs": 219061701018,
+        "observedLastVisualChange": 5920,
+        "observedLastVisualChangeTs": 219067318018,
+        "observedSpeedIndex": 1168,
+        "observedSpeedIndexTs": 219062566205
+      }
+    }
+  ],
+  "bookingSDK": {
+    "url": "https://bookonline24.ru/widget.js",
+    "transferBytes": 816979,
+    "decodedBytes": 3259033,
+    "scriptEvaluationMs": 1637.2959999999273,
+    "longTasks": [
+      {
+        "url": "https://bookonline24.ru/widget.js",
+        "duration": 424,
+        "startTime": 8398.0955
+      },
+      {
+        "url": "https://bookonline24.ru/widget.js",
+        "duration": 168,
+        "startTime": 9007.0955
+      },
+      {
+        "url": "https://bookonline24.ru/widget.js",
+        "duration": 147,
+        "startTime": 8859.0955
+      },
+      {
+        "url": "https://bookonline24.ru/widget.js",
+        "duration": 106,
+        "startTime": 9313.0955
+      },
+      {
+        "url": "https://bookonline24.ru/widget.js",
+        "duration": 71,
+        "startTime": 9242.0955
+      },
+      {
+        "url": "https://bookonline24.ru/widget.js",
+        "duration": 70,
+        "startTime": 9449.0955
+      },
+      {
+        "url": "https://bookonline24.ru/widget.js",
+        "duration": 67,
+        "startTime": 9175.0955
+      }
+    ]
+  },
+  "pagespeed": {
+    "apiStatus": 429,
+    "uiStatus": 429,
+    "uiMessage": "Не удалось перейти по адресу; RPC PageSpeed responded HTTP 429",
+    "siteAvailabilityConfirmed": true,
+    "fullFreshGoogleReportAvailable": false
+  },
+  "experiments": [
+    {
+      "name": "critical font preload",
+      "retained": false,
+      "reason": "No stable FCP/LCP benefit across 3 pairs; first baseline run was an outlier."
+    },
+    {
+      "name": "deep FAQ/reviews containment",
+      "retained": false,
+      "reason": "No meaningful LCP or score improvement."
+    },
+    {
+      "name": "activity containment",
+      "retained": false,
+      "excluded": true,
+      "reason": "Incremental build retained CSS during a source rollback; this experiment is not evidence of an improvement. Final build was recreated and verified free of experimental CSS."
+    }
+  ],
+  "userConfirmations": {
+    "physicalMobileTests": "passed by user",
+    "analytics": "passed by user",
+    "cabinLayout": "site data correct; Kontur input limitation accepted"
+  }
+}

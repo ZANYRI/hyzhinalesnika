@@ -1,0 +1,15 @@
+*
+!.gitignore
+!.gitattributes
+!README.md
+!changes.diff
+!diagnostics.json
+!checks.json
+!seo-verification.json
+!protected-content.json
+!previous-production-details.json
+!availability.json
+!public-dns.json
+!font-preload-comparison.json
+!deep-sections-comparison.json
+!gallery/

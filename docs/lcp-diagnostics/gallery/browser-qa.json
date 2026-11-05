@@ -1,0 +1,182 @@
+{
+  "cases": [
+    {
+      "path": "/dom-dlya-semi",
+      "contentUnchanged": true,
+      "detailsInitiallyClosed": true,
+      "galleryControls": true,
+      "lightboxKeyboardAndFocus": true,
+      "widths": [
+        {
+          "width": 320,
+          "scrollWidth": 320,
+          "imageWidth": 262,
+          "imageHeight": 180.125,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fhouse%2F02.jpg&w=750&q=75"
+        },
+        {
+          "width": 390,
+          "scrollWidth": 390,
+          "imageWidth": 332,
+          "imageHeight": 228.25,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fhouse%2F02.jpg&w=750&q=75"
+        },
+        {
+          "width": 412,
+          "scrollWidth": 412,
+          "imageWidth": 354,
+          "imageHeight": 243.375,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fhouse%2F02.jpg&w=750&q=75"
+        },
+        {
+          "width": 640,
+          "scrollWidth": 640,
+          "imageWidth": 558,
+          "imageHeight": 383.625,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fhouse%2F02.jpg&w=1200&q=75"
+        },
+        {
+          "width": 768,
+          "scrollWidth": 768,
+          "imageWidth": 686,
+          "imageHeight": 471.625,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fhouse%2F02.jpg&w=1920&q=75"
+        },
+        {
+          "width": 1024,
+          "scrollWidth": 1024,
+          "imageWidth": 620,
+          "imageHeight": 387.5,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fhouse%2F02.jpg&w=1920&q=75"
+        },
+        {
+          "width": 1440,
+          "scrollWidth": 1440,
+          "imageWidth": 870.65625,
+          "imageHeight": 544.15625,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fhouse%2F02.jpg&w=1920&q=75"
+        }
+      ]
+    },
+    {
+      "path": "/shale-s-vidom-na-gory",
+      "contentUnchanged": true,
+      "detailsInitiallyClosed": true,
+      "galleryControls": true,
+      "lightboxKeyboardAndFocus": true,
+      "widths": [
+        {
+          "width": 320,
+          "scrollWidth": 320,
+          "imageWidth": 262,
+          "imageHeight": 180.125,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fshale%2F02.jpg&w=750&q=75"
+        },
+        {
+          "width": 390,
+          "scrollWidth": 390,
+          "imageWidth": 332,
+          "imageHeight": 228.25,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fshale%2F02.jpg&w=750&q=75"
+        },
+        {
+          "width": 412,
+          "scrollWidth": 412,
+          "imageWidth": 354,
+          "imageHeight": 243.375,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fshale%2F02.jpg&w=750&q=75"
+        },
+        {
+          "width": 640,
+          "scrollWidth": 640,
+          "imageWidth": 558,
+          "imageHeight": 383.625,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fshale%2F02.jpg&w=1200&q=75"
+        },
+        {
+          "width": 768,
+          "scrollWidth": 768,
+          "imageWidth": 686,
+          "imageHeight": 471.625,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fshale%2F02.jpg&w=1200&q=75"
+        },
+        {
+          "width": 1024,
+          "scrollWidth": 1024,
+          "imageWidth": 620,
+          "imageHeight": 387.5,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fshale%2F02.jpg&w=1920&q=75"
+        },
+        {
+          "width": 1440,
+          "scrollWidth": 1440,
+          "imageWidth": 870.65625,
+          "imageHeight": 544.15625,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fshale%2F02.jpg&w=1920&q=75"
+        }
+      ]
+    },
+    {
+      "path": "/dvuhetazhnyj-barnhouse",
+      "contentUnchanged": true,
+      "detailsInitiallyClosed": true,
+      "galleryControls": true,
+      "lightboxKeyboardAndFocus": true,
+      "widths": [
+        {
+          "width": 320,
+          "scrollWidth": 320,
+          "imageWidth": 262,
+          "imageHeight": 180.125,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fbarnhouse%2F02.jpg&w=750&q=75"
+        },
+        {
+          "width": 390,
+          "scrollWidth": 390,
+          "imageWidth": 332,
+          "imageHeight": 228.25,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fbarnhouse%2F02.jpg&w=750&q=75"
+        },
+        {
+          "width": 412,
+          "scrollWidth": 412,
+          "imageWidth": 354,
+          "imageHeight": 243.375,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fbarnhouse%2F02.jpg&w=750&q=75"
+        },
+        {
+          "width": 640,
+          "scrollWidth": 640,
+          "imageWidth": 558,
+          "imageHeight": 383.625,
+          "source": ""
+        },
+        {
+          "width": 768,
+          "scrollWidth": 768,
+          "imageWidth": 686,
+          "imageHeight": 471.625,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fbarnhouse%2F02.jpg&w=1920&q=75"
+        },
+        {
+          "width": 1024,
+          "scrollWidth": 1024,
+          "imageWidth": 620,
+          "imageHeight": 387.5,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fbarnhouse%2F02.jpg&w=1920&q=75"
+        },
+        {
+          "width": 1440,
+          "scrollWidth": 1440,
+          "imageWidth": 870.65625,
+          "imageHeight": 544.15625,
+          "source": "http://localhost:3134/_next/image?url=%2Fimages%2Fbarnhouse%2F02.jpg&w=1920&q=75"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "startedAt": "2026-11-05T19:20:28.851Z",
+  "passed": true,
+  "endedAt": "2026-11-05T19:20:35.564Z"
+}

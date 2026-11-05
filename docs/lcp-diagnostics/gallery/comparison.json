@@ -1,0 +1,80 @@
+[
+  {
+    "name": "before-1",
+    "environment": "Local production ccde515 vs responsive gallery sizes, identical HTTP/2 proxies, Lighthouse mobile default; not PageSpeed or CrUX",
+    "scores": {
+      "performance": 95,
+      "accessibility": 97,
+      "seo": 100
+    },
+    "lcp": 3001.63,
+    "cls": 0.0002509001904855088,
+    "tbt": 18,
+    "bytes": 529327
+  },
+  {
+    "name": "after-1",
+    "environment": "Local production ccde515 vs responsive gallery sizes, identical HTTP/2 proxies, Lighthouse mobile default; not PageSpeed or CrUX",
+    "scores": {
+      "performance": 95,
+      "accessibility": 97,
+      "seo": 100
+    },
+    "lcp": 3000.317,
+    "cls": 0.0002509001904855088,
+    "tbt": 17.5,
+    "bytes": 520495
+  },
+  {
+    "name": "before-2",
+    "environment": "Local production ccde515 vs responsive gallery sizes, identical HTTP/2 proxies, Lighthouse mobile default; not PageSpeed or CrUX",
+    "scores": {
+      "performance": 95,
+      "accessibility": 97,
+      "seo": 100
+    },
+    "lcp": 3002.989,
+    "cls": 0.0002509001904855088,
+    "tbt": 19,
+    "bytes": 529350
+  },
+  {
+    "name": "after-2",
+    "environment": "Local production ccde515 vs responsive gallery sizes, identical HTTP/2 proxies, Lighthouse mobile default; not PageSpeed or CrUX",
+    "scores": {
+      "performance": 95,
+      "accessibility": 97,
+      "seo": 100
+    },
+    "lcp": 3003.872,
+    "cls": 0.0002509001904855088,
+    "tbt": 21,
+    "bytes": 520529
+  },
+  {
+    "name": "before-3",
+    "environment": "Local production ccde515 vs responsive gallery sizes, identical HTTP/2 proxies, Lighthouse mobile default; not PageSpeed or CrUX",
+    "scores": {
+      "performance": 95,
+      "accessibility": 97,
+      "seo": 100
+    },
+    "lcp": 3003.8289999999997,
+    "cls": 0.0002509001904855088,
+    "tbt": 20,
+    "bytes": 529328
+  },
+  {
+    "name": "after-3",
+    "environment": "Local production ccde515 vs responsive gallery sizes, identical HTTP/2 proxies, Lighthouse mobile default; not PageSpeed or CrUX",
+    "scores": {
+      "performance": 95,
+      "accessibility": 97,
+      "seo": 100
+    },
+    "lcp": 3002.7110000000002,
+    "cls": 0.0002509001904855088,
+    "tbt": 18,
+    "bytes": 520520
+  }
+]

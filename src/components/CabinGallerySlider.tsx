@@ -70,13 +70,13 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
             <div
               key={activeImage?.src}
               className={`relative h-full w-full ${current !== 0 ? "cabin-photo-enter" : ""}`}
-            ><Image src={activeImage?.src} alt={activeImage?.alt} fill sizes="(min-width: 1400px) 880px, (min-width: 1024px) 65vw, 100vw" loading="eager" fetchPriority="high" className="object-cover" /></div>
+            ><Image src={activeImage?.src} alt={activeImage?.alt} fill sizes="(min-width: 1400px) 871px, (min-width: 1024px) calc(66.666667vw - 62.666667px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)" loading="eager" fetchPriority="high" className="object-cover" /></div>
         </button>
 
         {[1, 2].map(offset => {
           const index=(current+offset)%total;
           return <button key={offset} type="button" onClick={()=>{setCurrent(index);setLightboxOpen(true);}} aria-label={`Открыть фото ${index+1} во весь экран`} className="relative hidden min-h-0 overflow-hidden rounded-xl lg:block">
-            <Image fill sizes="33vw" src={images[index].src} alt={images[index].alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition hover:scale-105"/>
+            <Image fill sizes="(min-width: 1400px) 436px, (min-width: 1024px) calc(33.333333vw - 31.333333px), 1px" src={images[index].src} alt={images[index].alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition hover:scale-105"/>
             {offset===2 && <span className="absolute right-3 bottom-3 rounded-full bg-[#102219]/80 px-3 py-2 text-xs text-white">Все {total} фото ↗</span>}
           </button>;
         })}

@@ -1,0 +1,350 @@
+[
+  {
+    "run": 1,
+    "score": 0.99,
+    "metrics": {
+      "firstContentfulPaint": 1534,
+      "largestContentfulPaint": 1851,
+      "interactive": 3413,
+      "speedIndex": 2927,
+      "totalBlockingTime": 40,
+      "maxPotentialFID": 129,
+      "cumulativeLayoutShift": 0.002767927992110845,
+      "cumulativeLayoutShiftMainFrame": 0.002767927992110845,
+      "lcpLoadDelay": 0,
+      "lcpLoadDuration": 735,
+      "timeToFirstByte": 951,
+      "observedTimeOrigin": 0,
+      "observedTimeOriginTs": 217180203284,
+      "observedNavigationStart": 0,
+      "observedNavigationStartTs": 217180203284,
+      "observedFirstPaint": 1179,
+      "observedFirstPaintTs": 217181382424,
+      "observedFirstContentfulPaint": 1179,
+      "observedFirstContentfulPaintTs": 217181382424,
+      "observedFirstContentfulPaintAllFrames": 1179,
+      "observedFirstContentfulPaintAllFramesTs": 217181382424,
+      "observedLargestContentfulPaint": 1179,
+      "observedLargestContentfulPaintTs": 217181382424,
+      "observedLargestContentfulPaintAllFrames": 1179,
+      "observedLargestContentfulPaintAllFramesTs": 217181382424,
+      "observedTraceEnd": 5142,
+      "observedTraceEndTs": 217185344892,
+      "observedLoad": 2389,
+      "observedLoadTs": 217182592356,
+      "observedDomContentLoaded": 1153,
+      "observedDomContentLoadedTs": 217181356318,
+      "observedCumulativeLayoutShift": 0.002767927992110845,
+      "observedCumulativeLayoutShiftMainFrame": 0.002767927992110845,
+      "observedFirstVisualChange": 1180,
+      "observedFirstVisualChangeTs": 217181383284,
+      "observedLastVisualChange": 5133,
+      "observedLastVisualChangeTs": 217185336284,
+      "observedSpeedIndex": 1277,
+      "observedSpeedIndexTs": 217181480099
+    },
+    "breakdown": [
+      {
+        "subpart": "timeToFirstByte",
+        "label": "Time to first byte",
+        "duration": 576.482
+      },
+      {
+        "subpart": "resourceLoadDelay",
+        "label": "Resource load delay",
+        "duration": 5.867
+      },
+      {
+        "subpart": "resourceLoadDuration",
+        "label": "Resource load duration",
+        "duration": 491.4
+      },
+      {
+        "subpart": "elementRenderDelay",
+        "label": "Element render delay",
+        "duration": 105.391
+      }
+    ],
+    "longTasks": [
+      {
+        "url": "https://hyzhinalesnika.ru/_next/static/chunks/3l_qmp-61z4yc.js",
+        "duration": 129,
+        "startTime": 3351.225
+      },
+      {
+        "url": "https://hyzhinalesnika.ru/",
+        "duration": 128,
+        "startTime": 1406.225
+      }
+    ],
+    "mainThread": [
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 752.6880000000033
+      },
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 505.97600000000034
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 485.85199999999963
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 173.0639999999993
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 72.79199999999997
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 34.484
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 16.29199999999999
+      }
+    ]
+  },
+  {
+    "run": 2,
+    "score": 0.98,
+    "metrics": {
+      "firstContentfulPaint": 1516,
+      "largestContentfulPaint": 1838,
+      "interactive": 3451,
+      "speedIndex": 3153,
+      "totalBlockingTime": 24,
+      "maxPotentialFID": 98,
+      "cumulativeLayoutShift": 0.0014530761773110872,
+      "cumulativeLayoutShiftMainFrame": 0.0014530761773110872,
+      "lcpLoadDelay": 7,
+      "lcpLoadDuration": 729,
+      "timeToFirstByte": 938,
+      "observedTimeOrigin": 0,
+      "observedTimeOriginTs": 217195398743,
+      "observedNavigationStart": 0,
+      "observedNavigationStartTs": 217195398743,
+      "observedFirstPaint": 1163,
+      "observedFirstPaintTs": 217196561571,
+      "observedFirstContentfulPaint": 1163,
+      "observedFirstContentfulPaintTs": 217196561571,
+      "observedFirstContentfulPaintAllFrames": 1163,
+      "observedFirstContentfulPaintAllFramesTs": 217196561571,
+      "observedLargestContentfulPaint": 1167,
+      "observedLargestContentfulPaintTs": 217196565687,
+      "observedLargestContentfulPaintAllFrames": 1167,
+      "observedLargestContentfulPaintAllFramesTs": 217196565687,
+      "observedTraceEnd": 8117,
+      "observedTraceEndTs": 217203516087,
+      "observedLoad": 4878,
+      "observedLoadTs": 217200276472,
+      "observedDomContentLoaded": 1133,
+      "observedDomContentLoadedTs": 217196531996,
+      "observedCumulativeLayoutShift": 0.0014530761773110872,
+      "observedCumulativeLayoutShiftMainFrame": 0.0014530761773110872,
+      "observedFirstVisualChange": 1164,
+      "observedFirstVisualChangeTs": 217196562743,
+      "observedLastVisualChange": 8111,
+      "observedLastVisualChangeTs": 217203509743,
+      "observedSpeedIndex": 1348,
+      "observedSpeedIndexTs": 217196746409
+    },
+    "breakdown": [
+      {
+        "subpart": "timeToFirstByte",
+        "label": "Time to first byte",
+        "duration": 588.537
+      },
+      {
+        "subpart": "resourceLoadDelay",
+        "label": "Resource load delay",
+        "duration": 10.933
+      },
+      {
+        "subpart": "resourceLoadDuration",
+        "label": "Resource load duration",
+        "duration": 463.507
+      },
+      {
+        "subpart": "elementRenderDelay",
+        "label": "Element render delay",
+        "duration": 103.967
+      }
+    ],
+    "longTasks": [
+      {
+        "url": "https://hyzhinalesnika.ru/",
+        "duration": 121,
+        "startTime": 1395.2849999999999
+      },
+      {
+        "url": "https://hyzhinalesnika.ru/_next/static/chunks/3l_qmp-61z4yc.js",
+        "duration": 98,
+        "startTime": 3488.285
+      }
+    ],
+    "mainThread": [
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 1107.3759999999997
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 644.6239999999996
+      },
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 636.5799999999989
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 284.8079999999959
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 87.208
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 29.41999999999999
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 16.21999999999998
+      }
+    ]
+  },
+  {
+    "run": 3,
+    "score": 0.91,
+    "metrics": {
+      "firstContentfulPaint": 2146,
+      "largestContentfulPaint": 2462,
+      "interactive": 3024,
+      "speedIndex": 5554,
+      "totalBlockingTime": 24,
+      "maxPotentialFID": 97,
+      "cumulativeLayoutShift": 0.0014530761773110872,
+      "cumulativeLayoutShiftMainFrame": 0.0014530761773110872,
+      "lcpLoadDelay": 0,
+      "lcpLoadDuration": 847,
+      "timeToFirstByte": 1598,
+      "observedTimeOrigin": 0,
+      "observedTimeOriginTs": 217213945275,
+      "observedNavigationStart": 0,
+      "observedNavigationStartTs": 217213945275,
+      "observedFirstPaint": 2954,
+      "observedFirstPaintTs": 217216899495,
+      "observedFirstContentfulPaint": 2954,
+      "observedFirstContentfulPaintTs": 217216899495,
+      "observedFirstContentfulPaintAllFrames": 2954,
+      "observedFirstContentfulPaintAllFramesTs": 217216899495,
+      "observedLargestContentfulPaint": 2991,
+      "observedLargestContentfulPaintTs": 217216936445,
+      "observedLargestContentfulPaintAllFrames": 2991,
+      "observedLargestContentfulPaintAllFramesTs": 217216936445,
+      "observedTraceEnd": 8739,
+      "observedTraceEndTs": 217222684503,
+      "observedLoad": 5467,
+      "observedLoadTs": 217219412247,
+      "observedDomContentLoaded": 2922,
+      "observedDomContentLoadedTs": 217216867450,
+      "observedCumulativeLayoutShift": 0.0014530761773110872,
+      "observedCumulativeLayoutShiftMainFrame": 0.0014530761773110872,
+      "observedFirstVisualChange": 2955,
+      "observedFirstVisualChangeTs": 217216900275,
+      "observedLastVisualChange": 8730,
+      "observedLastVisualChangeTs": 217222675275,
+      "observedSpeedIndex": 3135,
+      "observedSpeedIndexTs": 217217080253
+    },
+    "breakdown": [
+      {
+        "subpart": "timeToFirstByte",
+        "label": "Time to first byte",
+        "duration": 1598.17
+      },
+      {
+        "subpart": "resourceLoadDelay",
+        "label": "Resource load delay",
+        "duration": 16.497
+      },
+      {
+        "subpart": "resourceLoadDuration",
+        "label": "Resource load duration",
+        "duration": 1356.7
+      },
+      {
+        "subpart": "elementRenderDelay",
+        "label": "Element render delay",
+        "duration": 19.803
+      }
+    ],
+    "longTasks": [
+      {
+        "url": "https://hyzhinalesnika.ru/",
+        "duration": 126.99999999999977,
+        "startTime": 2018.843
+      },
+      {
+        "url": "https://hyzhinalesnika.ru/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+        "duration": 97,
+        "startTime": 3061.843
+      }
+    ],
+    "mainThread": [
+      {
+        "group": "other",
+        "groupLabel": "Other",
+        "duration": 917.7840000000095
+      },
+      {
+        "group": "styleLayout",
+        "groupLabel": "Style & Layout",
+        "duration": 581.4999999999997
+      },
+      {
+        "group": "scriptEvaluation",
+        "groupLabel": "Script Evaluation",
+        "duration": 565.636000000004
+      },
+      {
+        "group": "paintCompositeRender",
+        "groupLabel": "Rendering",
+        "duration": 213.8199999999962
+      },
+      {
+        "group": "scriptParseCompile",
+        "groupLabel": "Script Parsing & Compilation",
+        "duration": 110.58399999999999
+      },
+      {
+        "group": "parseHTML",
+        "groupLabel": "Parse HTML & CSS",
+        "duration": 73.88
+      },
+      {
+        "group": "garbageCollection",
+        "groupLabel": "Garbage Collection",
+        "duration": 11.607999999999997
+      }
+    ]
+  }
+]

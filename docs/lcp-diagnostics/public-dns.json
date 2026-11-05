@@ -1,0 +1,61 @@
+[
+  {
+    "status": "fulfilled",
+    "value": {
+      "provider": "dns.google",
+      "status": 200,
+      "response": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": false,
+        "CD": false,
+        "Question": [
+          {
+            "name": "hyzhinalesnika.ru.",
+            "type": 1
+          }
+        ],
+        "Answer": [
+          {
+            "name": "hyzhinalesnika.ru.",
+            "type": 1,
+            "TTL": 900,
+            "data": "201.8.90.190"
+          }
+        ],
+        "Comment": "Response from 2a00:15f8:a000:10:1:1:0:53."
+      }
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "provider": "cloudflare-dns.com",
+      "status": 200,
+      "response": {
+        "Status": 0,
+        "TC": false,
+        "RD": true,
+        "RA": true,
+        "AD": false,
+        "CD": false,
+        "Question": [
+          {
+            "name": "hyzhinalesnika.ru",
+            "type": 1
+          }
+        ],
+        "Answer": [
+          {
+            "name": "hyzhinalesnika.ru",
+            "type": 1,
+            "TTL": 900,
+            "data": "201.8.90.190"
+          }
+        ]
+      }
+    }
+  }
+]

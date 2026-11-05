@@ -1,0 +1,41 @@
+[
+  {
+    "name": "typecheck",
+    "status": 0,
+    "output": ""
+  },
+  {
+    "name": "lint",
+    "status": 0,
+    "output": "\n<project>/src/components/CabinGallerySlider.tsx\n  153:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element\n\n<project>/src/components/GalleryMarquee.tsx\n  52:15  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element\n  99:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element\n\n✖ 3 problems (0 errors, 3 warnings)\n\n"
+  },
+  {
+    "name": "booking",
+    "status": 0,
+    "output": "PASS booking: availability changes, range reset, idempotent paint, exact dates, shared initialization, cancellation and cleanup\n"
+  },
+  {
+    "name": "contact",
+    "status": 0,
+    "output": "PASS contact: consent required, version checked, single callback consent and no advertising processing, evidence stored before delivery, private files, concurrency and failure paths\n"
+  },
+  {
+    "name": "hero",
+    "status": 0,
+    "output": "Isolated repeat passed: avif 56717 bytes (576×1024); webp 174716 bytes (576×1024). Source script, input and manifest equal baseline; baseline --check also passed.",
+    "previousAttempt": {
+      "status": 1,
+      "output": "node:internal/fs/promises:639\n  return new FileHandle(await PromisePrototypeThen(\n                        ^\n\nError: ENOENT: no such file or directory, open '<project>/public/images/home/hero-mobile.097cd3c141f0.avif'\n    at async open (node:internal/fs/promises:639:25)\n    at async readFile (node:internal/fs/promises:1252:14)\n    at async file:///Users/kirill/Desktop/%D0%A5%D0%B8%D0%B6%D0%B8%D0%BD%D0%B0%20%D0%BB%D0%B5%D1%81%D0%BD%D0%B8%D0%BA%D0%B0/%D0%A1%D0%B0%D0%B8%CC%86%D1%82/hyzhinalesnika-lcp/scripts/prepare-hero.mjs:29:31 {\n  errno: -2,\n  code: 'ENOENT',\n  syscall: 'open',\n  path: '<project>/public/images/home/hero-mobile.097cd3c141f0.avif'\n}\n\nNode.js v22.23.4\n"
+    }
+  },
+  {
+    "name": "fonts",
+    "status": 0,
+    "output": "Fonts verified: 493304 → 254536 bytes; full character coverage retained.\n"
+  },
+  {
+    "name": "seo",
+    "status": 0,
+    "output": "SEO PASS: 17 pages; 27 internal targets; 6 redirects; www; 404; metadata; schema; SSR FAQ; responsive hero.\n"
+  }
+]

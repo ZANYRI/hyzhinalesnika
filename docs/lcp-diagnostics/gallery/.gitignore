@@ -1,0 +1,7 @@
+*
+!.gitignore
+!comparison.json
+!image-selection.json
+!browser-qa.json
+!contrast.json
+!final-lighthouse.json
