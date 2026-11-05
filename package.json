@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test:seo": "node scripts/test-seo.mjs",
     "test:booking": "node scripts/test-kontur-booking.mjs",
     "test:contact": "node scripts/test-contact.cjs"
   },

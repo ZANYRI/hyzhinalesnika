@@ -83,18 +83,18 @@ export function HospitalityAwards({
         href={SITE_CONFIG.yandexReviewsUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="group inline-flex items-center gap-3.5 rounded-2xl border border-[#d49a5a]/30 bg-[#173024] px-4 py-3 transition hover:border-[#d49a5a]/65"
+        className="group inline-flex max-w-full items-center gap-3 rounded-2xl border border-[#d49a5a]/30 bg-[#173024] px-4 py-3 transition hover:border-[#d49a5a]/65"
       >
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#d49a5a]/25 bg-[#102219]">
           <LaurelEmblem />
         </span>
 
-        <span className="leading-snug">
-          <span className="flex items-center gap-2">
+        <span className="min-w-0 leading-snug">
+          <span className="flex flex-wrap items-center gap-2">
             <span className="font-moderustic text-sm font-bold text-[#f3f5f0] transition group-hover:text-[#d49a5a]">
               Хорошее место
             </span>
-            <span className="inline-flex items-center gap-1 rounded-full border border-[#d49a5a]/35 bg-[#d49a5a]/15 px-2 py-0.5 font-moderustic text-xs font-bold text-[#d49a5a]">
+            <span className="inline-flex items-center gap-1 rounded-full border border-[#d49a5a]/35 bg-[#d49a5a]/15 px-2 py-0.5 font-moderustic text-xs font-bold text-[#e0ab6e]">
               <Star size={11} weight="fill" />
               <span>5,0</span>
             </span>
@@ -131,7 +131,7 @@ export function HospitalityAwards({
               <span className="font-moderustic text-base font-bold text-[#f3f5f0] transition group-hover:text-[#d49a5a]">
                 Хорошее место
               </span>
-              <span className="inline-flex items-center gap-1 rounded-full border border-[#d49a5a]/40 bg-[#d49a5a]/15 px-2.5 py-0.5 font-moderustic text-xs font-bold text-[#d49a5a]">
+              <span className="inline-flex items-center gap-1 rounded-full border border-[#d49a5a]/40 bg-[#d49a5a]/15 px-2.5 py-0.5 font-moderustic text-xs font-bold text-[#e0ab6e]">
                 <Star size={12} weight="fill" />
                 <span>5,0</span>
               </span>

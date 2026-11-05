@@ -1,6 +1,7 @@
+import Link from "next/link";
+import { PageStructuredData } from "@/components/StructuredData";
 import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { KonturBookingWidget } from "@/components/KonturBookingWidget";
@@ -8,7 +9,7 @@ import { EyeCount } from "@/components/BlogSection";
 
 export const metadata: Metadata = withSocialMetadata({
   title:
-    'Как добраться до Архыза в 2026 году: все способы, маршруты, советы | "Хижина лесника"',
+    'Как добраться до Архыза в 2026 году | Хижина лесника',
   description:
     "Актуальный гид 2026 года: как доехать до Архыза на машине, автобусе, самолёте и трансфере, и как добраться от посёлка до базы отдыха «Хижина лесника».",
   alternates: {
@@ -18,7 +19,7 @@ export const metadata: Metadata = withSocialMetadata({
 });
 
 export default function HowToGetToArkhyz2026Page() {
-  return (
+  return <><PageStructuredData metadata={metadata} />{(
     <div className="min-h-screen bg-[#102219] text-[#f3f5f0]">
       <Header variant="inner" bookingAnchor="#booking" />
 
@@ -301,10 +302,11 @@ export default function HowToGetToArkhyz2026Page() {
           </section>
         </article>
 
+        <p className="mt-8 text-sm"><Link href="/stati-i-sovety/post/top-5-mest-v-arhyze" className="text-[#d49a5a] underline">Что посмотреть рядом с домиками в Архызе ↗</Link></p>
         <KonturBookingWidget id="booking" className="mt-12 px-0 sm:px-0" />
       </main>
 
       <Footer />
     </div>
-  );
+  )}</>;
 }

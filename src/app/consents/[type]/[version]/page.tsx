@@ -1,3 +1,4 @@
+import { PageStructuredData } from "@/components/StructuredData";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CALLBACK_CONSENT, CONSENT_DOCUMENTS, consentUrl } from "@/data/consents";
@@ -25,5 +26,6 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 export default async function ConsentPage(props: Props) {
   const document = await documentFor(props);
-  return <LegalDocumentView title={document.title} blocks={document.paragraphs.map(text => ({ type: "p", text }))}/>;
+  const metadata = await generateMetadata(props);
+  return <><PageStructuredData metadata={metadata} /><LegalDocumentView title={document.title} blocks={document.paragraphs.map(text => ({ type: "p", text }))}/></>;
 }

@@ -1,0 +1,32 @@
+[
+  {
+    "house": "Двухэтажный дом \"Береза\"",
+    "correctHouse": true,
+    "dateRange": true,
+    "hasRate": true,
+    "width": {
+      "client": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "house": "Дом \"Ива\"",
+    "correctHouse": true,
+    "dateRange": true,
+    "hasRate": true,
+    "width": {
+      "client": 390,
+      "scroll": 390
+    }
+  },
+  {
+    "house": "Шале \"Бук\"",
+    "correctHouse": true,
+    "dateRange": true,
+    "hasRate": true,
+    "width": {
+      "client": 390,
+      "scroll": 390
+    }
+  }
+]

@@ -127,7 +127,7 @@ export function CallbackModal({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Например, Алексей"
-                className="h-12 w-full rounded-xl border border-white/15 bg-[#102219] px-4 text-sm text-[#f3f5f0] placeholder:text-[#7e9487] outline-none transition focus:border-[#d49a5a]"
+                className="h-12 w-full rounded-xl border border-white/15 bg-[#102219] px-4 text-base sm:text-sm text-[#f3f5f0] placeholder:text-[#7e9487] outline-none transition focus:border-[#d49a5a]"
               />
             </div>
 
@@ -149,7 +149,7 @@ export function CallbackModal({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="+7 (999) 000-00-00"
-                className="h-12 w-full rounded-xl border border-white/15 bg-[#102219] px-4 text-sm text-[#f3f5f0] placeholder:text-[#7e9487] outline-none transition focus:border-[#d49a5a]"
+                className="h-12 w-full rounded-xl border border-white/15 bg-[#102219] px-4 text-base sm:text-sm text-[#f3f5f0] placeholder:text-[#7e9487] outline-none transition focus:border-[#d49a5a]"
               />
             </div>
 

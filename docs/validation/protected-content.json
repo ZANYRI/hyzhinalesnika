@@ -1,0 +1,42 @@
+[
+  {
+    "path": "src/data/cabins.ts",
+    "unchanged": true
+  },
+  {
+    "path": "src/data/site.ts",
+    "unchanged": true
+  },
+  {
+    "path": "src/data/legal.ts",
+    "unchanged": true
+  },
+  {
+    "path": "src/data/consents.ts",
+    "unchanged": true
+  },
+  {
+    "path": "src/data/consents-archive.ts",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/contact-consents.ts",
+    "unchanged": true
+  },
+  {
+    "path": "src/lib/contact-journal.ts",
+    "unchanged": true
+  },
+  {
+    "path": "src/components/ContactConsentFields.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "src/components/SecurityDepositNote.tsx",
+    "unchanged": true
+  },
+  {
+    "path": "src/app/api/contact/route.ts",
+    "unchanged": true
+  }
+]

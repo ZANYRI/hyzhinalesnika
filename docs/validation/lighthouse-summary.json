@@ -1,0 +1,41 @@
+[
+  {
+    "name": "home-1",
+    "environment": "local production build; booking SDK restricted on localhost",
+    "scores": {
+      "performance": 82,
+      "accessibility": 100,
+      "seo": 100
+    },
+    "lcp": 4853.6358,
+    "cls": 0.001160491559314071,
+    "tbt": 34,
+    "bytes": 1124663
+  },
+  {
+    "name": "home-2",
+    "environment": "local production build; booking SDK restricted on localhost",
+    "scores": {
+      "performance": 83,
+      "accessibility": 100,
+      "seo": 100
+    },
+    "lcp": 4810.46025,
+    "cls": 0.001071997454106104,
+    "tbt": 41,
+    "bytes": 1124658
+  },
+  {
+    "name": "booking",
+    "environment": "local production build; booking SDK restricted on localhost",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "seo": 100
+    },
+    "lcp": 756.2733000000001,
+    "cls": 0.042959560261131076,
+    "tbt": 11,
+    "bytes": 461444
+  }
+]

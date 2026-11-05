@@ -1,3 +1,4 @@
+import { PageStructuredData } from "@/components/StructuredData";
 import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 import { OFERTA_BLOCKS } from "@/data/legal";
@@ -13,7 +14,7 @@ export const metadata: Metadata = withSocialMetadata({
 });
 
 export default function OfertaPage() {
-  return (
+  return <><PageStructuredData metadata={metadata} />{(
     <LegalDocumentView title="Договор публичной оферты" blocks={OFERTA_BLOCKS} />
-  );
+  )}</>;
 }

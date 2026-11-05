@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import React, { useState } from "react";
 import Link from "next/link";
 import {
@@ -11,7 +13,6 @@ import {
   Ruler,
   Users,
 } from "@phosphor-icons/react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { CABIN_LIST } from "@/data/cabins";
 import { PhotoDots } from "./PhotoDots";
 import { CabinTreeEmoji } from "./CabinTreeEmoji";
@@ -19,7 +20,6 @@ import { CabinTreeEmoji } from "./CabinTreeEmoji";
 export function CabinShowcase() {
   const [activeCabinIdx, setActiveCabinIdx] = useState(0);
   const [photoIdx, setPhotoIdx] = useState(0);
-  const reduce = useReducedMotion();
 
   const cabin = CABIN_LIST[activeCabinIdx];
   // The card cover is already the first gallery photo, under a different filename.
@@ -64,9 +64,7 @@ export function CabinShowcase() {
               }`}
             >
               {isActive && (
-                <motion.span
-                  layoutId="activeCabinTab"
-                  transition={{ type: "spring", stiffness: 320, damping: 28 }}
+                <span
                   className="absolute inset-0 rounded-full bg-[#d49a5a]"
                 />
               )}
@@ -91,18 +89,10 @@ export function CabinShowcase() {
         {/* Left 7 cols: Photo Stage + Filmstrip */}
         <div className="flex flex-col rounded-3xl border border-white/10 bg-[#173024] p-3 sm:p-4 lg:col-span-7 lg:self-start">
           <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-[#08140d]">
-            <AnimatePresence mode="wait">
-              <motion.img
+              <div
                 key={currentPhoto.src}
-                src={currentPhoto.src}
-                alt={currentPhoto.alt}
-                initial={reduce ? false : { opacity: 0.25, scale: 1.02 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={reduce ? undefined : { opacity: 0.2 }}
-                transition={{ duration: 0.32 }}
-                className="h-full w-full object-cover"
-              />
-            </AnimatePresence>
+                className={`relative h-full w-full ${photoIdx !== 0 || activeCabinIdx !== 0 ? "cabin-photo-enter" : ""}`}
+              ><Image src={currentPhoto.src} alt={currentPhoto.alt} fill sizes="(min-width: 1024px) 65vw, 100vw" loading="lazy" className="object-cover" /></div>
 
             <button
               type="button"

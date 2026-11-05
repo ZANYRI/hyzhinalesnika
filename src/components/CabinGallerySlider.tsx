@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import React, { useEffect, useRef, useState } from "react";
 import {
   CaretLeft,
@@ -8,7 +10,6 @@ import {
   X,
 } from "@phosphor-icons/react";
 import { PhotoDots } from "./PhotoDots";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 interface CabinGallerySliderProps {
   images: { src: string; alt: string }[];
@@ -17,7 +18,6 @@ interface CabinGallerySliderProps {
 export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
   const [current, setCurrent] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const reduce = useReducedMotion();
   const lightboxRef = useRef<HTMLDivElement>(null);
 
   const total = images.length;
@@ -67,24 +67,16 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
           aria-label="Открыть фотографию во весь экран"
           className="block aspect-[16/11] w-full overflow-hidden focus:outline-none cursor-zoom-in lg:row-span-2 lg:aspect-[16/10]"
         >
-          <AnimatePresence mode="wait">
-            <motion.img
+            <div
               key={activeImage?.src}
-              src={activeImage?.src}
-              alt={activeImage?.alt}
-              initial={reduce ? false : { opacity: 0.25, scale: 1.015 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={reduce ? undefined : { opacity: 0.2 }}
-              transition={{ duration: 0.28 }}
-              className="h-full w-full object-cover"
-            />
-          </AnimatePresence>
+              className={`relative h-full w-full ${current !== 0 ? "cabin-photo-enter" : ""}`}
+            ><Image src={activeImage?.src} alt={activeImage?.alt} fill sizes="(min-width: 1400px) 880px, (min-width: 1024px) 65vw, 100vw" loading="eager" fetchPriority="high" className="object-cover" /></div>
         </button>
 
         {[1, 2].map(offset => {
           const index=(current+offset)%total;
           return <button key={offset} type="button" onClick={()=>{setCurrent(index);setLightboxOpen(true);}} aria-label={`Открыть фото ${index+1} во весь экран`} className="relative hidden min-h-0 overflow-hidden rounded-xl lg:block">
-            <img src={images[index].src} alt={images[index].alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition hover:scale-105"/>
+            <Image fill sizes="33vw" src={images[index].src} alt={images[index].alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition hover:scale-105"/>
             {offset===2 && <span className="absolute right-3 bottom-3 rounded-full bg-[#102219]/80 px-3 py-2 text-xs text-white">Все {total} фото ↗</span>}
           </button>;
         })}

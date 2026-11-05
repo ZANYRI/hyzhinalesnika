@@ -8,12 +8,12 @@ import { CookieNotice } from "@/components/CookieNotice";
 import { FloatingContacts } from "@/components/FloatingContacts";
 import { CleanHashScroll } from "@/components/CleanHashScroll";
 import { AutumnAtmosphere } from "@/components/AutumnAtmosphere";
+import { SiteStructuredData } from "@/components/StructuredData";
 
 export const metadata: Metadata = withSocialMetadata({
   metadataBase: new URL(SITE_CONFIG.url),
   title: { default: HOME_TITLE, template: "%s" },
   description: HOME_DESCRIPTION,
-  alternates: { canonical: "/" },
   icons: {
     icon: [
       { url: "/images/brand/favicon-96.png", sizes: "96x96", type: "image/png" },
@@ -32,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang="ru" data-scroll-behavior="smooth">
       <body className="min-h-screen bg-[#102219] font-montserrat text-[#f3f5f0] antialiased selection:bg-[#d49a5a] selection:text-[#102219]">
+        <SiteStructuredData />
         {AUTUMN_ATMOSPHERE.enabled && <AutumnAtmosphere />}
         {children}
         <Suspense fallback={null}>

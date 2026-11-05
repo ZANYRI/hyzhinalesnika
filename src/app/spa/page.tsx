@@ -1,12 +1,13 @@
+import { PageStructuredData } from "@/components/StructuredData";
 import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 import { Waves, Sun, Clock } from "@phosphor-icons/react/dist/ssr";
 import { ContentPage } from "@/components/ContentPage";
 import { CabinGallerySlider } from "@/components/CabinGallerySlider";
 import { BookingAssistance } from "@/components/BookingAssistance";
-export const metadata: Metadata = withSocialMetadata({title:'СПА и релакс | Хижина лесника, Архыз',description:'СПА в 100 метрах от домиков: бассейн 15 × 6 м, джакузи, сауна, хамам. Стоимость посещения на 2 часа и время работы.',alternates:{canonical:"/spa"}});
+export const metadata: Metadata = withSocialMetadata({title:'СПА и релакс | Хижина лесника, Архыз',description:'СПА-комплекс партнёра в 100 метрах от домиков «Хижина лесника» в Архызе: бассейн 15 × 6 м, джакузи, сауна и хамам. Стоимость посещения и время работы.',alternates:{canonical:"/spa"}});
 export default function SpaPage() {
-  return <ContentPage title="СПА и релакс" eyebrow="Время замедлиться" description="В 100 метрах от домиков – пространство для отдыха после горных прогулок. Поплавайте в тёплом бассейне, согрейтесь в парной и устройте день для себя.">
+  return <><PageStructuredData metadata={metadata} />{<ContentPage title="СПА и релакс" eyebrow="Время замедлиться" description="В 100 метрах от домиков – пространство для отдыха после горных прогулок. Поплавайте в тёплом бассейне, согрейтесь в парной и устройте день для себя.">
     <section className="mb-12 sm:mb-16"><h2 className="font-moderustic text-3xl font-bold">Загляните в СПА</h2><p className="mt-4 mb-7 max-w-3xl leading-relaxed text-[#a8b9ae]">Бассейн с выходом под открытое небо, сауна с видом на лес и джакузи для отдыха после прогулок. Наш партнёр – парк-отель «Адреналин», в 100 метрах от домиков. Посещение оплачивается отдельно.</p><CabinGallerySlider images={[
       {src:"/images/partners/spa/spa-01.webp",alt:"Подогреваемый бассейн СПА-комплекса «Адреналин»"},
       {src:"/images/partners/spa/spa-02.webp",alt:"Крытая часть бассейна и зона отдыха"},
@@ -24,5 +25,5 @@ export default function SpaPage() {
       <div className="mt-6 grid gap-6 rounded-2xl border border-[#c6b49b] p-6 sm:grid-cols-2"><div><Clock size={28} weight="thin" /><h3 className="mt-3 font-moderustic text-xl font-bold">Время работы СПА</h3><p className="mt-2 text-2xl font-semibold">10:00–23:00</p></div><div><h3 className="font-moderustic text-xl font-bold">Технические перерывы</h3><p className="mt-2 text-xl font-semibold">13:00–15:00 · 18:30–19:30</p></div><p className="text-sm leading-relaxed opacity-75 sm:col-span-2">Дети до 14 лет посещают СПА со взрослыми. Алкоголь в СПА запрещён.</p></div>
     </section>
     <BookingAssistance />
-  </ContentPage>;
+  </ContentPage>}</>;
 }
