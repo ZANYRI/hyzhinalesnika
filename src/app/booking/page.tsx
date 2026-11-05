@@ -1,3 +1,4 @@
+import { PageStructuredData } from "@/components/StructuredData";
 import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
@@ -15,14 +16,14 @@ export const metadata: Metadata = withSocialMetadata({
 });
 
 export default function BookingPage() {
-  return (
+  return <><PageStructuredData metadata={metadata} />{(
     <div className="min-h-screen bg-[#102219] text-[#f3f5f0]">
       <Header variant="inner" bookingAnchor="#booking" />
 
       <main className="mx-auto max-w-[1400px] px-4 pt-10 pb-24 sm:px-6 sm:pt-14">
         <div className="mx-auto max-w-2xl text-center">
           <h1 className="font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
-            Добро пожаловать на базу отдыха «Хижина лесника»
+            Онлайн-бронирование домов в Архызе
           </h1>
           <p className="mt-3 text-base leading-relaxed text-[#a8b9ae]">
             Бронирование у нас на сайте – это быстро, легко и без дополнительных комиссий! Самый актуальный календарь здесь! Бронируйте здесь и сейчас! Мы будем рады помочь Вам с выбором дома, дат отдыха и бронированием! Наш телефон <a href="tel:+79280201001" className="whitespace-nowrap text-[#d49a5a] underline">+7 (928) 020-10-01</a>.
@@ -33,6 +34,10 @@ export default function BookingPage() {
           <p className="flex items-center gap-2.5"><span aria-hidden="true" className="h-4 w-4 shrink-0 rounded border border-[#d49a5a] bg-[#d49a5a]" /><span>Жёлтая подсветка – есть свободные места</span></p>
           <p className="flex items-center gap-2.5"><span aria-hidden="true" className="h-4 w-4 shrink-0 rounded border border-white/30 bg-[#173024]" /><span>Без подсветки – свободных мест нет</span></p>
         </div>
+
+        <p className="mx-auto mt-3 max-w-[910px] text-center text-xs leading-relaxed text-[#c3d0c7] sm:text-sm">
+          Доступность выбранного периода и ограничения тарифа, включая минимальное число ночей, уточняются в модуле при проверке дат.
+        </p>
 
         <SecurityDepositNote className="mx-auto mt-7 max-w-[910px] bg-[#173024] text-[#c3d0c7]" />
 
@@ -55,5 +60,5 @@ export default function BookingPage() {
 
       <Footer />
     </div>
-  );
+  )}</>;
 }

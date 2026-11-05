@@ -1,3 +1,8 @@
+import { PageStructuredData } from "@/components/StructuredData";
+import Image from "next/image";
+import heroMedia from "@/data/hero-media.json";
+import type { Metadata } from "next";
+import { withSocialMetadata, HOME_TITLE, HOME_DESCRIPTION } from "@/lib/social-metadata";
 import Link from "next/link";
 import { ArrowRight, CarProfile, MapPin } from "@phosphor-icons/react/dist/ssr";
 import { HOME_FAQ } from "@/data/home";
@@ -14,33 +19,9 @@ import { Reveal } from "@/components/Reveal";
 import { HomeBenefits, AudienceStories, HeroBadges } from "@/components/HomeSections";
 import { BookingAssistance } from "@/components/BookingAssistance";
 
+export const metadata: Metadata = withSocialMetadata({title: HOME_TITLE, description: HOME_DESCRIPTION, alternates: {canonical: "/"}});
+
 const HOME_JSON_LD = [
-  {
-    "@context": "https://schema.org",
-    "@type": "LodgingBusiness",
-    name: "Хижина Лесника",
-    url: SITE_CONFIG.url,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5.0",
-      reviewCount: "65",
-    },
-    image: `${SITE_CONFIG.url}/images/home/cabin-bereza.jpg`,
-    telephone: "+79280201001",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Архыз",
-      addressRegion: "Карачаево-Черкесская Республика",
-      streetAddress: "улица Лесная, 40",
-      addressCountry: "RU",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: String(SITE_CONFIG.coords.lat),
-      longitude: String(SITE_CONFIG.coords.lng),
-    },
-    priceRange: "₽₽₽",
-  },
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -56,11 +37,18 @@ const HOME_JSON_LD = [
 ];
 
 export default function HomePage() {
-  return <div className="min-h-screen bg-[#102219] text-[#f3f5f0]">
+  return <><PageStructuredData metadata={metadata} />{<div className="min-h-screen bg-[#102219] text-[#f3f5f0]">
+    <link rel="preload" as="image" href={heroMedia.avif} type="image/avif" media="(max-width: 639px) and (max-aspect-ratio: 9/16)" fetchPriority="high" />
     {HOME_JSON_LD.map(schema => <script key={schema["@type"]} type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(schema).replace(/</g, "\\u003c")}} />)}
     <Header variant="hero" />
     <section className="relative -mt-[80px] flex min-h-[100dvh] flex-col justify-between overflow-hidden pt-28 pb-10 sm:-mt-[84px] sm:pt-32">
-      <img src="/images/home/hero-bg.webp" alt="Дома базы отдыха Хижина лесника в буковом лесу Архыза" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover" />
+      <picture>
+        {/* Only tall phones use the native-resolution portrait derivative.
+            Wider screens retain the full photo and the same cover framing. */}
+        <source media="(max-width: 639px) and (max-aspect-ratio: 9/16)" type="image/avif" srcSet={heroMedia.avif} />
+        <source media="(max-width: 639px) and (max-aspect-ratio: 9/16)" type="image/webp" srcSet={heroMedia.webp} />
+        <Image fill quality={60} sizes="(max-aspect-ratio: 3/2) 150vh, 100vw" loading="eager" fetchPriority="high" src="/images/home/hero-bg.jpg" alt="Дома базы отдыха Хижина лесника в буковом лесу Архыза" className="absolute inset-0 h-full w-full object-cover" />
+      </picture>
       <div className="absolute inset-0 bg-gradient-to-b from-[#102219]/65 via-[#102219]/40 to-[#102219]" />
       <div className="relative z-10 mx-auto flex w-full max-w-[1400px] justify-end px-4 sm:px-6"><HeroBadges /></div>
       <div className="relative z-10 mx-auto my-auto w-full max-w-[1400px] px-4 py-12 sm:px-6">
@@ -183,5 +171,5 @@ export default function HomePage() {
           </div>
         </section>
     </main><Footer />
-  </div>;
+  </div>}</>;
 }

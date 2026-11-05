@@ -1,3 +1,4 @@
+import { PageStructuredData } from "@/components/StructuredData";
 import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 import { AGREEMENT_BLOCKS } from "@/data/legal";
@@ -13,10 +14,10 @@ export const metadata: Metadata = withSocialMetadata({
 });
 
 export default function UsersAgreementPage() {
-  return (
+  return <><PageStructuredData metadata={metadata} />{(
     <LegalDocumentView
       title="Пользовательское соглашение"
       blocks={AGREEMENT_BLOCKS}
     />
-  );
+  )}</>;
 }

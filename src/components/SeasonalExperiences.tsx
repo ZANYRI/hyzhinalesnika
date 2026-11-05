@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 const activities = [
@@ -38,8 +39,8 @@ export function SeasonalExperiences() {
     </section>
     <div className="grid gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
     {activities.map(activity => <Link key={activity.title} href={activity.href} target={activity.href.startsWith("https://") ? "_blank" : undefined} rel={activity.href.startsWith("https://") ? "noopener noreferrer" : undefined} className="activity-wood-frame group flex h-full flex-col p-4 transition sm:p-5">
-      <div className="aspect-[16/10] overflow-hidden rounded-2xl bg-[#1d3b2b]">
-        <img src={activity.image} alt={activity.imageAlt ?? activity.title} style={{objectPosition: activity.imagePosition, transform: activity.imageScale ? `scale(${activity.imageScale})` : undefined}} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]" />
+      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-[#1d3b2b]">
+        <Image fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" src={activity.image} alt={activity.imageAlt ?? activity.title} style={{objectPosition: activity.imagePosition, transform: activity.imageScale ? `scale(${activity.imageScale})` : undefined}} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]" />
       </div>
       <div className="flex flex-1 flex-col pt-5">
         <p className="text-[11px] font-medium uppercase tracking-widest text-[#d8ae7f]">{activity.tag}</p>

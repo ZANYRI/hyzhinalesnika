@@ -1,6 +1,8 @@
+import Image from "next/image";
+import Link from "next/link";
+import { PageStructuredData } from "@/components/StructuredData";
 import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ArrowUpRight, Clock, Compass } from "@phosphor-icons/react/dist/ssr";
 import { TOP_5_PLACES } from "@/data/blog";
 import { Header } from "@/components/Header";
@@ -18,7 +20,7 @@ export const metadata: Metadata = withSocialMetadata({
 });
 
 export default function Top5MestArhyzaPage() {
-  return (
+  return <><PageStructuredData metadata={metadata} />{(
     <div className="min-h-screen bg-[#102219] text-[#f3f5f0]">
       <Header variant="inner" bookingAnchor="#booking" />
 
@@ -51,8 +53,8 @@ export default function Top5MestArhyzaPage() {
                 key={place.num}
                 className="grid grid-cols-1 items-center gap-6 rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5 sm:p-6 lg:grid-cols-12"
               >
-                <div className="aspect-[16/10] w-full overflow-hidden rounded-xl bg-[#08140d] lg:col-span-5">
-                  <img
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-[#08140d] lg:col-span-5">
+                  <Image fill sizes="(min-width: 1024px) 40vw, 100vw"
                     src={place.image}
                     alt={`${place.title}, Архыз`}
                     loading="lazy"
@@ -118,10 +120,11 @@ export default function Top5MestArhyzaPage() {
           </section>
         </article>
 
+        <p className="mt-8 text-sm"><Link href="/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety" className="text-[#d49a5a] underline">Как добраться до Архыза ↗</Link></p>
         <KonturBookingWidget id="booking" className="mt-12 px-0 sm:px-0" />
       </main>
 
       <Footer />
     </div>
-  );
+  )}</>;
 }

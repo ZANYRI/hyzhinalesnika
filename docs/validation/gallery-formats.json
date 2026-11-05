@@ -1,0 +1,20 @@
+[
+  {
+    "route": "/dom-dlya-semi",
+    "decoded": true,
+    "changes": true,
+    "lightboxCloses": true
+  },
+  {
+    "route": "/shale-s-vidom-na-gory",
+    "decoded": true,
+    "changes": true,
+    "lightboxCloses": true
+  },
+  {
+    "route": "/dvuhetazhnyj-barnhouse",
+    "decoded": true,
+    "changes": true,
+    "lightboxCloses": true
+  }
+]

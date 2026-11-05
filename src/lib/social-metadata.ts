@@ -14,7 +14,7 @@ export function withSocialMetadata(metadata: Metadata): Metadata {
   const url = new URL(path, SITE_CONFIG.url).toString();
   const pathname = new URL(url).pathname;
   const preview = previews[pathname as keyof typeof previews] ?? previews.default;
-  const title = typeof metadata.title === "string" ? metadata.title : HOME_TITLE;
+  const title = typeof metadata.title === "string" ? metadata.title : metadata.title && "absolute" in metadata.title ? metadata.title.absolute : HOME_TITLE;
   const description = metadata.description || HOME_DESCRIPTION;
   const image = new URL(`/images/social/${preview.file}`, SITE_CONFIG.url).toString();
 
@@ -22,7 +22,7 @@ export function withSocialMetadata(metadata: Metadata): Metadata {
     ...metadata,
     description,
     openGraph: {
-      type: "website",
+      type: pathname === "/stati-i-sovety/post/top-5-mest-v-arhyze" || pathname.startsWith("/kak-dobratsya-") ? "article" : "website",
       locale: "ru_RU",
       siteName: SITE_CONFIG.shortName,
       title,

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { PawPrint, TreeEvergreen, Waves, ForkKnife, CreditCard, Star } from "@phosphor-icons/react/dist/ssr";
 import { SITE_CONFIG } from "@/data/site";
@@ -8,7 +9,7 @@ export function SplitMark() {
 export function HeroBadges() {
   return <div className="flex flex-wrap justify-end gap-2 sm:gap-3">
     <a href={SITE_CONFIG.yandexReviewsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-2xl border border-white/25 bg-[#f1ebdf] px-3 py-2 text-[#1d3b2b] shadow-lg sm:px-4"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#fc3f1d] text-xl font-bold text-white">Я</span><span className="text-xs leading-snug"><strong className="block">Хорошее место</strong><span className="flex items-center gap-1"><Star size={12} weight="fill" />5,0 · Яндекс</span></span></a>
-    <Link href="/split" aria-label="Оплата через Яндекс Сплит" className="flex items-center rounded-2xl border border-white/25 bg-[#f1ebdf] px-3 py-2 text-[#1d3b2b] shadow-lg sm:px-4"><SplitMark /></Link>
+    <Link href="/split" aria-label="Яндекс Сплит: оплата отдыха частями" className="flex items-center rounded-2xl border border-white/25 bg-[#f1ebdf] px-3 py-2 text-[#1d3b2b] shadow-lg sm:px-4"><SplitMark /></Link>
   </div>;
 }
 const benefits = [
@@ -21,12 +22,12 @@ const benefits = [
 export function HomeBenefits() {
   return <section id="benefits" className="mt-8 bg-[#eee8dc] py-16 text-[#213d31] sm:py-20">
     <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8a6842]">Хижина лесника</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#795a38]">Хижина лесника</p>
       <h2 className="mt-3 max-w-3xl font-moderustic text-3xl font-bold sm:text-4xl">Заботимся о вашем комфорте</h2>
       <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {benefits.map(b => <Link key={b.title} href={b.href} className={`group relative isolate flex min-h-64 flex-col justify-between overflow-hidden rounded-2xl border border-[#d6c7b1] p-6 transition hover:-translate-y-1 hover:shadow-lg ${b.image ? "min-h-80 bg-[#213d31] text-[#f3eee3] lg:row-span-2 lg:min-h-full" : "bg-[#faf7f0]"}`}>
-          {b.image && <><img src={b.image} alt="Лес и горы Архыза в тумане" loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-105"/><div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/35 to-[#06130d]/30"/></>}
-          <div className="flex items-start justify-between gap-4"><span className={`text-xs uppercase tracking-widest ${b.image ? "text-[#e5ecdf]" : "opacity-65"}`}>{b.note}</span><b.icon size={48} weight="thin" className="shrink-0 opacity-75" /></div>
+          {b.image && <><Image fill quality={60} fetchPriority="low" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" src={b.image} alt="Лес и горы Архыза в тумане" loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-105"/><div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/35 to-[#06130d]/30"/></>}
+          <div className="flex items-start justify-between gap-4"><span className={`text-xs uppercase tracking-widest ${b.image ? "text-[#e5ecdf]" : "opacity-80"}`}>{b.note}</span><b.icon size={48} weight="thin" className="shrink-0 opacity-75" /></div>
           <div className="mt-7"><h3 className="font-moderustic text-2xl font-bold">{b.title}</h3><p className={`mt-3 max-w-md text-sm leading-relaxed ${b.image ? "text-[#e5ecdf]" : "opacity-80"}`}>{b.text}</p><span className="mt-5 inline-block text-xs font-semibold">Подробнее ↗</span></div>
         </Link>)}
       </div>
@@ -48,7 +49,7 @@ export function AudienceStories() {
         <p className="mt-3 text-sm leading-relaxed opacity-75">Вдвоём, с семьёй или в кругу друзей. Ближе к природе и друг к другу.</p>
       </div>
       <div className="grid lg:grid-cols-3">{stories.map(story => <Link href={story.href} key={story.title} className={`group relative flex min-h-[420px] items-end overflow-hidden p-7 sm:p-9 lg:min-h-[660px] ${story.position}`}>
-        <img src={story.image} alt={story.alt} loading="lazy" style={{objectPosition:story.imagePosition}} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/45 to-[#06130d]/15" />
+        <Image fill quality={60} fetchPriority="low" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" src={story.image} alt={story.alt} loading="lazy" style={{objectPosition:story.imagePosition}} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/45 to-[#06130d]/15" />
         <div className="relative"><h3 className="font-moderustic text-2xl font-bold">{story.title}</h3><p className="mt-4 text-sm leading-relaxed text-[#e2e8df]">{story.text}</p><span className="mt-5 inline-block text-sm font-semibold text-[#e6c7a0]">Посмотреть дом ↗</span></div>
       </Link>)}</div>
     </div>

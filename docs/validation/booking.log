@@ -1,0 +1,5 @@
+
+> hyzhinalesnika@0.1.0 test:booking
+> node scripts/test-kontur-booking.mjs
+
+PASS booking: house availability updates, exact dates, shared initialization, cancellation and cleanup

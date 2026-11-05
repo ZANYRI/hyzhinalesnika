@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import {
@@ -31,9 +32,9 @@ export function BlogSection() {
             <div>
               <Link
                 href={post.href}
-                className="block aspect-[16/9] w-full overflow-hidden rounded-2xl bg-[#08140d]"
+                className="relative block aspect-[16/9] w-full overflow-hidden rounded-2xl bg-[#08140d]"
               >
-                <img
+                <Image fill sizes="(min-width: 1024px) 55vw, 100vw"
                   src={post.thumbnail}
                   alt={post.title}
                   loading="lazy"

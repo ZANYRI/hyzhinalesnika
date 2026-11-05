@@ -1,3 +1,4 @@
+import { PageStructuredData } from "@/components/StructuredData";
 import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 import { PRIVACY_BLOCKS } from "@/data/legal";
@@ -14,10 +15,10 @@ export const metadata: Metadata = withSocialMetadata({
 });
 
 export default function PrivacyPolicyPage() {
-  return (
+  return <><PageStructuredData metadata={metadata} />{(
     <LegalDocumentView
       title="Политика обработки персональных данных"
       blocks={PRIVACY_BLOCKS}
     />
-  );
+  )}</>;
 }

@@ -1,0 +1,41 @@
+[
+  {
+    "name": "home-1",
+    "environment": "local production build via HTTP/2 proxy; SDK restricted; temporary untrusted local TLS",
+    "scores": {
+      "performance": 89,
+      "accessibility": 100,
+      "seo": 100
+    },
+    "lcp": 3756.502,
+    "cls": 0.001071997454106104,
+    "tbt": 36,
+    "bytes": 851757
+  },
+  {
+    "name": "home-2",
+    "environment": "local production build via HTTP/2 proxy; SDK restricted; temporary untrusted local TLS",
+    "scores": {
+      "performance": 89,
+      "accessibility": 100,
+      "seo": 100
+    },
+    "lcp": 3754.005,
+    "cls": 0.001071997454106104,
+    "tbt": 25,
+    "bytes": 851779
+  },
+  {
+    "name": "home-3",
+    "environment": "local production build via HTTP/2 proxy; SDK restricted; temporary untrusted local TLS",
+    "scores": {
+      "performance": 89,
+      "accessibility": 100,
+      "seo": 100
+    },
+    "lcp": 3753.7155000000002,
+    "cls": 0.001071997454106104,
+    "tbt": 37,
+    "bytes": 851788
+  }
+]

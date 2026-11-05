@@ -1,0 +1,5 @@
+
+> hyzhinalesnika@0.1.0 test:contact
+> node scripts/test-contact.cjs
+
+PASS contact: consent required, version checked, single callback consent and no advertising processing, evidence stored before delivery, private files, concurrency and failure paths

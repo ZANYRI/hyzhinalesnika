@@ -12,7 +12,7 @@ export function scrollToSectionById(id: string): boolean {
   }
   if (id === "faq-pets") {
     window.dispatchEvent(new CustomEvent("hyzhina:open-faq", { detail: "pets" }));
-    document.querySelector<HTMLButtonElement>("#faq-pets button")?.focus({ preventScroll: true });
+    document.querySelector<HTMLElement>("#faq-pets summary")?.focus({ preventScroll: true });
   }
   const el = document.getElementById(id);
   if (!el) return false;
@@ -152,7 +152,7 @@ export function CleanHashScroll() {
       if (!sectionId) return;
 
       e.preventDefault();
-      e.stopPropagation();
+      // Let the link's own handler close the mobile drawer after the scroll.
 
       if (window.location.hash) {
         window.history.replaceState(

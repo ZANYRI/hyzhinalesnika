@@ -1,11 +1,13 @@
 import type { MetadataRoute } from "next";
 import { SITE_CONFIG } from "@/data/site";
+import { CALLBACK_CONSENT, consentUrl } from "@/data/consents";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE_CONFIG.url;
 
   const routes = [
     { path: "", priority: 1.0 },
+    { path: consentUrl(CALLBACK_CONSENT), priority: 0.3 },
     { path: "/booking", priority: 0.9 },
     { path: "/news", priority: 0.7 },
     { path: "/special-offers", priority: 0.8 },
@@ -27,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   return routes.map((route) => ({
-    url: `${base}${route.path}`,
+    url: new URL(route.path || "/", base).toString(),
     changeFrequency: "weekly",
     priority: route.priority,
   }));

@@ -1,12 +1,12 @@
 "use client";
 
+import Image from "next/image";
+
 import React, { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { List, PhoneCall, X } from "@phosphor-icons/react";
 import { SITE_CONFIG } from "@/data/site";
 import { CallbackModal } from "./CallbackModal";
-import { navigateToSection } from "./CleanHashScroll";
 
 interface HeaderProps {
   variant?: "hero" | "inner";
@@ -23,31 +23,21 @@ const HEADER_LINKS = [
   { label: "Контакты", target: "/#contacts" },
 ] as const;
 
-export function Header(_props: HeaderProps) {
+export function Header({ variant = "inner" }: HeaderProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [callbackOpen, setCallbackOpen] = useState(false);
-  const router = useRouter();
-
-  function handleNavClick(target: string) {
-    setDrawerOpen(false);
-    navigateToSection(
-      target,
-      router,
-      typeof window !== "undefined" ? window.location.pathname : "/"
-    );
-  }
 
   return (
     <>
       <div className="sticky top-3 z-40 mx-auto w-full max-w-[1800px] px-3 sm:px-6">
-        <header className="forest-glass flex h-[68px] w-full items-center justify-between gap-x-3 gap-y-3 rounded-full px-4 sm:h-[72px] sm:px-6 md:h-auto md:flex-wrap md:rounded-[2rem] md:py-3 xl:h-[72px] xl:flex-nowrap xl:rounded-full xl:py-0">
+        <header data-variant={variant} className="forest-glass flex h-[68px] w-full items-center justify-between gap-x-3 gap-y-3 rounded-full px-4 sm:h-[72px] sm:px-6 md:h-auto md:flex-wrap md:rounded-[2rem] md:py-3 xl:h-[72px] xl:flex-nowrap xl:rounded-full xl:py-0">
           {/* Brand Wordmark Logo */}
           <Link
             href="/"
             aria-label='База отдыха "Хижина лесника" – на главную'
             className="group flex shrink-0 items-center pl-1 focus:outline-none"
           >
-            <img
+            <Image
               src="/images/brand/logo-wordmark-light.png"
               alt='База отдыха "Хижина лесника"'
               width={450}
@@ -62,14 +52,10 @@ export function Header(_props: HeaderProps) {
             className="order-3 hidden w-full flex-wrap items-center justify-center gap-x-4 gap-y-2 md:flex xl:order-none xl:w-auto xl:flex-nowrap xl:gap-2 2xl:gap-3"
           >
             {HEADER_LINKS.map((item) => (
-              <button
-                key={item.target}
-                type="button"
-                onClick={() => handleNavClick(item.target)}
+              <Link key={item.target} href={item.target} onClick={() => setDrawerOpen(false)}
                 className="whitespace-nowrap text-xs font-medium 2xl:text-[13.5px] text-[#d6e0d9] transition hover:text-[#d49a5a] cursor-pointer"
               >
-                {item.label}
-              </button>
+                {item.label}</Link>
             ))}
           </nav>
 
@@ -124,7 +110,7 @@ export function Header(_props: HeaderProps) {
           >
             <div className="flex items-center justify-between border-b border-white/10 pb-5">
               <Link href="/" onClick={() => setDrawerOpen(false)} aria-label='База отдыха "Хижина лесника" – на главную'>
-              <img
+              <Image
                 src="/images/brand/logo-wordmark-light.png"
                 alt='База отдыха "Хижина лесника"'
                 width={450}
@@ -144,14 +130,10 @@ export function Header(_props: HeaderProps) {
 
             <nav className="mt-6 flex flex-col gap-1">
               {HEADER_LINKS.map((item) => (
-                <button
-                  key={item.target}
-                  type="button"
-                  onClick={() => handleNavClick(item.target)}
+                <Link key={item.target} href={item.target} onClick={() => setDrawerOpen(false)}
                   className="rounded-xl px-3 py-3 text-left font-moderustic text-base font-medium text-[#f3f5f0] transition hover:bg-[#173024] hover:text-[#d49a5a] cursor-pointer"
                 >
-                  {item.label}
-                </button>
+                  {item.label}</Link>
               ))}
             </nav>
 

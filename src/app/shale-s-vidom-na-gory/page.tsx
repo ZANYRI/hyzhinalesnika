@@ -1,3 +1,4 @@
+import { PageStructuredData } from "@/components/StructuredData";
 import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
 import { CABINS } from "@/data/cabins";
@@ -14,5 +15,5 @@ export const metadata: Metadata = withSocialMetadata({
 });
 
 export default function ShaleSVidomNaGoryPage() {
-  return <CabinDetailView cabin={cabin} />;
+  return <><PageStructuredData metadata={metadata} />{<CabinDetailView cabin={cabin} />}</>;
 }

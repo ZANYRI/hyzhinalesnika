@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import {
@@ -16,9 +17,9 @@ export function Footer() {
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           {/* Brand & Messengers */}
-          <div className="md:col-span-5">
+          <div className="min-w-0 md:col-span-5">
             <Link href="/" aria-label='База отдыха "Хижина лесника" – на главную' className="inline-flex transition hover:opacity-85">
-              <img
+              <Image
                 src="/images/brand/logo-wordmark-light.png"
                 alt='База отдыха "Хижина лесника"'
                 width={450}
@@ -36,7 +37,7 @@ export function Footer() {
           </div>
 
           {/* Navigation */}
-          <div className="md:col-span-3">
+          <div className="min-w-0 md:col-span-3">
             <p className="font-moderustic text-sm font-bold text-[#f3f5f0]">
               Разделы
             </p>
@@ -75,7 +76,7 @@ export function Footer() {
           </div>
 
           {/* Contacts */}
-          <div className="md:col-span-4">
+          <div className="min-w-0 md:col-span-4">
             <p className="font-moderustic text-sm font-bold text-[#f3f5f0]">
               Контакты и координаты
             </p>

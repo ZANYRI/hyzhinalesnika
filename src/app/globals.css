@@ -1,4 +1,26 @@
 @import "tailwindcss";
+@import "./font-subsets.css";
+
+/* Lightweight compositor transitions; content is visible in server HTML. */
+.reveal-section {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s ease var(--reveal-delay, 0s), transform 0.6s ease var(--reveal-delay, 0s);
+}
+.reveal-section[data-reveal="pending"] {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 22px));
+}
+@keyframes cabin-photo-enter {
+  from { opacity: 0.25; transform: scale(1.015); }
+  to { opacity: 1; transform: scale(1); }
+}
+.cabin-photo-enter { animation: cabin-photo-enter 0.28s ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal-section,
+  .reveal-section[data-reveal="pending"] { opacity: 1; transform: none; transition: none; }
+  .cabin-photo-enter { animation: none; }
+}
 
 /* Local self-hosted fonts */
 @font-face {
@@ -42,34 +64,6 @@
   font-style: normal;
   font-display: swap;
   src: url("/fonts/moderustic-800.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Montserrat";
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/montserrat-400.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Montserrat";
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/montserrat-500.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Montserrat";
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/montserrat-600.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Montserrat";
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-  src: url("/fonts/montserrat-700.woff2") format("woff2");
 }
 
 :root {

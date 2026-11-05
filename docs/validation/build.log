@@ -1,0 +1,101 @@
+▲ Next.js 16.4.3 (Turbopack)
+✓ Running next.config.ts took 21ms
+- Cache Components enabled
+- Partial Prefetching enabled
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 682ms
+  Running TypeScript ...
+  Finished TypeScript in 1881ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/31) ...
+  Generating static pages using 9 workers (7/31) 
+  Generating static pages using 9 workers (15/31) 
+  Generating static pages using 9 workers (23/31) 
+✓ Generating static pages using 9 workers (31/31) in 632ms
+Turbopack build encountered 2 warnings:
+./src/lib/contact-journal.ts:17:21
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m15 |[0m   [36mawait[0m mkdir(root, { recursive: [36mtrue[0m, mode: [35m0o700[0m });
+  [90m16 |[0m   [36mawait[0m chmod(root, [35m0o700[0m);
+[33m[1m>[0m [90m17 |[0m   [36mconst[0m directory = path.join(root, kind);
+  [90m   |[0m                     [33m[1m^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m18 |[0m   [36mawait[0m mkdir(directory, { recursive: [36mtrue[0m, mode: [35m0o700[0m });
+  [90m19 |[0m   [36mawait[0m chmod(directory, [35m0o700[0m);
+  [90m20 |[0m   [36mconst[0m temporary = path.join(directory, [32m`.[0m${randomUUID()[32m}.tmp`[0m);
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: path.join(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import trace:
+  App Route:
+    ./src/lib/contact-journal.ts
+    ./src/app/api/contact/route.ts
+
+
+./src/lib/contact-journal.ts:7:21
+Warning: Dynamic filesystem access causes tracing of the whole project
+  [90m 5 |[0m ...[90mthis directory contains personal data and consent evidence.[0m
+  [90m 6 |[0m ...tDataDirectory() {
+[33m[1m>[0m [90m 7 |[0m ...th.resolve(process.env.[33mCONTACT_DATA_DIR[0m || path.join(process.cwd(), [32m".data"[0m, [32m"contact"[0m));
+  [90m   |[0m    [33m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m 8 |[0m ...y = path.join(process.cwd(), [32m"public"[0m);
+  [90m 9 |[0m ...blicDirectory || directory.startsWith(publicDirectory + path.sep)) [36mthrow[0m [36mnew[0m [33mError[0m([32m"Con...[0m
+  [90m10 |[0m ...
+
+Static analysis determined that this filesystem access causes the whole project to be traced and included in the output.
+This is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.
+This can slow down deployments or lead to failures when size limits are exceeded.
+To resolve this, you can
+- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or
+- only use them in development, or
+- opt out by adding an ignore comment to the highlighted call: path.resolve(/*turbopackIgnore: true*/ ...), or
+- remove them.
+
+Import trace:
+  App Route:
+    ./src/lib/contact-journal.ts
+    ./src/app/api/contact/route.ts
+
+
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/contact
+├ ○ /booking
+├   /consents/[type]/[version]
+│ ├ ◐ /consents/[type]/[version]
+│ ├ ◐ /consents/callback/[version]
+│ ├ ○ /consents/callback/2026-11-05-1
+│ └ ◐ [+5 more paths]
+├ ○ /cookie-policy
+├ ○ /dining
+├ ○ /dom-dlya-semi
+├ ○ /dvuhetazhnyj-barnhouse
+├ ○ /kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety
+├ ○ /news
+├ ○ /oferta
+├ ○ /privacy-policy
+├ ○ /robots.txt
+├ ○ /search
+├ ○ /shale-s-vidom-na-gory
+├ ○ /sitemap.xml
+├ ○ /spa
+├ ○ /special-offers
+├ ○ /split
+├ ○ /stati-i-sovety/post/top-5-mest-v-arhyze
+└ ○ /users/agreement
+
+
+○  (Static)             prerendered as static content
+◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content
+ƒ  (Dynamic)            server-rendered on demand
+

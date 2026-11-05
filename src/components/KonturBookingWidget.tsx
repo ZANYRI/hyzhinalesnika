@@ -151,7 +151,8 @@ function getDesktopMediaSnapshot(): boolean {
 }
 
 function getDesktopMediaServerSnapshot(): boolean {
-  return true;
+  // The mobile calendar must not mount a desktop SDK instance during hydration.
+  return false;
 }
 
 function buildKonturConfig(
@@ -232,6 +233,27 @@ export function KonturBookingWidget({
     customContainerId || `kontur-${resolvedVariant}-${reactId}`;
   const activeKey = `${containerId}:${resolvedVariant}`;
   const containerRef = useRef<HTMLDivElement>(null);
+  const [canLoad, setCanLoad] = useState(false);
+
+  // Keep the booking SDK out of the first-screen critical path on long pages.
+  // A generous margin starts loading before the visitor reaches the form.
+  useEffect(() => {
+    if (canLoad) return;
+    const container = containerRef.current;
+    if (!container) return;
+    if (typeof IntersectionObserver === "undefined") {
+      const timeout = window.setTimeout(() => setCanLoad(true), 0);
+      return () => window.clearTimeout(timeout);
+    }
+    const observer = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        setCanLoad(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: resolvedVariant === "roomsList" ? "100px 0px" : "600px 0px" });
+    observer.observe(container.closest("section") ?? container);
+    return () => observer.disconnect();
+  }, [canLoad, resolvedVariant]);
 
   const [mountedKey, setMountedKey] = useState<string | null>(null);
   const [originBlocked, setOriginBlocked] = useState(false);
@@ -265,6 +287,7 @@ export function KonturBookingWidget({
   const mountedWidget = mountedKey === activeKey;
 
   useEffect(() => {
+    if (!canLoad) return;
     let cancelled = false;
     const controller = new AbortController();
     let cleanupWidget: (() => void) | undefined;
@@ -368,6 +391,7 @@ export function KonturBookingWidget({
       cleanupWidget?.();
     };
   }, [
+    canLoad,
     activeKey,
     loadAttempt,
     calendarInteractive,
@@ -547,7 +571,7 @@ export function KonturBookingWidget({
     <section
       id={id}
       aria-label="Онлайн-бронирование Контур.Отель"
-      className={`mx-auto w-full max-w-[1400px] scroll-mt-28 px-4 sm:px-6 ${className}`}
+      className={`mx-auto w-full max-w-[1400px] scroll-mt-28 px-4 sm:px-6 ${isCalendarVariant ? "min-h-[540px] md:min-h-[400px]" : ""} ${className}`}
     >
       {/* Live Контур.Отель container (kept at a stable JSX node position so portal root never remounts) */}
       <div

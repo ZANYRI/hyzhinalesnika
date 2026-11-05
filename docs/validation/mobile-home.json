@@ -1,0 +1,31 @@
+{
+  "sdkBeforeScroll": 0,
+  "faqCount": 10,
+  "faqOpen": 0,
+  "petsOpen": true,
+  "menuClosed": true,
+  "bookingTop": 111.75,
+  "sdkAfterScroll": 1,
+  "widths": [
+    {
+      "width": 320,
+      "client": 320,
+      "scroll": 320
+    },
+    {
+      "width": 390,
+      "client": 390,
+      "scroll": 390
+    },
+    {
+      "width": 768,
+      "client": 768,
+      "scroll": 768
+    },
+    {
+      "width": 1024,
+      "client": 1024,
+      "scroll": 1024
+    }
+  ]
+}
