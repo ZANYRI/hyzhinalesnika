@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowRight, CarProfile, MapPin } from "@phosphor-icons/react/dist/ssr";
 import { HOME_FAQ } from "@/data/home";
 import { SITE_CONFIG } from "@/data/site";
+import { CABIN_LIST } from "@/data/cabins";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { KonturBookingWidget } from "@/components/KonturBookingWidget";
@@ -66,7 +67,7 @@ export default function HomePage() {
         <KonturBookingWidget id="booking" className="mb-10 px-0 sm:px-0" />
         <p className="text-xs uppercase tracking-[0.2em] text-[#d49a5a]">Ваш дом в Архызе</p>
         <h2 className="mt-3 font-moderustic text-3xl font-bold sm:text-4xl">Выберите свой дом в лесу</h2>
-        <p className="mt-4 max-w-2xl text-[#a8b9ae]">Всего три дома – для семейного отдыха, романтических выходных и встреч с друзьями.</p>
+        <p className="mt-4 max-w-2xl leading-relaxed text-[#a8b9ae]">Всего три дома: {CABIN_LIST.map((cabin, index) => <span key={cabin.id}>{index > 0 && "; "}<Link href={cabin.slug} className="text-[#e6c7a0] underline decoration-[#d49a5a]/40 underline-offset-4 hover:decoration-[#d49a5a]">{cabin.cardTitle}</Link> – {cabin.cardGuests}, {cabin.cardArea}</span>)}.</p>
         <div className="mt-8"><CabinShowcase /></div>
       </section>
       <section id="sez1" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">

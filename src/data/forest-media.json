@@ -1,0 +1,39 @@
+{
+  "sourceSha256": "74bc592bdc946f3f7d8a330e3eedc2824791f189a7617691d8acec3f70bc73a6",
+  "width": 1200,
+  "height": 2103,
+  "avif": [
+    {
+      "src": "/images/home/forest-seclusion-480.8fdb05072a98.avif",
+      "width": 480,
+      "bytes": 26461
+    },
+    {
+      "src": "/images/home/forest-seclusion-768.7419cb9f4299.avif",
+      "width": 768,
+      "bytes": 61699
+    },
+    {
+      "src": "/images/home/forest-seclusion-1200.e0480d1ea9d5.avif",
+      "width": 1200,
+      "bytes": 143504
+    }
+  ],
+  "webp": [
+    {
+      "src": "/images/home/forest-seclusion-480.58c1770e09b9.webp",
+      "width": 480,
+      "bytes": 72728
+    },
+    {
+      "src": "/images/home/forest-seclusion-768.9e81a951162e.webp",
+      "width": 768,
+      "bytes": 158570
+    },
+    {
+      "src": "/images/home/forest-seclusion-1200.be36e890ec19.webp",
+      "width": 1200,
+      "bytes": 337032
+    }
+  ]
+}

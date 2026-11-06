@@ -6,7 +6,7 @@ import { ContentPage } from "@/components/ContentPage";
 
 export const metadata: Metadata = withSocialMetadata({
   title: "Использование cookie | Хижина лесника",
-  description: "Информация о cookie на сайте базы отдыха «Хижина лесника».",
+  description: "Использование cookie на сайте базы отдыха «Хижина лесника»: сохранение отметки о просмотре уведомления, cookie сервиса бронирования и управление ими в браузере.",
   alternates: { canonical: "/cookie-policy" },
 });
 

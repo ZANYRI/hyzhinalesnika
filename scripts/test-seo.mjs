@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { writeFile } from "node:fs/promises";
 import { get as httpGet } from "node:http";
+import forestMedia from "../src/data/forest-media.json" with { type: "json" };
 
 // Read-only assertions against a running production build; never submits forms.
 const base = process.env.SEO_BASE_URL || "http://localhost:3106";
@@ -34,6 +35,10 @@ for (const url of urls) {
   const graphs = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1]));
   const nodes = graphs.flatMap(schema => schema["@graph"] || [schema]);
   assert.ok(nodes.some(node => node["@type"] === "LodgingBusiness"), `Business schema: ${pathname}`);
+  const business = nodes.find(node => node["@type"] === "LodgingBusiness");
+  assert.equal(business.address.streetAddress, "улица Лесная, 40", "Correct business identity");
+  assert.equal(business.telephone, "+79280201001", "Official booking phone");
+  assert.match(business.petsAllowed, /оплачивается отдельно/, "Pet policy does not imply free accommodation");
   assert.ok(nodes.some(node => ["WebPage", "CollectionPage"].includes(node["@type"]) && node.url === new URL(url).toString() && node.name === title), `Page schema matches title: ${pathname}`);
   assert.ok(!nodes.some(node => node.aggregateRating), "No self-serving review aggregate in JSON-LD");
   const images = tags(html, "img");
@@ -41,6 +46,11 @@ for (const url of urls) {
   if (["/dom-dlya-semi", "/dvuhetazhnyj-barnhouse", "/shale-s-vidom-na-gory"].includes(pathname)) {
     const cabin = nodes.find(node => node["@type"] === "Accommodation");
     assert.ok(cabin?.floorSize?.value > 0 && cabin.image.length > 0, `Cabin schema: ${pathname}`);
+    const capacity = { "/dom-dlya-semi": 5, "/dvuhetazhnyj-barnhouse": 7, "/shale-s-vidom-na-gory": 4 }[pathname];
+    assert.equal(cabin.occupancy.maxValue, capacity, `Published cabin capacity: ${pathname}`);
+    assert.ok(html.includes("партнёрского парк-отеля «Адреналин»"), "Partner SPA is distinguished from cabin amenities");
+    assert.ok(html.includes("Посещение СПА и питание оплачиваются отдельно."), "No implied inclusion in accommodation");
+    assert.ok(!html.includes("электрических конвектора"), "Removed stale heating descriptions");
     assert.ok(!tags(html, "details").some(tag => /\bopen(?:[=>\s])/.test(tag)), "Cabin accordions initially closed");
   }
   if (pathname === "/") {
@@ -49,6 +59,27 @@ for (const url of urls) {
     assert.equal(faq.length, questions.length, "FAQ answers rendered in server HTML");
     assert.ok(faq.every(match => !/\bopen(?:[=>\s])/.test(match[0].split(">")[0])), "FAQ initially closed");
     assert.ok(faq.some(match => match[1].includes("водяными тёплыми полами")), "Winter answer present without JavaScript");
+    assert.ok(faq.some(match => match[1].includes("Навигационный адрес: ул. Лесная, 40")), "Business identity rendered in FAQ");
+    const cabins = nodes.filter(node => node["@type"] === "Accommodation");
+    assert.equal(cabins.length, 3, "All cabins described on the server-rendered home page");
+    assert.deepEqual(cabins.map(cabin => cabin.occupancy.maxValue).sort(), [4, 5, 7]);
+    for (const cabin of cabins) {
+      assert.ok(tags(html, "a").some(tag => attr(tag, "href") === new URL(cabin.url).pathname), "Direct cabin links rendered without interaction");
+    }
+    const forest = images.find(tag => attr(tag, "alt") === "Лес и горы Архыза в тумане");
+    assert.ok(forest && !attr(forest, "src").includes("/_next/image"), "Forest card avoids cold on-demand image encoding");
+    const forestSources = tags(html, "source").filter(tag => attr(tag, "srcset").includes("forest-seclusion-"));
+    assert.equal(forestSources.length, 2, "Responsive AVIF and WebP forest sources");
+    for (const [format, sources] of [["avif", forestMedia.avif], ["webp", forestMedia.webp]]) {
+      assert.ok(sources.every(source => source.width <= forestMedia.width), "No enlarged forest derivative");
+      for (const source of sources) {
+        const response = await get(source.src);
+        assert.equal(response.status, 200, source.src);
+        assert.ok(response.headers.get("content-type")?.includes(`image/${format}`));
+        assert.match(response.headers.get("cache-control"), /max-age=31536000.*immutable/, "Hashed forest image cached immutably");
+        assert.equal((await response.arrayBuffer()).byteLength, source.bytes, "Encoded forest derivative intact");
+      }
+    }
     assert.ok(tags(html, "a").some(tag => attr(tag, "href") === "/spa"), "Crawlable navigation");
     const hero = images.find(tag => attr(tag, "alt").includes("буковом лесу Архыза"));
     assert.ok(attr(hero, "srcset"), "Responsive hero image");

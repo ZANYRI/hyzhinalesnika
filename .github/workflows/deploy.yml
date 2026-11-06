@@ -28,6 +28,7 @@ jobs:
         run: |
           npm ci
           npm run build
+          node scripts/verify-build-css.mjs
 
       - name: Check VPS deploy secrets
         id: check_secrets
@@ -64,7 +65,10 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             npm ci
+            # Discard the compiler cache; keep the image cache and live assets.
+            rm -rf .next/cache/turbopack
             NODE_OPTIONS="--max-old-space-size=1536" npm run build
+            node scripts/verify-build-css.mjs
             pm2 startOrReload ecosystem.config.cjs --update-env
             pm2 save
             for i in 1 2 3 4 5; do

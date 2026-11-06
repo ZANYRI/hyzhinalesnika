@@ -21,7 +21,7 @@ async function documentFor({ params }: Props) {
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const document = await documentFor(props);
   const current = document.kind === CALLBACK_CONSENT.kind && document.version === CALLBACK_CONSENT.version;
-  return withSocialMetadata({ title: `${document.title} | Хижина лесника`, description: document.title, alternates: { canonical: consentUrl(document) }, robots: current ? undefined : { index: false, follow: false } });
+  return withSocialMetadata({ title: document.kind === "callback" ? "Согласие на заявку и обратный звонок | Хижина лесника" : `${document.title} | Хижина лесника`, description: document.kind === "callback" ? "Текст согласия на обработку персональных данных для заявки и обратного звонка в «Хижине лесника»: цели обработки, состав данных, срок действия и порядок отзыва." : document.title, alternates: { canonical: consentUrl(document) }, robots: current ? undefined : { index: false, follow: false } });
 }
 
 export default async function ConsentPage(props: Props) {

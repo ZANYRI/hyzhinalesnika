@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { PhoneCall, TelegramLogo, WhatsappLogo } from "@phosphor-icons/react";
+import { ChatCircle, InstagramLogo, PhoneCall, TelegramLogo, WhatsappLogo } from "@phosphor-icons/react";
 import { SITE_CONFIG } from "@/data/site";
 import { CallbackModal } from "./CallbackModal";
 
@@ -38,6 +38,26 @@ export function AboutContactActions() {
         >
           <TelegramLogo size={18} />
           <span>Telegram</span>
+        </a>
+
+        <a
+          href={SITE_CONFIG.maxHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-[#1d3b2b]/75 px-5 text-sm font-medium text-[#f3f5f0] transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a] active:scale-[0.98]"
+        >
+          <ChatCircle size={18} />
+          <span>MAX</span>
+        </a>
+
+        <a
+          href={SITE_CONFIG.instagramHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-[#1d3b2b]/75 px-5 text-sm font-medium text-[#f3f5f0] transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a] active:scale-[0.98]"
+        >
+          <InstagramLogo size={18} />
+          <span>Instagram</span>
         </a>
       </div>
 

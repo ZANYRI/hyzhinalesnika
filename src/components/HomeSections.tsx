@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PawPrint, TreeEvergreen, Waves, ForkKnife, CreditCard, Star } from "@phosphor-icons/react/dist/ssr";
 import { SITE_CONFIG } from "@/data/site";
+import { ForestBenefitImage } from "./ForestBenefitImage";
 
 export function SplitMark() {
   return <span className="inline-flex items-center gap-2 font-moderustic text-lg font-bold"><span aria-hidden="true" className="flex h-7 w-7 items-center justify-center rounded-full bg-black text-base text-white">Я</span><svg aria-hidden="true" viewBox="0 0 32 32" className="h-7 w-7"><defs><linearGradient id="split-green"><stop stopColor="#30ed7b"/><stop offset="1" stopColor="#008b43"/></linearGradient></defs><path d="M27 5A15 15 0 1 0 27 27L15 16Z" fill="url(#split-green)"/><path d="m19 16 10-9a14 14 0 0 1 0 18Z" fill="#ed6654"/></svg>Сплит</span>;
@@ -16,7 +17,7 @@ const benefits = [
   {title:"Яндекс Сплит", text:"Забронируйте отдых сейчас и разделите оплату на удобные платежи.", icon:CreditCard, href:"/split", note:"Путешествовать проще"},
   {title:"Pet friendly", text:"Приезжайте с питомцем. Для него приготовим подарочный набор от «Четыре лапы».",icon:PawPrint,href:"/#faq-pets",note:"Вместе со всей семьёй"},
   {title:"Уединение в буковом лесу",text:"Заповедный лес Архыза и своя зона отдыха – в пяти минутах от центра посёлка.",icon:TreeEvergreen,href:"/#about",note:"Природа вокруг вас",image:"/images/home/forest-seclusion.webp"},
-  {title:"СПА-комплекс",text:"Подогреваемый бассейн, джакузи, сауна и хамам – в 100 метрах от домиков.",icon:Waves,href:"/spa",note:"Время для себя"},
+  {title:"СПА-комплекс рядом",text:"Подогреваемый бассейн, джакузи, сауна и хамам у партнёра «Адреналин» – в 100 метрах от домиков. Посещение оплачивается отдельно.",icon:Waves,href:"/spa",note:"Время для себя"},
   {title:"Ресторан и доставка",text:"Меню a la carte с 12:00 до 22:30. Завтрак в домик можно заказать с вечера.",icon:ForkKnife,href:"/dining",note:"Отдых без бытовых забот"},
 ];
 export function HomeBenefits() {
@@ -24,9 +25,10 @@ export function HomeBenefits() {
     <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#795a38]">Хижина лесника</p>
       <h2 className="mt-3 max-w-3xl font-moderustic text-3xl font-bold sm:text-4xl">Заботимся о вашем комфорте</h2>
+      <p className="mt-4 max-w-3xl text-sm leading-relaxed">{SITE_CONFIG.description}</p>
       <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {benefits.map(b => <Link key={b.title} href={b.href} className={`group relative isolate flex min-h-64 flex-col justify-between overflow-hidden rounded-2xl border border-[#d6c7b1] p-6 transition hover:-translate-y-1 hover:shadow-lg ${b.image ? "min-h-80 bg-[#213d31] text-[#f3eee3] lg:row-span-2 lg:min-h-full" : "bg-[#faf7f0]"}`}>
-          {b.image && <><Image fill quality={60} fetchPriority="low" sizes="(min-width: 1024px) 33vw, (min-width: 640px) calc(50vw - 34px), calc(100vw - 34px)" src={b.image} alt="Лес и горы Архыза в тумане" loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-105"/><div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/35 to-[#06130d]/30"/></>}
+          {b.image && <><ForestBenefitImage /><div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/35 to-[#06130d]/30"/></>}
           <div className="flex items-start justify-between gap-4"><span className={`text-xs uppercase tracking-widest ${b.image ? "text-[#e5ecdf]" : "opacity-80"}`}>{b.note}</span><b.icon size={48} weight="thin" className="shrink-0 opacity-75" /></div>
           <div className="mt-7"><h3 className="font-moderustic text-2xl font-bold">{b.title}</h3><p className={`mt-3 max-w-md text-sm leading-relaxed ${b.image ? "text-[#e5ecdf]" : "opacity-80"}`}>{b.text}</p><span className="mt-5 inline-block text-xs font-semibold">Подробнее ↗</span></div>
         </Link>)}

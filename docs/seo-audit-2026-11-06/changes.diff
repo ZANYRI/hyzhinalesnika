@@ -1,0 +1,588 @@
+diff --git a/.github/workflows/deploy.yml b/.github/workflows/deploy.yml
+index 5925a89..0d25b51 100644
+--- a/.github/workflows/deploy.yml
++++ b/.github/workflows/deploy.yml
+@@ -28,6 +28,7 @@ jobs:
+         run: |
+           npm ci
+           npm run build
++          node scripts/verify-build-css.mjs
+ 
+       - name: Check VPS deploy secrets
+         id: check_secrets
+@@ -64,7 +65,10 @@ jobs:
+             git fetch origin main
+             git reset --hard origin/main
+             npm ci
++            # Discard the compiler cache; keep the image cache and live assets.
++            rm -rf .next/cache/turbopack
+             NODE_OPTIONS="--max-old-space-size=1536" npm run build
++            node scripts/verify-build-css.mjs
+             pm2 startOrReload ecosystem.config.cjs --update-env
+             pm2 save
+             for i in 1 2 3 4 5; do
+diff --git a/next.config.ts b/next.config.ts
+index 44ceaa0..7c4b72a 100644
+--- a/next.config.ts
++++ b/next.config.ts
+@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
+     }, {
+       source: "/images/home/hero-mobile.:hash([0-9a-f]{12}).:format(avif|webp)",
+       headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
++    }, {
++      source: "/images/home/forest-seclusion-:width(480|768|1200).:hash([0-9a-f]{12}).:format(avif|webp)",
++      headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+     }];
+   },
+   turbopack: {
+diff --git a/scripts/test-seo.mjs b/scripts/test-seo.mjs
+index 6dd3e02..c3b6b19 100644
+--- a/scripts/test-seo.mjs
++++ b/scripts/test-seo.mjs
+@@ -1,6 +1,7 @@
+ import assert from "node:assert/strict";
+ import { writeFile } from "node:fs/promises";
+ import { get as httpGet } from "node:http";
++import forestMedia from "../src/data/forest-media.json" with { type: "json" };
+ 
+ // Read-only assertions against a running production build; never submits forms.
+ const base = process.env.SEO_BASE_URL || "http://localhost:3106";
+@@ -34,6 +35,10 @@ for (const url of urls) {
+   const graphs = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(match => JSON.parse(match[1]));
+   const nodes = graphs.flatMap(schema => schema["@graph"] || [schema]);
+   assert.ok(nodes.some(node => node["@type"] === "LodgingBusiness"), `Business schema: ${pathname}`);
++  const business = nodes.find(node => node["@type"] === "LodgingBusiness");
++  assert.equal(business.address.streetAddress, "улица Лесная, 40", "Correct business identity");
++  assert.equal(business.telephone, "+79280201001", "Official booking phone");
++  assert.match(business.petsAllowed, /оплачивается отдельно/, "Pet policy does not imply free accommodation");
+   assert.ok(nodes.some(node => ["WebPage", "CollectionPage"].includes(node["@type"]) && node.url === new URL(url).toString() && node.name === title), `Page schema matches title: ${pathname}`);
+   assert.ok(!nodes.some(node => node.aggregateRating), "No self-serving review aggregate in JSON-LD");
+   const images = tags(html, "img");
+@@ -41,6 +46,11 @@ for (const url of urls) {
+   if (["/dom-dlya-semi", "/dvuhetazhnyj-barnhouse", "/shale-s-vidom-na-gory"].includes(pathname)) {
+     const cabin = nodes.find(node => node["@type"] === "Accommodation");
+     assert.ok(cabin?.floorSize?.value > 0 && cabin.image.length > 0, `Cabin schema: ${pathname}`);
++    const capacity = { "/dom-dlya-semi": 5, "/dvuhetazhnyj-barnhouse": 7, "/shale-s-vidom-na-gory": 4 }[pathname];
++    assert.equal(cabin.occupancy.maxValue, capacity, `Published cabin capacity: ${pathname}`);
++    assert.ok(html.includes("партнёрского парк-отеля «Адреналин»"), "Partner SPA is distinguished from cabin amenities");
++    assert.ok(html.includes("Посещение СПА и питание оплачиваются отдельно."), "No implied inclusion in accommodation");
++    assert.ok(!html.includes("электрических конвектора"), "Removed stale heating descriptions");
+     assert.ok(!tags(html, "details").some(tag => /\bopen(?:[=>\s])/.test(tag)), "Cabin accordions initially closed");
+   }
+   if (pathname === "/") {
+@@ -49,6 +59,27 @@ for (const url of urls) {
+     assert.equal(faq.length, questions.length, "FAQ answers rendered in server HTML");
+     assert.ok(faq.every(match => !/\bopen(?:[=>\s])/.test(match[0].split(">")[0])), "FAQ initially closed");
+     assert.ok(faq.some(match => match[1].includes("водяными тёплыми полами")), "Winter answer present without JavaScript");
++    assert.ok(faq.some(match => match[1].includes("Навигационный адрес: ул. Лесная, 40")), "Business identity rendered in FAQ");
++    const cabins = nodes.filter(node => node["@type"] === "Accommodation");
++    assert.equal(cabins.length, 3, "All cabins described on the server-rendered home page");
++    assert.deepEqual(cabins.map(cabin => cabin.occupancy.maxValue).sort(), [4, 5, 7]);
++    for (const cabin of cabins) {
++      assert.ok(tags(html, "a").some(tag => attr(tag, "href") === new URL(cabin.url).pathname), "Direct cabin links rendered without interaction");
++    }
++    const forest = images.find(tag => attr(tag, "alt") === "Лес и горы Архыза в тумане");
++    assert.ok(forest && !attr(forest, "src").includes("/_next/image"), "Forest card avoids cold on-demand image encoding");
++    const forestSources = tags(html, "source").filter(tag => attr(tag, "srcset").includes("forest-seclusion-"));
++    assert.equal(forestSources.length, 2, "Responsive AVIF and WebP forest sources");
++    for (const [format, sources] of [["avif", forestMedia.avif], ["webp", forestMedia.webp]]) {
++      assert.ok(sources.every(source => source.width <= forestMedia.width), "No enlarged forest derivative");
++      for (const source of sources) {
++        const response = await get(source.src);
++        assert.equal(response.status, 200, source.src);
++        assert.ok(response.headers.get("content-type")?.includes(`image/${format}`));
++        assert.match(response.headers.get("cache-control"), /max-age=31536000.*immutable/, "Hashed forest image cached immutably");
++        assert.equal((await response.arrayBuffer()).byteLength, source.bytes, "Encoded forest derivative intact");
++      }
++    }
+     assert.ok(tags(html, "a").some(tag => attr(tag, "href") === "/spa"), "Crawlable navigation");
+     const hero = images.find(tag => attr(tag, "alt").includes("буковом лесу Архыза"));
+     assert.ok(attr(hero, "srcset"), "Responsive hero image");
+diff --git a/src/app/consents/[type]/[version]/page.tsx b/src/app/consents/[type]/[version]/page.tsx
+index 7a21931..e5d1c4d 100644
+--- a/src/app/consents/[type]/[version]/page.tsx
++++ b/src/app/consents/[type]/[version]/page.tsx
+@@ -21,7 +21,7 @@ async function documentFor({ params }: Props) {
+ export async function generateMetadata(props: Props): Promise<Metadata> {
+   const document = await documentFor(props);
+   const current = document.kind === CALLBACK_CONSENT.kind && document.version === CALLBACK_CONSENT.version;
+-  return withSocialMetadata({ title: `${document.title} | Хижина лесника`, description: document.title, alternates: { canonical: consentUrl(document) }, robots: current ? undefined : { index: false, follow: false } });
++  return withSocialMetadata({ title: document.kind === "callback" ? "Согласие на заявку и обратный звонок | Хижина лесника" : `${document.title} | Хижина лесника`, description: document.kind === "callback" ? "Текст согласия на обработку персональных данных для заявки и обратного звонка в «Хижине лесника»: цели обработки, состав данных, срок действия и порядок отзыва." : document.title, alternates: { canonical: consentUrl(document) }, robots: current ? undefined : { index: false, follow: false } });
+ }
+ 
+ export default async function ConsentPage(props: Props) {
+diff --git a/src/app/cookie-policy/page.tsx b/src/app/cookie-policy/page.tsx
+index 212628d..08d9a62 100644
+--- a/src/app/cookie-policy/page.tsx
++++ b/src/app/cookie-policy/page.tsx
+@@ -6,7 +6,7 @@ import { ContentPage } from "@/components/ContentPage";
+ 
+ export const metadata: Metadata = withSocialMetadata({
+   title: "Использование cookie | Хижина лесника",
+-  description: "Информация о cookie на сайте базы отдыха «Хижина лесника».",
++  description: "Использование cookie на сайте базы отдыха «Хижина лесника»: сохранение отметки о просмотре уведомления, cookie сервиса бронирования и управление ими в браузере.",
+   alternates: { canonical: "/cookie-policy" },
+ });
+ 
+diff --git a/src/app/dining/page.tsx b/src/app/dining/page.tsx
+index 7506bc7..5ad420b 100644
+--- a/src/app/dining/page.tsx
++++ b/src/app/dining/page.tsx
+@@ -10,7 +10,7 @@ import { BookingAssistance } from "@/components/BookingAssistance";
+ 
+ export const metadata: Metadata = withSocialMetadata({
+   title: "Ресторан и завтрак в домик | Хижина лесника, Архыз",
+-  description: "Ресторан à la carte в 100 метрах от домов, меню и фотографии. Отдельная доставка завтрака в домик по предварительному заказу.",
++  description: "Ресторан партнёра «Адреналин» в 100 метрах от домов «Хижины лесника» в Архызе: меню и фото. Завтраки в домик доставляет другой ресторан по заказу с вечера.",
+   alternates: { canonical: "/dining" },
+ });
+ 
+diff --git a/src/app/globals.css b/src/app/globals.css
+index 7340c88..3c9d2f1 100644
+--- a/src/app/globals.css
++++ b/src/app/globals.css
+@@ -266,9 +266,13 @@ body {
+     inset 0 -1px 0 rgba(212, 154, 90, 0.45);
+ }
+ 
+-/* Portaled Контур.Отель popups (`Select__menu`, `Popup__root`, `Tooltip__root`) when no light modal (`modal-container`) is open */
++/* Mobile Select uses MobilePopup instead of the desktop Select__menu portal.
++ * Both need the BM text tokens: ReactUI's dark menu background alone leaves
++ * custom room titles, descriptions and parameters with black fallback text.
++ * Keep the checkout's light modal theme isolated from these inline menus. */
+ body:not(:has([data-tid="modal-container"])) [data-tid="Popup__root"],
+ body:not(:has([data-tid="modal-container"])) [data-tid="Select__menu"],
++body:not(:has([data-tid="modal-container"])) [data-tid="MobilePopup__root"],
+ body:not(:has([data-tid="modal-container"])) [data-tid="Tooltip__root"] {
+   color: #f3f5f0;
+   --bm-theme-whiteColor: #173024;
+@@ -298,6 +302,7 @@ body:not(:has([data-tid="modal-container"])) [data-tid="Tooltip__root"] {
+ .kontur-forest-scope img[src*="static/"][src$=".svg"],
+ body:not(:has([data-tid="modal-container"])) [data-tid="Popup__root"] img[src*="static/"][src$=".svg"],
+ body:not(:has([data-tid="modal-container"])) [data-tid="Select__menu"] img[src*="static/"][src$=".svg"],
++body:not(:has([data-tid="modal-container"])) [data-tid="MobilePopup__root"] img[src*="static/"][src$=".svg"],
+ body:not(:has([data-tid="modal-container"])) [data-tid="Tooltip__root"] img[src*="static/"][src$=".svg"] {
+   filter: brightness(0) invert(0.92);
+ }
+diff --git a/src/app/page.tsx b/src/app/page.tsx
+index 3537e3f..317c8e0 100644
+--- a/src/app/page.tsx
++++ b/src/app/page.tsx
+@@ -7,6 +7,7 @@ import Link from "next/link";
+ import { ArrowRight, CarProfile, MapPin } from "@phosphor-icons/react/dist/ssr";
+ import { HOME_FAQ } from "@/data/home";
+ import { SITE_CONFIG } from "@/data/site";
++import { CABIN_LIST } from "@/data/cabins";
+ import { Header } from "@/components/Header";
+ import { Footer } from "@/components/Footer";
+ import { KonturBookingWidget } from "@/components/KonturBookingWidget";
+@@ -66,7 +67,7 @@ export default function HomePage() {
+         <KonturBookingWidget id="booking" className="mb-10 px-0 sm:px-0" />
+         <p className="text-xs uppercase tracking-[0.2em] text-[#d49a5a]">Ваш дом в Архызе</p>
+         <h2 className="mt-3 font-moderustic text-3xl font-bold sm:text-4xl">Выберите свой дом в лесу</h2>
+-        <p className="mt-4 max-w-2xl text-[#a8b9ae]">Всего три дома – для семейного отдыха, романтических выходных и встреч с друзьями.</p>
++        <p className="mt-4 max-w-2xl leading-relaxed text-[#a8b9ae]">Всего три дома: {CABIN_LIST.map((cabin, index) => <span key={cabin.id}>{index > 0 && "; "}<Link href={cabin.slug} className="text-[#e6c7a0] underline decoration-[#d49a5a]/40 underline-offset-4 hover:decoration-[#d49a5a]">{cabin.cardTitle}</Link> – {cabin.cardGuests}, {cabin.cardArea}</span>)}.</p>
+         <div className="mt-8"><CabinShowcase /></div>
+       </section>
+       <section id="sez1" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">
+diff --git a/src/app/spa/page.tsx b/src/app/spa/page.tsx
+index b97e1af..9ab807e 100644
+--- a/src/app/spa/page.tsx
++++ b/src/app/spa/page.tsx
+@@ -5,9 +5,9 @@ import { Waves, Sun, Clock } from "@phosphor-icons/react/dist/ssr";
+ import { ContentPage } from "@/components/ContentPage";
+ import { CabinGallerySlider } from "@/components/CabinGallerySlider";
+ import { BookingAssistance } from "@/components/BookingAssistance";
+-export const metadata: Metadata = withSocialMetadata({title:'СПА и релакс | Хижина лесника, Архыз',description:'СПА-комплекс партнёра в 100 метрах от домиков «Хижина лесника» в Архызе: бассейн 15 × 6 м, джакузи, сауна и хамам. Стоимость посещения и время работы.',alternates:{canonical:"/spa"}});
++export const metadata: Metadata = withSocialMetadata({title:'СПА и бассейн рядом с домиками в Архызе | Хижина лесника',description:'СПА-комплекс партнёра в 100 метрах от домиков «Хижина лесника» в Архызе: бассейн 15 × 6 м, джакузи, сауна и хамам. Стоимость посещения и время работы.',alternates:{canonical:"/spa"}});
+ export default function SpaPage() {
+-  return <><PageStructuredData metadata={metadata} />{<ContentPage title="СПА и релакс" eyebrow="Время замедлиться" description="В 100 метрах от домиков – пространство для отдыха после горных прогулок. Поплавайте в тёплом бассейне, согрейтесь в парной и устройте день для себя.">
++  return <><PageStructuredData metadata={metadata} />{<ContentPage title="СПА и бассейн рядом с домиками" eyebrow="Время замедлиться" description="СПА-комплекс партнёрского парк-отеля «Адреналин» находится в 100 метрах от базы отдыха «Хижина лесника» в Архызе. Бассейн, джакузи, сауна и хамам доступны за отдельную плату.">
+     <section className="mb-12 sm:mb-16"><h2 className="font-moderustic text-3xl font-bold">Загляните в СПА</h2><p className="mt-4 mb-7 max-w-3xl leading-relaxed text-[#a8b9ae]">Бассейн с выходом под открытое небо, сауна с видом на лес и джакузи для отдыха после прогулок. Наш партнёр – парк-отель «Адреналин», в 100 метрах от домиков. Посещение оплачивается отдельно.</p><CabinGallerySlider images={[
+       {src:"/images/partners/spa/spa-01.webp",alt:"Подогреваемый бассейн СПА-комплекса «Адреналин»"},
+       {src:"/images/partners/spa/spa-02.webp",alt:"Крытая часть бассейна и зона отдыха"},
+diff --git a/src/components/AboutContactActions.tsx b/src/components/AboutContactActions.tsx
+index 1b33266..3cf2a99 100644
+--- a/src/components/AboutContactActions.tsx
++++ b/src/components/AboutContactActions.tsx
+@@ -1,7 +1,7 @@
+ "use client";
+ 
+ import React, { useState } from "react";
+-import { PhoneCall, TelegramLogo, WhatsappLogo } from "@phosphor-icons/react";
++import { ChatCircle, InstagramLogo, PhoneCall, TelegramLogo, WhatsappLogo } from "@phosphor-icons/react";
+ import { SITE_CONFIG } from "@/data/site";
+ import { CallbackModal } from "./CallbackModal";
+ 
+@@ -39,6 +39,26 @@ export function AboutContactActions() {
+           <TelegramLogo size={18} />
+           <span>Telegram</span>
+         </a>
++
++        <a
++          href={SITE_CONFIG.maxHref}
++          target="_blank"
++          rel="noopener noreferrer"
++          className="inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-[#1d3b2b]/75 px-5 text-sm font-medium text-[#f3f5f0] transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a] active:scale-[0.98]"
++        >
++          <ChatCircle size={18} />
++          <span>MAX</span>
++        </a>
++
++        <a
++          href={SITE_CONFIG.instagramHref}
++          target="_blank"
++          rel="noopener noreferrer"
++          className="inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-full border border-white/15 bg-[#1d3b2b]/75 px-5 text-sm font-medium text-[#f3f5f0] transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a] active:scale-[0.98]"
++        >
++          <InstagramLogo size={18} />
++          <span>Instagram</span>
++        </a>
+       </div>
+ 
+       <CallbackModal
+diff --git a/src/components/CabinDetailView.tsx b/src/components/CabinDetailView.tsx
+index c469e63..df65005 100644
+--- a/src/components/CabinDetailView.tsx
++++ b/src/components/CabinDetailView.tsx
+@@ -39,6 +39,10 @@ export function CabinDetailView({cabin}:{cabin:CabinData}) {
+         <div className="lg:col-span-8">
+           <div id="description" className="scroll-mt-28"><p className="text-xs uppercase tracking-[0.2em] text-[#d49a5a]">Место для вашей истории</p><h2 className="mt-4 font-moderustic text-3xl font-bold sm:text-4xl">Пространство, в котором хорошо</h2><p className="mt-6 leading-relaxed text-[#b7c6bd] sm:text-lg">{cabin.introText}</p>
+             <ul className="mt-8 grid gap-4 sm:grid-cols-2">{cabin.highlights.map(item=><li key={item} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-[#173024] p-5 text-sm leading-relaxed"><Check size={19} className="mt-0.5 shrink-0 text-[#d49a5a]"/>{item}</li>)}</ul>
++            <div className="mt-7 border-t border-white/10 pt-6 text-sm leading-relaxed text-[#b7c6bd]">
++              <p>{cabin.cardTitle} находится на базе отдыха «Хижина лесника»: {SITE_CONFIG.address}. В доме своя кухня и санузел. Условия проживания с кошками и собаками опубликованы в <Link href="/#faq-pets" className="text-[#e6c7a0] underline underline-offset-4">ответе о питомцах</Link>.</p>
++              <p className="mt-3">В 100 метрах находятся <Link href="/spa" className="text-[#e6c7a0] underline underline-offset-4">бассейн и СПА</Link> и <Link href="/dining" className="text-[#e6c7a0] underline underline-offset-4">ресторан</Link> партнёрского парк-отеля «Адреналин». Посещение СПА и питание оплачиваются отдельно.</p>
++            </div>
+           </div>
+           <div id="equipment" className="mt-14 scroll-mt-28"><h2 className="font-moderustic text-3xl font-bold">Всё для комфортного отдыха</h2><p className="mt-4 mb-7 text-sm leading-relaxed text-[#a8b9ae]">Планировка, техника и вещи, которые уже ждут вас в доме.</p>
+             <div className="divide-y divide-white/10 border-y border-white/10">{cabin.specs.map(spec=><details key={spec.label} className="group py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-5 font-moderustic text-lg font-semibold [&::-webkit-details-marker]:hidden">{spec.label}<span className="text-2xl font-light text-[#d49a5a] group-open:rotate-45">+</span></summary><ul className="mt-5 space-y-3 pr-5 text-sm leading-relaxed text-[#a8b9ae]">{Array.from(new Set(spec.lines.filter(Boolean))).map(line=><li key={line} className="flex gap-3"><span className="text-[#d49a5a]">•</span>{line}</li>)}</ul></details>)}</div>
+diff --git a/src/components/HomeSections.tsx b/src/components/HomeSections.tsx
+index ecb33b1..db2795f 100644
+--- a/src/components/HomeSections.tsx
++++ b/src/components/HomeSections.tsx
+@@ -2,6 +2,7 @@ import Image from "next/image";
+ import Link from "next/link";
+ import { PawPrint, TreeEvergreen, Waves, ForkKnife, CreditCard, Star } from "@phosphor-icons/react/dist/ssr";
+ import { SITE_CONFIG } from "@/data/site";
++import { ForestBenefitImage } from "./ForestBenefitImage";
+ 
+ export function SplitMark() {
+   return <span className="inline-flex items-center gap-2 font-moderustic text-lg font-bold"><span aria-hidden="true" className="flex h-7 w-7 items-center justify-center rounded-full bg-black text-base text-white">Я</span><svg aria-hidden="true" viewBox="0 0 32 32" className="h-7 w-7"><defs><linearGradient id="split-green"><stop stopColor="#30ed7b"/><stop offset="1" stopColor="#008b43"/></linearGradient></defs><path d="M27 5A15 15 0 1 0 27 27L15 16Z" fill="url(#split-green)"/><path d="m19 16 10-9a14 14 0 0 1 0 18Z" fill="#ed6654"/></svg>Сплит</span>;
+@@ -16,7 +17,7 @@ const benefits = [
+   {title:"Яндекс Сплит", text:"Забронируйте отдых сейчас и разделите оплату на удобные платежи.", icon:CreditCard, href:"/split", note:"Путешествовать проще"},
+   {title:"Pet friendly", text:"Приезжайте с питомцем. Для него приготовим подарочный набор от «Четыре лапы».",icon:PawPrint,href:"/#faq-pets",note:"Вместе со всей семьёй"},
+   {title:"Уединение в буковом лесу",text:"Заповедный лес Архыза и своя зона отдыха – в пяти минутах от центра посёлка.",icon:TreeEvergreen,href:"/#about",note:"Природа вокруг вас",image:"/images/home/forest-seclusion.webp"},
+-  {title:"СПА-комплекс",text:"Подогреваемый бассейн, джакузи, сауна и хамам – в 100 метрах от домиков.",icon:Waves,href:"/spa",note:"Время для себя"},
++  {title:"СПА-комплекс рядом",text:"Подогреваемый бассейн, джакузи, сауна и хамам у партнёра «Адреналин» – в 100 метрах от домиков. Посещение оплачивается отдельно.",icon:Waves,href:"/spa",note:"Время для себя"},
+   {title:"Ресторан и доставка",text:"Меню a la carte с 12:00 до 22:30. Завтрак в домик можно заказать с вечера.",icon:ForkKnife,href:"/dining",note:"Отдых без бытовых забот"},
+ ];
+ export function HomeBenefits() {
+@@ -24,9 +25,10 @@ export function HomeBenefits() {
+     <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
+       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#795a38]">Хижина лесника</p>
+       <h2 className="mt-3 max-w-3xl font-moderustic text-3xl font-bold sm:text-4xl">Заботимся о вашем комфорте</h2>
++      <p className="mt-4 max-w-3xl text-sm leading-relaxed">{SITE_CONFIG.description}</p>
+       <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+         {benefits.map(b => <Link key={b.title} href={b.href} className={`group relative isolate flex min-h-64 flex-col justify-between overflow-hidden rounded-2xl border border-[#d6c7b1] p-6 transition hover:-translate-y-1 hover:shadow-lg ${b.image ? "min-h-80 bg-[#213d31] text-[#f3eee3] lg:row-span-2 lg:min-h-full" : "bg-[#faf7f0]"}`}>
+-          {b.image && <><Image fill quality={60} fetchPriority="low" sizes="(min-width: 1024px) 33vw, (min-width: 640px) calc(50vw - 34px), calc(100vw - 34px)" src={b.image} alt="Лес и горы Архыза в тумане" loading="lazy" className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-105"/><div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/35 to-[#06130d]/30"/></>}
++          {b.image && <><ForestBenefitImage /><div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/35 to-[#06130d]/30"/></>}
+           <div className="flex items-start justify-between gap-4"><span className={`text-xs uppercase tracking-widest ${b.image ? "text-[#e5ecdf]" : "opacity-80"}`}>{b.note}</span><b.icon size={48} weight="thin" className="shrink-0 opacity-75" /></div>
+           <div className="mt-7"><h3 className="font-moderustic text-2xl font-bold">{b.title}</h3><p className={`mt-3 max-w-md text-sm leading-relaxed ${b.image ? "text-[#e5ecdf]" : "opacity-80"}`}>{b.text}</p><span className="mt-5 inline-block text-xs font-semibold">Подробнее ↗</span></div>
+         </Link>)}
+diff --git a/src/components/StructuredData.tsx b/src/components/StructuredData.tsx
+index 5f21c8e..b5d8028 100644
+--- a/src/components/StructuredData.tsx
++++ b/src/components/StructuredData.tsx
+@@ -6,6 +6,21 @@ import { BLOG_POSTS } from "@/data/blog";
+ const absolute = (path: string) => new URL(path, SITE_CONFIG.url).toString();
+ const businessId = `${SITE_CONFIG.url}/#lodging`;
+ const websiteId = `${SITE_CONFIG.url}/#website`;
++const accommodationId = (slug: string) => `${absolute(slug)}#accommodation`;
++
++function accommodation(cabin: typeof CABIN_LIST[number]) {
++  return {
++    "@type": "Accommodation", "@id": accommodationId(cabin.slug),
++    url: absolute(cabin.slug), name: cabin.cardTitle, description: cabin.seoDescription,
++    image: cabin.gallery.map(photo => absolute(photo.src)),
++    containedInPlace: { "@id": businessId },
++    occupancy: { "@type": "QuantitativeValue", maxValue: cabin.maxGuests, unitCode: "C62" },
++    floorSize: { "@type": "QuantitativeValue", value: Number.parseFloat(cabin.cardArea), unitCode: "MTK" },
++    amenityFeature: ["Собственная кухня", "Санузел с душем в доме"].map(name => ({
++      "@type": "LocationFeatureSpecification", name, value: true,
++    })),
++  };
++}
+ 
+ export function JsonLd({ data }: { data: Record<string, unknown> }) {
+   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />;
+@@ -15,9 +30,12 @@ export function JsonLd({ data }: { data: Record<string, unknown> }) {
+ export function SiteStructuredData() {
+   return <JsonLd data={{ "@context": "https://schema.org", "@graph": [
+     { "@type": "WebSite", "@id": websiteId, url: absolute("/"), name: SITE_CONFIG.name, inLanguage: "ru", publisher: { "@id": businessId } },
+-    { "@type": "LodgingBusiness", "@id": businessId, name: SITE_CONFIG.name, url: absolute("/"), image: absolute("/images/home/cabin-bereza.jpg"), telephone: SITE_CONFIG.phoneHref.replace("tel:", ""),
++    { "@type": "LodgingBusiness", "@id": businessId, name: SITE_CONFIG.name, alternateName: SITE_CONFIG.shortName, description: SITE_CONFIG.description, url: absolute("/"), image: absolute("/images/home/cabin-bereza.jpg"), telephone: SITE_CONFIG.phoneHref.replace("tel:", ""),
+       address: { "@type": "PostalAddress", addressLocality: "Архыз", addressRegion: "Карачаево-Черкесская Республика", streetAddress: "улица Лесная, 40", addressCountry: "RU" },
+-      geo: { "@type": "GeoCoordinates", latitude: SITE_CONFIG.coords.lat, longitude: SITE_CONFIG.coords.lng }, sameAs: [SITE_CONFIG.yandexMapsOrgUrl] },
++      geo: { "@type": "GeoCoordinates", latitude: SITE_CONFIG.coords.lat, longitude: SITE_CONFIG.coords.lng }, sameAs: [SITE_CONFIG.yandexMapsOrgUrl],
++      hasMap: SITE_CONFIG.yandexMapsOrgUrl,
++      petsAllowed: "Воспитанные кошки и собаки; размещение оплачивается отдельно. Условия опубликованы в FAQ на официальном сайте.",
++      containsPlace: CABIN_LIST.map(cabin => ({ "@id": accommodationId(cabin.slug) })) },
+   ] }} />;
+ }
+ 
+@@ -38,7 +56,7 @@ export function PageStructuredData({ metadata }: { metadata: Metadata }) {
+   if (cabin) {
+     const id = `${url}#accommodation`;
+     page.mainEntity = { "@id": id };
+-    graph.push({ "@type": "Accommodation", "@id": id, url, name: cabin.cardTitle, description: cabin.cardSubtitle, image: cabin.gallery.map(photo => absolute(photo.src)), containedInPlace: { "@id": businessId }, floorSize: { "@type": "QuantitativeValue", value: Number.parseFloat(cabin.cardArea), unitCode: "MTK" } });
++    graph.push(accommodation(cabin));
+   }
+   const article = BLOG_POSTS.find(post => post.href === pathname);
+   if (article) {
+@@ -51,5 +69,6 @@ export function PageStructuredData({ metadata }: { metadata: Metadata }) {
+     const items = pathname === "/" ? CABIN_LIST.map(item => ({ name: item.cardTitle, url: absolute(item.slug) })) : BLOG_POSTS.map(item => ({ name: item.title, url: absolute(item.href) }));
+     page.mainEntity = { "@type": "ItemList", itemListElement: items.map((item, index) => ({ "@type": "ListItem", position: index + 1, ...item })) };
+   }
++  if (pathname === "/") graph.push(...CABIN_LIST.map(accommodation));
+   return <JsonLd data={{ "@context": "https://schema.org", "@graph": graph }} />;
+ }
+diff --git a/src/data/cabins.ts b/src/data/cabins.ts
+index 3738663..de48f1b 100644
+--- a/src/data/cabins.ts
++++ b/src/data/cabins.ts
+@@ -20,6 +20,7 @@ export interface CabinData {
+   id: CabinId;
+   slug: string;
+   shortSlug: string;
++  maxGuests: number;
+   seoTitle: string;
+   seoDescription: string;
+   // Homepage card fields
+@@ -87,9 +88,10 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
+     id: "iva",
+     slug: "/dom-dlya-semi",
+     shortSlug: "/house",
+-    seoTitle: 'Уютный дом для семьи с детьми в Архызе | "Хижина лесника"',
++    maxGuests: 5,
++    seoTitle: 'Дом «Ива» для семьи в Архызе | Хижина лесника',
+     seoDescription:
+-      'Аренда семейного домика "Ива" у букового леса в Архызе до 5 гостей. Закрытая территория, мангальная зона, панорамные окна, парковка.',
++      'Семейный дом «Ива» на базе «Хижина лесника» в Архызе: до 5 гостей, 40 м², кухня, свой санузел, терраса, мангальная и костровая зоны. Можно с питомцами.',
+     cardTitle: 'Дом «Ива»',
+     cardPrice: "от 8 000 ₽ / сутки",
+     cardGuests: "до 5 гостей",
+@@ -142,7 +144,7 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
+       {
+         label: "Комфорт и комплектация",
+         lines: [
+-          "4 электрических конвектора для тёплой зимы",
++          "Водяные тёплые полы для круглогодичного проживания",
+           "Постельное бельё, полотенца и махровые тапочки",
+           "Гель для душа, шампунь, зубные щётки и паста",
+           "Быстрый Wi-Fi с VPN, настольные игры, зарядные кабели и аптечка",
+@@ -193,10 +195,11 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
+     id: "bereza",
+     slug: "/dvuhetazhnyj-barnhouse",
+     shortSlug: "/barnhouse",
++    maxGuests: 7,
+     seoTitle:
+-      'Двухэтажный Barnhouse для компании в Архызе | База "Хижина лесника"',
++      'Барнхаус «Берёза» в Архызе | Хижина лесника',
+     seoDescription:
+-      'Просторный двухэтажный дом "Береза" в стиле Barnhouse до 7 гостей в Архызе. Панорамные окна, беседка, мангальная и костровая зоны, парковка.',
++      'Двухэтажный барнхаус «Берёза» на базе «Хижина лесника» в Архызе: до 7 гостей, 81 м², две спальни и кухня-гостиная. Своя беседка, мангал и костровая зона.',
+     cardTitle: 'Барнхаус «Берёза»',
+     cardPrice: "от 12 000 ₽ / сутки",
+     cardGuests: "до 7 гостей",
+@@ -250,7 +253,7 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
+       {
+         label: "Комфорт и комплектация",
+         lines: [
+-          "4 электрических конвектора, стабильное тепло круглый год",
++          "Радиаторы отопления в каждой комнате, тепло круглый год",
+           "Постельное бельё, полотенца и махровые тапочки",
+           "Гель для душа, шампунь, зубные щётки и паста",
+           "Быстрый Wi-Fi с VPN, настольные игры, зарядные блоки и аптечка",
+@@ -301,9 +304,10 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
+     id: "buk",
+     slug: "/shale-s-vidom-na-gory",
+     shortSlug: "/shale",
+-    seoTitle: "Шале с панорамным видом на горы в Архызе | Аренда",
++    maxGuests: 4,
++    seoTitle: "Шале «Бук» с видом на горы в Архызе | Хижина лесника",
+     seoDescription:
+-      'Уютное шале "Бук" с панорамными окнами и видом на горные хребты Архыза до 4 гостей. Теплый пол, терраса, парковка на 3 машины.',
++      'Шале «Бук» на базе «Хижина лесника» в Архызе: до 4 гостей, две спальни, кухня, свой санузел и тёплый пол. Панорамные окна с видом на горы, терраса и парковка.',
+     cardTitle: 'Шале «Бук»',
+     cardPrice: "от 7 000 ₽ / сутки",
+     cardGuests: "до 4 гостей",
+diff --git a/src/data/home.ts b/src/data/home.ts
+index d094cd7..dc07697 100644
+--- a/src/data/home.ts
++++ b/src/data/home.ts
+@@ -63,6 +63,10 @@ export const HOME_ADVANTAGES = [
+ ] as const;
+ 
+ export const HOME_FAQ = [
++  {
++    question: "Где находится база отдыха «Хижина лесника»?",
++    answer: "Мы находимся в селе Архыз, Карачаево-Черкесская Республика. Навигационный адрес: ул. Лесная, 40. На базе три отдельных дома в буковом лесу: «Ива» до 5 гостей, шале «Бук» до 4 гостей и барнхаус «Берёза» до 7 гостей. У каждого дома своя кухня, санузел, терраса, мангальная зона и парковка. Официальный сайт: https://hyzhinalesnika.ru. Телефон отдела бронирования: +7 (928) 020-10-01.",
++  },
+   {
+     "question": "Во сколько заезд и выезд?",
+     "answer": "Заезд – с 15:00, выезд – до 11:00."
+@@ -77,11 +81,11 @@ export const HOME_FAQ = [
+   },
+   {
+     "question": "Есть ли питание на базе?",
+-    "answer": "Да, в 100 метрах от домиков работает ресторан по системе a la carte – с 12:00 до 22:30. Завтрак в домик заказываем в другом ресторане: оформите заказ с вечера на следующее утро."
++    "answer": "В 100 метрах от домиков работает ресторан партнёрского парк-отеля «Адреналин» по системе a la carte – с 12:00 до 22:30. Завтрак в домик заказываем в другом ресторане: оформите заказ с вечера на следующее утро."
+   },
+   {
+-    "question": "Что такое СПА-комплекс и сколько он стоит?",
+-    "answer": "СПА-комплекс находится в 100 метрах от домиков. В него входят подогреваемый бассейн 15 × 6 м (70% внутри и 30% под открытым небом), джакузи, терраса с шезлонгами, сауна и турецкий хамам. Предоставляются халаты, полотенца и тапочки; в чайной комнате – чёрный и зелёный чай.\n\nПосещение на 2 часа: взрослый – 2 000 ₽ за человека; детский билет до 14 лет включительно – 1 000 ₽. Дети до 14 лет посещают СПА со взрослыми. Массаж и СПА-процедуры оплачиваются отдельно.\n\nВремя работы: 10:00–23:00. Технические перерывы: 13:00–15:00 и 18:30–19:30. Алкоголь в СПА запрещён."
++    "question": "Есть ли бассейн и СПА рядом с домиками?",
++    "answer": "СПА-комплекс партнёрского парк-отеля «Адреналин» находится в 100 метрах от домиков. Посещение оплачивается отдельно от проживания. В него входят подогреваемый бассейн 15 × 6 м (70% внутри и 30% под открытым небом), джакузи, терраса с шезлонгами, сауна и турецкий хамам. Предоставляются халаты, полотенца и тапочки; в чайной комнате – чёрный и зелёный чай.\n\nПосещение на 2 часа: взрослый – 2 000 ₽ за человека; детский билет до 14 лет включительно – 1 000 ₽. Дети до 14 лет посещают СПА со взрослыми. Массаж и СПА-процедуры оплачиваются отдельно.\n\nВремя работы: 10:00–23:00. Технические перерывы: 13:00–15:00 и 18:30–19:30. Алкоголь в СПА запрещён."
+   },
+   {
+     "question": "Как забронировать?",
+diff --git a/src/data/site.ts b/src/data/site.ts
+index 27fd6eb..aa51c88 100644
+--- a/src/data/site.ts
++++ b/src/data/site.ts
+@@ -1,6 +1,7 @@
+ export const SITE_CONFIG = {
+   name: 'База отдыха "Хижина лесника"',
+   shortName: "Хижина лесника",
++  description: "База отдыха «Хижина лесника» в селе Архыз, ул. Лесная, 40. Три отдельных дома в буковом лесу: «Ива» до 5 гостей, «Бук» до 4 гостей и «Берёза» до 7 гостей.",
+   url: "https://hyzhinalesnika.ru",
+   phoneDisplay: "+7 (928) 020-10-01",
+   phoneHref: "tel:+79280201001",
+diff --git a/scripts/prepare-forest.mjs b/scripts/prepare-forest.mjs
+new file mode 100644
+index 0000000..f5c9006
+--- /dev/null
++++ b/scripts/prepare-forest.mjs
+@@ -0,0 +1,38 @@
++// Pre-encode the existing photo once, without cropping or upscaling.
++// The public, content-addressed files avoid cold on-demand AVIF encoding.
++import { createRequire } from "node:module";
++import { readFile, writeFile } from "node:fs/promises";
++import { createHash } from "node:crypto";
++import assert from "node:assert/strict";
++
++const require = createRequire(import.meta.url);
++const sharp = createRequire(require.resolve("next/package.json"))("sharp");
++const check = process.argv.includes("--check");
++const input = await readFile(new URL("../public/images/home/forest-seclusion.webp", import.meta.url));
++const metadata = await sharp(input).metadata();
++const result = {
++  sourceSha256: createHash("sha256").update(input).digest("hex"),
++  width: metadata.width,
++  height: metadata.height,
++  avif: [],
++  webp: [],
++};
++
++for (const width of [480, 768, metadata.width]) {
++  for (const format of ["avif", "webp"]) {
++    const bytes = await sharp(input).resize({ width, withoutEnlargement: true })
++      .toFormat(format, format === "avif" ? { quality: 35, effort: 6, chromaSubsampling: "4:2:0" } : { quality: 50 }).toBuffer();
++    const hash = createHash("sha256").update(bytes).digest("hex").slice(0, 12);
++    const name = `forest-seclusion-${width}.${hash}.${format}`;
++    const destination = new URL(`../public/images/home/${name}`, import.meta.url);
++    if (check) assert.deepEqual(await readFile(destination), bytes, `Regenerate ${name}`);
++    else await writeFile(destination, bytes);
++    result[format].push({ src: `/images/home/${name}`, width, bytes: bytes.length });
++    console.log(`${name}: ${bytes.length} bytes`);
++  }
++}
++
++const manifest = new URL("../src/data/forest-media.json", import.meta.url);
++const content = JSON.stringify(result, null, 2) + "\n";
++if (check) assert.equal(await readFile(manifest, "utf8"), content, "Regenerate forest-media.json");
++else await writeFile(manifest, content);
+diff --git a/scripts/verify-build-css.mjs b/scripts/verify-build-css.mjs
+new file mode 100644
+index 0000000..bfb8bd8
+--- /dev/null
++++ b/scripts/verify-build-css.mjs
+@@ -0,0 +1,12 @@
++import assert from "node:assert/strict";
++import { readdir, readFile } from "node:fs/promises";
++import path from "node:path";
++
++// A successful incremental build once reused stale CSS. Check the emitted
++// artifact before reloading production, including builds that report success.
++const directory = path.join(process.cwd(), ".next/static/chunks");
++const files = (await readdir(directory)).filter(file => file.endsWith(".css"));
++assert.ok(files.length, "Production CSS exists");
++const css = (await Promise.all(files.map(file => readFile(path.join(directory, file), "utf8")))).join("\n");
++assert.ok(css.includes("MobilePopup__root"), "Production CSS includes the mobile booking menu fix; clear the Turbopack build cache and rebuild");
++console.log("PASS production CSS: mobile booking menu fix included");
+diff --git a/src/components/ForestBenefitImage.tsx b/src/components/ForestBenefitImage.tsx
+new file mode 100644
+index 0000000..d8080f6
+--- /dev/null
++++ b/src/components/ForestBenefitImage.tsx
+@@ -0,0 +1,15 @@
++import media from "@/data/forest-media.json";
++
++// This card never needs a source wider than the original 1200px photo.
++// Keep native picture selection so every advertised URL is already encoded.
++export function ForestBenefitImage() {
++  const sizes = "(min-width: 1400px) 440px, (min-width: 1024px) calc((100vw - 80px) / 3), (min-width: 640px) calc((100vw - 64px) / 2), calc(100vw - 32px)";
++  const srcSet = (sources: typeof media.avif) => sources.map(source => `${source.src} ${source.width}w`).join(", ");
++  return <picture>
++    <source type="image/avif" srcSet={srcSet(media.avif)} sizes={sizes} />
++    <source type="image/webp" srcSet={srcSet(media.webp)} sizes={sizes} />
++    <img src={media.webp[media.webp.length - 1].src} width={media.width} height={media.height}
++      alt="Лес и горы Архыза в тумане" loading="lazy" decoding="async" fetchPriority="low"
++      className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
++  </picture>;
++}
+diff --git a/src/data/forest-media.json b/src/data/forest-media.json
+new file mode 100644
+index 0000000..55a98d1
+--- /dev/null
++++ b/src/data/forest-media.json
+@@ -0,0 +1,39 @@
++{
++  "sourceSha256": "74bc592bdc946f3f7d8a330e3eedc2824791f189a7617691d8acec3f70bc73a6",
++  "width": 1200,
++  "height": 2103,
++  "avif": [
++    {
++      "src": "/images/home/forest-seclusion-480.8fdb05072a98.avif",
++      "width": 480,
++      "bytes": 26461
++    },
++    {
++      "src": "/images/home/forest-seclusion-768.7419cb9f4299.avif",
++      "width": 768,
++      "bytes": 61699
++    },
++    {
++      "src": "/images/home/forest-seclusion-1200.e0480d1ea9d5.avif",
++      "width": 1200,
++      "bytes": 143504
++    }
++  ],
++  "webp": [
++    {
++      "src": "/images/home/forest-seclusion-480.58c1770e09b9.webp",
++      "width": 480,
++      "bytes": 72728
++    },
++    {
++      "src": "/images/home/forest-seclusion-768.9e81a951162e.webp",
++      "width": 768,
++      "bytes": 158570
++    },
++    {
++      "src": "/images/home/forest-seclusion-1200.be36e890ec19.webp",
++      "width": 1200,
++      "bytes": 337032
++    }
++  ]
++}

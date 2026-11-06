@@ -6,6 +6,21 @@ import { BLOG_POSTS } from "@/data/blog";
 const absolute = (path: string) => new URL(path, SITE_CONFIG.url).toString();
 const businessId = `${SITE_CONFIG.url}/#lodging`;
 const websiteId = `${SITE_CONFIG.url}/#website`;
+const accommodationId = (slug: string) => `${absolute(slug)}#accommodation`;
+
+function accommodation(cabin: typeof CABIN_LIST[number]) {
+  return {
+    "@type": "Accommodation", "@id": accommodationId(cabin.slug),
+    url: absolute(cabin.slug), name: cabin.cardTitle, description: cabin.seoDescription,
+    image: cabin.gallery.map(photo => absolute(photo.src)),
+    containedInPlace: { "@id": businessId },
+    occupancy: { "@type": "QuantitativeValue", maxValue: cabin.maxGuests, unitCode: "C62" },
+    floorSize: { "@type": "QuantitativeValue", value: Number.parseFloat(cabin.cardArea), unitCode: "MTK" },
+    amenityFeature: ["Собственная кухня", "Санузел с душем в доме"].map(name => ({
+      "@type": "LocationFeatureSpecification", name, value: true,
+    })),
+  };
+}
 
 export function JsonLd({ data }: { data: Record<string, unknown> }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />;
@@ -15,9 +30,12 @@ export function JsonLd({ data }: { data: Record<string, unknown> }) {
 export function SiteStructuredData() {
   return <JsonLd data={{ "@context": "https://schema.org", "@graph": [
     { "@type": "WebSite", "@id": websiteId, url: absolute("/"), name: SITE_CONFIG.name, inLanguage: "ru", publisher: { "@id": businessId } },
-    { "@type": "LodgingBusiness", "@id": businessId, name: SITE_CONFIG.name, url: absolute("/"), image: absolute("/images/home/cabin-bereza.jpg"), telephone: SITE_CONFIG.phoneHref.replace("tel:", ""),
+    { "@type": "LodgingBusiness", "@id": businessId, name: SITE_CONFIG.name, alternateName: SITE_CONFIG.shortName, description: SITE_CONFIG.description, url: absolute("/"), image: absolute("/images/home/cabin-bereza.jpg"), telephone: SITE_CONFIG.phoneHref.replace("tel:", ""),
       address: { "@type": "PostalAddress", addressLocality: "Архыз", addressRegion: "Карачаево-Черкесская Республика", streetAddress: "улица Лесная, 40", addressCountry: "RU" },
-      geo: { "@type": "GeoCoordinates", latitude: SITE_CONFIG.coords.lat, longitude: SITE_CONFIG.coords.lng }, sameAs: [SITE_CONFIG.yandexMapsOrgUrl] },
+      geo: { "@type": "GeoCoordinates", latitude: SITE_CONFIG.coords.lat, longitude: SITE_CONFIG.coords.lng }, sameAs: [SITE_CONFIG.yandexMapsOrgUrl],
+      hasMap: SITE_CONFIG.yandexMapsOrgUrl,
+      petsAllowed: "Воспитанные кошки и собаки; размещение оплачивается отдельно. Условия опубликованы в FAQ на официальном сайте.",
+      containsPlace: CABIN_LIST.map(cabin => ({ "@id": accommodationId(cabin.slug) })) },
   ] }} />;
 }
 
@@ -38,7 +56,7 @@ export function PageStructuredData({ metadata }: { metadata: Metadata }) {
   if (cabin) {
     const id = `${url}#accommodation`;
     page.mainEntity = { "@id": id };
-    graph.push({ "@type": "Accommodation", "@id": id, url, name: cabin.cardTitle, description: cabin.cardSubtitle, image: cabin.gallery.map(photo => absolute(photo.src)), containedInPlace: { "@id": businessId }, floorSize: { "@type": "QuantitativeValue", value: Number.parseFloat(cabin.cardArea), unitCode: "MTK" } });
+    graph.push(accommodation(cabin));
   }
   const article = BLOG_POSTS.find(post => post.href === pathname);
   if (article) {
@@ -51,5 +69,6 @@ export function PageStructuredData({ metadata }: { metadata: Metadata }) {
     const items = pathname === "/" ? CABIN_LIST.map(item => ({ name: item.cardTitle, url: absolute(item.slug) })) : BLOG_POSTS.map(item => ({ name: item.title, url: absolute(item.href) }));
     page.mainEntity = { "@type": "ItemList", itemListElement: items.map((item, index) => ({ "@type": "ListItem", position: index + 1, ...item })) };
   }
+  if (pathname === "/") graph.push(...CABIN_LIST.map(accommodation));
   return <JsonLd data={{ "@context": "https://schema.org", "@graph": graph }} />;
 }

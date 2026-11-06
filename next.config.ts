@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
     }, {
       source: "/images/home/hero-mobile.:hash([0-9a-f]{12}).:format(avif|webp)",
       headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+    }, {
+      source: "/images/home/forest-seclusion-:width(480|768|1200).:hash([0-9a-f]{12}).:format(avif|webp)",
+      headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
     }];
   },
   turbopack: {

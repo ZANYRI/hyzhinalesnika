@@ -266,9 +266,13 @@ body {
     inset 0 -1px 0 rgba(212, 154, 90, 0.45);
 }
 
-/* Portaled Контур.Отель popups (`Select__menu`, `Popup__root`, `Tooltip__root`) when no light modal (`modal-container`) is open */
+/* Mobile Select uses MobilePopup instead of the desktop Select__menu portal.
+ * Both need the BM text tokens: ReactUI's dark menu background alone leaves
+ * custom room titles, descriptions and parameters with black fallback text.
+ * Keep the checkout's light modal theme isolated from these inline menus. */
 body:not(:has([data-tid="modal-container"])) [data-tid="Popup__root"],
 body:not(:has([data-tid="modal-container"])) [data-tid="Select__menu"],
+body:not(:has([data-tid="modal-container"])) [data-tid="MobilePopup__root"],
 body:not(:has([data-tid="modal-container"])) [data-tid="Tooltip__root"] {
   color: #f3f5f0;
   --bm-theme-whiteColor: #173024;
@@ -298,6 +302,7 @@ body:not(:has([data-tid="modal-container"])) [data-tid="Tooltip__root"] {
 .kontur-forest-scope img[src*="static/"][src$=".svg"],
 body:not(:has([data-tid="modal-container"])) [data-tid="Popup__root"] img[src*="static/"][src$=".svg"],
 body:not(:has([data-tid="modal-container"])) [data-tid="Select__menu"] img[src*="static/"][src$=".svg"],
+body:not(:has([data-tid="modal-container"])) [data-tid="MobilePopup__root"] img[src*="static/"][src$=".svg"],
 body:not(:has([data-tid="modal-container"])) [data-tid="Tooltip__root"] img[src*="static/"][src$=".svg"] {
   filter: brightness(0) invert(0.92);
 }

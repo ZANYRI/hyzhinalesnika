@@ -10,7 +10,7 @@ import { BookingAssistance } from "@/components/BookingAssistance";
 
 export const metadata: Metadata = withSocialMetadata({
   title: "Ресторан и завтрак в домик | Хижина лесника, Архыз",
-  description: "Ресторан à la carte в 100 метрах от домов, меню и фотографии. Отдельная доставка завтрака в домик по предварительному заказу.",
+  description: "Ресторан партнёра «Адреналин» в 100 метрах от домов «Хижины лесника» в Архызе: меню и фото. Завтраки в домик доставляет другой ресторан по заказу с вечера.",
   alternates: { canonical: "/dining" },
 });
 
