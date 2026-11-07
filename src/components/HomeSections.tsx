@@ -15,7 +15,7 @@ export function HeroBadges() {
 }
 const benefits = [
   {title:"Яндекс Сплит", text:"Забронируйте отдых сейчас и разделите оплату на удобные платежи.", icon:CreditCard, href:"/split", note:"Путешествовать проще"},
-  {title:"Pet friendly", text:"Приезжайте с питомцем. Для него приготовим подарочный набор от «Четыре лапы».",icon:PawPrint,href:"/#faq-pets",note:"Вместе со всей семьёй"},
+  {title:"Отдых с питомцами", text:"В домах можно остановиться с кошкой или собакой. Для питомца приготовим подарочный набор от «Четыре лапы». Условия и доплата – в FAQ.",icon:PawPrint,href:"/#faq-pets",note:"Вместе со всей семьёй"},
   {title:"Уединение в буковом лесу",text:"Заповедный лес Архыза и своя зона отдыха – в пяти минутах от центра посёлка.",icon:TreeEvergreen,href:"/#about",note:"Природа вокруг вас",image:"/images/home/forest-seclusion.webp"},
   {title:"СПА-комплекс рядом",text:"Подогреваемый бассейн, джакузи, сауна и хамам у партнёра «Адреналин» – в 100 метрах от домиков. Посещение оплачивается отдельно.",icon:Waves,href:"/spa",note:"Время для себя"},
   {title:"Ресторан и доставка",text:"Меню a la carte с 12:00 до 22:30. Завтрак в домик можно заказать с вечера.",icon:ForkKnife,href:"/dining",note:"Отдых без бытовых забот"},
@@ -37,9 +37,9 @@ export function HomeBenefits() {
   </section>;
 }
 const stories = [
- {href:"/dom-dlya-semi",title:"Семейный отдых",text:"Совместные завтраки, прогулки по буковому лесу и новые открытия для детей. Здесь есть время побыть рядом и услышать друг друга. Для семейного отдыха подойдёт дом «Ива».",image:"/images/home/story-romance.webp",alt:"Бокалы у костра на террасе дома",imagePosition:"center 65%",position:"lg:pt-36"},
- {href:"/shale-s-vidom-na-gory",title:"Романтика для двоих",text:"Медленное утро с кофе, горы за окном и тихий вечер на террасе. Оставьте повседневные дела за пределами вашей поездки. Для романтики вдвоём подойдёт шале «Бук».",image:"/images/home/story-romance-chalet-night.webp",alt:"Романтический вечер на террасе шале – иллюстрация по фотографии",imagePosition:"center 75%",position:"lg:pt-64"},
- {href:"/dvuhetazhnyj-barnhouse",title:"В кругу друзей",text:"Долгие разговоры у костра, ужин на свежем воздухе и общие приключения. Собирайте воспоминания, к которым захочется возвращаться. Для отдыха с друзьями подойдёт дом «Берёза».",image:"/images/home/story-friends.webp",alt:"Вечерний костёр и кресла во дворе дома",imagePosition:"center 60%",position:"lg:pt-36"},
+ {href:"/dom-dlya-semi",title:"Семейный отдых",linkText:"Дом «Ива» для семьи",text:"Совместные завтраки, прогулки по буковому лесу и новые открытия для детей. Здесь есть время побыть рядом и услышать друг друга. Для семейного отдыха подойдёт дом «Ива».",image:"/images/home/story-romance.webp",alt:"Бокалы у костра на террасе дома",imagePosition:"center 65%",position:"lg:pt-36"},
+ {href:"/shale-s-vidom-na-gory",title:"Романтика для двоих",linkText:"Шале «Бук» для двоих",text:"Медленное утро с кофе, горы за окном и тихий вечер на террасе. Оставьте повседневные дела за пределами вашей поездки. Для романтики вдвоём подойдёт шале «Бук».",image:"/images/home/story-romance-chalet-night.webp",alt:"Романтический вечер на террасе шале – иллюстрация по фотографии",imagePosition:"center 75%",position:"lg:pt-64"},
+ {href:"/dvuhetazhnyj-barnhouse",title:"В кругу друзей",linkText:"Барнхаус «Берёза» для компании",text:"Долгие разговоры у костра, ужин на свежем воздухе и общие приключения. Собирайте воспоминания, к которым захочется возвращаться. Для отдыха с друзьями подойдёт дом «Берёза».",image:"/images/home/story-friends.webp",alt:"Вечерний костёр и кресла во дворе дома",imagePosition:"center 60%",position:"lg:pt-36"},
 ];
 export function AudienceStories() {
   return <section id="about" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">
@@ -52,7 +52,7 @@ export function AudienceStories() {
       </div>
       <div className="grid lg:grid-cols-3">{stories.map(story => <Link href={story.href} key={story.title} className={`group relative flex min-h-[420px] items-end overflow-hidden p-7 sm:p-9 lg:min-h-[660px] ${story.position}`}>
         <Image fill quality={60} fetchPriority="low" sizes="(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)" src={story.image} alt={story.alt} loading="lazy" style={{objectPosition:story.imagePosition}} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/45 to-[#06130d]/15" />
-        <div className="relative"><h3 className="font-moderustic text-2xl font-bold">{story.title}</h3><p className="mt-4 text-sm leading-relaxed text-[#e2e8df]">{story.text}</p><span className="mt-5 inline-block text-sm font-semibold text-[#e6c7a0]">Посмотреть дом ↗</span></div>
+        <div className="relative"><h3 className="font-moderustic text-2xl font-bold">{story.title}</h3><p className="mt-4 text-sm leading-relaxed text-[#e2e8df]">{story.text}</p><span className="mt-5 inline-block text-sm font-semibold text-[#e6c7a0]">{story.linkText} ↗</span></div>
       </Link>)}</div>
     </div>
   </section>;

@@ -1,0 +1,308 @@
+{
+  "checkedAt": "2026-11-07T16:43:49.776Z",
+  "base": "http://127.0.0.1:3107",
+  "pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "title": "База отдыха \"Хижина лесника\" в Архызе | Аренда домиков в лесу",
+      "description": "Три уютных дома с панорамными окнами в буковом лесу Архыза. Своя терраса, мангальная и костровая зона, парковка и быстрый Wi-Fi. Бронируйте отдых на официальном сайте.",
+      "canonical": "https://hyzhinalesnika.ru",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage",
+        "Accommodation",
+        "Accommodation",
+        "Accommodation",
+        "FAQPage"
+      ],
+      "images": 17,
+      "bytes": 333494
+    },
+    {
+      "path": "/consents/callback/2026-11-05-1",
+      "status": 200,
+      "title": "Согласие на заявку и обратный звонок | Хижина лесника",
+      "description": "Текст согласия на обработку персональных данных для заявки и обратного звонка в «Хижине лесника»: цели обработки, состав данных, срок действия и порядок отзыва.",
+      "canonical": "https://hyzhinalesnika.ru/consents/callback/2026-11-05-1",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage"
+      ],
+      "images": 2,
+      "bytes": 79950
+    },
+    {
+      "path": "/booking",
+      "status": 200,
+      "title": "Онлайн-бронирование домиков в Архызе | База отдыха \"Хижина лесника\"",
+      "description": "Забронируйте домик онлайн на базе отдыха \"Хижина лесника\" в Архызе через официальный модуль Контур.Отель. Актуальные цены и календарь свободных дат.",
+      "canonical": "https://hyzhinalesnika.ru/booking",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage"
+      ],
+      "images": 2,
+      "bytes": 77422
+    },
+    {
+      "path": "/news",
+      "status": 200,
+      "title": "Новости и путеводители | Хижина лесника",
+      "description": "Путеводители базы отдыха «Хижина лесника» по Архызу: дорога на автомобиле и общественном транспорте, интересные места и маршруты рядом с домиками.",
+      "canonical": "https://hyzhinalesnika.ru/news",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "CollectionPage"
+      ],
+      "images": 4,
+      "bytes": 87450
+    },
+    {
+      "path": "/special-offers",
+      "status": 200,
+      "title": "Специальные предложения | Хижина лесника",
+      "description": "Специальные предложения базы отдыха «Хижина лесника» в Архызе: бонусы ко дню рождения и годовщине свадьбы, программа лояльности и оплата через Яндекс Сплит.",
+      "canonical": "https://hyzhinalesnika.ru/special-offers",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage"
+      ],
+      "images": 2,
+      "bytes": 87451
+    },
+    {
+      "path": "/spa",
+      "status": 200,
+      "title": "СПА и бассейн рядом с домиками в Архызе | Хижина лесника",
+      "description": "СПА-комплекс партнёра в 100 метрах от домиков «Хижина лесника» в Архызе: бассейн 15 × 6 м, джакузи, сауна и хамам. Стоимость посещения и время работы.",
+      "canonical": "https://hyzhinalesnika.ru/spa",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage"
+      ],
+      "images": 5,
+      "bytes": 98980
+    },
+    {
+      "path": "/dining",
+      "status": 200,
+      "title": "Ресторан и завтрак в домик | Хижина лесника, Архыз",
+      "description": "Ресторан партнёра «Адреналин» в 100 метрах от домов «Хижины лесника» в Архызе: меню и фото. Завтраки в домик доставляет другой ресторан по заказу с вечера.",
+      "canonical": "https://hyzhinalesnika.ru/dining",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage"
+      ],
+      "images": 7,
+      "bytes": 101686
+    },
+    {
+      "path": "/split",
+      "status": 200,
+      "title": "Отдых с Яндекс Сплит | Хижина лесника",
+      "description": "Оплата отдыха в «Хижине лесника» в Архызе частями через Яндекс Сплит: как получить расчёт, ознакомиться с графиком платежей и подтвердить бронирование.",
+      "canonical": "https://hyzhinalesnika.ru/split",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage"
+      ],
+      "images": 2,
+      "bytes": 88436
+    },
+    {
+      "path": "/cookie-policy",
+      "status": 200,
+      "title": "Использование cookie | Хижина лесника",
+      "description": "Использование cookie на сайте базы отдыха «Хижина лесника»: сохранение отметки о просмотре уведомления, cookie сервиса бронирования и управление ими в браузере.",
+      "canonical": "https://hyzhinalesnika.ru/cookie-policy",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage"
+      ],
+      "images": 2,
+      "bytes": 73522
+    },
+    {
+      "path": "/dom-dlya-semi",
+      "status": 200,
+      "title": "Дом «Ива» для отдыха с детьми в Архызе | Хижина лесника",
+      "description": "Дом «Ива» для отдыха с детьми в Архызе: до 5 гостей, 40 м², кухня, свой санузел, огороженный двор и терраса. Фото, планировка и бронирование в «Хижине лесника».",
+      "canonical": "https://hyzhinalesnika.ru/dom-dlya-semi",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage",
+        "Accommodation"
+      ],
+      "images": 11,
+      "bytes": 151863
+    },
+    {
+      "path": "/dvuhetazhnyj-barnhouse",
+      "status": 200,
+      "title": "Барнхаус «Берёза» для компании в Архызе | Хижина лесника",
+      "description": "Дом для компании до 7 человек в Архызе: барнхаус «Берёза», 81 м², две спальни, кухня-гостиная, беседка и мангал. Фото и бронирование в «Хижине лесника».",
+      "canonical": "https://hyzhinalesnika.ru/dvuhetazhnyj-barnhouse",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage",
+        "Accommodation"
+      ],
+      "images": 11,
+      "bytes": 156712
+    },
+    {
+      "path": "/shale-s-vidom-na-gory",
+      "status": 200,
+      "title": "Шале «Бук» для двоих в Архызе | Хижина лесника",
+      "description": "Шале «Бук» для отдыха вдвоём в Архызе: панорамный вид на горы, терраса, кухня и свой санузел. Две спальни, до 4 гостей. Фото и бронирование в «Хижине лесника».",
+      "canonical": "https://hyzhinalesnika.ru/shale-s-vidom-na-gory",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage",
+        "Accommodation"
+      ],
+      "images": 11,
+      "bytes": 143613
+    },
+    {
+      "path": "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety",
+      "status": 200,
+      "title": "Как добраться до Архыза в 2026 году | Хижина лесника",
+      "description": "Актуальный гид 2026 года: как доехать до Архыза на машине, автобусе, самолёте и трансфере, и как добраться от посёлка до базы отдыха «Хижина лесника».",
+      "canonical": "https://hyzhinalesnika.ru/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage",
+        "Article"
+      ],
+      "images": 2,
+      "bytes": 105861
+    },
+    {
+      "path": "/stati-i-sovety/post/top-5-mest-v-arhyze",
+      "status": 200,
+      "title": "ТОП-5 мест Архыза рядом с домиками | База отдыха \"Хижина лесника\"",
+      "description": "Откройте для себя 5 красивейших мест недалеко от базы отдыха Хижина Лесника: Баритовый водопад, Ферма Альпак, Казачий водопад, Канатная дорога и Обсерватория.",
+      "canonical": "https://hyzhinalesnika.ru/stati-i-sovety/post/top-5-mest-v-arhyze",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage",
+        "Article"
+      ],
+      "images": 7,
+      "bytes": 118961
+    },
+    {
+      "path": "/oferta",
+      "status": 200,
+      "title": "Договор публичной оферты | База отдыха \"Хижина лесника\"",
+      "description": "Публичная оферта о заключении договора предоставления услуг средства размещения на базе отдыха \"Хижина лесника\" в Архызе.",
+      "canonical": "https://hyzhinalesnika.ru/oferta",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage"
+      ],
+      "images": 2,
+      "bytes": 179450
+    },
+    {
+      "path": "/privacy-policy",
+      "status": 200,
+      "title": "Политика обработки персональных данных | База отдыха \"Хижина лесника\"",
+      "description": "Политика в отношении обработки персональных данных посетителей сайта и гостей базы отдыха \"Хижина лесника\".",
+      "canonical": "https://hyzhinalesnika.ru/privacy-policy",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage"
+      ],
+      "images": 2,
+      "bytes": 202173
+    },
+    {
+      "path": "/users/agreement",
+      "status": 200,
+      "title": "Пользовательское соглашение | База отдыха \"Хижина лесника\"",
+      "description": "Пользовательское соглашение об обработке персональных данных на сайте базы отдыха \"Хижина лесника\".",
+      "canonical": "https://hyzhinalesnika.ru/users/agreement",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "WebPage"
+      ],
+      "images": 2,
+      "bytes": 75492
+    }
+  ],
+  "internalLinks": [
+    "/",
+    "/#cabins",
+    "/#sez1",
+    "/spa",
+    "/dining",
+    "/special-offers",
+    "/news",
+    "/#contacts",
+    "/booking",
+    "/split",
+    "/#faq-pets",
+    "/#about",
+    "/dom-dlya-semi",
+    "/shale-s-vidom-na-gory",
+    "/dvuhetazhnyj-barnhouse",
+    "/#help",
+    "/consents/callback/2026-11-05-1",
+    "/privacy-policy",
+    "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety",
+    "/#reviews",
+    "/oferta",
+    "/users/agreement",
+    "/cookie-policy",
+    "/stati-i-sovety/post/top-5-mest-v-arhyze",
+    "/images/partners/dining/a-la-carte.webp",
+    "/videos/cabins/iva-tour.mp4",
+    "/videos/cabins/bereza-tour.mp4"
+  ],
+  "redirects": {
+    "/house": "/dom-dlya-semi",
+    "/barnhouse": "/dvuhetazhnyj-barnhouse",
+    "/shale": "/shale-s-vidom-na-gory",
+    "/user/agreement": "/users/agreement",
+    "/blog": "/news",
+    "/putevoditeli-marshruty": "/news"
+  },
+  "result": "passed"
+}

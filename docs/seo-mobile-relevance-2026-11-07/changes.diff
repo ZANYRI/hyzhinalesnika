@@ -1,0 +1,169 @@
+diff --git a/src/components/CabinDetailView.tsx b/src/components/CabinDetailView.tsx
+index df65005..070247e 100644
+--- a/src/components/CabinDetailView.tsx
++++ b/src/components/CabinDetailView.tsx
+@@ -37,10 +37,12 @@ export function CabinDetailView({cabin}:{cabin:CabinData}) {
+       </section>}
+       <section className="mx-auto mt-14 grid max-w-[1400px] items-start gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16">
+         <div className="lg:col-span-8">
+-          <div id="description" className="scroll-mt-28"><p className="text-xs uppercase tracking-[0.2em] text-[#d49a5a]">Место для вашей истории</p><h2 className="mt-4 font-moderustic text-3xl font-bold sm:text-4xl">Пространство, в котором хорошо</h2><p className="mt-6 leading-relaxed text-[#b7c6bd] sm:text-lg">{cabin.introText}</p>
++          <div id="description" className="scroll-mt-28"><p className="text-xs uppercase tracking-[0.2em] text-[#d49a5a]">Место для вашей истории</p><h2 className="mt-4 font-moderustic text-3xl font-bold sm:text-4xl">{cabin.detailHeading}</h2><p className="mt-6 leading-relaxed text-[#b7c6bd] sm:text-lg">{cabin.introText}</p><p className="mt-4 leading-relaxed text-[#b7c6bd]">{cabin.planningText}</p>
+             <ul className="mt-8 grid gap-4 sm:grid-cols-2">{cabin.highlights.map(item=><li key={item} className="flex items-start gap-3 rounded-2xl border border-white/10 bg-[#173024] p-5 text-sm leading-relaxed"><Check size={19} className="mt-0.5 shrink-0 text-[#d49a5a]"/>{item}</li>)}</ul>
+             <div className="mt-7 border-t border-white/10 pt-6 text-sm leading-relaxed text-[#b7c6bd]">
+-              <p>{cabin.cardTitle} находится на базе отдыха «Хижина лесника»: {SITE_CONFIG.address}. В доме своя кухня и санузел. Условия проживания с кошками и собаками опубликованы в <Link href="/#faq-pets" className="text-[#e6c7a0] underline underline-offset-4">ответе о питомцах</Link>.</p>
++              <p>{cabin.cardTitle} находится на базе отдыха «Хижина лесника»: {SITE_CONFIG.address}. В доме своя кухня и санузел.</p>
++              <h3 className="mt-5 font-moderustic text-lg font-semibold text-[#f3f5f0]">Отдых с кошками и собаками</h3>
++              <p className="mt-3">Во всех трёх домах можно остановиться с питомцем по предварительному согласованию. Размещение животного оплачивается отдельно. Перед поездкой ознакомьтесь с <Link href="/#faq-pets" className="text-[#e6c7a0] underline underline-offset-4">условиями проживания с питомцами и доплатой</Link>.</p>
+               <p className="mt-3">В 100 метрах находятся <Link href="/spa" className="text-[#e6c7a0] underline underline-offset-4">бассейн и СПА</Link> и <Link href="/dining" className="text-[#e6c7a0] underline underline-offset-4">ресторан</Link> партнёрского парк-отеля «Адреналин». Посещение СПА и питание оплачиваются отдельно.</p>
+             </div>
+           </div>
+@@ -56,7 +58,7 @@ export function CabinDetailView({cabin}:{cabin:CabinData}) {
+       </section>
+       <section id="stay-rules" className="mt-20 scroll-mt-28 bg-[#eee8dc] py-14 text-[#213d31] sm:py-20"><div className="mx-auto max-w-[1400px] px-4 sm:px-6"><p className="text-xs uppercase tracking-[0.2em] text-[#795a38]">Перед поездкой</p><h2 className="mt-3 font-moderustic text-3xl font-bold">Условия спокойного отдыха</h2><div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{BOOKING_RULES.map(rule=><article key={rule.title} className="rounded-2xl border border-[#c9bda9] p-6"><Image src={rule.icon} alt="" width={40} height={40} loading="lazy" className="mb-5 h-10 w-10"/><h3 className="font-moderustic text-lg font-bold">{rule.title}</h3><p className="mt-3 text-sm leading-relaxed opacity-75">{rule.text}</p></article>)}</div><p className="mt-6 flex items-center gap-2 text-sm"><Clock size={18}/>Заезд с 15:00 · выезд до 11:00</p><Link href="/oferta" className="mt-4 inline-block text-xs underline">Полные условия бронирования</Link></div></section>
+       <BookingAssistance/>
+-      <section className="mx-auto mt-20 max-w-[1400px] px-4 sm:px-6"><div className="flex flex-wrap items-end justify-between gap-4"><h2 className="font-moderustic text-3xl font-bold">Ещё два повода приехать</h2><Link href="/#cabins" prefetch={false} className="text-sm text-[#d49a5a]">Все дома ↗</Link></div><div className="mt-8 grid gap-5 md:grid-cols-2">{CABIN_LIST.filter(other=>other.id!==cabin.id).map(other=><Link key={other.id} href={other.slug} className="group overflow-hidden rounded-3xl border border-white/10 bg-[#173024]"><div className="relative aspect-[16/9] overflow-hidden"><Image fill sizes="(min-width: 768px) 50vw, 100vw" src={other.cardImage} alt={other.cardImageAlt} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105"/></div><div className="p-6"><p className="text-xs text-[#a8b9ae]">{other.cardArea} · {other.cardGuests}</p><div className="mt-3 flex flex-wrap items-center justify-between gap-3"><h3 className="font-moderustic text-2xl font-bold">{other.cardTitle}</h3><ArrowUpRight size={22} className="text-[#d49a5a]"/></div><p className="mt-3 text-sm text-[#d49a5a]">{other.cardPrice}</p></div></Link>)}</div></section>
++      <section className="mx-auto mt-20 max-w-[1400px] px-4 sm:px-6"><div className="flex flex-wrap items-end justify-between gap-4"><h2 className="font-moderustic text-3xl font-bold">Ещё два повода приехать</h2><Link href="/#cabins" prefetch={false} className="text-sm text-[#d49a5a]">Все дома ↗</Link></div><div className="mt-8 grid gap-5 md:grid-cols-2">{CABIN_LIST.filter(other=>other.id!==cabin.id).map(other=><Link key={other.id} href={other.slug} className="group overflow-hidden rounded-3xl border border-white/10 bg-[#173024]"><div className="relative aspect-[16/9] overflow-hidden"><Image fill sizes="(min-width: 1400px) 666px, (min-width: 768px) calc(50vw - 34px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)" src={other.cardImage} alt={other.cardImageAlt} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105"/></div><div className="p-6"><p className="text-xs text-[#a8b9ae]">{other.cardArea} · {other.cardGuests}</p><div className="mt-3 flex flex-wrap items-center justify-between gap-3"><h3 className="font-moderustic text-2xl font-bold">{other.cardTitle}</h3><ArrowUpRight size={22} className="text-[#d49a5a]"/></div><p className="mt-3 text-sm text-[#d49a5a]">{other.cardPrice}</p></div></Link>)}</div></section>
+     </main><Footer/>
+   </div>;
+ }
+diff --git a/src/components/ForestBenefitImage.tsx b/src/components/ForestBenefitImage.tsx
+index d8080f6..93c8d5a 100644
+--- a/src/components/ForestBenefitImage.tsx
++++ b/src/components/ForestBenefitImage.tsx
+@@ -8,7 +8,7 @@ export function ForestBenefitImage() {
+   return <picture>
+     <source type="image/avif" srcSet={srcSet(media.avif)} sizes={sizes} />
+     <source type="image/webp" srcSet={srcSet(media.webp)} sizes={sizes} />
+-    <img src={media.webp[media.webp.length - 1].src} width={media.width} height={media.height}
++    <img src={media.webp[0].src} srcSet={srcSet(media.webp)} sizes={sizes} width={media.width} height={media.height}
+       alt="Лес и горы Архыза в тумане" loading="lazy" decoding="async" fetchPriority="low"
+       className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+   </picture>;
+diff --git a/src/components/HomeSections.tsx b/src/components/HomeSections.tsx
+index db2795f..e03c12e 100644
+--- a/src/components/HomeSections.tsx
++++ b/src/components/HomeSections.tsx
+@@ -15,7 +15,7 @@ export function HeroBadges() {
+ }
+ const benefits = [
+   {title:"Яндекс Сплит", text:"Забронируйте отдых сейчас и разделите оплату на удобные платежи.", icon:CreditCard, href:"/split", note:"Путешествовать проще"},
+-  {title:"Pet friendly", text:"Приезжайте с питомцем. Для него приготовим подарочный набор от «Четыре лапы».",icon:PawPrint,href:"/#faq-pets",note:"Вместе со всей семьёй"},
++  {title:"Отдых с питомцами", text:"В домах можно остановиться с кошкой или собакой. Для питомца приготовим подарочный набор от «Четыре лапы». Условия и доплата – в FAQ.",icon:PawPrint,href:"/#faq-pets",note:"Вместе со всей семьёй"},
+   {title:"Уединение в буковом лесу",text:"Заповедный лес Архыза и своя зона отдыха – в пяти минутах от центра посёлка.",icon:TreeEvergreen,href:"/#about",note:"Природа вокруг вас",image:"/images/home/forest-seclusion.webp"},
+   {title:"СПА-комплекс рядом",text:"Подогреваемый бассейн, джакузи, сауна и хамам у партнёра «Адреналин» – в 100 метрах от домиков. Посещение оплачивается отдельно.",icon:Waves,href:"/spa",note:"Время для себя"},
+   {title:"Ресторан и доставка",text:"Меню a la carte с 12:00 до 22:30. Завтрак в домик можно заказать с вечера.",icon:ForkKnife,href:"/dining",note:"Отдых без бытовых забот"},
+@@ -37,9 +37,9 @@ export function HomeBenefits() {
+   </section>;
+ }
+ const stories = [
+- {href:"/dom-dlya-semi",title:"Семейный отдых",text:"Совместные завтраки, прогулки по буковому лесу и новые открытия для детей. Здесь есть время побыть рядом и услышать друг друга. Для семейного отдыха подойдёт дом «Ива».",image:"/images/home/story-romance.webp",alt:"Бокалы у костра на террасе дома",imagePosition:"center 65%",position:"lg:pt-36"},
+- {href:"/shale-s-vidom-na-gory",title:"Романтика для двоих",text:"Медленное утро с кофе, горы за окном и тихий вечер на террасе. Оставьте повседневные дела за пределами вашей поездки. Для романтики вдвоём подойдёт шале «Бук».",image:"/images/home/story-romance-chalet-night.webp",alt:"Романтический вечер на террасе шале – иллюстрация по фотографии",imagePosition:"center 75%",position:"lg:pt-64"},
+- {href:"/dvuhetazhnyj-barnhouse",title:"В кругу друзей",text:"Долгие разговоры у костра, ужин на свежем воздухе и общие приключения. Собирайте воспоминания, к которым захочется возвращаться. Для отдыха с друзьями подойдёт дом «Берёза».",image:"/images/home/story-friends.webp",alt:"Вечерний костёр и кресла во дворе дома",imagePosition:"center 60%",position:"lg:pt-36"},
++ {href:"/dom-dlya-semi",title:"Семейный отдых",linkText:"Дом «Ива» для семьи",text:"Совместные завтраки, прогулки по буковому лесу и новые открытия для детей. Здесь есть время побыть рядом и услышать друг друга. Для семейного отдыха подойдёт дом «Ива».",image:"/images/home/story-romance.webp",alt:"Бокалы у костра на террасе дома",imagePosition:"center 65%",position:"lg:pt-36"},
++ {href:"/shale-s-vidom-na-gory",title:"Романтика для двоих",linkText:"Шале «Бук» для двоих",text:"Медленное утро с кофе, горы за окном и тихий вечер на террасе. Оставьте повседневные дела за пределами вашей поездки. Для романтики вдвоём подойдёт шале «Бук».",image:"/images/home/story-romance-chalet-night.webp",alt:"Романтический вечер на террасе шале – иллюстрация по фотографии",imagePosition:"center 75%",position:"lg:pt-64"},
++ {href:"/dvuhetazhnyj-barnhouse",title:"В кругу друзей",linkText:"Барнхаус «Берёза» для компании",text:"Долгие разговоры у костра, ужин на свежем воздухе и общие приключения. Собирайте воспоминания, к которым захочется возвращаться. Для отдыха с друзьями подойдёт дом «Берёза».",image:"/images/home/story-friends.webp",alt:"Вечерний костёр и кресла во дворе дома",imagePosition:"center 60%",position:"lg:pt-36"},
+ ];
+ export function AudienceStories() {
+   return <section id="about" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">
+@@ -52,7 +52,7 @@ export function AudienceStories() {
+       </div>
+       <div className="grid lg:grid-cols-3">{stories.map(story => <Link href={story.href} key={story.title} className={`group relative flex min-h-[420px] items-end overflow-hidden p-7 sm:p-9 lg:min-h-[660px] ${story.position}`}>
+         <Image fill quality={60} fetchPriority="low" sizes="(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)" src={story.image} alt={story.alt} loading="lazy" style={{objectPosition:story.imagePosition}} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/45 to-[#06130d]/15" />
+-        <div className="relative"><h3 className="font-moderustic text-2xl font-bold">{story.title}</h3><p className="mt-4 text-sm leading-relaxed text-[#e2e8df]">{story.text}</p><span className="mt-5 inline-block text-sm font-semibold text-[#e6c7a0]">Посмотреть дом ↗</span></div>
++        <div className="relative"><h3 className="font-moderustic text-2xl font-bold">{story.title}</h3><p className="mt-4 text-sm leading-relaxed text-[#e2e8df]">{story.text}</p><span className="mt-5 inline-block text-sm font-semibold text-[#e6c7a0]">{story.linkText} ↗</span></div>
+       </Link>)}</div>
+     </div>
+   </section>;
+diff --git a/src/components/SeasonalExperiences.tsx b/src/components/SeasonalExperiences.tsx
+index 02cf57c..8531564 100644
+--- a/src/components/SeasonalExperiences.tsx
++++ b/src/components/SeasonalExperiences.tsx
+@@ -40,7 +40,11 @@ export function SeasonalExperiences() {
+     <div className="grid gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+     {activities.map(activity => <Link key={activity.title} href={activity.href} target={activity.href.startsWith("https://") ? "_blank" : undefined} rel={activity.href.startsWith("https://") ? "noopener noreferrer" : undefined} className="activity-wood-frame group flex h-full flex-col p-4 transition sm:p-5">
+       <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-[#1d3b2b]">
+-        <Image fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" src={activity.image} alt={activity.imageAlt ?? activity.title} style={{objectPosition: activity.imagePosition, transform: activity.imageScale ? `scale(${activity.imageScale})` : undefined}} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]" />
++        <Image fill sizes={activity.imageScale
++          // The river photo is deliberately enlarged 1.4x; retain enough pixels for that crop.
++          ? "(min-width: 1400px) 546px, (min-width: 1024px) calc(46.666667vw - 107.333333px), (min-width: 640px) calc(70vw - 112px), calc(140vw - 92.4px)"
++          : "(min-width: 1400px) 390px, (min-width: 1024px) calc(33.333333vw - 76.666667px), (min-width: 640px) calc(50vw - 80px), calc(100vw - 66px)"}
++          src={activity.image} alt={activity.imageAlt ?? activity.title} style={{objectPosition: activity.imagePosition, transform: activity.imageScale ? `scale(${activity.imageScale})` : undefined}} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]" />
+       </div>
+       <div className="flex flex-1 flex-col pt-5">
+         <p className="text-[11px] font-medium uppercase tracking-widest text-[#d8ae7f]">{activity.tag}</p>
+diff --git a/src/data/cabins.ts b/src/data/cabins.ts
+index de48f1b..19e59be 100644
+--- a/src/data/cabins.ts
++++ b/src/data/cabins.ts
+@@ -37,6 +37,8 @@ export interface CabinData {
+   titlePrefix: string;
+   titleHighlight: string;
+   introText: string;
++  detailHeading: string;
++  planningText: string;
+   introHighlightWord?: string;
+   specs: CabinSpecRow[];
+   gallery: { src: string; alt: string }[];
+@@ -89,9 +91,9 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
+     slug: "/dom-dlya-semi",
+     shortSlug: "/house",
+     maxGuests: 5,
+-    seoTitle: 'Дом «Ива» для семьи в Архызе | Хижина лесника',
++    seoTitle: 'Дом «Ива» для отдыха с детьми в Архызе | Хижина лесника',
+     seoDescription:
+-      'Семейный дом «Ива» на базе «Хижина лесника» в Архызе: до 5 гостей, 40 м², кухня, свой санузел, терраса, мангальная и костровая зоны. Можно с питомцами.',
++      'Дом «Ива» для отдыха с детьми в Архызе: до 5 гостей, 40 м², кухня, свой санузел, огороженный двор и терраса. Фото, планировка и бронирование в «Хижине лесника».',
+     cardTitle: 'Дом «Ива»',
+     cardPrice: "от 8 000 ₽ / сутки",
+     cardGuests: "до 5 гостей",
+@@ -109,6 +111,8 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
+     ],
+     titlePrefix: "Дом",
+     titleHighlight: "«Ива»",
++    detailHeading: "Дом для семейного отдыха с детьми в Архызе",
++    planningText: "В «Иве» можно разместиться семьёй до 5 человек. Есть спальня с двуспальной кроватью, отдельная комната с двуспальным диваном и гостиная с односпальным диваном и кухней. Для повседневных дел предусмотрены плита, холодильник, СВЧ и стиральная машина; для вечеров дома – настольные игры и Smart-TV. Дом одноэтажный, рядом свой огороженный двор.",
+     introText:
+       "Этот дом создан для тех, кто хочет подарить семье спокойный отдых в горах. Тихая закрытая территория, чистый лесной воздух и безопасное приватное пространство, где дети могут играть на свежем воздухе, а родители полноценно перезагрузиться.",
+     specs: [
+@@ -197,9 +201,9 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
+     shortSlug: "/barnhouse",
+     maxGuests: 7,
+     seoTitle:
+-      'Барнхаус «Берёза» в Архызе | Хижина лесника',
++      'Барнхаус «Берёза» для компании в Архызе | Хижина лесника',
+     seoDescription:
+-      'Двухэтажный барнхаус «Берёза» на базе «Хижина лесника» в Архызе: до 7 гостей, 81 м², две спальни и кухня-гостиная. Своя беседка, мангал и костровая зона.',
++      'Дом для компании до 7 человек в Архызе: барнхаус «Берёза», 81 м², две спальни, кухня-гостиная, беседка и мангал. Фото и бронирование в «Хижине лесника».',
+     cardTitle: 'Барнхаус «Берёза»',
+     cardPrice: "от 12 000 ₽ / сутки",
+     cardGuests: "до 7 гостей",
+@@ -217,6 +221,8 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
+     ],
+     titlePrefix: "Двухэтажный дом",
+     titleHighlight: "«Берёза»",
++    detailHeading: "Двухэтажный дом для компании в Архызе",
++    planningText: "«Берёза» подойдёт для поездки с друзьями или большой семьёй до 7 человек. Спальные места распределены между двумя спальнями на втором этаже и двуспальным диваном в гостиной на первом. На кухне есть посуда для компании и посудомоечная машина. Для совместных ужинов и вечеров на свежем воздухе – своя беседка, мангал и костровая зона.",
+     introText:
+       "Просторный двухэтажный дом в архитектуре Barnhouse для дружных компаний и больших семей до 7 человек. На первом этаже расположена светлая кухня-гостиная для тёплых совместных ужинов, на втором уединённые спальни с видом на буковый лес.",
+     introHighlightWord: "Barnhouse",
+@@ -305,9 +311,9 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
+     slug: "/shale-s-vidom-na-gory",
+     shortSlug: "/shale",
+     maxGuests: 4,
+-    seoTitle: "Шале «Бук» с видом на горы в Архызе | Хижина лесника",
++    seoTitle: "Шале «Бук» для двоих в Архызе | Хижина лесника",
+     seoDescription:
+-      'Шале «Бук» на базе «Хижина лесника» в Архызе: до 4 гостей, две спальни, кухня, свой санузел и тёплый пол. Панорамные окна с видом на горы, терраса и парковка.',
++      'Шале «Бук» для отдыха вдвоём в Архызе: панорамный вид на горы, терраса, кухня и свой санузел. Две спальни, до 4 гостей. Фото и бронирование в «Хижине лесника».',
+     cardTitle: 'Шале «Бук»',
+     cardPrice: "от 7 000 ₽ / сутки",
+     cardGuests: "до 4 гостей",
+@@ -325,6 +331,8 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
+     ],
+     titlePrefix: "Шале",
+     titleHighlight: "«Бук»",
++    detailHeading: "Шале для отдыха вдвоём с видом на горы",
++    planningText: "В шале «Бук» можно приехать вдвоём на выходные или более долгий отдых. В первой спальне двуспальная кровать с панорамным видом; во второй – две односпальные кровати, если вы планируете поездку вчетвером. Есть собственная кухня, санузел с душем и терраса. После прогулки по Архызу можно провести вечер дома или сходить в СПА неподалёку.",
+     introText:
+       "Просыпаться с первыми лучами солнца в панорамных окнах и видеть перед собой горные хребты Архыза: именно для таких утренних моментов создано наше Шале. Камерное и тёплое пространство идеально подходит для романтического уикенда пары или спокойного отдыха вчетвером.",
+     introHighlightWord: "Шале",

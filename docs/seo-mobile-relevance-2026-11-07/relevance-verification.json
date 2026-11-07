@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-11-07T16:44:44.644Z",
+  "base": "http://127.0.0.1:3107",
+  "pages": [
+    {
+      "path": "/dom-dlya-semi",
+      "heading": "Дом для семейного отдыха с детьми в Архызе",
+      "planningServerRendered": true,
+      "petConditionsLinked": true,
+      "metadataMatchesSchema": true
+    },
+    {
+      "path": "/dvuhetazhnyj-barnhouse",
+      "heading": "Двухэтажный дом для компании в Архызе",
+      "planningServerRendered": true,
+      "petConditionsLinked": true,
+      "metadataMatchesSchema": true
+    },
+    {
+      "path": "/shale-s-vidom-na-gory",
+      "heading": "Шале для отдыха вдвоём с видом на горы",
+      "planningServerRendered": true,
+      "petConditionsLinked": true,
+      "metadataMatchesSchema": true
+    }
+  ],
+  "forest": {
+    "fallback": "/images/home/forest-seclusion-480.58c1770e09b9.webp",
+    "bytes": 72728,
+    "responsiveFallback": true
+  },
+  "imageExamples": [
+    {
+      "image": "arkhyz-road-trip",
+      "viewport": 375,
+      "dpr": 2,
+      "selection": "Estimated smallest suitable srcset candidate, not a browser trace",
+      "beforeWidth": 750,
+      "afterWidth": 640,
+      "beforeBytes": 32578,
+      "afterBytes": 23801,
+      "reductionPercent": 26.9
+    },
+    {
+      "image": "jeep-adventure",
+      "viewport": 375,
+      "dpr": 2,
+      "selection": "Estimated smallest suitable srcset candidate, not a browser trace",
+      "beforeWidth": 750,
+      "afterWidth": 640,
+      "beforeBytes": 23312,
+      "afterBytes": 18455,
+      "reductionPercent": 20.8
+    }
+  ],
+  "visualBrowserTest": "Not completed: local Chrome headless exited with signal 134. No claim of visual mobile QA or Core Web Vitals measurement."
+}

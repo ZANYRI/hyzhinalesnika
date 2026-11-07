@@ -8,7 +8,7 @@ export function ForestBenefitImage() {
   return <picture>
     <source type="image/avif" srcSet={srcSet(media.avif)} sizes={sizes} />
     <source type="image/webp" srcSet={srcSet(media.webp)} sizes={sizes} />
-    <img src={media.webp[media.webp.length - 1].src} width={media.width} height={media.height}
+    <img src={media.webp[0].src} srcSet={srcSet(media.webp)} sizes={sizes} width={media.width} height={media.height}
       alt="Лес и горы Архыза в тумане" loading="lazy" decoding="async" fetchPriority="low"
       className="absolute inset-0 -z-20 h-full w-full object-cover transition duration-700 group-hover:scale-105" />
   </picture>;

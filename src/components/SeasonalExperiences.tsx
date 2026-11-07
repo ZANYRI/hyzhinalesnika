@@ -40,7 +40,11 @@ export function SeasonalExperiences() {
     <div className="grid gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
     {activities.map(activity => <Link key={activity.title} href={activity.href} target={activity.href.startsWith("https://") ? "_blank" : undefined} rel={activity.href.startsWith("https://") ? "noopener noreferrer" : undefined} className="activity-wood-frame group flex h-full flex-col p-4 transition sm:p-5">
       <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-[#1d3b2b]">
-        <Image fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" src={activity.image} alt={activity.imageAlt ?? activity.title} style={{objectPosition: activity.imagePosition, transform: activity.imageScale ? `scale(${activity.imageScale})` : undefined}} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]" />
+        <Image fill sizes={activity.imageScale
+          // The river photo is deliberately enlarged 1.4x; retain enough pixels for that crop.
+          ? "(min-width: 1400px) 546px, (min-width: 1024px) calc(46.666667vw - 107.333333px), (min-width: 640px) calc(70vw - 112px), calc(140vw - 92.4px)"
+          : "(min-width: 1400px) 390px, (min-width: 1024px) calc(33.333333vw - 76.666667px), (min-width: 640px) calc(50vw - 80px), calc(100vw - 66px)"}
+          src={activity.image} alt={activity.imageAlt ?? activity.title} style={{objectPosition: activity.imagePosition, transform: activity.imageScale ? `scale(${activity.imageScale})` : undefined}} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]" />
       </div>
       <div className="flex flex-1 flex-col pt-5">
         <p className="text-[11px] font-medium uppercase tracking-widest text-[#d8ae7f]">{activity.tag}</p>
