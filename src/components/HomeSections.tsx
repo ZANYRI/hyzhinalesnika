@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PawPrint, TreeEvergreen, Waves, ForkKnife, CreditCard, Star } from "@phosphor-icons/react/dist/ssr";
 import { SITE_CONFIG } from "@/data/site";
+import { CABIN_LIST } from "@/data/cabins";
 import { ForestBenefitImage } from "./ForestBenefitImage";
 
 export function SplitMark() {
@@ -25,7 +26,10 @@ export function HomeBenefits() {
     <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#795a38]">Хижина лесника</p>
       <h2 className="mt-3 max-w-3xl font-moderustic text-3xl font-bold sm:text-4xl">Заботимся о вашем комфорте</h2>
-      <p className="mt-4 max-w-3xl text-sm leading-relaxed">{SITE_CONFIG.description}</p>
+      <p className="mt-4 max-w-3xl text-sm leading-relaxed">База отдыха «{SITE_CONFIG.shortName}», {SITE_CONFIG.address}. Три отдельных дома в буковом лесу:</p>
+      <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-sm leading-relaxed">
+        {CABIN_LIST.map(cabin => <li key={cabin.id} className="whitespace-nowrap">{cabin.titleHighlight} – {cabin.cardGuests}</li>)}
+      </ul>
       <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {benefits.map(b => <Link key={b.title} href={b.href} className={`group relative isolate flex min-h-64 flex-col justify-between overflow-hidden rounded-2xl border border-[#d6c7b1] p-6 transition hover:-translate-y-1 hover:shadow-lg ${b.image ? "min-h-80 bg-[#213d31] text-[#f3eee3] lg:row-span-2 lg:min-h-full" : "bg-[#faf7f0]"}`}>
           {b.image && <><ForestBenefitImage /><div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/35 to-[#06130d]/30"/></>}

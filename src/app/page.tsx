@@ -50,12 +50,13 @@ export default function HomePage() {
         <source media="(max-width: 639px) and (max-aspect-ratio: 9/16)" type="image/webp" srcSet={heroMedia.webp} />
         <Image fill quality={60} sizes="(max-aspect-ratio: 3/2) 150vh, 100vw" loading="eager" fetchPriority="high" src="/images/home/hero-bg.jpg" alt="Дома базы отдыха Хижина лесника в буковом лесу Архыза" className="absolute inset-0 h-full w-full object-cover" />
       </picture>
-      <div className="absolute inset-0 bg-gradient-to-b from-[#102219]/65 via-[#102219]/40 to-[#102219]" />
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-[#06130d]/65 via-[#06130d]/65 to-[#102219]" />
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#06130d]/35 via-[#06130d]/15 to-transparent" />
       <div className="relative z-10 mx-auto flex w-full max-w-[1400px] justify-end px-4 sm:px-6"><HeroBadges /></div>
-      <div className="relative z-10 mx-auto my-auto w-full max-w-[1400px] px-4 py-12 sm:px-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#d49a5a]">База отдыха Хижина лесника</p>
-        <h1 className="mt-4 max-w-3xl font-moderustic text-4xl font-bold leading-[1.08] sm:text-5xl lg:text-6xl">Три уединённых дома<br />в буковом лесу Архыза</h1>
-        <p className="mt-5 max-w-2xl leading-relaxed text-[#d6e0d9] sm:text-lg">Своя терраса, тихие вечера у костра и горы рядом. Приезжайте с семьёй, вдвоём или в кругу друзей.</p>
+      <div className="relative z-[31] mx-auto my-auto w-full max-w-[1400px] px-4 py-12 sm:px-6">
+        <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-[#f3e6cf] sm:text-sm">База отдыха Хижина лесника</p>
+        <h1 className="mt-4 max-w-4xl font-moderustic text-4xl font-bold leading-[1.12] text-balance sm:text-5xl lg:text-6xl">Домики в лесу Архыза<br className="hidden sm:block" /> со своей зоной отдыха</h1>
+        <p className="mt-5 max-w-2xl font-medium leading-7 text-[#f3f5f0] sm:text-lg sm:leading-8">Всего три дома в буковом лесу, тихие вечера у костра и горы рядом. Приезжайте вдвоём, всей семьёй или с друзьями.</p>
         <Link href="/booking" className="mt-8 inline-flex rounded-full bg-[#d49a5a] px-7 py-4 text-sm font-semibold text-[#102219] transition hover:bg-[#e0ab6e]">Проверить свободные даты</Link>
       </div>
     </section>
@@ -67,7 +68,13 @@ export default function HomePage() {
         <KonturBookingWidget id="booking" className="mb-10 px-0 sm:px-0" />
         <p className="text-xs uppercase tracking-[0.2em] text-[#d49a5a]">Ваш дом в Архызе</p>
         <h2 className="mt-3 font-moderustic text-3xl font-bold sm:text-4xl">Выберите свой дом в лесу</h2>
-        <p className="mt-4 max-w-2xl leading-relaxed text-[#a8b9ae]">Всего три дома: {CABIN_LIST.map((cabin, index) => <span key={cabin.id}>{index > 0 && "; "}<Link href={cabin.slug} className="text-[#e6c7a0] underline decoration-[#d49a5a]/40 underline-offset-4 hover:decoration-[#d49a5a]">{cabin.cardTitle}</Link> – {cabin.cardGuests}, {cabin.cardArea}</span>)}.</p>
+        <p className="mt-4 leading-relaxed text-[#a8b9ae]">Всего три дома:</p>
+        <ul className="mt-2 flex flex-col gap-x-6 gap-y-2 text-sm leading-relaxed text-[#a8b9ae] sm:flex-row sm:flex-wrap sm:text-base">
+          {CABIN_LIST.map(cabin => <li key={cabin.id} className="flex flex-wrap items-baseline gap-x-1 sm:flex-nowrap">
+            <Link href={cabin.slug} className="whitespace-nowrap text-[#e6c7a0] underline decoration-[#d49a5a]/40 underline-offset-4 hover:decoration-[#d49a5a]">{cabin.cardTitle}</Link>
+            <span className="whitespace-nowrap">– {cabin.cardGuests}, {cabin.cardArea}</span>
+          </li>)}
+        </ul>
         <div className="mt-8"><CabinShowcase /></div>
       </section>
       <section id="sez1" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">

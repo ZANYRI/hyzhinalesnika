@@ -1,0 +1,14 @@
+{
+  "base": "http://127.0.0.1:3107",
+  "checkedAt": "2026-11-07T17:51:44.399Z",
+  "h1": "Домики в лесу Архыза со своей зоной отдыха",
+  "cabinFactsGrouped": 3,
+  "comfortEntriesGrouped": 3,
+  "css": {
+    "elevatedHero": true,
+    "mobileWrapping": true,
+    "groupedFacts": true,
+    "desktopGrouping": true
+  },
+  "renderedBrowserCheck": false
+}
