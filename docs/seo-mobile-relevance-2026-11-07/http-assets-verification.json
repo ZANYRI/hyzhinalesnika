@@ -1,0 +1,387 @@
+{
+  "checkedAt": "2026-11-07T17:06:16.108Z",
+  "base": "http://127.0.0.1:3107",
+  "pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "mobileViewport": true,
+      "images": 17
+    },
+    {
+      "path": "/dom-dlya-semi",
+      "status": 200,
+      "mobileViewport": true,
+      "images": 11
+    },
+    {
+      "path": "/shale-s-vidom-na-gory",
+      "status": 200,
+      "mobileViewport": true,
+      "images": 11
+    },
+    {
+      "path": "/dvuhetazhnyj-barnhouse",
+      "status": 200,
+      "mobileViewport": true,
+      "images": 11
+    },
+    {
+      "path": "/spa",
+      "status": 200,
+      "mobileViewport": true,
+      "images": 5
+    },
+    {
+      "path": "/otdyh-s-zhivotnymi",
+      "status": 200,
+      "mobileViewport": true,
+      "images": 5
+    }
+  ],
+  "images": [
+    {
+      "url": "/_next/image?url=%2Fimages%2Fhome%2Fhero-bg.jpg&w=750&q=60",
+      "alt": "Дома базы отдыха Хижина лесника в буковом лесу Архыза",
+      "status": 200,
+      "width": 750,
+      "height": 500,
+      "bytes": 34432,
+      "format": "heif"
+    },
+    {
+      "url": "/images/home/forest-seclusion-480.58c1770e09b9.webp",
+      "alt": "Лес и горы Архыза в тумане",
+      "status": 200,
+      "width": 480,
+      "height": 841,
+      "bytes": 72728,
+      "format": "webp"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fbrand%2Flogo-wordmark-light.png&w=750&q=75",
+      "alt": "База отдыха \"Хижина лесника\"",
+      "status": 200,
+      "width": 450,
+      "height": 132,
+      "bytes": 5932,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fhome%2Fstory-romance.webp&w=750&q=60",
+      "alt": "Бокалы у костра на террасе дома",
+      "status": 200,
+      "width": 750,
+      "height": 1319,
+      "bytes": 21969,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fhome%2Fstory-romance-chalet-night.webp&w=750&q=60",
+      "alt": "Романтический вечер на террасе шале – иллюстрация по фотографии",
+      "status": 200,
+      "width": 750,
+      "height": 1125,
+      "bytes": 44253,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fhome%2Fstory-friends.webp&w=750&q=60",
+      "alt": "Вечерний костёр и кресла во дворе дома",
+      "status": 200,
+      "width": 750,
+      "height": 979,
+      "bytes": 30087,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fhouse%2F01.jpg&w=750&q=75",
+      "alt": "Дом «Ива» для семьи в Архызе, фото 1",
+      "status": 200,
+      "width": 750,
+      "height": 434,
+      "bytes": 39109,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Factivities%2Fspa-pool.webp&w=750&q=75",
+      "alt": "СПА-комплекс",
+      "status": 200,
+      "width": 750,
+      "height": 469,
+      "bytes": 17442,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Factivities%2Fquad-adventure.webp&w=750&q=75",
+      "alt": "Квадроциклы и квадрогиганты",
+      "status": 200,
+      "width": 750,
+      "height": 469,
+      "bytes": 27165,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Factivities%2Fhorseback-tour.webp&w=750&q=75",
+      "alt": "Конные прогулки",
+      "status": 200,
+      "width": 750,
+      "height": 469,
+      "bytes": 29179,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Factivities%2Fforest-river-clean.webp&w=750&q=75",
+      "alt": "Река в заповедном лесу Архыза",
+      "status": 200,
+      "width": 750,
+      "height": 998,
+      "bytes": 96716,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Factivities%2Fjeep-adventure.webp&w=750&q=75",
+      "alt": "Джиппинг и пешие гиды",
+      "status": 200,
+      "width": 750,
+      "height": 469,
+      "bytes": 23312,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Factivities%2Fanimal-park.webp&w=750&q=75",
+      "alt": "Контактный зоопарк",
+      "status": 200,
+      "width": 750,
+      "height": 469,
+      "bytes": 20899,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Factivities%2Friver-rafting.webp&w=750&q=75",
+      "alt": "Рафтинг",
+      "status": 200,
+      "width": 750,
+      "height": 469,
+      "bytes": 38766,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Factivities%2Farkhyz-road-trip.webp&w=750&q=75",
+      "alt": "Панорама гор Архыза",
+      "status": 200,
+      "width": 750,
+      "height": 562,
+      "bytes": 32578,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Factivities%2Fski-slopes.webp&w=750&q=75",
+      "alt": "Горнолыжные склоны",
+      "status": 200,
+      "width": 750,
+      "height": 469,
+      "bytes": 18937,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fhouse%2F03.jpg&w=750&q=75",
+      "alt": "Дом «Ива» для семьи в Архызе, фото 3",
+      "status": 200,
+      "width": 750,
+      "height": 422,
+      "bytes": 18071,
+      "format": "heif"
+    },
+    {
+      "url": "/images/brand/rule-50.svg",
+      "alt": "",
+      "status": 200,
+      "width": 48,
+      "height": 48,
+      "bytes": 3322,
+      "format": "svg"
+    },
+    {
+      "url": "/images/brand/rule-clock.svg",
+      "alt": "",
+      "status": 200,
+      "width": 64,
+      "height": 64,
+      "bytes": 632,
+      "format": "svg"
+    },
+    {
+      "url": "/images/brand/rule-nosmoke.svg",
+      "alt": "",
+      "status": 200,
+      "width": 48,
+      "height": 48,
+      "bytes": 734,
+      "format": "svg"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fhouse%2F02.jpg&w=750&q=75",
+      "alt": "Дом «Ива» для семьи в Архызе, фото 2",
+      "status": 200,
+      "width": 750,
+      "height": 458,
+      "bytes": 27026,
+      "format": "heif"
+    },
+    {
+      "url": "/images/brand/rule-quiet.svg",
+      "alt": "",
+      "status": 200,
+      "width": 64,
+      "height": 64,
+      "bytes": 1014,
+      "format": "svg"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fhome%2Fcabin-bereza.jpg&w=750&q=75",
+      "alt": "Двухэтажный дом Берёза в стиле Barnhouse на базе отдыха Хижина лесника",
+      "status": 200,
+      "width": 750,
+      "height": 422,
+      "bytes": 37051,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fhome%2Fcabin-buk.jpg&w=750&q=75",
+      "alt": "Шале Бук с панорамным видом на горы на базе отдыха Хижина лесника",
+      "status": 200,
+      "width": 750,
+      "height": 563,
+      "bytes": 30361,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fshale%2F02.jpg&w=750&q=75",
+      "alt": "Шале «Бук» с панорамными окнами, фото 2",
+      "status": 200,
+      "width": 750,
+      "height": 563,
+      "bytes": 23022,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fshale%2F01.jpg&w=750&q=75",
+      "alt": "Шале «Бук» с панорамными окнами, фото 1",
+      "status": 200,
+      "width": 750,
+      "height": 563,
+      "bytes": 30361,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fshale%2F03.jpg&w=750&q=75",
+      "alt": "Шале «Бук» с панорамными окнами, фото 3",
+      "status": 200,
+      "width": 750,
+      "height": 563,
+      "bytes": 21455,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fhome%2Fcabin-iva.jpg&w=750&q=75",
+      "alt": "Уютный деревянный домик Ива на базе отдыха Хижина лесника в Архызе",
+      "status": 200,
+      "width": 750,
+      "height": 434,
+      "bytes": 39109,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fbarnhouse%2F01.jpg&w=750&q=75",
+      "alt": "Двухэтажный дом «Берёза» Barnhouse, фото 1",
+      "status": 200,
+      "width": 750,
+      "height": 422,
+      "bytes": 37051,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fbarnhouse%2F02.jpg&w=750&q=75",
+      "alt": "Двухэтажный дом «Берёза» Barnhouse, фото 2",
+      "status": 200,
+      "width": 750,
+      "height": 532,
+      "bytes": 55815,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fbarnhouse%2F03.jpg&w=750&q=75",
+      "alt": "Двухэтажный дом «Берёза» Barnhouse, фото 3",
+      "status": 200,
+      "width": 750,
+      "height": 421,
+      "bytes": 41024,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fpartners%2Fspa%2Fspa-01.webp&w=750&q=75",
+      "alt": "Подогреваемый бассейн СПА-комплекса «Адреналин»",
+      "status": 200,
+      "width": 750,
+      "height": 1004,
+      "bytes": 43489,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fpartners%2Fspa%2Fspa-02.webp&w=750&q=75",
+      "alt": "Крытая часть бассейна и зона отдыха",
+      "status": 200,
+      "width": 750,
+      "height": 1004,
+      "bytes": 36730,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fpartners%2Fspa%2Fspa-03.webp&w=750&q=75",
+      "alt": "Сауна с окном в лес",
+      "status": 200,
+      "width": 750,
+      "height": 499,
+      "bytes": 21784,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fhome%2Fcabin-iva.jpg&w=750&q=60",
+      "alt": "Уютный деревянный домик Ива на базе отдыха Хижина лесника в Архызе",
+      "status": 200,
+      "width": 750,
+      "height": 434,
+      "bytes": 25466,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fhome%2Fcabin-bereza.jpg&w=750&q=60",
+      "alt": "Двухэтажный дом Берёза в стиле Barnhouse на базе отдыха Хижина лесника",
+      "status": 200,
+      "width": 750,
+      "height": 422,
+      "bytes": 24162,
+      "format": "heif"
+    },
+    {
+      "url": "/_next/image?url=%2Fimages%2Fhome%2Fcabin-buk.jpg&w=750&q=60",
+      "alt": "Шале Бук с панорамным видом на горы на базе отдыха Хижина лесника",
+      "status": 200,
+      "width": 750,
+      "height": 563,
+      "bytes": 19857,
+      "format": "heif"
+    }
+  ],
+  "scope": "Read-only HTTP and image decoding checks. Next image derivatives requested at w=750 for availability, not a claim about browser-selected currentSrc. No visual browser test or live booking/form submission.",
+  "spaContrast": {
+    "verifiedAt": "2026-11-07T17:09:00.561Z",
+    "labels": 3,
+    "opacity": 0.8,
+    "background": "#eee8dc",
+    "foreground": "#213d31",
+    "calculatedRatio": 5.62,
+    "productionHtmlAndCssConfirmed": true
+  }
+}
