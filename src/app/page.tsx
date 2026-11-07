@@ -55,8 +55,8 @@ export default function HomePage() {
       <div className="relative z-10 mx-auto flex w-full max-w-[1400px] justify-end px-4 sm:px-6"><HeroBadges /></div>
       <div className="relative z-[31] mx-auto my-auto w-full max-w-[1400px] px-4 py-12 sm:px-6">
         <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-[#f3e6cf] sm:text-sm">База отдыха Хижина лесника</p>
-        <h1 className="mt-4 max-w-4xl font-moderustic text-4xl font-bold leading-[1.12] text-balance sm:text-5xl lg:text-6xl">Домики в лесу Архыза<br className="hidden sm:block" /> со своей зоной отдыха</h1>
-        <p className="mt-5 max-w-2xl font-medium leading-7 text-[#f3f5f0] sm:text-lg sm:leading-8">Всего три дома в буковом лесу, тихие вечера у костра и горы рядом. Приезжайте вдвоём, всей семьёй или с друзьями.</p>
+        <h1 className="mt-4 max-w-4xl font-moderustic text-4xl font-bold leading-[1.12] text-balance sm:text-5xl lg:text-6xl">Уединенный отдых<br className="hidden sm:block" /> в буковом лесу Архыза</h1>
+        <p className="mt-5 max-w-2xl font-medium leading-7 text-[#f3f5f0] sm:text-lg sm:leading-8">Идеальное место для отдыха. Насладитесь природой, лесом и свежим горным воздухом. Дома с огороженной территорией, тихие вечера у костра и панорамные окна с видом на горы. Приезжайте вдвоём, с детьми или в компании друзей. До СПА-комплекса и ресторана — 100 метров.</p>
         <Link href="/booking" className="mt-8 inline-flex rounded-full bg-[#d49a5a] px-7 py-4 text-sm font-semibold text-[#102219] transition hover:bg-[#e0ab6e]">Проверить свободные даты</Link>
       </div>
     </section>
