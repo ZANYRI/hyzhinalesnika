@@ -1,0 +1,261 @@
+{
+  "checkedAt": "2026-11-07T17:34:23.778Z",
+  "base": "http://127.0.0.1:3107",
+  "pages": [
+    {
+      "path": "/",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/home.jpg?v=052a2fb29567",
+      "icons": 5
+    },
+    {
+      "path": "/",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/home.jpg?v=052a2fb29567",
+      "icons": 5
+    },
+    {
+      "path": "/consents/callback/2026-11-05-1",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/consent.jpg?v=090b2b79b5ad",
+      "icons": 5
+    },
+    {
+      "path": "/consents/callback/2026-11-05-1",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/consent.jpg?v=090b2b79b5ad",
+      "icons": 5
+    },
+    {
+      "path": "/booking",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/booking.jpg?v=76ad2c4265bf",
+      "icons": 5
+    },
+    {
+      "path": "/booking",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/booking.jpg?v=76ad2c4265bf",
+      "icons": 5
+    },
+    {
+      "path": "/news",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/news.jpg?v=538e5b7182f6",
+      "icons": 5
+    },
+    {
+      "path": "/news",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/news.jpg?v=538e5b7182f6",
+      "icons": 5
+    },
+    {
+      "path": "/special-offers",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/offers.jpg?v=ac60c014c07c",
+      "icons": 5
+    },
+    {
+      "path": "/special-offers",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/offers.jpg?v=ac60c014c07c",
+      "icons": 5
+    },
+    {
+      "path": "/spa",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/spa.jpg?v=8894b867b51a",
+      "icons": 5
+    },
+    {
+      "path": "/spa",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/spa.jpg?v=8894b867b51a",
+      "icons": 5
+    },
+    {
+      "path": "/otdyh-s-zhivotnymi",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/pets.jpg?v=bce12458a127",
+      "icons": 5
+    },
+    {
+      "path": "/otdyh-s-zhivotnymi",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/pets.jpg?v=bce12458a127",
+      "icons": 5
+    },
+    {
+      "path": "/dining",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/dining.jpg?v=73a4145f976b",
+      "icons": 5
+    },
+    {
+      "path": "/dining",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/dining.jpg?v=73a4145f976b",
+      "icons": 5
+    },
+    {
+      "path": "/split",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/split.jpg?v=cc1323c9ffea",
+      "icons": 5
+    },
+    {
+      "path": "/split",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/split.jpg?v=cc1323c9ffea",
+      "icons": 5
+    },
+    {
+      "path": "/cookie-policy",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/cookies.jpg?v=c2e12b698c1a",
+      "icons": 5
+    },
+    {
+      "path": "/cookie-policy",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/cookies.jpg?v=c2e12b698c1a",
+      "icons": 5
+    },
+    {
+      "path": "/dom-dlya-semi",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/iva.jpg?v=aa76d17d4fbe",
+      "icons": 5
+    },
+    {
+      "path": "/dom-dlya-semi",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/iva.jpg?v=aa76d17d4fbe",
+      "icons": 5
+    },
+    {
+      "path": "/dvuhetazhnyj-barnhouse",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/bereza.jpg?v=c5998f2d8fee",
+      "icons": 5
+    },
+    {
+      "path": "/dvuhetazhnyj-barnhouse",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/bereza.jpg?v=c5998f2d8fee",
+      "icons": 5
+    },
+    {
+      "path": "/shale-s-vidom-na-gory",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/buk.jpg?v=9237fb5a4261",
+      "icons": 5
+    },
+    {
+      "path": "/shale-s-vidom-na-gory",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/buk.jpg?v=9237fb5a4261",
+      "icons": 5
+    },
+    {
+      "path": "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/travel-guide.jpg?v=1221e4165c76",
+      "icons": 5
+    },
+    {
+      "path": "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/travel-guide.jpg?v=1221e4165c76",
+      "icons": 5
+    },
+    {
+      "path": "/stati-i-sovety/post/top-5-mest-v-arhyze",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/places-guide.jpg?v=0bfe7c6d3c98",
+      "icons": 5
+    },
+    {
+      "path": "/stati-i-sovety/post/top-5-mest-v-arhyze",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/places-guide.jpg?v=0bfe7c6d3c98",
+      "icons": 5
+    },
+    {
+      "path": "/oferta",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/oferta.jpg?v=713ba5ca3eea",
+      "icons": 5
+    },
+    {
+      "path": "/oferta",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/oferta.jpg?v=713ba5ca3eea",
+      "icons": 5
+    },
+    {
+      "path": "/privacy-policy",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/privacy.jpg?v=51cb3a594bbe",
+      "icons": 5
+    },
+    {
+      "path": "/privacy-policy",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/privacy.jpg?v=51cb3a594bbe",
+      "icons": 5
+    },
+    {
+      "path": "/users/agreement",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/agreement.jpg?v=24d2c2ff3770",
+      "icons": 5
+    },
+    {
+      "path": "/users/agreement",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/agreement.jpg?v=24d2c2ff3770",
+      "icons": 5
+    },
+    {
+      "path": "/search",
+      "userAgent": "TelegramBot",
+      "image": "https://hyzhinalesnika.ru/images/social/search.jpg?v=9b0690532308",
+      "icons": 5
+    },
+    {
+      "path": "/search",
+      "userAgent": "WhatsApp/2.24.0",
+      "image": "https://hyzhinalesnika.ru/images/social/search.jpg?v=9b0690532308",
+      "icons": 5
+    }
+  ],
+  "assets": [
+    "https://hyzhinalesnika.ru/images/social/home.jpg?v=052a2fb29567",
+    "https://hyzhinalesnika.ru/favicon.ico",
+    "https://hyzhinalesnika.ru/favicon.ico?favicon.0064-rk3io_tx.ico",
+    "https://hyzhinalesnika.ru/images/brand/favicon-96.png",
+    "https://hyzhinalesnika.ru/images/brand/favicon.svg",
+    "https://hyzhinalesnika.ru/images/brand/apple-touch-icon.png",
+    "https://hyzhinalesnika.ru/images/social/consent.jpg?v=090b2b79b5ad",
+    "https://hyzhinalesnika.ru/images/social/booking.jpg?v=76ad2c4265bf",
+    "https://hyzhinalesnika.ru/images/social/news.jpg?v=538e5b7182f6",
+    "https://hyzhinalesnika.ru/images/social/offers.jpg?v=ac60c014c07c",
+    "https://hyzhinalesnika.ru/images/social/spa.jpg?v=8894b867b51a",
+    "https://hyzhinalesnika.ru/images/social/pets.jpg?v=bce12458a127",
+    "https://hyzhinalesnika.ru/images/social/dining.jpg?v=73a4145f976b",
+    "https://hyzhinalesnika.ru/images/social/split.jpg?v=cc1323c9ffea",
+    "https://hyzhinalesnika.ru/images/social/cookies.jpg?v=c2e12b698c1a",
+    "https://hyzhinalesnika.ru/images/social/iva.jpg?v=aa76d17d4fbe",
+    "https://hyzhinalesnika.ru/images/social/bereza.jpg?v=c5998f2d8fee",
+    "https://hyzhinalesnika.ru/images/social/buk.jpg?v=9237fb5a4261",
+    "https://hyzhinalesnika.ru/images/social/travel-guide.jpg?v=1221e4165c76",
+    "https://hyzhinalesnika.ru/images/social/places-guide.jpg?v=0bfe7c6d3c98",
+    "https://hyzhinalesnika.ru/images/social/oferta.jpg?v=713ba5ca3eea",
+    "https://hyzhinalesnika.ru/images/social/privacy.jpg?v=51cb3a594bbe",
+    "https://hyzhinalesnika.ru/images/social/agreement.jpg?v=24d2c2ff3770",
+    "https://hyzhinalesnika.ru/images/social/search.jpg?v=9b0690532308"
+  ],
+  "result": "passed"
+}

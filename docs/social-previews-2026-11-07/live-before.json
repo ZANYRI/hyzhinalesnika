@@ -1,0 +1,810 @@
+{
+  "checkedAt": "2026-11-07T17:28:21.599Z",
+  "pages": [
+    {
+      "path": "/consents/callback/2026-11-05-1",
+      "status": 200,
+      "headTitle": "Согласие на заявку и обратный звонок | Хижина лесника",
+      "headDescription": "Текст согласия на обработку персональных данных для заявки и обратного звонка в «Хижине лесника»: цели обработки, состав данных, срок действия и порядок отзыва.",
+      "image": "https://hyzhinalesnika.ru/images/social/brand.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/brand.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/booking",
+      "status": 200,
+      "headTitle": "Онлайн-бронирование домиков в Архызе | База отдыха \"Хижина лесника\"",
+      "headDescription": "Забронируйте домик онлайн на базе отдыха \"Хижина лесника\" в Архызе через официальный модуль Контур.Отель. Актуальные цены и календарь свободных дат.",
+      "image": "https://hyzhinalesnika.ru/images/social/booking.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/booking.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "headTitle": "База отдыха \"Хижина лесника\" в Архызе | Аренда домиков в лесу",
+      "headDescription": "Три уютных дома с панорамными окнами в буковом лесу Архыза. Своя терраса, мангальная и костровая зона, парковка и быстрый Wi-Fi. Бронируйте отдых на официальном сайте.",
+      "image": "https://hyzhinalesnika.ru/images/social/home.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/home.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/special-offers",
+      "status": 200,
+      "headTitle": "Специальные предложения | Хижина лесника",
+      "headDescription": "Специальные предложения базы отдыха «Хижина лесника» в Архызе: бонусы ко дню рождения и годовщине свадьбы, программа лояльности и оплата через Яндекс Сплит.",
+      "image": "https://hyzhinalesnika.ru/images/social/offers.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/offers.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/spa",
+      "status": 200,
+      "headTitle": "СПА и бассейн с подогревом в Архызе | Хижина лесника",
+      "headDescription": "Подогреваемый бассейн, сауна и хамам в СПА партнёра «Адреналин», в 100 метрах от домиков «Хижина лесника» в Архызе. Посещение оплачивается отдельно.",
+      "image": "https://hyzhinalesnika.ru/images/social/spa.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/spa.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/otdyh-s-zhivotnymi",
+      "status": 200,
+      "headTitle": "Отдых с животными в Архызе | Хижина лесника",
+      "headDescription": "Проживание с кошками и собаками в трёх домах «Хижины лесника» в Архызе. Выбор дома, условия размещения питомцев, доплата и подарочный набор «Четыре лапы».",
+      "image": "https://hyzhinalesnika.ru/images/social/brand.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/brand.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/dining",
+      "status": 200,
+      "headTitle": "Ресторан и завтрак в домик | Хижина лесника, Архыз",
+      "headDescription": "Ресторан партнёра «Адреналин» в 100 метрах от домов «Хижины лесника» в Архызе: меню и фото. Завтраки в домик доставляет другой ресторан по заказу с вечера.",
+      "image": "https://hyzhinalesnika.ru/images/social/dining.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/dining.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/split",
+      "status": 200,
+      "headTitle": "Отдых с Яндекс Сплит | Хижина лесника",
+      "headDescription": "Оплата отдыха в «Хижине лесника» в Архызе частями через Яндекс Сплит: как получить расчёт, ознакомиться с графиком платежей и подтвердить бронирование.",
+      "image": "https://hyzhinalesnika.ru/images/social/split.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/split.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/cookie-policy",
+      "status": 200,
+      "headTitle": "Использование cookie | Хижина лесника",
+      "headDescription": "Использование cookie на сайте базы отдыха «Хижина лесника»: сохранение отметки о просмотре уведомления, cookie сервиса бронирования и управление ими в браузере.",
+      "image": "https://hyzhinalesnika.ru/images/social/brand.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/brand.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/dom-dlya-semi",
+      "status": 200,
+      "headTitle": "Дом «Ива» для отдыха с детьми в Архызе | Хижина лесника",
+      "headDescription": "Дом «Ива» для отдыха с детьми в Архызе: до 5 гостей, 40 м², кухня, свой санузел, огороженный двор и терраса. Фото, планировка и бронирование в «Хижине лесника».",
+      "image": "https://hyzhinalesnika.ru/images/social/iva.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/iva.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/dvuhetazhnyj-barnhouse",
+      "status": 200,
+      "headTitle": "Барнхаус «Берёза» для компании в Архызе | Хижина лесника",
+      "headDescription": "Дом для компании до 7 человек в Архызе: барнхаус «Берёза», 81 м², две спальни, кухня-гостиная, беседка и мангал. Фото и бронирование в «Хижине лесника».",
+      "image": "https://hyzhinalesnika.ru/images/social/bereza.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/bereza.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/shale-s-vidom-na-gory",
+      "status": 200,
+      "headTitle": "Шале «Бук» для двоих в Архызе | Хижина лесника",
+      "headDescription": "Шале «Бук» для отдыха вдвоём в Архызе: панорамный вид на горы, терраса, кухня и свой санузел. Две спальни, до 4 гостей. Фото и бронирование в «Хижине лесника».",
+      "image": "https://hyzhinalesnika.ru/images/social/buk.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/buk.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety",
+      "status": 200,
+      "headTitle": "Как добраться до Архыза в 2026 году | Хижина лесника",
+      "headDescription": "Актуальный гид 2026 года: как доехать до Архыза на машине, автобусе, самолёте и трансфере, и как добраться от посёлка до базы отдыха «Хижина лесника».",
+      "image": "https://hyzhinalesnika.ru/images/social/travel-guide.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/travel-guide.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/stati-i-sovety/post/top-5-mest-v-arhyze",
+      "status": 200,
+      "headTitle": "ТОП-5 мест Архыза рядом с домиками | База отдыха \"Хижина лесника\"",
+      "headDescription": "Откройте для себя 5 красивейших мест недалеко от базы отдыха Хижина Лесника: Баритовый водопад, Ферма Альпак, Казачий водопад, Канатная дорога и Обсерватория.",
+      "image": "https://hyzhinalesnika.ru/images/social/places-guide.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/places-guide.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/oferta",
+      "status": 200,
+      "headTitle": "Договор публичной оферты | База отдыха \"Хижина лесника\"",
+      "headDescription": "Публичная оферта о заключении договора предоставления услуг средства размещения на базе отдыха \"Хижина лесника\" в Архызе.",
+      "image": "https://hyzhinalesnika.ru/images/social/brand.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/brand.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/users/agreement",
+      "status": 200,
+      "headTitle": "Пользовательское соглашение | База отдыха \"Хижина лесника\"",
+      "headDescription": "Пользовательское соглашение об обработке персональных данных на сайте базы отдыха \"Хижина лесника\".",
+      "image": "https://hyzhinalesnika.ru/images/social/brand.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/brand.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/privacy-policy",
+      "status": 200,
+      "headTitle": "Политика обработки персональных данных | База отдыха \"Хижина лесника\"",
+      "headDescription": "Политика в отношении обработки персональных данных посетителей сайта и гостей базы отдыха \"Хижина лесника\".",
+      "image": "https://hyzhinalesnika.ru/images/social/brand.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/brand.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/search",
+      "status": 200,
+      "headTitle": "Поиск по сайту | База отдыха \"Хижина лесника\"",
+      "headDescription": "Поиск домов, услуг и полезных материалов на сайте базы отдыха «Хижина лесника» в Архызе.",
+      "image": "https://hyzhinalesnika.ru/images/social/brand.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/brand.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    },
+    {
+      "path": "/news",
+      "status": 200,
+      "headTitle": "Новости и путеводители | Хижина лесника",
+      "headDescription": "Путеводители базы отдыха «Хижина лесника» по Архызу: дорога на автомобиле и общественном транспорте, интересные места и маршруты рядом с домиками.",
+      "image": "https://hyzhinalesnika.ru/images/social/news.jpg",
+      "twitterImage": "https://hyzhinalesnika.ru/images/social/news.jpg",
+      "icons": [
+        {
+          "rel": "shortcut icon",
+          "href": "/favicon.ico",
+          "sizes": ""
+        },
+        {
+          "rel": "icon",
+          "href": "/favicon.ico?favicon.0064-rk3io_tx.ico",
+          "sizes": "256x256"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon-96.png",
+          "sizes": "96x96"
+        },
+        {
+          "rel": "icon",
+          "href": "/images/brand/favicon.svg",
+          "sizes": "any"
+        },
+        {
+          "rel": "apple-touch-icon",
+          "href": "/images/brand/apple-touch-icon.png",
+          "sizes": "180x180"
+        }
+      ]
+    }
+  ],
+  "assets": {
+    "https://hyzhinalesnika.ru/images/social/brand.jpg": {
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 215184,
+      "cache": "public, max-age=0",
+      "width": 1200,
+      "height": 630
+    },
+    "https://hyzhinalesnika.ru/favicon.ico": {
+      "status": 200,
+      "type": "image/x-icon",
+      "bytes": 31845,
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    "https://hyzhinalesnika.ru/favicon.ico?favicon.0064-rk3io_tx.ico": {
+      "status": 200,
+      "type": "image/x-icon",
+      "bytes": 31845,
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    "https://hyzhinalesnika.ru/images/brand/favicon-96.png": {
+      "status": 200,
+      "type": "image/png",
+      "bytes": 5088,
+      "cache": "public, max-age=0",
+      "width": 96,
+      "height": 96
+    },
+    "https://hyzhinalesnika.ru/images/brand/favicon.svg": {
+      "status": 200,
+      "type": "image/svg+xml",
+      "bytes": 29513,
+      "cache": "public, max-age=0"
+    },
+    "https://hyzhinalesnika.ru/images/brand/apple-touch-icon.png": {
+      "status": 200,
+      "type": "image/png",
+      "bytes": 11327,
+      "cache": "public, max-age=0",
+      "width": 180,
+      "height": 180
+    },
+    "https://hyzhinalesnika.ru/images/social/booking.jpg": {
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 216433,
+      "cache": "public, max-age=0",
+      "width": 1200,
+      "height": 630
+    },
+    "https://hyzhinalesnika.ru/images/social/home.jpg": {
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 214851,
+      "cache": "public, max-age=0",
+      "width": 1200,
+      "height": 630
+    },
+    "https://hyzhinalesnika.ru/images/social/offers.jpg": {
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 121239,
+      "cache": "public, max-age=0",
+      "width": 1200,
+      "height": 630
+    },
+    "https://hyzhinalesnika.ru/images/social/spa.jpg": {
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 130394,
+      "cache": "public, max-age=0",
+      "width": 1200,
+      "height": 630
+    },
+    "https://hyzhinalesnika.ru/images/social/dining.jpg": {
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 102444,
+      "cache": "public, max-age=0",
+      "width": 1200,
+      "height": 630
+    },
+    "https://hyzhinalesnika.ru/images/social/split.jpg": {
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 128598,
+      "cache": "public, max-age=0",
+      "width": 1200,
+      "height": 630
+    },
+    "https://hyzhinalesnika.ru/images/social/iva.jpg": {
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 190536,
+      "cache": "public, max-age=0",
+      "width": 1200,
+      "height": 630
+    },
+    "https://hyzhinalesnika.ru/images/social/bereza.jpg": {
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 171880,
+      "cache": "public, max-age=0",
+      "width": 1200,
+      "height": 630
+    },
+    "https://hyzhinalesnika.ru/images/social/buk.jpg": {
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 136107,
+      "cache": "public, max-age=0",
+      "width": 1200,
+      "height": 630
+    },
+    "https://hyzhinalesnika.ru/images/social/travel-guide.jpg": {
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 99220,
+      "cache": "public, max-age=0",
+      "width": 1200,
+      "height": 630
+    },
+    "https://hyzhinalesnika.ru/images/social/places-guide.jpg": {
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 116840,
+      "cache": "public, max-age=0",
+      "width": 1200,
+      "height": 630
+    },
+    "https://hyzhinalesnika.ru/images/social/news.jpg": {
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 122563,
+      "cache": "public, max-age=0",
+      "width": 1200,
+      "height": 630
+    }
+  }
+}

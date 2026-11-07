@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { createRequire } from "node:module";
+import { createHash } from "node:crypto";
 import React from "react";
 import { ImageResponse } from "next/og.js";
 
@@ -11,10 +12,17 @@ const root = process.cwd();
 const brandDir = path.join(root, "public/images/brand");
 const socialDir = path.join(root, "public/images/social");
 const previews = JSON.parse(await fs.readFile("src/data/social-previews.json", "utf8"));
+const socialOnly = process.argv.includes("--social-only");
+const onlyIndex = process.argv.indexOf("--only");
+const only = onlyIndex === -1 ? null : process.argv[onlyIndex + 1]?.split(",");
+if (onlyIndex !== -1 && (!only?.length || only.some(key => !(key in previews)))) {
+  throw new Error("--only requires comma-separated keys from social-previews.json");
+}
 const wordmark = await fs.readFile(path.join(brandDir, "logo-wordmark-light.png"));
 const wordmarkUrl = `data:image/png;base64,${wordmark.toString("base64")}`;
 await fs.mkdir(socialDir, { recursive: true });
 
+if (!socialOnly) {
 // Preserve the exact current wordmark on a square forest-green canvas.
 const logoLayer = await sharp(wordmark).resize({ width: 448 }).png().toBuffer();
 const icon = await sharp({ create: { width: 512, height: 512, channels: 4, background: "#102219" } })
@@ -43,6 +51,7 @@ pngs.forEach((png, i) => {
 const ico = Buffer.concat([header, ...pngs]);
 await fs.writeFile("src/app/favicon.ico", ico);
 await fs.writeFile(path.join(brandDir, "favicon.ico"), ico);
+}
 
 // ImageResponse requires TTF/OTF/WOFF. Set SOCIAL_FONT_REGULAR/BOLD on other systems.
 const fonts = await Promise.all([400, 700].map(async weight => ({
@@ -51,7 +60,8 @@ const fonts = await Promise.all([400, 700].map(async weight => ({
     ? process.env.SOCIAL_FONT_BOLD || "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
     : process.env.SOCIAL_FONT_REGULAR || "/System/Library/Fonts/Supplemental/Arial.ttf"),
 })));
-for (const preview of Object.values(previews)) {
+const selected = Object.entries(previews).filter(([key]) => !only || only.includes(key));
+for (const [, preview] of selected) {
   const photo = await sharp(path.join(root, "public", preview.photo)).resize(1200, 630, { fit: "cover" }).jpeg({ quality: 88 }).toBuffer();
   const photoUrl = `data:image/jpeg;base64,${photo.toString("base64")}`;
   const response = new ImageResponse(React.createElement("div", {
@@ -70,4 +80,11 @@ for (const preview of Object.values(previews)) {
   ), { width: 1200, height: 630, fonts });
   await sharp(Buffer.from(await response.arrayBuffer())).jpeg({ quality: 88 }).toFile(path.join(socialDir, preview.file));
 }
-console.log(`Generated favicon assets and ${Object.keys(previews).length} social previews`);
+// Version image URLs without changing stable favicon URLs or old cached cards.
+const versions = {};
+for (const { file } of Object.values(previews)) {
+  const bytes = await fs.readFile(path.join(socialDir, file));
+  versions[file] = createHash("sha256").update(bytes).digest("hex").slice(0, 12);
+}
+await fs.writeFile("src/data/social-image-versions.json", JSON.stringify(versions, null, 2) + "\n");
+console.log(`Generated ${selected.length} social previews${socialOnly ? "" : " and favicon assets"}; versioned ${Object.keys(versions).length} images`);
