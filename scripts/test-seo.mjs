@@ -14,7 +14,8 @@ const canonical = html => attr(tags(html, "link").find(tag => attr(tag, "rel") =
 const get = path => fetch(new URL(path, base), { redirect: "manual", signal: AbortSignal.timeout(30000) });
 const sitemap = await (await get("/sitemap.xml")).text();
 const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => decode(match[1]));
-assert.equal(urls.length, 17, "16 existing pages and current consent document belong in sitemap");
+assert.equal(urls.length, 18, "Existing pages, pet accommodation page and current consent document belong in sitemap");
+assert.ok(urls.includes(`${production}/otdyh-s-zhivotnymi`), "Pet accommodation page is discoverable in sitemap");
 assert.equal(new Set(urls).size, urls.length, "No duplicate sitemap entries");
 const rows = [], titles = new Set(), descriptions = new Set(), links = new Set();
 for (const url of urls) {
@@ -43,6 +44,25 @@ for (const url of urls) {
   assert.ok(!nodes.some(node => node.aggregateRating), "No self-serving review aggregate in JSON-LD");
   const images = tags(html, "img");
   assert.ok(images.every(tag => /\balt="/.test(tag)), `Image alternatives: ${pathname}`);
+  if (["/spa", "/otdyh-s-zhivotnymi"].includes(pathname)) {
+    const visible = decode(html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, ""));
+    if (pathname === "/spa") {
+      const questions = nodes.find(node => node["@type"] === "FAQPage")?.mainEntity;
+      assert.ok(questions?.length > 0, "SPA FAQ schema");
+      for (const question of questions) {
+        assert.ok(visible.includes(question.name) && visible.includes(question.acceptedAnswer.text), "SPA FAQ schema matches server-rendered question and answer");
+      }
+    } else {
+      const collection = nodes.find(node => node["@type"] === "CollectionPage");
+      assert.equal(collection?.mainEntity?.itemListElement?.length, 3, "Pet page lists three cabins in schema");
+      assert.ok(!nodes.some(node => node["@type"] === "FAQPage"), "Repeated pet FAQ is marked up only on the homepage");
+      assert.ok(visible.includes("Доплата за размещение питомца:"), "Pet conditions are present outside scripts");
+    }
+    for (const path of ["/dom-dlya-semi", "/shale-s-vidom-na-gory", "/dvuhetazhnyj-barnhouse"]) {
+      assert.ok(tags(visible, "a").some(tag => attr(tag, "href") === path), `Cabin selection linked from ${pathname}`);
+    }
+    assert.ok(!tags(html, "details").some(tag => /\bopen(?:[=>\s])/.test(tag)), `FAQ initially closed: ${pathname}`);
+  }
   if (["/dom-dlya-semi", "/dvuhetazhnyj-barnhouse", "/shale-s-vidom-na-gory"].includes(pathname)) {
     const cabin = nodes.find(node => node["@type"] === "Accommodation");
     assert.ok(cabin?.floorSize?.value > 0 && cabin.image.length > 0, `Cabin schema: ${pathname}`);

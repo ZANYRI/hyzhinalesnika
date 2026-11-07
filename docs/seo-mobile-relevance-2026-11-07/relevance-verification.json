@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-07T16:44:44.644Z",
+  "checkedAt": "2026-11-07T17:00:30.527Z",
   "base": "http://127.0.0.1:3107",
   "pages": [
     {
@@ -53,5 +53,19 @@
       "reductionPercent": 20.8
     }
   ],
-  "visualBrowserTest": "Not completed: local Chrome headless exited with signal 134. No claim of visual mobile QA or Core Web Vitals measurement."
+  "visualBrowserTest": "Not completed: local Chrome headless exited with signal 134. No claim of visual mobile QA or Core Web Vitals measurement.",
+  "additionalPages": {
+    "pets": {
+      "path": "/otdyh-s-zhivotnymi",
+      "policyMatchesHomeFaq": true,
+      "collectionSchema": true,
+      "linkedFromHomeAndCabins": true
+    },
+    "spa": {
+      "path": "/spa",
+      "serverFaqMatchesSchema": true,
+      "allCabinsLinked": true
+    },
+    "userAgents": "YandexBot and iPhone UA return HTTP 200 and indexable content; this is not a layout test"
+  }
 }

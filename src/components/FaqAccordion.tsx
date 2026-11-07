@@ -12,7 +12,9 @@ export function FaqAccordion() {
         <span className="font-moderustic text-base font-bold leading-snug text-[#f3f5f0] sm:text-lg">{item.question}</span>
         <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-[#f3f5f0] group-open:border-[#d49a5a] group-open:bg-[#d49a5a] group-open:text-[#102219]"><span className="group-open:hidden">+</span><span className="hidden group-open:inline">−</span></span>
       </summary>
-      <div className="whitespace-pre-line border-t border-white/10 px-6 pt-4 pb-6 text-sm leading-relaxed text-[#a8b9ae] sm:text-[15px]">{item.answer}</div>
+      <div className="whitespace-pre-line border-t border-white/10 px-6 pt-4 pb-6 text-sm leading-relaxed text-[#a8b9ae] sm:text-[15px]">{item.answer}
+        {item.question === "Можно ли приезжать с питомцами?" && <a href="/otdyh-s-zhivotnymi" className="mt-4 block font-semibold text-[#e6c7a0] underline underline-offset-4">Выбрать дом для отдыха с животными ↗</a>}
+      </div>
     </details>)}
   </div>;
 }

@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-07T16:43:49.776Z",
+  "checkedAt": "2026-11-07T16:59:20.861Z",
   "base": "http://127.0.0.1:3107",
   "pages": [
     {
@@ -19,7 +19,7 @@
         "FAQPage"
       ],
       "images": 17,
-      "bytes": 333494
+      "bytes": 333980
     },
     {
       "path": "/consents/callback/2026-11-05-1",
@@ -84,17 +84,33 @@
     {
       "path": "/spa",
       "status": 200,
-      "title": "СПА и бассейн рядом с домиками в Архызе | Хижина лесника",
-      "description": "СПА-комплекс партнёра в 100 метрах от домиков «Хижина лесника» в Архызе: бассейн 15 × 6 м, джакузи, сауна и хамам. Стоимость посещения и время работы.",
+      "title": "СПА и бассейн с подогревом в Архызе | Хижина лесника",
+      "description": "Подогреваемый бассейн, сауна и хамам в СПА партнёра «Адреналин», в 100 метрах от домиков «Хижина лесника» в Архызе. Посещение оплачивается отдельно.",
       "canonical": "https://hyzhinalesnika.ru/spa",
       "h1": 1,
       "schemaTypes": [
         "WebSite",
         "LodgingBusiness",
-        "WebPage"
+        "WebPage",
+        "FAQPage"
       ],
       "images": 5,
-      "bytes": 98980
+      "bytes": 119317
+    },
+    {
+      "path": "/otdyh-s-zhivotnymi",
+      "status": 200,
+      "title": "Отдых с животными в Архызе | Хижина лесника",
+      "description": "Проживание с кошками и собаками в трёх домах «Хижины лесника» в Архызе. Выбор дома, условия размещения питомцев, доплата и подарочный набор «Четыре лапы».",
+      "canonical": "https://hyzhinalesnika.ru/otdyh-s-zhivotnymi",
+      "h1": 1,
+      "schemaTypes": [
+        "WebSite",
+        "LodgingBusiness",
+        "CollectionPage"
+      ],
+      "images": 5,
+      "bytes": 89525
     },
     {
       "path": "/dining",
@@ -155,7 +171,7 @@
         "Accommodation"
       ],
       "images": 11,
-      "bytes": 151863
+      "bytes": 151881
     },
     {
       "path": "/dvuhetazhnyj-barnhouse",
@@ -171,7 +187,7 @@
         "Accommodation"
       ],
       "images": 11,
-      "bytes": 156712
+      "bytes": 156730
     },
     {
       "path": "/shale-s-vidom-na-gory",
@@ -187,7 +203,7 @@
         "Accommodation"
       ],
       "images": 11,
-      "bytes": 143613
+      "bytes": 143631
     },
     {
       "path": "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety",
@@ -286,6 +302,7 @@
     "/#help",
     "/consents/callback/2026-11-05-1",
     "/privacy-policy",
+    "/otdyh-s-zhivotnymi",
     "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety",
     "/#reviews",
     "/oferta",

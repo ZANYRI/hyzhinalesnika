@@ -1,0 +1,267 @@
+{
+  "source": "Existing Topvisor Yandex positions, 2026-11-07",
+  "purpose": "Proposed target mapping; no Topvisor project settings changed. Not a claim about exact regional SERP clustering.",
+  "queries": [
+    {
+      "query": "архыз бассейн с подогревом",
+      "groupId": 78635422,
+      "target": "https://hyzhinalesnika.ru/spa",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "спа архыз",
+      "groupId": 78635422,
+      "target": "https://hyzhinalesnika.ru/spa",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "архыз бассейн с подогревом в горах",
+      "groupId": 78635422,
+      "target": "https://hyzhinalesnika.ru/spa",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "архыз с крытым бассейном",
+      "groupId": 78635422,
+      "target": "https://hyzhinalesnika.ru/spa",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "бассейн в архызе с видом на горы",
+      "groupId": 78635422,
+      "target": "https://hyzhinalesnika.ru/spa",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "спа комплекс архыз",
+      "groupId": 78635422,
+      "target": "https://hyzhinalesnika.ru/spa",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "сауна архыз",
+      "groupId": 78635422,
+      "target": "https://hyzhinalesnika.ru/spa",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "спа в архызе с бассейном",
+      "groupId": 78635422,
+      "target": "https://hyzhinalesnika.ru/spa",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "хамам в архызе",
+      "groupId": 78635422,
+      "target": "https://hyzhinalesnika.ru/spa",
+      "observedUrls": [
+        "https://hyzhinalesnika.ru/spa"
+      ],
+      "range": [
+        7,
+        8
+      ]
+    },
+    {
+      "query": "архыз с животными",
+      "groupId": 78635411,
+      "target": "https://hyzhinalesnika.ru/otdyh-s-zhivotnymi",
+      "observedUrls": [
+        "https://hyzhinalesnika.ru/"
+      ],
+      "range": [
+        39,
+        44
+      ]
+    },
+    {
+      "query": "архыз отдых с животными",
+      "groupId": 78635411,
+      "target": "https://hyzhinalesnika.ru/otdyh-s-zhivotnymi",
+      "observedUrls": [
+        "https://hyzhinalesnika.ru/"
+      ],
+      "range": [
+        42,
+        45
+      ]
+    },
+    {
+      "query": "архыз проживание с животными",
+      "groupId": 78635411,
+      "target": "https://hyzhinalesnika.ru/otdyh-s-zhivotnymi",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "дом на компанию в архызе",
+      "groupId": 78635408,
+      "target": "https://hyzhinalesnika.ru/dvuhetazhnyj-barnhouse",
+      "observedUrls": [
+        "https://hyzhinalesnika.ru/"
+      ],
+      "range": [
+        21,
+        25
+      ]
+    },
+    {
+      "query": "архыз дом снять для большой компании",
+      "groupId": 78635408,
+      "target": "https://hyzhinalesnika.ru/dvuhetazhnyj-barnhouse",
+      "observedUrls": [
+        "https://hyzhinalesnika.ru/"
+      ],
+      "range": [
+        21,
+        28
+      ]
+    },
+    {
+      "query": "отдых в архызе с детьми",
+      "groupId": 78635401,
+      "target": "https://hyzhinalesnika.ru/dom-dlya-semi",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "где остановиться с детьми в архызе",
+      "groupId": 78635401,
+      "target": "https://hyzhinalesnika.ru/dom-dlya-semi",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "домики в архызе с видом на горы",
+      "groupId": 78635396,
+      "target": "https://hyzhinalesnika.ru/shale-s-vidom-na-gory",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "снять домик на двоих в архызе",
+      "groupId": 78635396,
+      "target": "https://hyzhinalesnika.ru/shale-s-vidom-na-gory",
+      "observedUrls": [
+        "https://hyzhinalesnika.ru/"
+      ],
+      "range": [
+        24,
+        27
+      ]
+    },
+    {
+      "query": "домики шале в архызе",
+      "groupId": 78635396,
+      "target": "https://hyzhinalesnika.ru/shale-s-vidom-na-gory",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "дом шале в архызе снять посуточно",
+      "groupId": 78635396,
+      "target": "https://hyzhinalesnika.ru/shale-s-vidom-na-gory",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "снять домик в архызе",
+      "groupId": 78635382,
+      "target": "https://hyzhinalesnika.ru/",
+      "observedUrls": [
+        "https://hyzhinalesnika.ru/"
+      ],
+      "range": [
+        20,
+        33
+      ]
+    },
+    {
+      "query": "снять дом в архызе",
+      "groupId": 78635382,
+      "target": "https://hyzhinalesnika.ru/",
+      "observedUrls": [
+        "https://hyzhinalesnika.ru/"
+      ],
+      "range": [
+        24,
+        32
+      ]
+    },
+    {
+      "query": "архыз домики в лесу",
+      "groupId": 78635382,
+      "target": "https://hyzhinalesnika.ru/",
+      "observedUrls": [
+        "https://hyzhinalesnika.ru/"
+      ],
+      "range": [
+        5,
+        6
+      ]
+    },
+    {
+      "query": "снять домик в архызе посуточно",
+      "groupId": 78635382,
+      "target": "https://hyzhinalesnika.ru/",
+      "observedUrls": [],
+      "range": null
+    },
+    {
+      "query": "домик в горах архыз",
+      "groupId": 78635382,
+      "target": "https://hyzhinalesnika.ru/",
+      "observedUrls": [
+        "https://hyzhinalesnika.ru/"
+      ],
+      "range": [
+        22,
+        31
+      ]
+    },
+    {
+      "query": "архыз снять домик в лесу",
+      "groupId": 78635382,
+      "target": "https://hyzhinalesnika.ru/",
+      "observedUrls": [
+        "https://hyzhinalesnika.ru/"
+      ],
+      "range": [
+        4,
+        5
+      ]
+    },
+    {
+      "query": "снять домик в архызе посуточно в лесу",
+      "groupId": 78635382,
+      "target": "https://hyzhinalesnika.ru/",
+      "observedUrls": [
+        "https://hyzhinalesnika.ru/"
+      ],
+      "range": [
+        6,
+        10
+      ]
+    },
+    {
+      "query": "аренда домика в архызе",
+      "groupId": 78635382,
+      "target": "https://hyzhinalesnika.ru/",
+      "observedUrls": [
+        "https://hyzhinalesnika.ru/"
+      ],
+      "range": [
+        20,
+        24
+      ]
+    }
+  ]
+}

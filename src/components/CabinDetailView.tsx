@@ -42,7 +42,7 @@ export function CabinDetailView({cabin}:{cabin:CabinData}) {
             <div className="mt-7 border-t border-white/10 pt-6 text-sm leading-relaxed text-[#b7c6bd]">
               <p>{cabin.cardTitle} находится на базе отдыха «Хижина лесника»: {SITE_CONFIG.address}. В доме своя кухня и санузел.</p>
               <h3 className="mt-5 font-moderustic text-lg font-semibold text-[#f3f5f0]">Отдых с кошками и собаками</h3>
-              <p className="mt-3">Во всех трёх домах можно остановиться с питомцем по предварительному согласованию. Размещение животного оплачивается отдельно. Перед поездкой ознакомьтесь с <Link href="/#faq-pets" className="text-[#e6c7a0] underline underline-offset-4">условиями проживания с питомцами и доплатой</Link>.</p>
+              <p className="mt-3">Во всех трёх домах можно остановиться с питомцем по предварительному согласованию. Размещение животного оплачивается отдельно. Перед поездкой ознакомьтесь с <Link href="/otdyh-s-zhivotnymi" className="text-[#e6c7a0] underline underline-offset-4">условиями проживания с питомцами и доплатой</Link>.</p>
               <p className="mt-3">В 100 метрах находятся <Link href="/spa" className="text-[#e6c7a0] underline underline-offset-4">бассейн и СПА</Link> и <Link href="/dining" className="text-[#e6c7a0] underline underline-offset-4">ресторан</Link> партнёрского парк-отеля «Адреналин». Посещение СПА и питание оплачиваются отдельно.</p>
             </div>
           </div>

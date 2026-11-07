@@ -50,7 +50,7 @@ export function PageStructuredData({ metadata }: { metadata: Metadata }) {
     : metadata.title && "default" in metadata.title ? metadata.title.default
     : SITE_CONFIG.name;
   const pageId = `${url}#webpage`;
-  const page: Record<string, unknown> = { "@type": pathname === "/news" ? "CollectionPage" : "WebPage", "@id": pageId, url, name: title, description: metadata.description, inLanguage: "ru", isPartOf: { "@id": websiteId }, about: { "@id": businessId } };
+  const page: Record<string, unknown> = { "@type": ["/news", "/otdyh-s-zhivotnymi"].includes(pathname) ? "CollectionPage" : "WebPage", "@id": pageId, url, name: title, description: metadata.description, inLanguage: "ru", isPartOf: { "@id": websiteId }, about: { "@id": businessId } };
   const graph: Record<string, unknown>[] = [page];
   const cabin = CABIN_LIST.find(item => item.slug === pathname);
   if (cabin) {
@@ -65,8 +65,8 @@ export function PageStructuredData({ metadata }: { metadata: Metadata }) {
     page.mainEntity = { "@id": id };
     graph.push({ "@type": "Article", "@id": id, url, mainEntityOfPage: { "@id": pageId }, headline: article.title, description: metadata.description, image: absolute(article.thumbnail), datePublished: `${year}-${month}-${day}`, inLanguage: "ru", publisher: { "@id": businessId } });
   }
-  if (pathname === "/" || pathname === "/news") {
-    const items = pathname === "/" ? CABIN_LIST.map(item => ({ name: item.cardTitle, url: absolute(item.slug) })) : BLOG_POSTS.map(item => ({ name: item.title, url: absolute(item.href) }));
+  if (pathname === "/" || pathname === "/news" || pathname === "/otdyh-s-zhivotnymi") {
+    const items = pathname === "/news" ? BLOG_POSTS.map(item => ({ name: item.title, url: absolute(item.href) })) : CABIN_LIST.map(item => ({ name: item.cardTitle, url: absolute(item.slug) }));
     page.mainEntity = { "@type": "ItemList", itemListElement: items.map((item, index) => ({ "@type": "ListItem", position: index + 1, ...item })) };
   }
   if (pathname === "/") graph.push(...CABIN_LIST.map(accommodation));

@@ -1,5 +1,181 @@
+diff --git a/scripts/test-seo.mjs b/scripts/test-seo.mjs
+index c3b6b19..4f7a896 100644
+--- a/scripts/test-seo.mjs
++++ b/scripts/test-seo.mjs
+@@ -14,7 +14,8 @@ const canonical = html => attr(tags(html, "link").find(tag => attr(tag, "rel") =
+ const get = path => fetch(new URL(path, base), { redirect: "manual", signal: AbortSignal.timeout(30000) });
+ const sitemap = await (await get("/sitemap.xml")).text();
+ const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => decode(match[1]));
+-assert.equal(urls.length, 17, "16 existing pages and current consent document belong in sitemap");
++assert.equal(urls.length, 18, "Existing pages, pet accommodation page and current consent document belong in sitemap");
++assert.ok(urls.includes(`${production}/otdyh-s-zhivotnymi`), "Pet accommodation page is discoverable in sitemap");
+ assert.equal(new Set(urls).size, urls.length, "No duplicate sitemap entries");
+ const rows = [], titles = new Set(), descriptions = new Set(), links = new Set();
+ for (const url of urls) {
+@@ -43,6 +44,25 @@ for (const url of urls) {
+   assert.ok(!nodes.some(node => node.aggregateRating), "No self-serving review aggregate in JSON-LD");
+   const images = tags(html, "img");
+   assert.ok(images.every(tag => /\balt="/.test(tag)), `Image alternatives: ${pathname}`);
++  if (["/spa", "/otdyh-s-zhivotnymi"].includes(pathname)) {
++    const visible = decode(html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, ""));
++    if (pathname === "/spa") {
++      const questions = nodes.find(node => node["@type"] === "FAQPage")?.mainEntity;
++      assert.ok(questions?.length > 0, "SPA FAQ schema");
++      for (const question of questions) {
++        assert.ok(visible.includes(question.name) && visible.includes(question.acceptedAnswer.text), "SPA FAQ schema matches server-rendered question and answer");
++      }
++    } else {
++      const collection = nodes.find(node => node["@type"] === "CollectionPage");
++      assert.equal(collection?.mainEntity?.itemListElement?.length, 3, "Pet page lists three cabins in schema");
++      assert.ok(!nodes.some(node => node["@type"] === "FAQPage"), "Repeated pet FAQ is marked up only on the homepage");
++      assert.ok(visible.includes("Доплата за размещение питомца:"), "Pet conditions are present outside scripts");
++    }
++    for (const path of ["/dom-dlya-semi", "/shale-s-vidom-na-gory", "/dvuhetazhnyj-barnhouse"]) {
++      assert.ok(tags(visible, "a").some(tag => attr(tag, "href") === path), `Cabin selection linked from ${pathname}`);
++    }
++    assert.ok(!tags(html, "details").some(tag => /\bopen(?:[=>\s])/.test(tag)), `FAQ initially closed: ${pathname}`);
++  }
+   if (["/dom-dlya-semi", "/dvuhetazhnyj-barnhouse", "/shale-s-vidom-na-gory"].includes(pathname)) {
+     const cabin = nodes.find(node => node["@type"] === "Accommodation");
+     assert.ok(cabin?.floorSize?.value > 0 && cabin.image.length > 0, `Cabin schema: ${pathname}`);
+diff --git a/src/app/otdyh-s-zhivotnymi/page.tsx b/src/app/otdyh-s-zhivotnymi/page.tsx
+new file mode 100644
+index 0000000..3b9d7fa
+--- /dev/null
++++ b/src/app/otdyh-s-zhivotnymi/page.tsx
+@@ -0,0 +1,54 @@
++import type { Metadata } from "next";
++import Image from "next/image";
++import Link from "next/link";
++import { ContentPage } from "@/components/ContentPage";
++import { PageStructuredData } from "@/components/StructuredData";
++import { CABIN_LIST } from "@/data/cabins";
++import { PET_FAQ } from "@/data/pets";
++import { SITE_CONFIG } from "@/data/site";
++import { withSocialMetadata } from "@/lib/social-metadata";
++
++export const metadata: Metadata = withSocialMetadata({
++  title: "Отдых с животными в Архызе | Хижина лесника",
++  description: "Проживание с кошками и собаками в трёх домах «Хижины лесника» в Архызе. Выбор дома, условия размещения питомцев, доплата и подарочный набор «Четыре лапы».",
++  alternates: { canonical: "/otdyh-s-zhivotnymi" },
++});
++
++export default function PetsPage() {
++  return <>
++    <PageStructuredData metadata={metadata} />
++    <ContentPage title="Отдых с животными в Архызе" eyebrow="Вместе с питомцем" description="В «Хижину лесника» можно приехать с кошкой или собакой. Выберите один из трёх отдельных домов в буковом лесу и согласуйте размещение питомца при бронировании.">
++      <section aria-labelledby="pet-policy" className="rounded-3xl border border-white/10 bg-[#173024] p-6 sm:p-9">
++        <h2 id="pet-policy" className="font-moderustic text-2xl font-bold sm:text-3xl">{PET_FAQ.question}</h2>
++        <p className="mt-6 whitespace-pre-line text-sm leading-relaxed text-[#bdcfc3] sm:text-base">{PET_FAQ.answer}</p>
++      </section>
++
++      <section aria-labelledby="pet-cabins" className="mt-14 sm:mt-20">
++        <h2 id="pet-cabins" className="font-moderustic text-3xl font-bold">Выберите дом для поездки с питомцем</h2>
++        <p className="mt-4 max-w-3xl leading-relaxed text-[#a8b9ae]">Во всех домах есть собственная кухня и санузел, терраса и парковка. Посмотрите планировку и количество спальных мест, чтобы выбрать подходящий вариант для вашей семьи или компании.</p>
++        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
++          {CABIN_LIST.map(cabin => <Link key={cabin.id} href={cabin.slug} className="group overflow-hidden rounded-3xl border border-white/10 bg-[#173024] transition hover:border-[#d49a5a]/50">
++            <div className="relative aspect-[16/10] overflow-hidden">
++              <Image fill quality={60} loading="lazy" sizes="(min-width: 1400px) 436px, (min-width: 1024px) calc((100vw - 88px) / 3), (min-width: 640px) calc((100vw - 68px) / 2), calc(100vw - 32px)" src={cabin.cardImage} alt={cabin.cardImageAlt} className="object-cover transition duration-500 group-hover:scale-105" />
++            </div>
++            <div className="p-6">
++              <h3 className="font-moderustic text-2xl font-bold">{cabin.cardTitle}</h3>
++              <p className="mt-3 text-sm text-[#e6c7a0]">{cabin.cardGuests} · {cabin.cardArea}</p>
++              <p className="mt-3 text-sm leading-relaxed text-[#bdcfc3]">{cabin.cardSubtitle}</p>
++              <span className="mt-5 inline-block text-sm font-semibold text-[#e6c7a0]">Фото и планировка дома ↗</span>
++            </div>
++          </Link>)}
++        </div>
++      </section>
++
++      <section className="mt-14 rounded-3xl border border-[#d49a5a]/30 bg-[#173024] p-6 sm:p-9">
++        <h2 className="font-moderustic text-2xl font-bold sm:text-3xl">Как спланировать поездку с животным</h2>
++        <p className="mt-4 max-w-3xl leading-relaxed text-[#bdcfc3]">При бронировании сообщите, с каким питомцем вы приезжаете. Укажите его вес и рост в холке, чтобы уточнить категорию доплаты. Условия размещения согласуйте до поездки.</p>
++        <div className="mt-6 flex flex-wrap gap-4">
++          <Link href="/booking" className="inline-flex items-center rounded-full bg-[#d49a5a] px-6 py-3 text-sm font-semibold text-[#102219]">Проверить даты и забронировать</Link>
++          <a href={SITE_CONFIG.phoneHref} className="inline-flex items-center rounded-full border border-white/20 px-6 py-3 text-sm font-semibold">Уточнить условия: {SITE_CONFIG.phoneDisplay}</a>
++        </div>
++      </section>
++    </ContentPage>
++  </>;
++}
+diff --git a/src/app/sitemap.ts b/src/app/sitemap.ts
+index e24f73b..5e2a115 100644
+--- a/src/app/sitemap.ts
++++ b/src/app/sitemap.ts
+@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
+     { path: "/news", priority: 0.7 },
+     { path: "/special-offers", priority: 0.8 },
+     { path: "/spa", priority: 0.8 },
++    { path: "/otdyh-s-zhivotnymi", priority: 0.8 },
+     { path: "/dining", priority: 0.8 },
+     { path: "/split", priority: 0.7 },
+     { path: "/cookie-policy", priority: 0.3 },
+diff --git a/src/app/spa/page.tsx b/src/app/spa/page.tsx
+index 9ab807e..27fc8f7 100644
+--- a/src/app/spa/page.tsx
++++ b/src/app/spa/page.tsx
+@@ -1,14 +1,19 @@
+-import { PageStructuredData } from "@/components/StructuredData";
++import { JsonLd, PageStructuredData } from "@/components/StructuredData";
+ import { withSocialMetadata } from "@/lib/social-metadata";
+ import type { Metadata } from "next";
++import Link from "next/link";
++import { CABIN_LIST } from "@/data/cabins";
++import { SITE_CONFIG } from "@/data/site";
++import { SPA_FAQ } from "@/data/spa";
+ import { Waves, Sun, Clock } from "@phosphor-icons/react/dist/ssr";
+ import { ContentPage } from "@/components/ContentPage";
+ import { CabinGallerySlider } from "@/components/CabinGallerySlider";
+ import { BookingAssistance } from "@/components/BookingAssistance";
+-export const metadata: Metadata = withSocialMetadata({title:'СПА и бассейн рядом с домиками в Архызе | Хижина лесника',description:'СПА-комплекс партнёра в 100 метрах от домиков «Хижина лесника» в Архызе: бассейн 15 × 6 м, джакузи, сауна и хамам. Стоимость посещения и время работы.',alternates:{canonical:"/spa"}});
++export const metadata: Metadata = withSocialMetadata({title:'СПА и бассейн с подогревом в Архызе | Хижина лесника',description:'Подогреваемый бассейн, сауна и хамам в СПА партнёра «Адреналин», в 100 метрах от домиков «Хижина лесника» в Архызе. Посещение оплачивается отдельно.',alternates:{canonical:"/spa"}});
+ export default function SpaPage() {
+-  return <><PageStructuredData metadata={metadata} />{<ContentPage title="СПА и бассейн рядом с домиками" eyebrow="Время замедлиться" description="СПА-комплекс партнёрского парк-отеля «Адреналин» находится в 100 метрах от базы отдыха «Хижина лесника» в Архызе. Бассейн, джакузи, сауна и хамам доступны за отдельную плату.">
+-    <section className="mb-12 sm:mb-16"><h2 className="font-moderustic text-3xl font-bold">Загляните в СПА</h2><p className="mt-4 mb-7 max-w-3xl leading-relaxed text-[#a8b9ae]">Бассейн с выходом под открытое небо, сауна с видом на лес и джакузи для отдыха после прогулок. Наш партнёр – парк-отель «Адреналин», в 100 метрах от домиков. Посещение оплачивается отдельно.</p><CabinGallerySlider images={[
++  return <><PageStructuredData metadata={metadata} />
++    <JsonLd data={{ "@context": "https://schema.org", "@type": "FAQPage", "@id": `${SITE_CONFIG.url}/spa#faq`, mainEntity: SPA_FAQ.map(item => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })) }} />{<ContentPage title="СПА и бассейн с подогревом в Архызе" eyebrow="Время замедлиться" description="СПА-комплекс партнёрского парк-отеля «Адреналин» находится в 100 метрах от базы отдыха «Хижина лесника» в Архызе. Бассейн, джакузи, сауна и хамам доступны за отдельную плату.">
++    <section className="mb-12 sm:mb-16"><h2 className="font-moderustic text-3xl font-bold">Бассейн в партнёрском СПА-комплексе «Адреналин»</h2><p className="mt-4 mb-7 max-w-3xl leading-relaxed text-[#a8b9ae]">Бассейн с выходом под открытое небо, сауна с видом на лес и джакузи для отдыха после прогулок. Наш партнёр – парк-отель «Адреналин», в 100 метрах от домиков. Посещение оплачивается отдельно.</p><CabinGallerySlider images={[
+       {src:"/images/partners/spa/spa-01.webp",alt:"Подогреваемый бассейн СПА-комплекса «Адреналин»"},
+       {src:"/images/partners/spa/spa-02.webp",alt:"Крытая часть бассейна и зона отдыха"},
+       {src:"/images/partners/spa/spa-03.webp",alt:"Сауна с окном в лес"},
+@@ -19,11 +24,33 @@ export default function SpaPage() {
+     ]}/></section>
+     <section className="rounded-3xl bg-[#eee8dc] p-6 text-[#213d31] sm:p-10">
+       <div className="grid gap-6 border-b border-[#c6b49b] pb-8 sm:grid-cols-2"><div><p>Взрослый · 2 часа</p><p className="mt-2 font-moderustic text-4xl font-bold">2 000 ₽</p><p className="mt-2 text-sm opacity-70">За человека</p></div><div className="sm:border-l sm:border-[#c6b49b] sm:pl-8"><p>Детский · 2 часа</p><p className="mt-2 font-moderustic text-4xl font-bold">1 000 ₽</p><p className="mt-2 text-sm opacity-70">До 14 лет включительно</p></div></div>
+-      <h2 className="mt-8 font-moderustic text-3xl font-bold">СПА-комплекс</h2>
+-      <div className="mt-6 grid gap-5 md:grid-cols-2"><div className="rounded-2xl border border-[#c6b49b] bg-[#faf7f0] p-6"><Waves size={36} weight="thin" /><h3 className="mt-4 font-moderustic text-2xl font-bold">Бассейн и отдых</h3><ul className="mt-4 space-y-3 leading-relaxed"><li>Подогреваемый бассейн 15 × 6 м</li><li>70% внутри, 30% под открытым небом</li><li>Джакузи и терраса с шезлонгами</li></ul></div><div className="rounded-2xl border border-[#c6b49b] bg-[#faf7f0] p-6"><Sun size={36} weight="thin" /><h3 className="mt-4 font-moderustic text-2xl font-bold">Парные и отдых</h3><ul className="mt-4 space-y-3 leading-relaxed"><li>Сауна и турецкий хамам</li><li>Халаты, полотенца и тапочки</li><li>Чайная комната: чёрный и зелёный чай</li></ul></div></div>
++      <h2 className="mt-8 font-moderustic text-3xl font-bold">Бассейн, сауна и хамам</h2>
++      <div className="mt-6 grid gap-5 md:grid-cols-2"><div className="rounded-2xl border border-[#c6b49b] bg-[#faf7f0] p-6"><Waves size={36} weight="thin" /><h3 className="mt-4 font-moderustic text-2xl font-bold">Подогреваемый бассейн</h3><ul className="mt-4 space-y-3 leading-relaxed"><li>Подогреваемый бассейн 15 × 6 м</li><li>70% внутри, 30% под открытым небом</li><li>Джакузи и терраса с шезлонгами</li></ul></div><div className="rounded-2xl border border-[#c6b49b] bg-[#faf7f0] p-6"><Sun size={36} weight="thin" /><h3 className="mt-4 font-moderustic text-2xl font-bold">Сауна и турецкий хамам</h3><ul className="mt-4 space-y-3 leading-relaxed"><li>Сауна и турецкий хамам</li><li>Халаты, полотенца и тапочки</li><li>Чайная комната: чёрный и зелёный чай</li></ul></div></div>
+       <div className="mt-5 rounded-2xl border border-[#c6b49b] p-6"><h3 className="font-moderustic text-2xl font-bold">Массаж и СПА-процедуры</h3><p className="mt-2 text-sm opacity-70">Оплачиваются отдельно</p><div className="mt-4 flex flex-wrap justify-between gap-3 font-semibold"><span>Марина Вячеславовна</span><a href="tel:+79064122812" className="underline">+7 (906) 412-28-12</a></div></div>
+       <div className="mt-6 grid gap-6 rounded-2xl border border-[#c6b49b] p-6 sm:grid-cols-2"><div><Clock size={28} weight="thin" /><h3 className="mt-3 font-moderustic text-xl font-bold">Время работы СПА</h3><p className="mt-2 text-2xl font-semibold">10:00–23:00</p></div><div><h3 className="font-moderustic text-xl font-bold">Технические перерывы</h3><p className="mt-2 text-xl font-semibold">13:00–15:00 · 18:30–19:30</p></div><p className="text-sm leading-relaxed opacity-75 sm:col-span-2">Дети до 14 лет посещают СПА со взрослыми. Алкоголь в СПА запрещён.</p></div>
+     </section>
++    <section aria-labelledby="spa-questions" className="mt-14 sm:mt-20">
++      <h2 id="spa-questions" className="font-moderustic text-3xl font-bold">Вопросы о бассейне и СПА</h2>
++      <div className="mt-8 grid items-start gap-3 md:grid-cols-2">
++        {SPA_FAQ.map(item => <details key={item.question} name="spa-faq" className="group rounded-2xl border border-white/10 bg-[#173024] p-5 sm:p-6">
++          <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-moderustic font-semibold [&::-webkit-details-marker]:hidden">{item.question}<span aria-hidden="true" className="shrink-0 text-xl leading-none text-[#d49a5a] group-open:rotate-45">+</span></summary>
++          <p className="mt-4 text-sm leading-relaxed text-[#bdcfc3]">{item.answer}</p>
++        </details>)}
++      </div>
++    </section>
++    <section aria-labelledby="cabins-near-spa" className="mt-14 sm:mt-20">
++      <h2 id="cabins-near-spa" className="font-moderustic text-3xl font-bold">Где остановиться рядом со СПА</h2>
++      <p className="mt-4 max-w-3xl leading-relaxed text-[#a8b9ae]">Выберите дом в «Хижине лесника» для поездки вдвоём, с детьми или компанией. До партнёрского СПА – 100 метров. Проживание в доме и посещение комплекса оплачиваются отдельно.</p>
++      <div className="mt-7 grid gap-4 md:grid-cols-3">
++        {CABIN_LIST.map(cabin => <Link key={cabin.id} href={cabin.slug} className="rounded-2xl border border-white/10 bg-[#173024] p-6 transition hover:border-[#d49a5a]/50">
++          <h3 className="font-moderustic text-xl font-bold">{cabin.cardTitle}</h3>
++          <p className="mt-3 text-sm text-[#e6c7a0]">{cabin.cardGuests} · {cabin.cardArea}</p>
++          <p className="mt-3 text-sm leading-relaxed text-[#bdcfc3]">{cabin.cardSubtitle}</p>
++          <span className="mt-5 inline-block text-sm font-semibold text-[#e6c7a0]">Посмотреть дом ↗</span>
++        </Link>)}
++      </div>
++      <a href={SITE_CONFIG.phoneHref} className="mt-7 inline-flex rounded-full border border-[#d49a5a]/50 px-6 py-3 text-sm font-semibold text-[#e6c7a0]">Задать вопрос о поездке: {SITE_CONFIG.phoneDisplay}</a>
++    </section>
+     <BookingAssistance />
+   </ContentPage>}</>;
+ }
 diff --git a/src/components/CabinDetailView.tsx b/src/components/CabinDetailView.tsx
-index df65005..070247e 100644
+index df65005..491b8a1 100644
 --- a/src/components/CabinDetailView.tsx
 +++ b/src/components/CabinDetailView.tsx
 @@ -37,10 +37,12 @@ export function CabinDetailView({cabin}:{cabin:CabinData}) {
@@ -13,7 +189,7 @@ index df65005..070247e 100644
 -              <p>{cabin.cardTitle} находится на базе отдыха «Хижина лесника»: {SITE_CONFIG.address}. В доме своя кухня и санузел. Условия проживания с кошками и собаками опубликованы в <Link href="/#faq-pets" className="text-[#e6c7a0] underline underline-offset-4">ответе о питомцах</Link>.</p>
 +              <p>{cabin.cardTitle} находится на базе отдыха «Хижина лесника»: {SITE_CONFIG.address}. В доме своя кухня и санузел.</p>
 +              <h3 className="mt-5 font-moderustic text-lg font-semibold text-[#f3f5f0]">Отдых с кошками и собаками</h3>
-+              <p className="mt-3">Во всех трёх домах можно остановиться с питомцем по предварительному согласованию. Размещение животного оплачивается отдельно. Перед поездкой ознакомьтесь с <Link href="/#faq-pets" className="text-[#e6c7a0] underline underline-offset-4">условиями проживания с питомцами и доплатой</Link>.</p>
++              <p className="mt-3">Во всех трёх домах можно остановиться с питомцем по предварительному согласованию. Размещение животного оплачивается отдельно. Перед поездкой ознакомьтесь с <Link href="/otdyh-s-zhivotnymi" className="text-[#e6c7a0] underline underline-offset-4">условиями проживания с питомцами и доплатой</Link>.</p>
                <p className="mt-3">В 100 метрах находятся <Link href="/spa" className="text-[#e6c7a0] underline underline-offset-4">бассейн и СПА</Link> и <Link href="/dining" className="text-[#e6c7a0] underline underline-offset-4">ресторан</Link> партнёрского парк-отеля «Адреналин». Посещение СПА и питание оплачиваются отдельно.</p>
              </div>
            </div>
@@ -24,6 +200,21 @@ index df65005..070247e 100644
 -      <section className="mx-auto mt-20 max-w-[1400px] px-4 sm:px-6"><div className="flex flex-wrap items-end justify-between gap-4"><h2 className="font-moderustic text-3xl font-bold">Ещё два повода приехать</h2><Link href="/#cabins" prefetch={false} className="text-sm text-[#d49a5a]">Все дома ↗</Link></div><div className="mt-8 grid gap-5 md:grid-cols-2">{CABIN_LIST.filter(other=>other.id!==cabin.id).map(other=><Link key={other.id} href={other.slug} className="group overflow-hidden rounded-3xl border border-white/10 bg-[#173024]"><div className="relative aspect-[16/9] overflow-hidden"><Image fill sizes="(min-width: 768px) 50vw, 100vw" src={other.cardImage} alt={other.cardImageAlt} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105"/></div><div className="p-6"><p className="text-xs text-[#a8b9ae]">{other.cardArea} · {other.cardGuests}</p><div className="mt-3 flex flex-wrap items-center justify-between gap-3"><h3 className="font-moderustic text-2xl font-bold">{other.cardTitle}</h3><ArrowUpRight size={22} className="text-[#d49a5a]"/></div><p className="mt-3 text-sm text-[#d49a5a]">{other.cardPrice}</p></div></Link>)}</div></section>
 +      <section className="mx-auto mt-20 max-w-[1400px] px-4 sm:px-6"><div className="flex flex-wrap items-end justify-between gap-4"><h2 className="font-moderustic text-3xl font-bold">Ещё два повода приехать</h2><Link href="/#cabins" prefetch={false} className="text-sm text-[#d49a5a]">Все дома ↗</Link></div><div className="mt-8 grid gap-5 md:grid-cols-2">{CABIN_LIST.filter(other=>other.id!==cabin.id).map(other=><Link key={other.id} href={other.slug} className="group overflow-hidden rounded-3xl border border-white/10 bg-[#173024]"><div className="relative aspect-[16/9] overflow-hidden"><Image fill sizes="(min-width: 1400px) 666px, (min-width: 768px) calc(50vw - 34px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)" src={other.cardImage} alt={other.cardImageAlt} loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-105"/></div><div className="p-6"><p className="text-xs text-[#a8b9ae]">{other.cardArea} · {other.cardGuests}</p><div className="mt-3 flex flex-wrap items-center justify-between gap-3"><h3 className="font-moderustic text-2xl font-bold">{other.cardTitle}</h3><ArrowUpRight size={22} className="text-[#d49a5a]"/></div><p className="mt-3 text-sm text-[#d49a5a]">{other.cardPrice}</p></div></Link>)}</div></section>
      </main><Footer/>
+   </div>;
+ }
+diff --git a/src/components/FaqAccordion.tsx b/src/components/FaqAccordion.tsx
+index f03e3c1..0151ef6 100644
+--- a/src/components/FaqAccordion.tsx
++++ b/src/components/FaqAccordion.tsx
+@@ -12,7 +12,9 @@ export function FaqAccordion() {
+         <span className="font-moderustic text-base font-bold leading-snug text-[#f3f5f0] sm:text-lg">{item.question}</span>
+         <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-[#f3f5f0] group-open:border-[#d49a5a] group-open:bg-[#d49a5a] group-open:text-[#102219]"><span className="group-open:hidden">+</span><span className="hidden group-open:inline">−</span></span>
+       </summary>
+-      <div className="whitespace-pre-line border-t border-white/10 px-6 pt-4 pb-6 text-sm leading-relaxed text-[#a8b9ae] sm:text-[15px]">{item.answer}</div>
++      <div className="whitespace-pre-line border-t border-white/10 px-6 pt-4 pb-6 text-sm leading-relaxed text-[#a8b9ae] sm:text-[15px]">{item.answer}
++        {item.question === "Можно ли приезжать с питомцами?" && <a href="/otdyh-s-zhivotnymi" className="mt-4 block font-semibold text-[#e6c7a0] underline underline-offset-4">Выбрать дом для отдыха с животными ↗</a>}
++      </div>
+     </details>)}
    </div>;
  }
 diff --git a/src/components/ForestBenefitImage.tsx b/src/components/ForestBenefitImage.tsx
@@ -91,6 +282,30 @@ index 02cf57c..8531564 100644
        </div>
        <div className="flex flex-1 flex-col pt-5">
          <p className="text-[11px] font-medium uppercase tracking-widest text-[#d8ae7f]">{activity.tag}</p>
+diff --git a/src/components/StructuredData.tsx b/src/components/StructuredData.tsx
+index b5d8028..d4a629e 100644
+--- a/src/components/StructuredData.tsx
++++ b/src/components/StructuredData.tsx
+@@ -50,7 +50,7 @@ export function PageStructuredData({ metadata }: { metadata: Metadata }) {
+     : metadata.title && "default" in metadata.title ? metadata.title.default
+     : SITE_CONFIG.name;
+   const pageId = `${url}#webpage`;
+-  const page: Record<string, unknown> = { "@type": pathname === "/news" ? "CollectionPage" : "WebPage", "@id": pageId, url, name: title, description: metadata.description, inLanguage: "ru", isPartOf: { "@id": websiteId }, about: { "@id": businessId } };
++  const page: Record<string, unknown> = { "@type": ["/news", "/otdyh-s-zhivotnymi"].includes(pathname) ? "CollectionPage" : "WebPage", "@id": pageId, url, name: title, description: metadata.description, inLanguage: "ru", isPartOf: { "@id": websiteId }, about: { "@id": businessId } };
+   const graph: Record<string, unknown>[] = [page];
+   const cabin = CABIN_LIST.find(item => item.slug === pathname);
+   if (cabin) {
+@@ -65,8 +65,8 @@ export function PageStructuredData({ metadata }: { metadata: Metadata }) {
+     page.mainEntity = { "@id": id };
+     graph.push({ "@type": "Article", "@id": id, url, mainEntityOfPage: { "@id": pageId }, headline: article.title, description: metadata.description, image: absolute(article.thumbnail), datePublished: `${year}-${month}-${day}`, inLanguage: "ru", publisher: { "@id": businessId } });
+   }
+-  if (pathname === "/" || pathname === "/news") {
+-    const items = pathname === "/" ? CABIN_LIST.map(item => ({ name: item.cardTitle, url: absolute(item.slug) })) : BLOG_POSTS.map(item => ({ name: item.title, url: absolute(item.href) }));
++  if (pathname === "/" || pathname === "/news" || pathname === "/otdyh-s-zhivotnymi") {
++    const items = pathname === "/news" ? BLOG_POSTS.map(item => ({ name: item.title, url: absolute(item.href) })) : CABIN_LIST.map(item => ({ name: item.cardTitle, url: absolute(item.slug) }));
+     page.mainEntity = { "@type": "ItemList", itemListElement: items.map((item, index) => ({ "@type": "ListItem", position: index + 1, ...item })) };
+   }
+   if (pathname === "/") graph.push(...CABIN_LIST.map(accommodation));
 diff --git a/src/data/cabins.ts b/src/data/cabins.ts
 index de48f1b..19e59be 100644
 --- a/src/data/cabins.ts
@@ -167,3 +382,66 @@ index de48f1b..19e59be 100644
      introText:
        "Просыпаться с первыми лучами солнца в панорамных окнах и видеть перед собой горные хребты Архыза: именно для таких утренних моментов создано наше Шале. Камерное и тёплое пространство идеально подходит для романтического уикенда пары или спокойного отдыха вчетвером.",
      introHighlightWord: "Шале",
+diff --git a/src/data/home.ts b/src/data/home.ts
+index dc07697..33e866b 100644
+--- a/src/data/home.ts
++++ b/src/data/home.ts
+@@ -1,3 +1,5 @@
++import { PET_FAQ } from "./pets";
++
+ export const HOME_GALLERY = [
+   {
+     src: "/images/home/gal-1.jpg",
+@@ -75,10 +77,7 @@ export const HOME_FAQ = [
+     "question": "Какие дома есть на базе и в чём разница?",
+     "answer": "На базе три отдельных дома. «Ива» – одноэтажный семейный дом площадью 40 м² для размещения до 5 гостей: спальня с двуспальной кроватью, комната с двуспальным диваном и гостиная с односпальным диваном и кухней. Шале «Бук» – дом площадью 40 м² с двумя спальнями и панорамными окнами, подходит для романтического отдыха вдвоём и размещает до 4 гостей. «Берёза» – двухэтажный барнхаус площадью 81 м² для компаний до 7 гостей, с двумя спальнями и просторной кухней-гостиной. У каждого дома своя терраса, зона отдыха, мангал и парковка."
+   },
+-  {
+-    "question": "Можно ли приезжать с питомцами?",
+-    "answer": "Да, мы рады воспитанным кошкам и собакам без ограничений по размеру и весу. Совместно с магазином «Четыре лапы» бесплатно предоставляем welcome-набор: миску, лакомство, салфетки для лап, пакеты для уборки, пелёнку и игрушку. Выгул собак осуществляется за территорией базы.\n\nДоплата за размещение питомца:\n• 1 500 ₽ – за кошку и собаку весом до 12 кг или до 28 см в холке;\n• 2 500 ₽ – за собаку среднего размера: от 12 до 25 кг, рост в холке от 28 до 56 см;\n• 3 500 ₽ – за собаку весом более 25 кг или выше 56 см в холке.\n\nКатегорию питомца при несовпадении веса и роста уточните при бронировании."
+-  },
++  PET_FAQ,
+   {
+     "question": "Есть ли питание на базе?",
+     "answer": "В 100 метрах от домиков работает ресторан партнёрского парк-отеля «Адреналин» по системе a la carte – с 12:00 до 22:30. Завтрак в домик заказываем в другом ресторане: оформите заказ с вечера на следующее утро."
+diff --git a/src/data/pets.ts b/src/data/pets.ts
+new file mode 100644
+index 0000000..8563ca0
+--- /dev/null
++++ b/src/data/pets.ts
+@@ -0,0 +1,5 @@
++// Shared verbatim with the homepage FAQ; keep the published conditions in one place.
++export const PET_FAQ = {
++    "question": "Можно ли приезжать с питомцами?",
++    "answer": "Да, мы рады воспитанным кошкам и собакам без ограничений по размеру и весу. Совместно с магазином «Четыре лапы» бесплатно предоставляем welcome-набор: миску, лакомство, салфетки для лап, пакеты для уборки, пелёнку и игрушку. Выгул собак осуществляется за территорией базы.\n\nДоплата за размещение питомца:\n• 1 500 ₽ – за кошку и собаку весом до 12 кг или до 28 см в холке;\n• 2 500 ₽ – за собаку среднего размера: от 12 до 25 кг, рост в холке от 28 до 56 см;\n• 3 500 ₽ – за собаку весом более 25 кг или выше 56 см в холке.\n\nКатегорию питомца при несовпадении веса и роста уточните при бронировании."
++  };
+diff --git a/src/data/spa.ts b/src/data/spa.ts
+new file mode 100644
+index 0000000..cc7ee18
+--- /dev/null
++++ b/src/data/spa.ts
+@@ -0,0 +1,24 @@
++// Only characteristics already published on the site and confirmed by the partner.
++// Prices and booking conditions remain in the existing page section.
++export const SPA_FAQ = [
++  {
++    question: "Где находится бассейн с подогревом рядом с домиками?",
++    answer: "В СПА-комплексе партнёрского парк-отеля «Адреналин», в 100 метрах от базы отдыха «Хижина лесника» в Архызе. Размер подогреваемого бассейна – 15 × 6 м.",
++  },
++  {
++    question: "Бассейн крытый или открытый?",
++    answer: "Около 70% бассейна расположено внутри, 30% – под открытым небом. В комплексе также есть джакузи и терраса с шезлонгами.",
++  },
++  {
++    question: "Есть ли в СПА сауна и хамам?",
++    answer: "Да, у партнёра есть сауна и турецкий хамам. Для отдыха между посещениями предусмотрена чайная комната с чёрным и зелёным чаем.",
++  },
++  {
++    question: "Входит ли посещение СПА в стоимость проживания в домике?",
++    answer: "Посещение партнёрского СПА оплачивается отдельно от проживания в «Хижине лесника». Массаж и СПА-процедуры также оплачиваются отдельно. Стоимость и время посещения указаны на этой странице.",
++  },
++  {
++    question: "Можно ли посещать СПА с детьми?",
++    answer: "Дети до 14 лет посещают СПА в сопровождении взрослых. Детский тариф до 14 лет включительно приведён в разделе стоимости посещения.",
++  },
++];
