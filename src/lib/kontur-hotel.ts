@@ -1,4 +1,5 @@
 import { SITE_CONFIG } from "@/data/site";
+import { trackMetricaGoal } from "@/lib/metrica";
 
 export const MAX_ADULTS_COUNT = 7;
 
@@ -78,12 +79,6 @@ interface KonturLightboxContextValue {
 declare global {
   interface Window {
     HotelWidget?: HotelWidgetGlobal;
-    ym?: (
-      counterId: number,
-      action: string,
-      target: string,
-      params?: unknown
-    ) => void;
   }
 }
 
@@ -828,8 +823,8 @@ export async function ensureKonturHotelInitialized(
               console.warn("[Контур.Отель] onError", error);
               reject(new Error("Не удалось инициализировать Контур.Отель"));
             },
-            onBooking: value => {
-              window.ym?.(98987390, "reachGoal", "kontur_booking", value);
+            onBooking: () => {
+              trackMetricaGoal("kontur_booking");
             },
           },
         });

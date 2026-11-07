@@ -27,6 +27,7 @@ class Cell {
 
 const hosts = new Map();
 const adds = [], removals = [];
+const goals = [];
 let initCount = 0, config;
 const sdk = {
   init(value) { initCount++; config = value; },
@@ -36,7 +37,9 @@ const sdk = {
 const exportsObject = {};
 vm.runInNewContext(source, {
   exports: exportsObject,
-  require: () => ({ SITE_CONFIG: { konturHotelId: "test-hotel" } }),
+  require: name => name === "@/lib/metrica"
+    ? { trackMetricaGoal: (...args) => goals.push(args) }
+    : { SITE_CONFIG: { konturHotelId: "test-hotel" } },
   HTMLElement: Cell,
   document: { body: null, addEventListener() {}, getElementById: id => hosts.get(id) },
   window: { HotelWidget: sdk, setTimeout, clearTimeout, location: { href: "https://test.example" } },
@@ -90,6 +93,8 @@ async function run() {
   config.hooks.onInit();
   const results = await Promise.all([staleMount, activeMount, roomsMount]);
   assert.equal(adds.length, 2, "Cancelled Strict Mode effect does not register a widget");
+  config.hooks.onBooking({ name: "private", phone: "private", email: "private" });
+  assert.equal(JSON.stringify(goals), JSON.stringify([["kontur_booking"]]), "SDK booking confirmation sends no booking payload to analytics");
   hosts.clear();
   results.forEach(result => result.cleanup());
   assert.deepEqual(removals, ["widget-1", "widget-2"], "Detached hosts still release SDK instances");

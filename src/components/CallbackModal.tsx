@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { ContactConsentFields } from "./ContactConsentFields";
 import { contactConsentSelection } from "@/data/consents";
 import { CheckCircle, PhoneCall, X } from "@phosphor-icons/react";
+import { trackMetricaGoal } from "@/lib/metrica";
 
 interface CallbackModalProps {
   open: boolean;
@@ -39,6 +40,7 @@ export function CallbackModal({
       });
       if (res.ok) {
         setStatus("sent");
+        trackMetricaGoal("callback_sent", { form: "callback" });
       } else {
         const result = await res.json().catch(() => null);
         setErrorMessage(result?.error || "Не удалось отправить заявку. Позвоните нам: +7 (928) 020-10-01.");

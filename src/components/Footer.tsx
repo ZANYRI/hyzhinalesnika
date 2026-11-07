@@ -10,6 +10,7 @@ import {
 import { NAV_ITEMS, SITE_CONFIG } from "@/data/site";
 import { HospitalityAwards } from "./HospitalityAwards";
 import { SocialLinks } from "./SocialLinks";
+import { AnalyticsSettingsButton } from "./CookieNotice";
 
 export function Footer() {
   return (
@@ -168,6 +169,7 @@ export function Footer() {
               Пользовательское соглашение
             </Link>
             <Link href="/cookie-policy" className="transition hover:text-[#f3f5f0]">Использование cookie</Link>
+            <AnalyticsSettingsButton />
           </div>
         </div>
       </div>

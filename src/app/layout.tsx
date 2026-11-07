@@ -9,6 +9,7 @@ import { FloatingContacts } from "@/components/FloatingContacts";
 import { CleanHashScroll } from "@/components/CleanHashScroll";
 import { AutumnAtmosphere } from "@/components/AutumnAtmosphere";
 import { SiteStructuredData } from "@/components/StructuredData";
+import { YandexMetrica } from "@/components/YandexMetrica";
 
 export const metadata: Metadata = withSocialMetadata({
   metadataBase: new URL(SITE_CONFIG.url),
@@ -37,6 +38,7 @@ export default function RootLayout({
         {children}
         <Suspense fallback={null}>
           <CleanHashScroll />
+          <YandexMetrica />
         </Suspense>
         <CookieNotice />
         <FloatingContacts />

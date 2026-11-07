@@ -4,6 +4,7 @@ import { contactConsentSelection } from "@/data/consents";
 import { useState } from "react";
 import { TreeEvergreen } from "@phosphor-icons/react";
 import { SITE_CONFIG } from "@/data/site";
+import { trackMetricaGoal } from "@/lib/metrica";
 
 export function BookingAssistance() {
   const [status, setStatus] = useState<"idle"|"sending"|"sent"|"error">("idle");
@@ -22,6 +23,7 @@ export function BookingAssistance() {
         throw new Error(result?.error || "Не удалось отправить заявку. Пожалуйста, позвоните нам.");
       }
       setStatus("sent"); form.reset();
+      trackMetricaGoal("callback_sent", { form: "booking_assistance" });
     } catch (error) { setErrorMessage(error instanceof Error ? error.message : "Не удалось отправить заявку."); setStatus("error"); }
   }
   return <section id="help" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">

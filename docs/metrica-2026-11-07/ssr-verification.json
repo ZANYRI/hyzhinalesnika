@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-11-07T20:18:48.115Z",
+  "base": "http://127.0.0.1:3107",
+  "pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "analyticsSettingsRendered": true,
+      "trackerInServerMarkup": false
+    },
+    {
+      "path": "/booking",
+      "status": 200,
+      "analyticsSettingsRendered": true,
+      "trackerInServerMarkup": false
+    },
+    {
+      "path": "/dom-dlya-semi",
+      "status": 200,
+      "analyticsSettingsRendered": true,
+      "trackerInServerMarkup": false
+    },
+    {
+      "path": "/privacy-policy",
+      "status": 200,
+      "analyticsSettingsRendered": true,
+      "trackerInServerMarkup": false
+    }
+  ],
+  "browserDeliveryVerified": false
+}
