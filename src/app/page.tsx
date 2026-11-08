@@ -7,7 +7,6 @@ import Link from "next/link";
 import { ArrowRight, CarProfile, MapPin } from "@phosphor-icons/react/dist/ssr";
 import { HOME_FAQ } from "@/data/home";
 import { SITE_CONFIG } from "@/data/site";
-import { CABIN_LIST } from "@/data/cabins";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { KonturBookingWidget } from "@/components/KonturBookingWidget";
@@ -52,14 +51,14 @@ export default function HomePage() {
         <source media="(max-width: 639px) and (max-aspect-ratio: 9/16)" type="image/webp" srcSet={heroMedia.webp} />
         <Image fill quality={60} sizes="(max-aspect-ratio: 3/2) 150vh, 100vw" loading="eager" fetchPriority="high" src="/images/home/hero-bg.jpg" alt="Дома базы отдыха Хижина лесника в буковом лесу Архыза" className="absolute inset-0 h-full w-full object-cover" />
       </picture>
-      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-[#06130d]/65 via-[#06130d]/65 to-[#102219]" />
-      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#06130d]/35 via-[#06130d]/15 to-transparent" />
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-[#06130d]/55 via-[#06130d]/55 to-[#102219]/95" />
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#06130d]/30 via-[#06130d]/10 to-transparent" />
       {AUTUMN_ATMOSPHERE.enabled && <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden [contain:paint]"><AutumnAtmosphere /></div>}
       <div className="relative z-10 mx-auto flex w-full max-w-[1400px] justify-end px-4 sm:px-6"><HeroBadges /></div>
-      <div className="relative z-[31] mx-auto my-auto w-full max-w-[1400px] px-4 py-12 sm:px-6">
+      <div className="relative z-[31] mx-auto my-auto flex w-full max-w-[1400px] flex-col items-center px-4 py-12 text-center sm:px-6">
         <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-[#f3e6cf] sm:text-sm">База отдыха Хижина лесника</p>
-        <h1 className="mt-4 max-w-4xl font-moderustic text-4xl font-bold leading-[1.12] text-balance sm:text-5xl lg:text-6xl">Уединенный отдых<br className="hidden sm:block" /> в буковом лесу Архыза</h1>
-        <p className="mt-5 max-w-2xl font-medium leading-7 text-ink sm:text-lg sm:leading-8">Идеальное место для отдыха. Насладитесь природой, лесом и свежим горным воздухом. Дома с огороженной территорией, тихие вечера у костра и панорамные окна с видом на горы. Приезжайте вдвоём, с детьми или в компании друзей. До СПА-комплекса и ресторана — 100 метров.</p>
+        <h1 className="mt-4 max-w-4xl font-moderustic text-4xl font-medium leading-[1.12] text-balance sm:text-5xl lg:text-6xl">Уединенный отдых<br className="hidden sm:block" /> в буковом лесу Архыза</h1>
+        <p className="mt-5 max-w-5xl font-medium leading-7 text-ink sm:text-lg sm:leading-8">Идеальное место для отдыха. Дома с огороженной территорией, тихие вечера у костра и панорамные окна с видом на горы. Приезжайте вдвоём, с детьми или в компании друзей. До СПА-комплекса и ресторана — 100 метров.</p>
         <Link href="/booking" className="mt-8 inline-flex rounded-full bg-action px-7 py-4 text-sm font-semibold text-on-action transition hover:bg-action-hover">Проверить свободные даты</Link>
       </div>
     </section>
@@ -72,13 +71,6 @@ export default function HomePage() {
         <KonturBookingWidget id="booking" className="mb-10 px-0 sm:px-0" />
         <p className="section-eyebrow text-xs uppercase tracking-[0.2em] text-accent">Ваш дом в Архызе</p>
         <h2 className="mt-3 font-moderustic text-3xl font-bold sm:text-4xl">Выберите свой дом в лесу</h2>
-        <p className="mt-4 leading-relaxed text-muted">Всего три дома:</p>
-        <ul className="mt-2 flex flex-col gap-x-6 gap-y-2 text-sm leading-relaxed text-muted sm:flex-row sm:flex-wrap sm:text-base">
-          {CABIN_LIST.map(cabin => <li key={cabin.id} className="flex flex-wrap items-baseline gap-x-1 sm:flex-nowrap">
-            <Link href={cabin.slug} className="whitespace-nowrap text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent">{cabin.cardTitle}</Link>
-            <span className="whitespace-nowrap">– {cabin.cardGuests}, {cabin.cardArea}</span>
-          </li>)}
-        </ul>
         <div className="mt-8"><CabinShowcase /></div>
         </div>
       </section>

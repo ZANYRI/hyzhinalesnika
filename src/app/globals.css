@@ -40,7 +40,7 @@
   color: var(--text-primary);
 }
 
-/* Photographs and the occasional emerald panel retain their own contrast. */
+/* Photographs and the occasional coloured panel retain their own contrast. */
 [data-tone="photo"],
 [data-tone="emerald"] {
   --bg-canvas: #102219;
