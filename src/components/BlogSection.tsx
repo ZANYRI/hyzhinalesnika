@@ -25,7 +25,7 @@ export function BlogSection() {
         return (
           <article
             key={post.slug}
-            className={`group flex flex-col justify-between overflow-hidden rounded-3xl border border-line bg-surface p-4 transition hover:border-accent/45 sm:p-5 ${
+            className={`content-card group flex flex-col justify-between overflow-hidden rounded-3xl border border-line bg-surface p-4 transition hover:border-accent/45 sm:p-5 ${
               isFeatured ? "lg:col-span-7" : "lg:col-span-5"
             }`}
           >
@@ -60,7 +60,7 @@ export function BlogSection() {
                 <EyeCount views={post.views} />
               </div>
 
-              <h3 className="mt-3 px-1 font-moderustic text-xl font-bold leading-snug text-ink transition group-hover:text-accent sm:text-2xl">
+              <h3 className="mt-3 px-1 font-moderustic text-xl font-bold leading-snug text-ink transition group-hover:text-accent-hover sm:text-2xl">
                 <Link href={post.href}>{post.title}</Link>
               </h3>
 
@@ -74,7 +74,7 @@ export function BlogSection() {
             <div className="mt-6 px-1 pb-1">
               <Link
                 href={post.href}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink transition group-hover:text-accent"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink transition group-hover:text-accent-hover"
               >
                 <span>Читать путеводитель</span>
                 <ArrowRight

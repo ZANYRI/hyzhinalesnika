@@ -15,7 +15,7 @@ const activities = [
 export function SeasonalExperiences() {
   return <>
     <section aria-label="Скидки для наших гостей" className="mb-8 grid gap-4 sm:grid-cols-2">
-      <div className="rounded-2xl border border-accent/30 bg-surface/70 p-5 sm:p-6">
+      <div className="content-card rounded-2xl border border-line bg-soft p-5 sm:p-6">
         <p className="text-[11px] font-medium uppercase tracking-widest text-muted">Для наших гостей</p>
         <div className="mt-3 flex flex-col items-start gap-3 lg:flex-row lg:gap-5">
           <p className="shrink-0 font-moderustic text-4xl font-semibold text-accent">5%</p>
@@ -25,7 +25,7 @@ export function SeasonalExperiences() {
           </div>
         </div>
       </div>
-      <div className="rounded-2xl border border-accent/30 bg-surface/70 p-5 sm:p-6">
+      <div className="content-card rounded-2xl border border-line bg-soft p-5 sm:p-6">
         <p className="text-[11px] font-medium uppercase tracking-widest text-muted">Знакомство с животными</p>
         <div className="mt-3 flex flex-col items-start gap-3 lg:flex-row lg:gap-5">
           <p className="shrink-0 font-moderustic text-4xl font-semibold text-accent">10–20%</p>
@@ -38,7 +38,7 @@ export function SeasonalExperiences() {
       </div>
     </section>
     <div className="grid gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-    {activities.map(activity => <Link key={activity.title} href={activity.href} target={activity.href.startsWith("https://") ? "_blank" : undefined} rel={activity.href.startsWith("https://") ? "noopener noreferrer" : undefined} className="activity-wood-frame group flex h-full flex-col p-4 transition sm:p-5">
+    {activities.map(activity => <Link key={activity.title} href={activity.href} target={activity.href.startsWith("https://") ? "_blank" : undefined} rel={activity.href.startsWith("https://") ? "noopener noreferrer" : undefined} className="content-card interactive-card activity-wood-frame group flex h-full flex-col p-4 transition sm:p-5">
       <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-soft">
         <Image fill sizes={activity.imageScale
           // The river photo is deliberately enlarged 1.4x; retain enough pixels for that crop.
@@ -50,7 +50,7 @@ export function SeasonalExperiences() {
         <p className="text-[11px] font-medium uppercase tracking-widest text-accent">{activity.tag}</p>
         <h3 className="mt-2 font-moderustic text-xl font-semibold leading-snug text-ink">{activity.title}</h3>
         <p className="mt-3 mb-5 text-sm leading-relaxed text-muted">{activity.text}</p>
-        <span className="mt-auto inline-flex items-center gap-2 text-xs font-semibold text-accent">{activity.href==="/spa" ? "О СПА-комплексе" : activity.href.startsWith("https://yandex.ru/maps/") ? "Открыть на карте" : "Подробнее"}<ArrowUpRight size={16}/></span>
+        <span className="card-link-label mt-auto inline-flex items-center gap-2 text-xs font-semibold text-accent">{activity.href==="/spa" ? "О СПА-комплексе" : activity.href.startsWith("https://yandex.ru/maps/") ? "Открыть на карте" : "Подробнее"}<ArrowUpRight size={16}/></span>
       </div>
     </Link>)}
     </div>

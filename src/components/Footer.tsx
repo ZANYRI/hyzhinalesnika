@@ -14,12 +14,12 @@ import { AnalyticsSettingsButton } from "./CookieNotice";
 
 export function Footer() {
   return (
-    <footer className="mt-20 border-t border-line bg-canvas pt-16 pb-12 text-ink">
+    <footer className="border-t border-line bg-band pt-16 pb-12 text-ink">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           {/* Brand & Messengers */}
           <div className="min-w-0 md:col-span-5">
-            <Link href="/" prefetch={false} aria-label='База отдыха "Хижина лесника" – на главную' className="inline-flex transition hover:opacity-85">
+            <Link href="/" prefetch={false} aria-label='База отдыха "Хижина лесника" – на главную' className="inline-flex rounded-xl bg-white px-3 py-2 transition hover:opacity-85">
               <Image
                 src="/images/brand/logo.png"
                 alt='База отдыха "Хижина лесника"'
@@ -50,7 +50,7 @@ export function Footer() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 transition hover:text-accent"
+                      className="inline-flex items-center gap-1 transition hover:text-accent-hover"
                     >
                       <span>{item.label}</span>
                       <ArrowUpRight size={14} />
@@ -59,7 +59,7 @@ export function Footer() {
                     <Link
                       href={item.href}
                       prefetch={item.href.startsWith("/#") ? false : "auto"}
-                      className="transition hover:text-accent"
+                      className="transition hover:text-accent-hover"
                     >
                       {item.label}
                     </Link>
@@ -69,7 +69,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/booking"
-                  className="transition hover:text-accent"
+                  className="transition hover:text-accent-hover"
                 >
                   Онлайн-календарь дат
                 </Link>
@@ -103,7 +103,7 @@ export function Footer() {
                 <Phone size={18} className="shrink-0 text-accent" />
                 <a
                   href={SITE_CONFIG.phoneHref}
-                  className="font-semibold text-ink transition hover:text-accent"
+                  className="font-semibold text-ink transition hover:text-accent-hover"
                 >
                   {SITE_CONFIG.phoneDisplay}
                 </a>
@@ -116,7 +116,7 @@ export function Footer() {
                 />
                 <a
                   href={`mailto:${SITE_CONFIG.email}`}
-                  className="text-muted transition hover:text-accent"
+                  className="text-muted transition hover:text-accent-hover"
                 >
                   {SITE_CONFIG.email}
                 </a>
@@ -142,7 +142,7 @@ export function Footer() {
                 href={SITE_CONFIG.registryUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent underline decoration-accent/50 hover:text-accent"
+                className="text-accent underline decoration-accent/50 hover:text-accent-hover"
               >
                 {SITE_CONFIG.registryNumber}
               </a>

@@ -54,32 +54,32 @@ export default function HowToGetToArkhyz2026Page() {
             </h2>
             <ul className="mt-3 grid grid-cols-1 gap-2 text-sm text-accent md:grid-cols-2">
               <li>
-                <a href="#car" className="transition hover:text-accent">
+                <a href="#car" className="transition hover:text-accent-hover">
                   1. Маршрут на автомобиле из крупных городов
                 </a>
               </li>
               <li>
-                <a href="#bus" className="transition hover:text-accent">
+                <a href="#bus" className="transition hover:text-accent-hover">
                   2. Автобусы и междугороднее такси
                 </a>
               </li>
               <li>
-                <a href="#airplane" className="transition hover:text-accent">
+                <a href="#airplane" className="transition hover:text-accent-hover">
                   3. Ближайшие аэропорты прилёта
                 </a>
               </li>
               <li>
-                <a href="#taxi" className="transition hover:text-accent">
+                <a href="#taxi" className="transition hover:text-accent-hover">
                   4. Трансфер из аэропорта и ориентиры по стоимости
                 </a>
               </li>
               <li>
-                <a href="#to-base" className="transition hover:text-accent">
+                <a href="#to-base" className="transition hover:text-accent-hover">
                   5. Финальный участок до «Хижины лесника»
                 </a>
               </li>
               <li>
-                <a href="#faq" className="transition hover:text-accent">
+                <a href="#faq" className="transition hover:text-accent-hover">
                   6. Частые вопросы водителей и туристов (2026)
                 </a>
               </li>
@@ -248,7 +248,7 @@ export default function HowToGetToArkhyz2026Page() {
                   href="https://yandex.ru/maps/-/CLhG74Ky"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-accent underline hover:text-accent"
+                  className="font-medium text-accent underline hover:text-accent-hover"
                 >
                   открыть в Яндекс Картах
                 </a>

@@ -21,7 +21,7 @@ export default function BookingPage() {
       <Header variant="inner" bookingAnchor="#booking" />
 
       <main className="mx-auto max-w-[1400px] px-4 pt-10 pb-24 sm:px-6 sm:pt-14">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="page-intro mx-auto max-w-2xl text-center">
           <h1 className="font-moderustic text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
             Онлайн-бронирование домов в Архызе
           </h1>

@@ -54,7 +54,7 @@ export function Header({ variant = "inner" }: HeaderProps) {
           >
             {HEADER_LINKS.map((item) => (
               <Link key={item.target} href={item.target} prefetch={item.target.startsWith("/#") ? false : "auto"} onClick={() => setDrawerOpen(false)}
-                className="whitespace-nowrap text-xs font-medium 2xl:text-[13.5px] text-muted transition hover:text-accent cursor-pointer"
+                className="whitespace-nowrap text-xs font-medium 2xl:text-[13.5px] text-muted transition hover:text-accent-hover cursor-pointer"
               >
                 {item.label}</Link>
             ))}
@@ -64,7 +64,7 @@ export function Header({ variant = "inner" }: HeaderProps) {
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             <a
               href={SITE_CONFIG.phoneHref}
-              className="hidden whitespace-nowrap text-sm font-semibold text-ink transition hover:text-accent min-[1700px]:inline-block"
+              className="hidden whitespace-nowrap text-sm font-semibold text-ink transition hover:text-accent-hover min-[1700px]:inline-block"
             >
               {SITE_CONFIG.phoneDisplay}
             </a>
@@ -132,7 +132,7 @@ export function Header({ variant = "inner" }: HeaderProps) {
             <nav className="mt-6 flex flex-col gap-1">
               {HEADER_LINKS.map((item) => (
                 <Link key={item.target} href={item.target} prefetch={item.target.startsWith("/#") ? false : "auto"} onClick={() => setDrawerOpen(false)}
-                  className="rounded-xl px-3 py-3 text-left font-moderustic text-base font-medium text-ink transition hover:bg-surface hover:text-accent cursor-pointer"
+                  className="rounded-xl px-3 py-3 text-left font-moderustic text-base font-medium text-ink transition hover:bg-surface hover:text-accent-hover cursor-pointer"
                 >
                   {item.label}</Link>
               ))}

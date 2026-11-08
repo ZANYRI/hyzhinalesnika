@@ -66,10 +66,11 @@ export default function HomePage() {
     <main>
       <HomeBenefits />
       <AudienceStories />
-      <section id="cabins" className="mx-auto max-w-[1400px] px-4 pt-12 sm:px-6 sm:pt-16">
+      <section id="cabins" className="section-band scroll-mt-24">
+        <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-20">
         <h2 id="online-booking" className="mb-4 scroll-mt-28 text-center font-moderustic text-2xl font-bold leading-tight text-ink sm:text-3xl">Забронировать онлайн</h2>
         <KonturBookingWidget id="booking" className="mb-10 px-0 sm:px-0" />
-        <p className="text-xs uppercase tracking-[0.2em] text-accent">Ваш дом в Архызе</p>
+        <p className="section-eyebrow text-xs uppercase tracking-[0.2em] text-accent">Ваш дом в Архызе</p>
         <h2 className="mt-3 font-moderustic text-3xl font-bold sm:text-4xl">Выберите свой дом в лесу</h2>
         <p className="mt-4 leading-relaxed text-muted">Всего три дома:</p>
         <ul className="mt-2 flex flex-col gap-x-6 gap-y-2 text-sm leading-relaxed text-muted sm:flex-row sm:flex-wrap sm:text-base">
@@ -79,23 +80,26 @@ export default function HomePage() {
           </li>)}
         </ul>
         <div className="mt-8"><CabinShowcase /></div>
+        </div>
       </section>
-      <section id="sez1" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">
-        <p className="text-xs uppercase tracking-[0.2em] text-accent">Отдых в вашем ритме</p>
+      <section id="sez1" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-16 sm:px-6 sm:pt-20">
+        <p className="section-eyebrow text-xs uppercase tracking-[0.2em] text-accent">Отдых в вашем ритме</p>
         <h2 className="mt-3 font-moderustic text-3xl font-bold sm:text-4xl">Чем заняться</h2>
         <p className="mt-4 mb-8 max-w-2xl text-muted">Начните утро с прогулки по буковому лесу, отправьтесь навстречу горам или посвятите день себе в СПА.</p>
         <SeasonalExperiences />
       </section>
       <BookingAssistance />
-      <section id="faq" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">
-        <p className="text-xs uppercase tracking-[0.2em] text-accent">До встречи в лесу</p>
+      <section id="faq" className="section-band scroll-mt-28">
+        <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 sm:py-20">
+        <p className="section-eyebrow text-xs uppercase tracking-[0.2em] text-accent">До встречи в лесу</p>
         <h2 className="mt-3 mb-9 font-moderustic text-3xl font-bold sm:text-4xl">Частые вопросы</h2>
         <FaqAccordion />
+        </div>
       </section>
         {/* 8. DARK-FOREST GUEST REVIEWS + INTERACTIVE MAP & CONCIERGE */}
         <section
           id="reviews"
-          className="mx-auto max-w-[1400px] scroll-mt-24 px-4 pt-24 pb-20 sm:px-6 sm:pt-32 sm:pb-28"
+          className="mx-auto max-w-[1400px] scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20"
         >
           <Reveal>
             <div className="max-w-2xl">
@@ -161,7 +165,7 @@ export default function HomePage() {
                       </p>
                       <Link
                         href="/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety"
-                        className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-accent transition hover:text-accent"
+                        className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-accent transition hover:text-accent-hover"
                       >
                         <span>Подробный гид по маршрутам 2026</span>
                         <ArrowRight size={13} />

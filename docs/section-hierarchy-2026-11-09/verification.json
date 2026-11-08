@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-11-08T21:30:58.038Z",
+  "base": "http://127.0.0.1:3000",
+  "homepageStatus": 200,
+  "homeBands": [
+    "benefits",
+    "cabins",
+    "faq"
+  ],
+  "interactiveCssInBuild": true,
+  "staticJsxTextPreservedFiles": 23,
+  "businessAndLegalDataUnchanged": true,
+  "contrast": [
+    {
+      "label": "body",
+      "foreground": "#202d24",
+      "background": "#ffffff",
+      "ratio": 14.36
+    },
+    {
+      "label": "secondary",
+      "foreground": "#435349",
+      "background": "#ffffff",
+      "ratio": 8.16
+    },
+    {
+      "label": "secondary on band",
+      "foreground": "#435349",
+      "background": "#eef2ed",
+      "ratio": 7.22
+    },
+    {
+      "label": "heading",
+      "foreground": "#123d2d",
+      "background": "#ffffff",
+      "ratio": 12.13
+    },
+    {
+      "label": "link",
+      "foreground": "#155c48",
+      "background": "#ffffff",
+      "ratio": 7.91
+    },
+    {
+      "label": "link hover",
+      "foreground": "#083d2c",
+      "background": "#ffffff",
+      "ratio": 12.25
+    },
+    {
+      "label": "primary action",
+      "foreground": "#ffffff",
+      "background": "#155c48",
+      "ratio": 7.91
+    }
+  ],
+  "renderedBrowserCheck": false
+}

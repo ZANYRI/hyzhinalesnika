@@ -73,7 +73,7 @@ export function GalleryMarquee() {
             type="button"
             onClick={() => setLightboxIdx(null)}
             aria-label="Закрыть"
-            className="absolute top-5 right-5 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface text-ink transition hover:border-accent hover:text-accent cursor-pointer"
+            className="absolute top-5 right-5 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface text-ink transition hover:border-accent hover:text-accent-hover cursor-pointer"
           >
             <X size={20} />
           </button>
@@ -87,7 +87,7 @@ export function GalleryMarquee() {
               );
             }}
             aria-label="Предыдущее фото"
-            className="absolute left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface/90 text-ink shadow-lg transition hover:border-accent hover:text-accent cursor-pointer"
+            className="absolute left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface/90 text-ink shadow-lg transition hover:border-accent hover:text-accent-hover cursor-pointer"
           >
             <CaretLeft size={22} weight="bold" />
           </button>
@@ -110,7 +110,7 @@ export function GalleryMarquee() {
               setLightboxIdx((lightboxIdx + 1) % HOME_GALLERY.length);
             }}
             aria-label="Следующее фото"
-            className="absolute right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface/90 text-ink shadow-lg transition hover:border-accent hover:text-accent cursor-pointer"
+            className="absolute right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface/90 text-ink shadow-lg transition hover:border-accent hover:text-accent-hover cursor-pointer"
           >
             <CaretRight size={22} weight="bold" />
           </button>

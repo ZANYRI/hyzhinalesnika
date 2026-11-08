@@ -58,7 +58,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
   const activeImage = images[current] ?? images[0];
 
   return (
-    <div className="rounded-3xl border border-line bg-surface p-3 sm:p-4">
+    <div className="content-card rounded-3xl border border-line bg-surface p-3 sm:p-4">
       {/* Main Architectural Photo Stage */}
       <div className="relative grid gap-3 overflow-hidden rounded-2xl bg-soft lg:grid-cols-[2fr_1fr]">
         <button
@@ -85,7 +85,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
           type="button"
           onClick={prev}
           aria-label="Предыдущее фото"
-          className="absolute top-1/2 left-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-canvas/75 text-ink backdrop-blur-md transition hover:border-accent hover:text-accent active:scale-[0.98] cursor-pointer"
+          className="absolute top-1/2 left-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-canvas/75 text-ink backdrop-blur-md transition hover:border-accent hover:text-accent-hover active:scale-[0.98] cursor-pointer"
         >
           <CaretLeft size={18} weight="bold" />
         </button>
@@ -94,7 +94,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
           type="button"
           onClick={next}
           aria-label="Следующее фото"
-          className="absolute top-1/2 right-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-canvas/75 text-ink backdrop-blur-md transition hover:border-accent hover:text-accent active:scale-[0.98] cursor-pointer"
+          className="absolute top-1/2 right-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-canvas/75 text-ink backdrop-blur-md transition hover:border-accent hover:text-accent-hover active:scale-[0.98] cursor-pointer"
         >
           <CaretRight size={18} weight="bold" />
         </button>
@@ -107,7 +107,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
         <button
           type="button"
           onClick={() => setLightboxOpen(true)}
-          className="inline-flex items-center gap-1.5 font-medium text-muted transition hover:text-accent cursor-pointer"
+          className="inline-flex items-center gap-1.5 font-medium text-muted transition hover:text-accent-hover cursor-pointer"
         >
           <CornersOut size={15} />
           <span>Во весь экран</span>
@@ -141,7 +141,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
               prev();
             }}
             aria-label="Предыдущее фото"
-            className="absolute left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface/90 text-ink shadow-lg transition hover:border-accent hover:text-accent cursor-pointer"
+            className="absolute left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface/90 text-ink shadow-lg transition hover:border-accent hover:text-accent-hover cursor-pointer"
           >
             <CaretLeft size={22} weight="bold" />
           </button>
@@ -167,7 +167,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
               next();
             }}
             aria-label="Следующее фото"
-            className="absolute right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface/90 text-ink shadow-lg transition hover:border-accent hover:text-accent cursor-pointer"
+            className="absolute right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface/90 text-ink shadow-lg transition hover:border-accent hover:text-accent-hover cursor-pointer"
           >
             <CaretRight size={22} weight="bold" />
           </button>

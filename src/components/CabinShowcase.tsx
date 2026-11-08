@@ -87,7 +87,7 @@ export function CabinShowcase() {
       {/* Main Asymmetric Showcase Stage */}
       <div className="mt-7 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
         {/* Left 7 cols: Photo Stage + Filmstrip */}
-        <div className="flex flex-col rounded-3xl border border-line bg-surface p-3 sm:p-4 lg:col-span-7 lg:self-start">
+        <div className="content-card flex flex-col rounded-3xl border border-line bg-surface p-3 sm:p-4 lg:col-span-7 lg:self-start">
           <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-soft">
               <div
                 key={currentPhoto.src}
@@ -98,7 +98,7 @@ export function CabinShowcase() {
               type="button"
               onClick={prevPhoto}
               aria-label="Предыдущее фото дома"
-              className="absolute top-1/2 left-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-canvas/75 text-ink backdrop-blur-md transition hover:border-accent hover:text-accent active:scale-[0.98] cursor-pointer"
+              className="absolute top-1/2 left-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-canvas/75 text-ink backdrop-blur-md transition hover:border-accent hover:text-accent-hover active:scale-[0.98] cursor-pointer"
             >
               <CaretLeft size={18} weight="bold" />
             </button>
@@ -107,7 +107,7 @@ export function CabinShowcase() {
               type="button"
               onClick={nextPhoto}
               aria-label="Следующее фото дома"
-              className="absolute top-1/2 right-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-canvas/75 text-ink backdrop-blur-md transition hover:border-accent hover:text-accent active:scale-[0.98] cursor-pointer"
+              className="absolute top-1/2 right-3 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-canvas/75 text-ink backdrop-blur-md transition hover:border-accent hover:text-accent-hover active:scale-[0.98] cursor-pointer"
             >
               <CaretRight size={18} weight="bold" />
             </button>
@@ -116,7 +116,7 @@ export function CabinShowcase() {
         </div>
 
         {/* Right 5 cols: Architectural Spec & Action Panel */}
-        <div className="flex flex-col justify-between rounded-3xl border border-line bg-surface p-5 sm:p-6 lg:col-span-5">
+        <div className="content-card flex flex-col justify-between rounded-3xl border border-line bg-surface p-5 sm:p-6 lg:col-span-5">
           <div>
             <div className="flex flex-wrap items-baseline justify-between gap-3">
               <h3 className="font-moderustic text-2xl font-bold tracking-tight text-ink sm:text-3xl">

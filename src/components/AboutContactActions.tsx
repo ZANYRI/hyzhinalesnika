@@ -24,7 +24,7 @@ export function AboutContactActions() {
           href={SITE_CONFIG.whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-full border border-line bg-soft/75 px-5 text-sm font-medium text-ink transition hover:border-accent/60 hover:text-accent active:scale-[0.98]"
+          className="inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-full border border-line bg-soft/75 px-5 text-sm font-medium text-ink transition hover:border-accent/60 hover:text-accent-hover active:scale-[0.98]"
         >
           <WhatsappLogo size={18} />
           <span>WhatsApp</span>
@@ -34,7 +34,7 @@ export function AboutContactActions() {
           href={SITE_CONFIG.telegramHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-full border border-line bg-soft/75 px-5 text-sm font-medium text-ink transition hover:border-accent/60 hover:text-accent active:scale-[0.98]"
+          className="inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-full border border-line bg-soft/75 px-5 text-sm font-medium text-ink transition hover:border-accent/60 hover:text-accent-hover active:scale-[0.98]"
         >
           <TelegramLogo size={18} />
           <span>Telegram</span>
@@ -44,7 +44,7 @@ export function AboutContactActions() {
           href={SITE_CONFIG.maxHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-full border border-line bg-soft/75 px-5 text-sm font-medium text-ink transition hover:border-accent/60 hover:text-accent active:scale-[0.98]"
+          className="inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-full border border-line bg-soft/75 px-5 text-sm font-medium text-ink transition hover:border-accent/60 hover:text-accent-hover active:scale-[0.98]"
         >
           <ChatCircle size={18} />
           <span>MAX</span>
@@ -54,7 +54,7 @@ export function AboutContactActions() {
           href={SITE_CONFIG.instagramHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-full border border-line bg-soft/75 px-5 text-sm font-medium text-ink transition hover:border-accent/60 hover:text-accent active:scale-[0.98]"
+          className="inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-full border border-line bg-soft/75 px-5 text-sm font-medium text-ink transition hover:border-accent/60 hover:text-accent-hover active:scale-[0.98]"
         >
           <InstagramLogo size={18} />
           <span>Instagram</span>

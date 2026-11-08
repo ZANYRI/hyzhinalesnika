@@ -91,7 +91,7 @@ export function HospitalityAwards({
 
         <span className="min-w-0 leading-snug">
           <span className="flex flex-wrap items-center gap-2">
-            <span className="font-moderustic text-sm font-bold text-ink transition group-hover:text-accent">
+            <span className="font-moderustic text-sm font-bold text-ink transition group-hover:text-accent-hover">
               Хорошее место
             </span>
             <span className="inline-flex items-center gap-1 rounded-full border border-accent/35 bg-action/15 px-2 py-0.5 font-moderustic text-xs font-bold text-accent">
@@ -106,7 +106,7 @@ export function HospitalityAwards({
 
         <ArrowUpRight
           size={15}
-          className="ml-1 shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+          className="ml-1 shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-hover"
         />
       </a>
     );
@@ -128,7 +128,7 @@ export function HospitalityAwards({
 
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="font-moderustic text-base font-bold text-ink transition group-hover:text-accent">
+              <span className="font-moderustic text-base font-bold text-ink transition group-hover:text-accent-hover">
                 Хорошее место
               </span>
               <span className="inline-flex items-center gap-1 rounded-full border border-accent/40 bg-action/15 px-2.5 py-0.5 font-moderustic text-xs font-bold text-accent">
@@ -144,7 +144,7 @@ export function HospitalityAwards({
 
         <ArrowUpRight
           size={18}
-          className="shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+          className="shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-hover"
         />
       </a>
 

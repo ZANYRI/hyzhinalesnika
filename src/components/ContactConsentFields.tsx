@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CALLBACK_CONSENT, consentUrl } from "@/data/consents";
 
-const linkStyle = "underline decoration-accent/60 underline-offset-2 hover:text-accent";
+const linkStyle = "underline decoration-accent/60 underline-offset-2 hover:text-accent-hover";
 const checkboxStyle = "mt-0.5 h-4 w-4 shrink-0 accent-action";
 
 export function ContactConsentFields() {

@@ -27,11 +27,14 @@
 [data-tone="light"] {
   --bg-canvas: #ffffff;
   --bg-surface: #ffffff;
-  --bg-surface-2: #f5f7f6;
-  --text-primary: #222b27;
-  --text-secondary: #59675f;
+  --bg-surface-2: #f0f3ee;
+  --bg-band: #eef2ed;
+  --text-primary: #202d24;
+  --text-secondary: #435349;
+  --heading: #123d2d;
   --accent: #155c48;
-  --line: #dce5df;
+  --accent-hover: #083d2c;
+  --line: #c5d1c7;
   color: var(--text-primary);
 }
 
@@ -41,9 +44,12 @@
   --bg-canvas: #102219;
   --bg-surface: #173024;
   --bg-surface-2: #1d3b2b;
+  --bg-band: #102219;
   --text-primary: #ffffff;
   --text-secondary: #e0e9e3;
+  --heading: #ffffff;
   --accent: #c2e9d8;
+  --accent-hover: #ffffff;
   --line: rgb(255 255 255 / 0.25);
   color: var(--text-primary);
 }
@@ -52,9 +58,11 @@
   --color-canvas: var(--bg-canvas);
   --color-surface: var(--bg-surface);
   --color-soft: var(--bg-surface-2);
+  --color-band: var(--bg-band);
   --color-ink: var(--text-primary);
   --color-muted: var(--text-secondary);
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
   --color-line: var(--line);
   --color-action: #155c48;
   --color-action-hover: #0d4938;
@@ -72,16 +80,168 @@ html {
 
 body {
   background-color: #ffffff;
-  color: #222b27;
+  color: var(--text-primary);
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+}
+
+/* Separate complete sections while keeping the page itself white. */
+.section-band {
+  background-color: var(--bg-band);
+  border-block: 1px solid var(--line);
+}
+
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.section-eyebrow::before {
+  content: "";
+  flex: 0 0 2rem;
+  height: 1px;
+  background: currentColor;
+}
+
+:where(main h1, main h2) {
+  color: var(--heading);
+  text-wrap: balance;
+}
+
+.page-intro {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.content-stack > section + section {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.content-stack > section + section:not([class*="rounded-"]) {
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--line);
+}
+
+.content-stack > section[class*="rounded-"],
+.content-card {
+  box-shadow: 0 5px 20px rgb(18 49 33 / 0.055);
+}
+
+.content-stack > section[class*="rounded-"] {
+  border: 1px solid var(--line);
+}
+
+.content-card:not(.activity-wood-frame) {
+  border-color: var(--line);
+}
+
+.detail-sections > section + section:not(#help):not(#stay-rules) {
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+
+/* Text links and linked cards have distinct, layout-stable interaction states. */
+a[href] {
+  transition: color 160ms ease, background-color 160ms ease,
+    border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease,
+    text-decoration-color 160ms ease;
+}
+
+a[href]:not(.interactive-card):not([class*="bg-"]):not(:has(img, picture)) {
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1.5px;
+}
+
+:where(a[href], button, summary, input, select, textarea):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+a[href]:not(.interactive-card):not([class*="bg-"]):not(:has(img, picture)):focus-visible {
+  color: var(--accent-hover);
+  text-decoration-line: underline;
+}
+
+.faq-question,
+.card-link-label {
+  transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+@media (hover: hover) {
+  a[href]:not(.interactive-card):not([class*="bg-"]):not(:has(img, picture)):hover {
+    color: var(--accent-hover);
+    text-decoration-line: underline;
+  }
+
+  .interactive-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 10px 28px rgb(18 49 33 / 0.11);
+    transform: translateY(-2px);
+  }
+
+  .interactive-card:hover h3,
+  summary:hover .faq-question {
+    color: var(--accent-hover);
+  }
+
+  details.content-card:hover {
+    border-color: var(--accent);
+  }
+}
+
+.interactive-card:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 10px 28px rgb(18 49 33 / 0.11);
+}
+
+.interactive-card:focus-visible h3 {
+  color: var(--accent-hover);
+}
+
+.content-card > summary:focus-visible {
+  outline-offset: -3px;
+}
+
+.content-card > summary:focus-visible .faq-question {
+  color: var(--accent-hover);
+}
+
+.interactive-card[data-tone="photo"]:focus-visible {
+  outline-offset: -5px;
+}
+
+.interactive-card:is(:hover, :focus-visible) .card-link-label {
+  color: var(--accent-hover);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.interactive-card[data-tone="photo"]:hover {
+  transform: none;
+}
+
+details[open] > summary .faq-question {
+  color: var(--accent-hover);
+}
+
+details.content-card[open] {
+  border-color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a[href] { transition: none; }
+  .faq-question, .card-link-label { transition: none; }
+  .interactive-card:hover { transform: none; }
 }
 
 /* Solid light surface for the booking controls and utility panels. */
 .forest-glass {
   background: #ffffff;
-  border: 1px solid #dce5df;
-  box-shadow: 0 8px 32px rgb(24 47 36 / 0.05);
+  border: 1px solid #c5d1c7;
+  box-shadow: 0 8px 28px rgb(24 47 36 / 0.07);
 }
 
 @media (prefers-reduced-transparency: reduce) {

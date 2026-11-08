@@ -87,7 +87,7 @@ export function SearchClient() {
               className="group flex items-center justify-between gap-4 rounded-2xl border border-line bg-soft/55 p-5 transition hover:border-accent/45"
             >
               <div>
-                <h2 className="font-moderustic text-lg font-bold text-ink transition group-hover:text-accent">
+                <h2 className="font-moderustic text-lg font-bold text-ink transition group-hover:text-accent-hover">
                   {item.cabinId && (
                     <CabinTreeEmoji id={item.cabinId} className="mr-1.5" />
                   )}
@@ -99,7 +99,7 @@ export function SearchClient() {
               </div>
               <ArrowRight
                 size={18}
-                className="shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:text-accent"
+                className="shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:text-accent-hover"
               />
             </Link>
           ))

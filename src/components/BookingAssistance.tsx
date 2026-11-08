@@ -26,7 +26,7 @@ export function BookingAssistance() {
       trackMetricaGoal("callback_sent", { form: "booking_assistance" });
     } catch (error) { setErrorMessage(error instanceof Error ? error.message : "Не удалось отправить заявку."); setStatus("error"); }
   }
-  return <section id="help" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 pt-24 sm:px-6 sm:pt-32">
+  return <section id="help" className="mx-auto max-w-[1400px] scroll-mt-28 px-4 py-16 sm:px-6 sm:py-20">
     <div data-tone="emerald" className="relative overflow-hidden rounded-[2rem] bg-action px-5 py-14 sm:px-12 sm:py-20">
       <TreeEvergreen aria-hidden="true" weight="thin" className="pointer-events-none absolute -bottom-12 -left-20 h-80 w-80 text-accent/10" />
       <TreeEvergreen aria-hidden="true" weight="thin" className="pointer-events-none absolute -top-12 -right-12 h-80 w-80 rotate-180 text-accent/10" />

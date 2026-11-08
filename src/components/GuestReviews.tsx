@@ -68,7 +68,7 @@ function FiveStars({ size = 14 }: { size?: number }) {
 
 export function GuestReviews() {
   return (
-    <div className="flex h-full w-full flex-col justify-between rounded-3xl border border-line bg-surface p-5 sm:p-7">
+    <div className="content-card flex h-full w-full flex-col justify-between rounded-3xl border border-line bg-surface p-5 sm:p-7">
       {/* Top Rating Header */}
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-5">
         <div className="flex items-center gap-4">
@@ -131,7 +131,7 @@ export function GuestReviews() {
           href={SITE_CONFIG.yandexReviewsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex h-11 w-full items-center justify-center gap-2 rounded-full border border-line bg-soft/60 px-5 text-xs font-semibold text-ink transition hover:border-accent/60 hover:text-accent"
+          className="group flex h-11 w-full items-center justify-center gap-2 rounded-full border border-line bg-soft/60 px-5 text-xs font-semibold text-ink transition hover:border-accent/60 hover:text-accent-hover"
         >
           <span>Больше отзывов на Яндекс Картах</span>
           <ArrowUpRight

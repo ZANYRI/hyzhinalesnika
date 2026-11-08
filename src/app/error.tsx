@@ -31,7 +31,7 @@ export default function GlobalError({
         </button>
         <Link
           href="/"
-          className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full border border-line bg-surface px-7 text-sm font-medium text-ink transition hover:border-accent/60 hover:text-accent"
+          className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-full border border-line bg-surface px-7 text-sm font-medium text-ink transition hover:border-accent/60 hover:text-accent-hover"
         >
           На главную
         </Link>
