@@ -33,8 +33,8 @@ export function HomeBenefits() {
       <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {benefits.map(b => <Link key={b.title} href={b.href} data-tone={b.image ? "photo" : undefined} className={`content-card interactive-card group relative isolate flex min-h-64 flex-col justify-between overflow-hidden rounded-2xl border border-line p-6 transition ${b.image ? "min-h-80 bg-action text-on-action lg:row-span-2 lg:min-h-full" : "bg-surface"}`}>
           {b.image && <><ForestBenefitImage /><div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/65 to-[#06130d]/65"/></>}
-          <div className="flex items-start justify-between gap-4"><span className="text-xs font-semibold uppercase tracking-widest text-accent">{b.note}</span><b.icon size={48} weight="thin" className="shrink-0 text-accent" /></div>
-          <div className="mt-7"><h3 className="font-moderustic text-2xl font-bold">{b.title}</h3><p className="mt-3 max-w-md text-sm leading-relaxed text-muted">{b.text}</p><span className="card-link-label mt-5 inline-block text-xs font-semibold text-accent">Подробнее ↗</span></div>
+          <div className="flex items-start justify-between gap-4"><span className="text-xs font-semibold uppercase tracking-widest text-wood">{b.note}</span><b.icon size={48} weight="thin" className="shrink-0 text-accent" /></div>
+          <div className="mt-7"><h3 className="font-moderustic text-2xl font-bold">{b.title}</h3><p className="mt-3 max-w-md text-sm leading-relaxed text-muted">{b.text}</p><span className="card-link-label mt-5 inline-block text-xs font-semibold text-wood">Подробнее ↗</span></div>
         </Link>)}
       </div>
     </div>
@@ -51,12 +51,12 @@ export function AudienceStories() {
     <div className="content-card relative overflow-hidden rounded-[2rem] border border-line bg-canvas">
       <div className="relative z-10 mx-auto max-w-2xl px-6 py-10 text-center text-ink lg:absolute lg:top-0 lg:left-1/2 lg:w-[48%] lg:-translate-x-1/2 lg:rounded-b-[2rem] lg:bg-canvas lg:px-10 lg:py-9">
         <TreeEvergreen size={30} weight="thin" className="mx-auto mb-4" />
-        <h2 className="font-moderustic text-2xl font-medium leading-snug sm:text-3xl">Отдых, который хочется <span className="font-semibold text-accent">повторить</span></h2>
+        <h2 className="font-moderustic text-2xl font-medium leading-snug sm:text-3xl">Отдых, который хочется <span className="font-semibold text-wood">повторить</span></h2>
         <p className="mt-3 text-sm leading-relaxed opacity-75">Вдвоём, с семьёй или в кругу друзей. Ближе к природе и друг к другу.</p>
       </div>
       <div className="grid gap-px bg-line lg:grid-cols-3">{stories.map(story => <Link href={story.href} key={story.title} data-tone="photo" className={`interactive-card group relative flex min-h-[420px] items-end overflow-hidden p-7 sm:p-9 lg:min-h-[660px] ${story.position}`}>
         <Image fill quality={60} fetchPriority="low" sizes="(min-width: 1024px) 33vw, (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)" src={story.image} alt={story.alt} loading="lazy" style={{objectPosition:story.imagePosition}} className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-[#06130d]/95 via-[#06130d]/45 to-[#06130d]/15" />
-        <div className="relative"><h3 className="font-moderustic text-2xl font-bold">{story.title}</h3><p className="mt-4 text-sm leading-relaxed text-muted">{story.text}</p><span className="card-link-label mt-5 inline-block text-sm font-semibold text-accent">{story.linkText} ↗</span></div>
+        <div className="relative"><h3 className="font-moderustic text-2xl font-bold">{story.title}</h3><p className="mt-4 text-sm leading-relaxed text-muted">{story.text}</p><span className="card-link-label mt-5 inline-block text-sm font-semibold text-wood">{story.linkText} ↗</span></div>
       </Link>)}</div>
     </div>
   </section>;

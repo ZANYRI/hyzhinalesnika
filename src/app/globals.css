@@ -34,6 +34,8 @@
   --heading: #123d2d;
   --accent: #155c48;
   --accent-hover: #083d2c;
+  --wood: #795a38;
+  --wood-hover: #5d4127;
   --line: #d9d0c1;
   color: var(--text-primary);
 }
@@ -50,6 +52,8 @@
   --heading: #ffffff;
   --accent: #c2e9d8;
   --accent-hover: #ffffff;
+  --wood: #f3e6cf;
+  --wood-hover: #fff0da;
   --line: rgb(255 255 255 / 0.25);
   color: var(--text-primary);
 }
@@ -63,6 +67,8 @@
   --color-muted: var(--text-secondary);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
+  --color-wood: var(--wood);
+  --color-wood-hover: var(--wood-hover);
   --color-line: var(--line);
   --color-action: #155c48;
   --color-action-hover: #0d4938;
@@ -96,6 +102,7 @@ body {
   align-items: center;
   gap: 0.75rem;
   font-weight: 600;
+  color: var(--wood);
 }
 
 .section-eyebrow::before {
@@ -217,6 +224,10 @@ a[href]:not(.interactive-card):not([class*="bg-"]):not(:has(img, picture)):focus
   color: var(--accent-hover);
   text-decoration: underline;
   text-underline-offset: 0.25em;
+}
+
+.interactive-card:is(:hover, :focus-visible) .card-link-label.text-wood {
+  color: var(--wood-hover);
 }
 
 .interactive-card[data-tone="photo"]:hover {

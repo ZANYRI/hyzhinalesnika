@@ -47,10 +47,10 @@ export function SeasonalExperiences() {
           src={activity.image} alt={activity.imageAlt ?? activity.title} style={{objectPosition: activity.imagePosition, transform: activity.imageScale ? `scale(${activity.imageScale})` : undefined}} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]" />
       </div>
       <div className="flex flex-1 flex-col pt-5">
-        <p className="text-[11px] font-medium uppercase tracking-widest text-accent">{activity.tag}</p>
+        <p className="text-[11px] font-medium uppercase tracking-widest text-wood">{activity.tag}</p>
         <h3 className="mt-2 font-moderustic text-xl font-semibold leading-snug text-ink">{activity.title}</h3>
         <p className="mt-3 mb-5 text-sm leading-relaxed text-muted">{activity.text}</p>
-        <span className="card-link-label mt-auto inline-flex items-center gap-2 text-xs font-semibold text-accent">{activity.href==="/spa" ? "О СПА-комплексе" : activity.href.startsWith("https://yandex.ru/maps/") ? "Открыть на карте" : "Подробнее"}<ArrowUpRight size={16}/></span>
+        <span className="card-link-label mt-auto inline-flex items-center gap-2 text-xs font-semibold text-wood">{activity.href==="/spa" ? "О СПА-комплексе" : activity.href.startsWith("https://yandex.ru/maps/") ? "Открыть на карте" : "Подробнее"}<ArrowUpRight size={16}/></span>
       </div>
     </Link>)}
     </div>
