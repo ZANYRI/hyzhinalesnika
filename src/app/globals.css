@@ -27,14 +27,14 @@
 [data-tone="light"] {
   --bg-canvas: #ffffff;
   --bg-surface: #ffffff;
-  --bg-surface-2: #f0f3ee;
-  --bg-band: #eef2ed;
+  --bg-surface-2: #fbf8f1;
+  --bg-band: #f7f2e8;
   --text-primary: #202d24;
   --text-secondary: #435349;
   --heading: #123d2d;
   --accent: #155c48;
   --accent-hover: #083d2c;
-  --line: #c5d1c7;
+  --line: #d9d0c1;
   color: var(--text-primary);
 }
 
@@ -240,7 +240,7 @@ details.content-card[open] {
 /* Solid light surface for the booking controls and utility panels. */
 .forest-glass {
   background: #ffffff;
-  border: 1px solid #c5d1c7;
+  border: 1px solid #d9d0c1;
   box-shadow: 0 8px 28px rgb(24 47 36 / 0.07);
 }
 
