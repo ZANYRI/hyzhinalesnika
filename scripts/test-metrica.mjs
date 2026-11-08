@@ -48,6 +48,8 @@ values.set("hyzhina_analytics_consent", "damaged");
 assert.equal(consent.getAnalyticsChoice(), "unknown");
 values.set("hyzhina_analytics_consent", JSON.stringify({ version: consent.ANALYTICS_CONSENT_VERSION, choice: "granted", expiresAt: 1 }));
 assert.equal(consent.getAnalyticsChoice(), "unknown", "Expired permission is not reused");
+values.set("hyzhina_analytics_consent", JSON.stringify({ version: "2026-11-07-1", choice: "granted", expiresAt: Date.now() + 86400000 }));
+assert.equal(consent.getAnalyticsChoice(), "unknown", "Permission for the previous document version is not reused");
 trackMetricaPage(); trackMetricaGoal("kontur_booking");
 assert.equal(win.ym, undefined, "No counter initialization without explicit consent");
 

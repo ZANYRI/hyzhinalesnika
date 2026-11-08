@@ -1,5 +1,5 @@
 export type AnalyticsChoice = "unknown" | "granted" | "denied";
-export const ANALYTICS_CONSENT_VERSION = "2026-11-07-1";
+export const ANALYTICS_CONSENT_VERSION = "2026-11-09-1";
 export const ANALYTICS_SETTINGS_EVENT = "hyzhina:analytics-settings";
 const STORAGE_KEY = "hyzhina_analytics_consent";
 const CHANGE_EVENT = "hyzhina:analytics-consent";
