@@ -14,7 +14,7 @@ import { AnalyticsSettingsButton } from "./CookieNotice";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-band pt-16 pb-12 text-ink">
+    <footer className="border-t border-line bg-canvas pt-16 pb-12 text-ink">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           {/* Brand & Messengers */}
