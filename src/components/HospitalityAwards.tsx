@@ -17,7 +17,7 @@ function LaurelEmblem() {
       viewBox="0 0 32 32"
       fill="none"
       aria-hidden="true"
-      className="h-6 w-6 text-[#d49a5a]"
+      className="h-6 w-6 text-accent"
     >
       {/* Left laurel branch */}
       <path
@@ -83,30 +83,30 @@ export function HospitalityAwards({
         href={SITE_CONFIG.yandexReviewsUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="group inline-flex max-w-full items-center gap-3 rounded-2xl border border-[#d49a5a]/30 bg-[#173024] px-4 py-3 transition hover:border-[#d49a5a]/65"
+        className="group inline-flex max-w-full items-center gap-3 rounded-2xl border border-accent/30 bg-surface px-4 py-3 transition hover:border-accent/65"
       >
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#d49a5a]/25 bg-[#102219]">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-accent/25 bg-canvas">
           <LaurelEmblem />
         </span>
 
         <span className="min-w-0 leading-snug">
           <span className="flex flex-wrap items-center gap-2">
-            <span className="font-moderustic text-sm font-bold text-[#f3f5f0] transition group-hover:text-[#d49a5a]">
+            <span className="font-moderustic text-sm font-bold text-ink transition group-hover:text-accent">
               Хорошее место
             </span>
-            <span className="inline-flex items-center gap-1 rounded-full border border-[#d49a5a]/35 bg-[#d49a5a]/15 px-2 py-0.5 font-moderustic text-xs font-bold text-[#e0ab6e]">
+            <span className="inline-flex items-center gap-1 rounded-full border border-accent/35 bg-action/15 px-2 py-0.5 font-moderustic text-xs font-bold text-accent">
               <Star size={11} weight="fill" />
               <span>5,0</span>
             </span>
           </span>
-          <span className="mt-0.5 block text-[11px] text-[#a8b9ae]">
+          <span className="mt-0.5 block text-[11px] text-muted">
             Выбор пользователей Яндекса
           </span>
         </span>
 
         <ArrowUpRight
           size={15}
-          className="ml-1 shrink-0 text-[#a8b9ae] transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#d49a5a]"
+          className="ml-1 shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
         />
       </a>
     );
@@ -119,24 +119,24 @@ export function HospitalityAwards({
         href={SITE_CONFIG.yandexReviewsUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center justify-between gap-3 rounded-2xl border border-[#d49a5a]/35 bg-gradient-to-br from-[#1d3b2b] to-[#0d1f15] p-4 transition hover:border-[#d49a5a]/70"
+        className="group flex items-center justify-between gap-3 rounded-2xl border border-accent/25 bg-white p-4 transition hover:border-accent/70"
       >
         <div className="flex items-center gap-3.5">
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#d49a5a]/30 bg-[#102219]/85 shadow-inner">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-accent/30 bg-canvas/85 shadow-inner">
             <LaurelEmblem />
           </span>
 
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="font-moderustic text-base font-bold text-[#f3f5f0] transition group-hover:text-[#d49a5a]">
+              <span className="font-moderustic text-base font-bold text-ink transition group-hover:text-accent">
                 Хорошее место
               </span>
-              <span className="inline-flex items-center gap-1 rounded-full border border-[#d49a5a]/40 bg-[#d49a5a]/15 px-2.5 py-0.5 font-moderustic text-xs font-bold text-[#e0ab6e]">
+              <span className="inline-flex items-center gap-1 rounded-full border border-accent/40 bg-action/15 px-2.5 py-0.5 font-moderustic text-xs font-bold text-accent">
                 <Star size={12} weight="fill" />
                 <span>5,0</span>
               </span>
             </div>
-            <span className="mt-0.5 block text-xs text-[#a8b9ae]">
+            <span className="mt-0.5 block text-xs text-muted">
               Награда и выбор пользователей Яндекса · 65+ оценок
             </span>
           </div>
@@ -144,35 +144,35 @@ export function HospitalityAwards({
 
         <ArrowUpRight
           size={18}
-          className="shrink-0 text-[#a8b9ae] transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#d49a5a]"
+          className="shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
         />
       </a>
 
       {/* Secondary Verified Hospitality Plaques: Ubook.ru & 101Hotels.com */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#1d3b2b]/65 p-3.5">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-[#102219]/80 text-[#d49a5a]">
+        <div className="flex items-center gap-3 rounded-2xl border border-line bg-soft/65 p-3.5">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-line bg-canvas/80 text-accent">
             <SealCheck size={20} weight="duotone" />
           </span>
           <div className="min-w-0">
-            <p className="truncate font-moderustic text-sm font-bold text-[#f3f5f0]">
+            <p className="truncate font-moderustic text-sm font-bold text-ink">
               Ubook.ru
             </p>
-            <p className="truncate text-xs text-[#a8b9ae]">
+            <p className="truncate text-xs text-muted">
               Рекомендует гостям
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-[#1d3b2b]/65 p-3.5">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-[#102219]/80 text-[#d49a5a]">
+        <div className="flex items-center gap-3 rounded-2xl border border-line bg-soft/65 p-3.5">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-line bg-canvas/80 text-accent">
             <Medal size={20} weight="duotone" />
           </span>
           <div className="min-w-0">
-            <p className="truncate font-moderustic text-sm font-bold text-[#f3f5f0]">
+            <p className="truncate font-moderustic text-sm font-bold text-ink">
               101Hotels.com
             </p>
-            <p className="truncate text-xs text-[#a8b9ae]">
+            <p className="truncate text-xs text-muted">
               Проверенный объект
             </p>
           </div>

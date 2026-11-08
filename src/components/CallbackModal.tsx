@@ -60,41 +60,41 @@ export function CallbackModal({
       aria-label={title}
     >
       <div
-        className="relative max-h-[calc(100dvh-2rem)] w-full max-w-md overflow-y-auto rounded-3xl border border-white/12 bg-[#173024] p-7 text-[#f3f5f0] shadow-[0_24px_64px_rgba(0,0,0,0.6)] sm:p-8"
+        className="relative max-h-[calc(100dvh-2rem)] w-full max-w-md overflow-y-auto rounded-3xl border border-line bg-surface p-7 text-ink shadow-[0_24px_64px_rgba(0,0,0,0.6)] sm:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-5 right-5 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[#a8b9ae] transition hover:border-white/25 hover:text-[#f3f5f0] cursor-pointer"
+          className="absolute top-5 right-5 flex h-9 w-9 items-center justify-center rounded-full border border-line bg-soft text-muted transition hover:border-line hover:text-ink cursor-pointer"
           aria-label="Закрыть"
         >
           <X size={18} />
         </button>
 
-        <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[#d49a5a]/15 text-[#d49a5a]">
+        <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-action/15 text-accent">
           <PhoneCall size={22} />
         </div>
 
-        <h3 className="mt-4 font-moderustic text-2xl font-bold tracking-tight text-[#f3f5f0]">
+        <h3 className="mt-4 font-moderustic text-2xl font-bold tracking-tight text-ink">
           {title}
         </h3>
-        <p className="mt-1.5 text-sm leading-relaxed text-[#a8b9ae]">
+        <p className="mt-1.5 text-sm leading-relaxed text-muted">
           Оставьте контакты, и администратор базы свяжется с вами для подбора дат
           и дома.
         </p>
 
         {status === "sent" ? (
-          <div className="mt-6 rounded-2xl border border-[#d49a5a]/35 bg-[#1d3b2b] p-6 text-center">
+          <div className="mt-6 rounded-2xl border border-accent/35 bg-soft p-6 text-center">
             <CheckCircle
               size={36}
               weight="fill"
-              className="mx-auto text-[#d49a5a]"
+              className="mx-auto text-accent"
             />
-            <p className="mt-3 font-moderustic text-lg font-bold text-[#f3f5f0]">
+            <p className="mt-3 font-moderustic text-lg font-bold text-ink">
               Заявка принята
             </p>
-            <p className="mt-1 text-sm text-[#a8b9ae]">
+            <p className="mt-1 text-sm text-muted">
               Свяжемся с вами в ближайшее время.
             </p>
             <button
@@ -105,7 +105,7 @@ export function CallbackModal({
                 setPhone("");
                 onClose();
               }}
-              className="mt-5 inline-flex h-11 items-center justify-center rounded-full bg-[#d49a5a] px-7 text-sm font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98] cursor-pointer"
+              className="mt-5 inline-flex h-11 items-center justify-center rounded-full bg-action px-7 text-sm font-semibold text-on-action transition hover:bg-action-hover active:scale-[0.98] cursor-pointer"
             >
               Готово
             </button>
@@ -115,7 +115,7 @@ export function CallbackModal({
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="callback-name"
-                className="text-sm font-medium text-[#f3f5f0]"
+                className="text-sm font-medium text-ink"
               >
                 Ваше имя
               </label>
@@ -129,14 +129,14 @@ export function CallbackModal({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Например, Алексей"
-                className="h-12 w-full rounded-xl border border-white/15 bg-[#102219] px-4 text-base sm:text-sm text-[#f3f5f0] placeholder:text-[#7e9487] outline-none transition focus:border-[#d49a5a]"
+                className="h-12 w-full rounded-xl border border-line bg-canvas px-4 text-base sm:text-sm text-ink placeholder:text-muted outline-none transition focus:border-accent"
               />
             </div>
 
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="callback-phone"
-                className="text-sm font-medium text-[#f3f5f0]"
+                className="text-sm font-medium text-ink"
               >
                 Номер телефона
               </label>
@@ -151,7 +151,7 @@ export function CallbackModal({
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="+7 (999) 000-00-00"
-                className="h-12 w-full rounded-xl border border-white/15 bg-[#102219] px-4 text-base sm:text-sm text-[#f3f5f0] placeholder:text-[#7e9487] outline-none transition focus:border-[#d49a5a]"
+                className="h-12 w-full rounded-xl border border-line bg-canvas px-4 text-base sm:text-sm text-ink placeholder:text-muted outline-none transition focus:border-accent"
               />
             </div>
 
@@ -166,7 +166,7 @@ export function CallbackModal({
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-full bg-[#d49a5a] px-6 text-sm font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98] disabled:opacity-60 cursor-pointer"
+              className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-full bg-action px-6 text-sm font-semibold text-on-action transition hover:bg-action-hover active:scale-[0.98] disabled:opacity-60 cursor-pointer"
             >
               {status === "submitting" ? "Отправляем..." : "Жду звонка"}
             </button>

@@ -1,0 +1,155 @@
+{
+  "checkedAt": "2026-11-08T20:36:03.984Z",
+  "base": "http://127.0.0.1:3107",
+  "pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/consents/callback/2026-11-05-1",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/booking",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/news",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/special-offers",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/spa",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/otdyh-s-zhivotnymi",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/dining",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/split",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/cookie-policy",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/dom-dlya-semi",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/dvuhetazhnyj-barnhouse",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/shale-s-vidom-na-gory",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/stati-i-sovety/post/top-5-mest-v-arhyze",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/oferta",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/privacy-policy",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    },
+    {
+      "path": "/users/agreement",
+      "status": 200,
+      "lightBody": true,
+      "opaqueHeader": true
+    }
+  ],
+  "contrast": [
+    {
+      "label": "body",
+      "foreground": "#222b27",
+      "background": "#ffffff",
+      "ratio": 14.55
+    },
+    {
+      "label": "secondary",
+      "foreground": "#59675f",
+      "background": "#ffffff",
+      "ratio": 5.95
+    },
+    {
+      "label": "emerald link",
+      "foreground": "#155c48",
+      "background": "#ffffff",
+      "ratio": 7.91
+    },
+    {
+      "label": "button",
+      "foreground": "#ffffff",
+      "background": "#155c48",
+      "ratio": 7.91
+    },
+    {
+      "label": "soft panel",
+      "foreground": "#59675f",
+      "background": "#f5f7f6",
+      "ratio": 5.53
+    },
+    {
+      "label": "available date price",
+      "foreground": "#222b27",
+      "background": "#f4df8b",
+      "ratio": 10.93
+    }
+  ],
+  "staticCopyComparison": "38 edited TSX files against 7aba51c: equal",
+  "businessDataUnchanged": true,
+  "renderedBrowserCheck": false
+}

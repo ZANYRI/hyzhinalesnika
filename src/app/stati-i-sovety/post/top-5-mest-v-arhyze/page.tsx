@@ -21,26 +21,26 @@ export const metadata: Metadata = withSocialMetadata({
 
 export default function Top5MestArhyzaPage() {
   return <><PageStructuredData metadata={metadata} />{(
-    <div className="min-h-screen bg-[#102219] text-[#f3f5f0]">
+    <div className="min-h-screen bg-canvas text-ink">
       <Header variant="inner" bookingAnchor="#booking" />
 
       <main className="mx-auto max-w-[1260px] px-4 pt-10 pb-20 sm:px-6 sm:pt-14">
         {/* Breadcrumbs */}
 
 
-        <article className="mt-6 rounded-3xl border border-white/10 bg-[#173024] p-6 sm:p-10 lg:p-12">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-            <span className="text-xs text-[#a8b9ae]">
+        <article className="mt-6 rounded-3xl border border-line bg-surface p-6 sm:p-10 lg:p-12">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4">
+            <span className="text-xs text-muted">
               Опубликовано: 24.06.2025
             </span>
             <EyeCount views={327} />
           </div>
 
-          <h1 className="mt-6 font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
+          <h1 className="mt-6 font-moderustic text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
             ТОП-5 мест рядом с нашими домиками в Архызе
           </h1>
 
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-[#d6e0d9]">
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted">
             Приезжая в <strong>«Хижину лесника»</strong>, вы отдыхаете в тишине
             букового леса и одновременно находитесь в нескольких минутах езды от
             главных природных маршрутов Архыза. Мы собрали 5 проверенных
@@ -51,9 +51,9 @@ export default function Top5MestArhyzaPage() {
             {TOP_5_PLACES.map((place) => (
               <section
                 key={place.num}
-                className="grid grid-cols-1 items-center gap-6 rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5 sm:p-6 lg:grid-cols-12"
+                className="grid grid-cols-1 items-center gap-6 rounded-2xl border border-line bg-soft/55 p-5 sm:p-6 lg:grid-cols-12"
               >
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-[#08140d] lg:col-span-5">
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-soft lg:col-span-5">
                   <Image fill sizes="(min-width: 1024px) 40vw, 100vw"
                     src={place.image}
                     alt={`${place.title}, Архыз`}
@@ -63,32 +63,32 @@ export default function Top5MestArhyzaPage() {
                 </div>
 
                 <div className="lg:col-span-7">
-                  <span className="font-moderustic text-xs font-bold text-[#d49a5a]">
+                  <span className="font-moderustic text-xs font-bold text-accent">
                     Маршрут 0{place.num}
                   </span>
-                  <h2 className="mt-1 font-moderustic text-xl font-bold text-[#f3f5f0] sm:text-2xl">
+                  <h2 className="mt-1 font-moderustic text-xl font-bold text-ink sm:text-2xl">
                     {place.title}
                   </h2>
 
-                  <div className="mt-3 flex flex-wrap items-center gap-4 text-xs font-medium text-[#d6e0d9]">
+                  <div className="mt-3 flex flex-wrap items-center gap-4 text-xs font-medium text-muted">
                     <span className="inline-flex items-center gap-1.5">
-                      <Compass size={15} className="text-[#d49a5a]" />
+                      <Compass size={15} className="text-accent" />
                       <span>{place.distance}</span>
                     </span>
                     {place.travelTime && (
                       <span className="inline-flex items-center gap-1.5">
-                        <Clock size={15} className="text-[#d49a5a]" />
+                        <Clock size={15} className="text-accent" />
                         <span>{place.travelTime}</span>
                       </span>
                     )}
                     {place.bestTime && (
-                      <span className="text-[#a8b9ae]">
+                      <span className="text-muted">
                         Лучшее время: {place.bestTime}
                       </span>
                     )}
                   </div>
 
-                  <p className="mt-3.5 text-sm leading-relaxed text-[#a8b9ae] sm:text-[15px]">
+                  <p className="mt-3.5 text-sm leading-relaxed text-muted sm:text-[15px]">
                     {place.description}
                   </p>
 
@@ -97,7 +97,7 @@ export default function Top5MestArhyzaPage() {
                       href={place.routeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full bg-[#d49a5a] px-5 text-xs font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
+                      className="inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full bg-action px-5 text-xs font-semibold text-on-action transition hover:bg-action-hover active:scale-[0.98]"
                     >
                       <span>Построить маршрут от базы</span>
                       <ArrowUpRight size={14} weight="bold" />
@@ -108,11 +108,11 @@ export default function Top5MestArhyzaPage() {
             ))}
           </div>
 
-          <section className="mt-10 rounded-2xl border border-[#d49a5a]/30 bg-[#1d3b2b] p-6 sm:p-8">
-            <h2 className="font-moderustic text-xl font-bold text-[#f3f5f0] sm:text-2xl">
+          <section className="mt-10 rounded-2xl border border-accent/30 bg-soft p-6 sm:p-8">
+            <h2 className="font-moderustic text-xl font-bold text-ink sm:text-2xl">
               Спланируйте своё путешествие в Архыз
             </h2>
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[#d6e0d9] sm:text-base">
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted sm:text-base">
               Возьмите удобную обувь, термос с горным чаем и отправляйтесь
               исследовать долину, а вечером возвращайтесь к тёплой террасе и
               костровой зоне у своего дома.
@@ -120,7 +120,7 @@ export default function Top5MestArhyzaPage() {
           </section>
         </article>
 
-        <p className="mt-8 text-sm"><Link href="/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety" className="text-[#d49a5a] underline">Как добраться до Архыза ↗</Link></p>
+        <p className="mt-8 text-sm"><Link href="/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety" className="text-accent underline">Как добраться до Архыза ↗</Link></p>
         <KonturBookingWidget id="booking" className="mt-12 px-0 sm:px-0" />
       </main>
 

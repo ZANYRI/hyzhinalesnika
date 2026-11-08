@@ -20,27 +20,27 @@ export const metadata: Metadata = withSocialMetadata({
 
 export default function HowToGetToArkhyz2026Page() {
   return <><PageStructuredData metadata={metadata} />{(
-    <div className="min-h-screen bg-[#102219] text-[#f3f5f0]">
+    <div className="min-h-screen bg-canvas text-ink">
       <Header variant="inner" bookingAnchor="#booking" />
 
       <main className="mx-auto max-w-[1260px] px-4 pt-10 pb-20 sm:px-6 sm:pt-14">
         {/* Breadcrumbs */}
 
 
-        <article className="mt-6 rounded-3xl border border-white/10 bg-[#173024] p-6 sm:p-10 lg:p-12">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
-            <span className="text-xs text-[#a8b9ae]">
+        <article className="mt-6 rounded-3xl border border-line bg-surface p-6 sm:p-10 lg:p-12">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4">
+            <span className="text-xs text-muted">
               Опубликовано: 17.01.2026
             </span>
             <EyeCount views={757} />
           </div>
 
-          <h1 className="mt-6 font-moderustic text-3xl font-bold leading-tight tracking-tight text-[#f3f5f0] sm:text-4xl">
+          <h1 className="mt-6 font-moderustic text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
             Как добраться до Архыза на машине и общественном транспорте в 2026
             году
           </h1>
 
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-[#d6e0d9]">
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted">
             Отправляетесь в горы Кавказа в 2026 году? Архыз принимает гостей
             круглый год. Мы собрали актуальный путеводитель со всеми способами
             дороги на личном автомобиле, самолёте и трансфере, а также точной
@@ -48,38 +48,38 @@ export default function HowToGetToArkhyz2026Page() {
           </p>
 
           {/* Table of Contents */}
-          <div className="mt-8 rounded-2xl border border-white/10 bg-[#1d3b2b]/65 p-6">
-            <h2 className="font-moderustic text-lg font-bold text-[#f3f5f0]">
+          <div className="mt-8 rounded-2xl border border-line bg-soft/65 p-6">
+            <h2 className="font-moderustic text-lg font-bold text-ink">
               Содержание гида
             </h2>
-            <ul className="mt-3 grid grid-cols-1 gap-2 text-sm text-[#d49a5a] md:grid-cols-2">
+            <ul className="mt-3 grid grid-cols-1 gap-2 text-sm text-accent md:grid-cols-2">
               <li>
-                <a href="#car" className="transition hover:text-[#e0ab6e]">
+                <a href="#car" className="transition hover:text-accent">
                   1. Маршрут на автомобиле из крупных городов
                 </a>
               </li>
               <li>
-                <a href="#bus" className="transition hover:text-[#e0ab6e]">
+                <a href="#bus" className="transition hover:text-accent">
                   2. Автобусы и междугороднее такси
                 </a>
               </li>
               <li>
-                <a href="#airplane" className="transition hover:text-[#e0ab6e]">
+                <a href="#airplane" className="transition hover:text-accent">
                   3. Ближайшие аэропорты прилёта
                 </a>
               </li>
               <li>
-                <a href="#taxi" className="transition hover:text-[#e0ab6e]">
+                <a href="#taxi" className="transition hover:text-accent">
                   4. Трансфер из аэропорта и ориентиры по стоимости
                 </a>
               </li>
               <li>
-                <a href="#to-base" className="transition hover:text-[#e0ab6e]">
+                <a href="#to-base" className="transition hover:text-accent">
                   5. Финальный участок до «Хижины лесника»
                 </a>
               </li>
               <li>
-                <a href="#faq" className="transition hover:text-[#e0ab6e]">
+                <a href="#faq" className="transition hover:text-accent">
                   6. Частые вопросы водителей и туристов (2026)
                 </a>
               </li>
@@ -88,10 +88,10 @@ export default function HowToGetToArkhyz2026Page() {
 
           {/* 1. На машине */}
           <section id="car" className="mt-10 scroll-mt-24 space-y-5">
-            <h2 className="font-moderustic text-2xl font-bold text-[#f3f5f0]">
+            <h2 className="font-moderustic text-2xl font-bold text-ink">
               Маршрут на машине до Архыза из крупных городов (2026)
             </h2>
-            <p className="text-sm leading-relaxed text-[#a8b9ae] sm:text-base">
+            <p className="text-sm leading-relaxed text-muted sm:text-base">
               Поездка на автомобиле даёт свободу передвижения по долине и
               водопадам. Основные федеральные и региональные трассы поддерживаются
               в хорошем состоянии, на финальном горном участке начинается плавный
@@ -99,11 +99,11 @@ export default function HowToGetToArkhyz2026Page() {
             </p>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-              <div className="rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5">
-                <h3 className="font-moderustic text-lg font-bold text-[#d49a5a]">
+              <div className="rounded-2xl border border-line bg-soft/55 p-5">
+                <h3 className="font-moderustic text-lg font-bold text-accent">
                   Из Ставрополя
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-[#d6e0d9]">
+                <p className="mt-2.5 text-sm leading-relaxed text-muted">
                   <strong>Расстояние:</strong> около 240 км.
                   <br />
                   <strong>Время в пути:</strong> 3,5-4,5 часа.
@@ -113,11 +113,11 @@ export default function HowToGetToArkhyz2026Page() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5">
-                <h3 className="font-moderustic text-lg font-bold text-[#d49a5a]">
+              <div className="rounded-2xl border border-line bg-soft/55 p-5">
+                <h3 className="font-moderustic text-lg font-bold text-accent">
                   Из Минеральных Вод и Пятигорска
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-[#d6e0d9]">
+                <p className="mt-2.5 text-sm leading-relaxed text-muted">
                   <strong>Расстояние:</strong> около 220 км от Минеральных Вод.
                   <br />
                   <strong>Время в пути:</strong> 3,5-4 часа.
@@ -127,11 +127,11 @@ export default function HowToGetToArkhyz2026Page() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5">
-                <h3 className="font-moderustic text-lg font-bold text-[#d49a5a]">
+              <div className="rounded-2xl border border-line bg-soft/55 p-5">
+                <h3 className="font-moderustic text-lg font-bold text-accent">
                   Из Ростова-на-Дону и Краснодара
                 </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-[#d6e0d9]">
+                <p className="mt-2.5 text-sm leading-relaxed text-muted">
                   <strong>Расстояние:</strong> около 550 км от Краснодара.
                   <br />
                   <strong>Время в пути:</strong> 7-8,5 часов.
@@ -143,10 +143,10 @@ export default function HowToGetToArkhyz2026Page() {
             </div>
 
             <div className="pt-2">
-              <h3 className="font-moderustic text-xl font-bold text-[#f3f5f0]">
+              <h3 className="font-moderustic text-xl font-bold text-ink">
                 Рекомендации водителям на 2026 год
               </h3>
-              <ul className="mt-3 list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-[#d6e0d9] sm:text-base">
+              <ul className="mt-3 list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-muted sm:text-base">
                 <li>
                   <strong>Заправка:</strong> последние сетевые АЗС с полным
                   сервисом расположены в Черкесске и станице Зеленчукской, лучше
@@ -168,15 +168,15 @@ export default function HowToGetToArkhyz2026Page() {
 
           {/* 2. Автобус */}
           <section id="bus" className="mt-10 scroll-mt-24 space-y-4">
-            <h2 className="font-moderustic text-2xl font-bold text-[#f3f5f0]">
+            <h2 className="font-moderustic text-2xl font-bold text-ink">
               Автобусы и междугороднее такси
             </h2>
-            <p className="text-sm leading-relaxed text-[#a8b9ae] sm:text-base">
+            <p className="text-sm leading-relaxed text-muted sm:text-base">
               Регулярные рейсы связывают Архыз с Черкесском круглый год, а в
               высокий горнолыжный и летний сезон добавляются прямые туристические
               трансферы.
             </p>
-            <ul className="list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-[#d6e0d9] sm:text-base">
+            <ul className="list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-muted sm:text-base">
               <li>
                 <strong>Из Черкесска:</strong> автобусы отправляются с
                 автостанции, время в дороге около 2,5 часов. Актуальные рейсы
@@ -191,10 +191,10 @@ export default function HowToGetToArkhyz2026Page() {
 
           {/* 3. Самолет */}
           <section id="airplane" className="mt-10 scroll-mt-24 space-y-4">
-            <h2 className="font-moderustic text-2xl font-bold text-[#f3f5f0]">
+            <h2 className="font-moderustic text-2xl font-bold text-ink">
               Через какие аэропорты удобнее лететь в Архыз
             </h2>
-            <ul className="list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-[#d6e0d9] sm:text-base">
+            <ul className="list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-muted sm:text-base">
               <li>
                 <strong>Минеральные Воды (MRV), ~220 км:</strong> главный
                 авиаузел региона с ежедневными прямыми рейсами из Москвы,
@@ -213,10 +213,10 @@ export default function HowToGetToArkhyz2026Page() {
 
           {/* 4. Трансфер */}
           <section id="taxi" className="mt-10 scroll-mt-24 space-y-4">
-            <h2 className="font-moderustic text-2xl font-bold text-[#f3f5f0]">
+            <h2 className="font-moderustic text-2xl font-bold text-ink">
               Трансфер и такси из аэропорта
             </h2>
-            <ul className="list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-[#d6e0d9] sm:text-base">
+            <ul className="list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-muted sm:text-base">
               <li>
                 <strong>Заказ:</strong> через Яндекс Go, региональные службы
                 трансфера или аренду автомобиля прямо в терминале прилёта.
@@ -236,10 +236,10 @@ export default function HowToGetToArkhyz2026Page() {
 
           {/* 5. До базы */}
           <section id="to-base" className="mt-10 scroll-mt-24 space-y-4">
-            <h2 className="font-moderustic text-2xl font-bold text-[#f3f5f0]">
+            <h2 className="font-moderustic text-2xl font-bold text-ink">
               Финальный этап: от центра посёлка Архыз до «Хижины лесника»
             </h2>
-            <ul className="list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-[#d6e0d9] sm:text-base">
+            <ul className="list-disc space-y-2.5 pl-5 text-sm leading-relaxed text-muted sm:text-base">
               <li>
                 <strong>На автомобиле:</strong> от центральной улицы Архыза путь
                 до ул. Лесная, 40 занимает 5-7 минут по асфальтированной дороге.
@@ -248,7 +248,7 @@ export default function HowToGetToArkhyz2026Page() {
                   href="https://yandex.ru/maps/-/CLhG74Ky"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-[#d49a5a] underline hover:text-[#e0ab6e]"
+                  className="font-medium text-accent underline hover:text-accent"
                 >
                   открыть в Яндекс Картах
                 </a>
@@ -263,36 +263,36 @@ export default function HowToGetToArkhyz2026Page() {
 
           {/* 6. FAQ 2026 */}
           <section id="faq" className="mt-10 scroll-mt-24 space-y-4">
-            <h2 className="font-moderustic text-2xl font-bold text-[#f3f5f0]">
+            <h2 className="font-moderustic text-2xl font-bold text-ink">
               Частые вопросы путешественников (FAQ 2026)
             </h2>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-              <div className="rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5">
-                <h3 className="font-moderustic text-base font-bold text-[#f3f5f0]">
+              <div className="rounded-2xl border border-line bg-soft/55 p-5">
+                <h3 className="font-moderustic text-base font-bold text-ink">
                   Как состояние трассы А-155 на подъезде к Архызу?
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#a8b9ae]">
+                <p className="mt-2 text-sm leading-relaxed text-muted">
                   Трасса поддерживается в хорошем состоянии круглый год, проезд
                   комфортен на любом легковом автомобиле.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5">
-                <h3 className="font-moderustic text-base font-bold text-[#f3f5f0]">
+              <div className="rounded-2xl border border-line bg-soft/55 p-5">
+                <h3 className="font-moderustic text-base font-bold text-ink">
                   Где ближайшие зарядные станции для электромобилей?
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#a8b9ae]">
+                <p className="mt-2 text-sm leading-relaxed text-muted">
                   Быстрые ЭЗС сосредоточены в Минеральных Водах, Ставрополе и
                   Черкесске, рекомендуем планировать заряд до подъёма в горы.
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5">
-                <h3 className="font-moderustic text-base font-bold text-[#f3f5f0]">
+              <div className="rounded-2xl border border-line bg-soft/55 p-5">
+                <h3 className="font-moderustic text-base font-bold text-ink">
                   Можно ли доехать на поезде?
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#a8b9ae]">
+                <p className="mt-2 text-sm leading-relaxed text-muted">
                   Ближайшие ж/д вокзалы находятся в Невинномысске, Минеральных
                   Водах и Черкесске, откуда удобно пересесть на трансфер или
                   автобус.
@@ -302,7 +302,7 @@ export default function HowToGetToArkhyz2026Page() {
           </section>
         </article>
 
-        <p className="mt-8 text-sm"><Link href="/stati-i-sovety/post/top-5-mest-v-arhyze" className="text-[#d49a5a] underline">Что посмотреть рядом с домиками в Архызе ↗</Link></p>
+        <p className="mt-8 text-sm"><Link href="/stati-i-sovety/post/top-5-mest-v-arhyze" className="text-accent underline">Что посмотреть рядом с домиками в Архызе ↗</Link></p>
         <KonturBookingWidget id="booking" className="mt-12 px-0 sm:px-0" />
       </main>
 

@@ -43,7 +43,7 @@ export function GalleryMarquee() {
               type="button"
               onClick={() => setLightboxIdx(idx % HOME_GALLERY.length)}
               aria-label={`Открыть фото: ${item.alt}`}
-              className={`relative shrink-0 overflow-hidden rounded-3xl border border-white/10 bg-[#173024] transition-colors hover:border-[#d49a5a]/55 focus:outline-none cursor-pointer ${
+              className={`relative shrink-0 overflow-hidden rounded-3xl border border-line bg-surface transition-colors hover:border-accent/55 focus:outline-none cursor-pointer ${
                 item.aspect === "portrait"
                   ? "h-[360px] w-[265px] sm:h-[430px] sm:w-[310px]"
                   : "h-[290px] w-[360px] sm:h-[345px] sm:w-[440px]"
@@ -63,7 +63,7 @@ export function GalleryMarquee() {
       {/* Lightbox Modal */}
       {lightboxIdx !== null && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/88 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-canvas/98 p-4 backdrop-blur-sm"
           onClick={() => setLightboxIdx(null)}
           role="dialog"
           aria-modal="true"
@@ -73,7 +73,7 @@ export function GalleryMarquee() {
             type="button"
             onClick={() => setLightboxIdx(null)}
             aria-label="Закрыть"
-            className="absolute top-5 right-5 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-[#173024] text-[#f3f5f0] transition hover:border-[#d49a5a] hover:text-[#d49a5a] cursor-pointer"
+            className="absolute top-5 right-5 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface text-ink transition hover:border-accent hover:text-accent cursor-pointer"
           >
             <X size={20} />
           </button>
@@ -87,7 +87,7 @@ export function GalleryMarquee() {
               );
             }}
             aria-label="Предыдущее фото"
-            className="absolute left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-[#173024]/90 text-[#f3f5f0] shadow-lg transition hover:border-[#d49a5a] hover:text-[#d49a5a] cursor-pointer"
+            className="absolute left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface/90 text-ink shadow-lg transition hover:border-accent hover:text-accent cursor-pointer"
           >
             <CaretLeft size={22} weight="bold" />
           </button>
@@ -110,7 +110,7 @@ export function GalleryMarquee() {
               setLightboxIdx((lightboxIdx + 1) % HOME_GALLERY.length);
             }}
             aria-label="Следующее фото"
-            className="absolute right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-[#173024]/90 text-[#f3f5f0] shadow-lg transition hover:border-[#d49a5a] hover:text-[#d49a5a] cursor-pointer"
+            className="absolute right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-surface/90 text-ink shadow-lg transition hover:border-accent hover:text-accent cursor-pointer"
           >
             <CaretRight size={22} weight="bold" />
           </button>

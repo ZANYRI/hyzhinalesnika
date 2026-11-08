@@ -45,22 +45,22 @@ export function SearchClient() {
   }, [query]);
 
   return (
-    <div className="mt-6 rounded-3xl border border-white/10 bg-[#173024] p-6 sm:p-10">
-      <h1 className="font-moderustic text-2xl font-bold tracking-tight text-[#f3f5f0] sm:text-3xl">
+    <div className="mt-6 rounded-3xl border border-line bg-surface p-6 sm:p-10">
+      <h1 className="font-moderustic text-2xl font-bold tracking-tight text-ink sm:text-3xl">
         Поиск по сайту
       </h1>
 
       <div className="mt-5">
         <label
           htmlFor="site-search-input"
-          className="mb-2 block text-xs font-medium text-[#a8b9ae]"
+          className="mb-2 block text-xs font-medium text-muted"
         >
           Поисковый запрос
         </label>
         <div className="relative">
           <MagnifyingGlass
             size={18}
-            className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-[#a8b9ae]"
+            className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-muted"
           />
           <input
             id="site-search-input"
@@ -68,14 +68,14 @@ export function SearchClient() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Название дома, водопад, маршрут..."
-            className="h-12 w-full rounded-xl border border-white/15 bg-[#102219] pr-4 pl-11 text-sm text-[#f3f5f0] placeholder:text-[#a8b9ae]/60 outline-none transition focus:border-[#d49a5a]"
+            className="h-12 w-full rounded-xl border border-line bg-canvas pr-4 pl-11 text-sm text-ink placeholder:text-muted/60 outline-none transition focus:border-accent"
           />
         </div>
       </div>
 
       <div className="mt-7 space-y-3.5">
         {results.length === 0 ? (
-          <p className="text-sm text-[#a8b9ae]">
+          <p className="text-sm text-muted">
             По вашему запросу ничего не найдено. Попробуйте ввести другое
             ключевое слово.
           </p>
@@ -84,22 +84,22 @@ export function SearchClient() {
             <Link
               key={item.href}
               href={item.href}
-              className="group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-[#1d3b2b]/55 p-5 transition hover:border-[#d49a5a]/45"
+              className="group flex items-center justify-between gap-4 rounded-2xl border border-line bg-soft/55 p-5 transition hover:border-accent/45"
             >
               <div>
-                <h2 className="font-moderustic text-lg font-bold text-[#f3f5f0] transition group-hover:text-[#d49a5a]">
+                <h2 className="font-moderustic text-lg font-bold text-ink transition group-hover:text-accent">
                   {item.cabinId && (
                     <CabinTreeEmoji id={item.cabinId} className="mr-1.5" />
                   )}
                   {item.title}
                 </h2>
-                <p className="mt-1.5 text-sm leading-relaxed text-[#a8b9ae]">
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">
                   {item.snippet}
                 </p>
               </div>
               <ArrowRight
                 size={18}
-                className="shrink-0 text-[#a8b9ae] transition group-hover:translate-x-0.5 group-hover:text-[#d49a5a]"
+                className="shrink-0 text-muted transition group-hover:translate-x-0.5 group-hover:text-accent"
               />
             </Link>
           ))

@@ -3,11 +3,9 @@ import type { Metadata } from "next";
 import { withSocialMetadata, HOME_TITLE, HOME_DESCRIPTION } from "@/lib/social-metadata";
 import "./globals.css";
 import { SITE_CONFIG } from "@/data/site";
-import { AUTUMN_ATMOSPHERE } from "@/data/atmosphere";
 import { CookieNotice } from "@/components/CookieNotice";
 import { FloatingContacts } from "@/components/FloatingContacts";
 import { CleanHashScroll } from "@/components/CleanHashScroll";
-import { AutumnAtmosphere } from "@/components/AutumnAtmosphere";
 import { SiteStructuredData } from "@/components/StructuredData";
 import { YandexMetrica } from "@/components/YandexMetrica";
 
@@ -32,9 +30,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" data-scroll-behavior="smooth">
-      <body className="min-h-screen bg-[#102219] font-montserrat text-[#f3f5f0] antialiased selection:bg-[#d49a5a] selection:text-[#102219]">
+      <body className="min-h-screen bg-canvas font-montserrat text-ink antialiased selection:bg-action selection:text-on-action">
         <SiteStructuredData />
-        {AUTUMN_ATMOSPHERE.enabled && <AutumnAtmosphere />}
         {children}
         <Suspense fallback={null}>
           <CleanHashScroll />

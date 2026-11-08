@@ -14,22 +14,22 @@ import { AnalyticsSettingsButton } from "./CookieNotice";
 
 export function Footer() {
   return (
-    <footer className="mt-20 border-t border-white/10 bg-[#08140d] pt-16 pb-12 text-[#f3f5f0]">
+    <footer className="mt-20 border-t border-line bg-canvas pt-16 pb-12 text-ink">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           {/* Brand & Messengers */}
           <div className="min-w-0 md:col-span-5">
             <Link href="/" prefetch={false} aria-label='База отдыха "Хижина лесника" – на главную' className="inline-flex transition hover:opacity-85">
               <Image
-                src="/images/brand/logo-wordmark-light.png"
+                src="/images/brand/logo.png"
                 alt='База отдыха "Хижина лесника"'
                 width={450}
                 height={132}
-                className="h-14 w-auto max-w-full object-contain sm:h-16"
+                className="h-16 w-[218px] max-w-full object-cover sm:h-20 sm:w-[273px]"
               />
             </Link>
 
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-[#a8b9ae]">
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted">
               Три приватных дома со своей огороженной территорией, мангальной и
               костровой зоной, панорамными окнами на горы и быстрым Wi-Fi.
             </p>
@@ -39,10 +39,10 @@ export function Footer() {
 
           {/* Navigation */}
           <div className="min-w-0 md:col-span-3">
-            <p className="font-moderustic text-sm font-bold text-[#f3f5f0]">
+            <p className="font-moderustic text-sm font-bold text-ink">
               Разделы
             </p>
-            <ul className="mt-4 space-y-3 text-sm text-[#a8b9ae]">
+            <ul className="mt-4 space-y-3 text-sm text-muted">
               {NAV_ITEMS.map((item) => (
                 <li key={item.href}>
                   {item.external ? (
@@ -50,7 +50,7 @@ export function Footer() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 transition hover:text-[#d49a5a]"
+                      className="inline-flex items-center gap-1 transition hover:text-accent"
                     >
                       <span>{item.label}</span>
                       <ArrowUpRight size={14} />
@@ -59,7 +59,7 @@ export function Footer() {
                     <Link
                       href={item.href}
                       prefetch={item.href.startsWith("/#") ? false : "auto"}
-                      className="transition hover:text-[#d49a5a]"
+                      className="transition hover:text-accent"
                     >
                       {item.label}
                     </Link>
@@ -69,7 +69,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/booking"
-                  className="transition hover:text-[#d49a5a]"
+                  className="transition hover:text-accent"
                 >
                   Онлайн-календарь дат
                 </Link>
@@ -79,7 +79,7 @@ export function Footer() {
 
           {/* Contacts */}
           <div className="min-w-0 md:col-span-4">
-            <p className="font-moderustic text-sm font-bold text-[#f3f5f0]">
+            <p className="font-moderustic text-sm font-bold text-ink">
               Контакты и координаты
             </p>
 
@@ -87,23 +87,23 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin
                   size={18}
-                  className="mt-0.5 shrink-0 text-[#d49a5a]"
+                  className="mt-0.5 shrink-0 text-accent"
                 />
                 <div>
-                  <span className="block text-[#f3f5f0]">
+                  <span className="block text-ink">
                     {SITE_CONFIG.address}
                   </span>
-                  <span className="text-xs text-[#a8b9ae]">
+                  <span className="text-xs text-muted">
                     43.568904, 41.305983 · 5 мин от посёлка Архыз
                   </span>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <Phone size={18} className="shrink-0 text-[#d49a5a]" />
+                <Phone size={18} className="shrink-0 text-accent" />
                 <a
                   href={SITE_CONFIG.phoneHref}
-                  className="font-semibold text-[#f3f5f0] transition hover:text-[#d49a5a]"
+                  className="font-semibold text-ink transition hover:text-accent"
                 >
                   {SITE_CONFIG.phoneDisplay}
                 </a>
@@ -112,11 +112,11 @@ export function Footer() {
               <div className="flex items-center gap-3">
                 <EnvelopeSimple
                   size={18}
-                  className="shrink-0 text-[#d49a5a]"
+                  className="shrink-0 text-accent"
                 />
                 <a
                   href={`mailto:${SITE_CONFIG.email}`}
-                  className="text-[#a8b9ae] transition hover:text-[#d49a5a]"
+                  className="text-muted transition hover:text-accent"
                 >
                   {SITE_CONFIG.email}
                 </a>
@@ -130,7 +130,7 @@ export function Footer() {
         </div>
 
         {/* Legal Bottom Strip */}
-        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-7 text-xs text-[#a8b9ae] lg:flex-row lg:items-center">
+        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-line pt-7 text-xs text-muted lg:flex-row lg:items-center">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
             <span>{SITE_CONFIG.legalOwner}</span>
             <span>·</span>
@@ -142,7 +142,7 @@ export function Footer() {
                 href={SITE_CONFIG.registryUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#d49a5a] underline decoration-[#d49a5a]/50 hover:text-[#e0ab6e]"
+                className="text-accent underline decoration-accent/50 hover:text-accent"
               >
                 {SITE_CONFIG.registryNumber}
               </a>
@@ -152,23 +152,23 @@ export function Footer() {
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5">
             <Link
               href="/oferta"
-              className="transition hover:text-[#f3f5f0]"
+              className="transition hover:text-ink"
             >
               Договор оферты
             </Link>
             <Link
               href="/privacy-policy"
-              className="transition hover:text-[#f3f5f0]"
+              className="transition hover:text-ink"
             >
               Политика обработки персональных данных
             </Link>
             <Link
               href="/users/agreement"
-              className="transition hover:text-[#f3f5f0]"
+              className="transition hover:text-ink"
             >
               Пользовательское соглашение
             </Link>
-            <Link href="/cookie-policy" className="transition hover:text-[#f3f5f0]">Использование cookie</Link>
+            <Link href="/cookie-policy" className="transition hover:text-ink">Использование cookie</Link>
             <AnalyticsSettingsButton />
           </div>
         </div>

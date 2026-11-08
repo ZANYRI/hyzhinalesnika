@@ -10,8 +10,8 @@ import { BLOG_POSTS } from "@/data/blog";
 
 export function EyeCount({ views }: { views: number }) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-xs text-[#a8b9ae]">
-      <Eye size={15} className="text-[#d49a5a]" />
+    <span className="inline-flex items-center gap-1.5 text-xs text-muted">
+      <Eye size={15} className="text-accent" />
       <span>{views}</span>
     </span>
   );
@@ -25,14 +25,14 @@ export function BlogSection() {
         return (
           <article
             key={post.slug}
-            className={`group flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-[#173024] p-4 transition hover:border-[#d49a5a]/45 sm:p-5 ${
+            className={`group flex flex-col justify-between overflow-hidden rounded-3xl border border-line bg-surface p-4 transition hover:border-accent/45 sm:p-5 ${
               isFeatured ? "lg:col-span-7" : "lg:col-span-5"
             }`}
           >
             <div>
               <Link
                 href={post.href}
-                className="relative block aspect-[16/9] w-full overflow-hidden rounded-2xl bg-[#08140d]"
+                className="relative block aspect-[16/9] w-full overflow-hidden rounded-2xl bg-soft"
               >
                 <Image fill sizes="(min-width: 1024px) 55vw, 100vw"
                   src={post.thumbnail}
@@ -43,15 +43,15 @@ export function BlogSection() {
               </Link>
 
               <div className="mt-5 flex flex-wrap items-center justify-between gap-3 px-1">
-                <div className="flex items-center gap-2.5 text-xs text-[#a8b9ae]">
+                <div className="flex items-center gap-2.5 text-xs text-muted">
                   <span className="inline-flex items-center gap-1.5">
-                    <CalendarBlank size={14} className="text-[#d49a5a]" />
+                    <CalendarBlank size={14} className="text-accent" />
                     <time>{post.date}</time>
                   </span>
                   {post.category && (
                     <>
                       <span>·</span>
-                      <span className="text-[#d49a5a]">
+                      <span className="text-accent">
                         {post.category.title}
                       </span>
                     </>
@@ -60,12 +60,12 @@ export function BlogSection() {
                 <EyeCount views={post.views} />
               </div>
 
-              <h3 className="mt-3 px-1 font-moderustic text-xl font-bold leading-snug text-[#f3f5f0] transition group-hover:text-[#d49a5a] sm:text-2xl">
+              <h3 className="mt-3 px-1 font-moderustic text-xl font-bold leading-snug text-ink transition group-hover:text-accent sm:text-2xl">
                 <Link href={post.href}>{post.title}</Link>
               </h3>
 
               {post.excerpt && (
-                <p className="mt-2.5 px-1 text-sm leading-relaxed text-[#a8b9ae]">
+                <p className="mt-2.5 px-1 text-sm leading-relaxed text-muted">
                   {post.excerpt}
                 </p>
               )}
@@ -74,7 +74,7 @@ export function BlogSection() {
             <div className="mt-6 px-1 pb-1">
               <Link
                 href={post.href}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#f3f5f0] transition group-hover:text-[#d49a5a]"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink transition group-hover:text-accent"
               >
                 <span>Читать путеводитель</span>
                 <ArrowRight

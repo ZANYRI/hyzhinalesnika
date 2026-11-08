@@ -15,22 +15,22 @@ const activities = [
 export function SeasonalExperiences() {
   return <>
     <section aria-label="Скидки для наших гостей" className="mb-8 grid gap-4 sm:grid-cols-2">
-      <div className="rounded-2xl border border-[#b88c59]/30 bg-[#173024]/70 p-5 sm:p-6">
-        <p className="text-[11px] font-medium uppercase tracking-widest text-[#bdcfc3]">Для наших гостей</p>
+      <div className="rounded-2xl border border-accent/30 bg-surface/70 p-5 sm:p-6">
+        <p className="text-[11px] font-medium uppercase tracking-widest text-muted">Для наших гостей</p>
         <div className="mt-3 flex flex-col items-start gap-3 lg:flex-row lg:gap-5">
-          <p className="shrink-0 font-moderustic text-4xl font-semibold text-[#e6c7a0]">5%</p>
-          <div className="text-sm leading-relaxed text-[#bdcfc3]">
-            <h3 className="mb-1 font-semibold text-[#f3f5f0]">Активный отдых и прокат</h3>
+          <p className="shrink-0 font-moderustic text-4xl font-semibold text-accent">5%</p>
+          <div className="text-sm leading-relaxed text-muted">
+            <h3 className="mb-1 font-semibold text-ink">Активный отдых и прокат</h3>
             <p>Джиппинг, конные прогулки, рафтинг, квадроциклы и квадрогиганты, а также прокат горнолыжного снаряжения.</p>
           </div>
         </div>
       </div>
-      <div className="rounded-2xl border border-[#b88c59]/30 bg-[#173024]/70 p-5 sm:p-6">
-        <p className="text-[11px] font-medium uppercase tracking-widest text-[#bdcfc3]">Знакомство с животными</p>
+      <div className="rounded-2xl border border-accent/30 bg-surface/70 p-5 sm:p-6">
+        <p className="text-[11px] font-medium uppercase tracking-widest text-muted">Знакомство с животными</p>
         <div className="mt-3 flex flex-col items-start gap-3 lg:flex-row lg:gap-5">
-          <p className="shrink-0 font-moderustic text-4xl font-semibold text-[#e6c7a0]">10–20%</p>
-          <div className="text-sm leading-relaxed text-[#bdcfc3]">
-            <h3 className="mb-1 font-semibold text-[#f3f5f0]">Скидки для наших гостей</h3>
+          <p className="shrink-0 font-moderustic text-4xl font-semibold text-accent">10–20%</p>
+          <div className="text-sm leading-relaxed text-muted">
+            <h3 className="mb-1 font-semibold text-ink">Скидки для наших гостей</h3>
             <p>10% в «Долине тигров».</p>
             <p>20% в деревне альпак и лемуров и на ферме попугаев.</p>
           </div>
@@ -39,7 +39,7 @@ export function SeasonalExperiences() {
     </section>
     <div className="grid gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
     {activities.map(activity => <Link key={activity.title} href={activity.href} target={activity.href.startsWith("https://") ? "_blank" : undefined} rel={activity.href.startsWith("https://") ? "noopener noreferrer" : undefined} className="activity-wood-frame group flex h-full flex-col p-4 transition sm:p-5">
-      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-[#1d3b2b]">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-soft">
         <Image fill sizes={activity.imageScale
           // The river photo is deliberately enlarged 1.4x; retain enough pixels for that crop.
           ? "(min-width: 1400px) 546px, (min-width: 1024px) calc(46.666667vw - 107.333333px), (min-width: 640px) calc(70vw - 112px), calc(140vw - 92.4px)"
@@ -47,10 +47,10 @@ export function SeasonalExperiences() {
           src={activity.image} alt={activity.imageAlt ?? activity.title} style={{objectPosition: activity.imagePosition, transform: activity.imageScale ? `scale(${activity.imageScale})` : undefined}} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]" />
       </div>
       <div className="flex flex-1 flex-col pt-5">
-        <p className="text-[11px] font-medium uppercase tracking-widest text-[#d8ae7f]">{activity.tag}</p>
-        <h3 className="mt-2 font-moderustic text-xl font-semibold leading-snug text-[#f3f5f0]">{activity.title}</h3>
-        <p className="mt-3 mb-5 text-sm leading-relaxed text-[#bdcfc3]">{activity.text}</p>
-        <span className="mt-auto inline-flex items-center gap-2 text-xs font-semibold text-[#d8ae7f]">{activity.href==="/spa" ? "О СПА-комплексе" : activity.href.startsWith("https://yandex.ru/maps/") ? "Открыть на карте" : "Подробнее"}<ArrowUpRight size={16}/></span>
+        <p className="text-[11px] font-medium uppercase tracking-widest text-accent">{activity.tag}</p>
+        <h3 className="mt-2 font-moderustic text-xl font-semibold leading-snug text-ink">{activity.title}</h3>
+        <p className="mt-3 mb-5 text-sm leading-relaxed text-muted">{activity.text}</p>
+        <span className="mt-auto inline-flex items-center gap-2 text-xs font-semibold text-accent">{activity.href==="/spa" ? "О СПА-комплексе" : activity.href.startsWith("https://yandex.ru/maps/") ? "Открыть на карте" : "Подробнее"}<ArrowUpRight size={16}/></span>
       </div>
     </Link>)}
     </div>

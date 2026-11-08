@@ -56,7 +56,7 @@ const YANDEX_REVIEWS: GuestReviewItem[] = [
 
 function FiveStars({ size = 14 }: { size?: number }) {
   return (
-    <span className="inline-flex items-center gap-0.5 text-[#d49a5a]">
+    <span className="inline-flex items-center gap-0.5 text-accent">
       <Star size={size} weight="fill" />
       <Star size={size} weight="fill" />
       <Star size={size} weight="fill" />
@@ -68,16 +68,16 @@ function FiveStars({ size = 14 }: { size?: number }) {
 
 export function GuestReviews() {
   return (
-    <div className="flex h-full w-full flex-col justify-between rounded-3xl border border-white/10 bg-[#173024] p-5 sm:p-7">
+    <div className="flex h-full w-full flex-col justify-between rounded-3xl border border-line bg-surface p-5 sm:p-7">
       {/* Top Rating Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-5">
         <div className="flex items-center gap-4">
-          <span className="font-moderustic text-4xl font-bold leading-none text-[#f3f5f0] sm:text-[42px]">
+          <span className="font-moderustic text-4xl font-bold leading-none text-ink sm:text-[42px]">
             5,0
           </span>
           <div>
             <FiveStars size={16} />
-            <p className="mt-1 text-xs text-[#a8b9ae]">
+            <p className="mt-1 text-xs text-muted">
               65+ отзывов · 97 оценок на Яндекс Картах
             </p>
           </div>
@@ -87,7 +87,7 @@ export function GuestReviews() {
           href={SITE_CONFIG.yandexReviewsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-4 text-xs font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98]"
+          className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full bg-action px-4 text-xs font-semibold text-on-action transition hover:bg-action-hover active:scale-[0.98]"
         >
           Оставить отзыв
         </a>
@@ -98,18 +98,18 @@ export function GuestReviews() {
         {YANDEX_REVIEWS.map((review) => (
           <article
             key={review.id}
-            className="rounded-2xl border border-white/8 bg-[#1d3b2b]/65 p-4 transition hover:border-white/15"
+            className="rounded-2xl border border-line bg-soft/65 p-4 transition hover:border-line"
           >
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-3">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#d49a5a]/35 bg-[#102219] font-moderustic text-xs font-bold text-[#d49a5a]">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-accent/35 bg-canvas font-moderustic text-xs font-bold text-accent">
                   {review.initials}
                 </span>
                 <div>
-                  <p className="font-moderustic text-sm font-bold text-[#f3f5f0]">
+                  <p className="font-moderustic text-sm font-bold text-ink">
                     {review.author}
                   </p>
-                  <p className="text-[11px] text-[#a8b9ae]">
+                  <p className="text-[11px] text-muted">
                     {review.date} · {review.cabinTag}
                   </p>
                 </div>
@@ -118,7 +118,7 @@ export function GuestReviews() {
               <FiveStars size={13} />
             </div>
 
-            <p className="mt-3 text-sm leading-relaxed text-[#d6e0d9]">
+            <p className="mt-3 text-sm leading-relaxed text-muted">
               {review.text}
             </p>
           </article>
@@ -126,12 +126,12 @@ export function GuestReviews() {
       </div>
 
       {/* Footer Link to Full Yandex Maps Feed */}
-      <div className="border-t border-white/10 pt-4">
+      <div className="border-t border-line pt-4">
         <a
           href={SITE_CONFIG.yandexReviewsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex h-11 w-full items-center justify-center gap-2 rounded-full border border-white/12 bg-[#1d3b2b]/60 px-5 text-xs font-semibold text-[#f3f5f0] transition hover:border-[#d49a5a]/60 hover:text-[#d49a5a]"
+          className="group flex h-11 w-full items-center justify-center gap-2 rounded-full border border-line bg-soft/60 px-5 text-xs font-semibold text-ink transition hover:border-accent/60 hover:text-accent"
         >
           <span>Больше отзывов на Яндекс Картах</span>
           <ArrowUpRight

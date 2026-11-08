@@ -15,7 +15,7 @@ import {
   countNightsBetweenIso,
   extractKonturCalendarDayInfo,
   findKonturCalendarDayCell,
-  KONTUR_DARK_FOREST_COMMON,
+  KONTUR_LIGHT_COMMON,
   KonturAddConfig,
   KonturCalendarDayInfo,
   MAX_ADULTS_COUNT,
@@ -43,7 +43,7 @@ interface KonturBookingWidgetProps {
 }
 
 const BOOKING_FORM_THEME: Record<string, unknown> = {
-  common: KONTUR_DARK_FOREST_COMMON,
+  common: KONTUR_LIGHT_COMMON,
   container: {
     bg: "transparent",
     border: "none",
@@ -56,68 +56,68 @@ const BOOKING_FORM_THEME: Record<string, unknown> = {
 };
 
 const CALENDAR_THEME: Record<string, unknown> = {
-  common: KONTUR_DARK_FOREST_COMMON,
+  common: KONTUR_LIGHT_COMMON,
   container: {
-    bg: "#173024",
-    border: "1px solid rgba(243, 245, 240, 0.1)",
+    bg: "#ffffff",
+    border: "1px solid rgba(24, 47, 36, 0.1)",
     borderRadius: "24px",
     padding: "18px 20px 10px",
     boxShadow: "none",
     outline: "none",
   },
   filterContainer: {
-    bg: "#1d3b2b",
-    border: "1px solid rgba(243, 245, 240, 0.08)",
+    bg: "#f5f7f6",
+    border: "1px solid rgba(24, 47, 36, 0.08)",
     borderRadius: "16px",
     padding: "12px 20px",
     boxShadow: "none",
   },
   parameters: {
-    color: "#d6e0d9",
+    color: "#59675f",
   },
   monthName: {
-    color: "#f3f5f0",
+    color: "#222b27",
   },
   calendarDay: {
-    weekdayColor: "#f3f5f0",
-    weekendColor: "#e0ab6e",
-    priceColor: "#a8b9ae",
-    activeBgColor: "rgba(212, 154, 90, 0.22)",
-    activeWeekdayColor: "#f3f5f0",
-    activeWeekendColor: "#e0ab6e",
+    weekdayColor: "#222b27",
+    weekendColor: "#155c48",
+    priceColor: "#222b27",
+    activeBgColor: "#f4df8b",
+    activeWeekdayColor: "#222b27",
+    activeWeekendColor: "#222b27",
   },
   arrowButtons: {
-    bg: "#1d3b2b",
-    bgHover: "#1f432f",
-    bgActive: "#d49a5a",
-    color: "#f3f5f0",
-    colorHover: "#d49a5a",
-    colorActive: "#102219",
+    bg: "#f5f7f6",
+    bgHover: "#e8f0eb",
+    bgActive: "#155c48",
+    color: "#222b27",
+    colorHover: "#155c48",
+    colorActive: "#ffffff",
   },
 };
 
 const ROOMS_LIST_THEME: Record<string, unknown> = {
-  common: KONTUR_DARK_FOREST_COMMON,
+  common: KONTUR_LIGHT_COMMON,
   container: {
-    bg: "#173024",
-    border: "1px solid rgba(243, 245, 240, 0.1)",
+    bg: "#ffffff",
+    border: "1px solid rgba(24, 47, 36, 0.1)",
     borderRadius: "24px",
     padding: "16px 24px",
     boxShadow: "none",
     outline: "none",
   },
-  itemBorder: "1px solid rgba(243, 245, 240, 0.1)",
+  itemBorder: "1px solid rgba(24, 47, 36, 0.1)",
   name: {
-    color: "#f3f5f0",
+    color: "#222b27",
   },
   secondName: {
-    color: "#a8b9ae",
+    color: "#59675f",
   },
   parameters: {
-    color: "#d6e0d9",
+    color: "#59675f",
   },
   description: {
-    color: "#a8b9ae",
+    color: "#59675f",
   },
   photo: {
     borderRadius: "16px",
@@ -587,16 +587,16 @@ export function KonturBookingWidget({
       {mountedWidget && calendarInteractive && (
         <div className="mx-auto mt-4 flex w-full max-w-[910px] flex-col items-center justify-center">
           {!calSelection.checkIn && (
-            <p className="text-center text-xs text-[#a8b9ae] sm:text-sm">
+            <p className="text-center text-xs text-muted sm:text-sm">
               Нажмите на свободную дату в календаре, чтобы выбрать заезд и выезд
             </p>
           )}
 
           {calSelection.checkIn && !calSelection.checkOut && (
-            <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-[#d49a5a]/40 bg-[#173024] px-5 py-2.5 text-xs text-[#f3f5f0] shadow-lg sm:text-sm">
+            <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-accent/40 bg-surface px-5 py-2.5 text-xs text-ink shadow-lg sm:text-sm">
               <span>
                 Заезд:{" "}
-                <strong className="font-semibold text-[#d49a5a]">
+                <strong className="font-semibold text-accent">
                   {calSelection.checkIn.formattedDate}
                 </strong>{" "}
                 – выберите дату выезда в календаре
@@ -604,7 +604,7 @@ export function KonturBookingWidget({
               <button
                 type="button"
                 onClick={handleResetCalendarSelection}
-                className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-[#a8b9ae] transition hover:border-white/30 hover:text-[#f3f5f0] cursor-pointer"
+                className="inline-flex items-center gap-1 rounded-full border border-line bg-soft px-2.5 py-1 text-xs text-muted transition hover:border-line hover:text-ink cursor-pointer"
               >
                 <X size={12} />
                 <span>Сбросить</span>
@@ -613,21 +613,21 @@ export function KonturBookingWidget({
           )}
 
           {calSelection.checkIn && calSelection.checkOut && (
-            <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-[#d49a5a]/45 bg-[#173024] px-5 py-3 text-xs text-[#f3f5f0] shadow-lg sm:rounded-full sm:text-sm">
+            <div className="inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-accent/45 bg-surface px-5 py-3 text-xs text-ink shadow-lg sm:rounded-full sm:text-sm">
               <span>
                 Выбрано:{" "}
-                <strong className="font-semibold text-[#d49a5a]">
+                <strong className="font-semibold text-accent">
                   {calSelection.checkIn.formattedDate} –{" "}
                   {calSelection.checkOut.formattedDate}
                 </strong>{" "}
-                <span className="text-[#a8b9ae]">
+                <span className="text-muted">
                   ({formatNightsLabel(selectedNights)})
                 </span>
               </span>
               <button
                 type="button"
                 onClick={handleReopenCalendarCheckout}
-                className="inline-flex h-9 items-center justify-center rounded-full bg-[#d49a5a] px-4 text-xs font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98] sm:text-sm cursor-pointer"
+                className="inline-flex h-9 items-center justify-center rounded-full bg-action px-4 text-xs font-semibold text-on-action transition hover:bg-action-hover active:scale-[0.98] sm:text-sm cursor-pointer"
               >
                 Забронировать
               </button>
@@ -635,7 +635,7 @@ export function KonturBookingWidget({
                 type="button"
                 onClick={handleResetCalendarSelection}
                 aria-label="Сбросить выбранные даты"
-                className="inline-flex h-9 items-center gap-1 rounded-full border border-white/15 bg-white/5 px-3 text-xs text-[#a8b9ae] transition hover:border-white/30 hover:text-[#f3f5f0] cursor-pointer"
+                className="inline-flex h-9 items-center gap-1 rounded-full border border-line bg-soft px-3 text-xs text-muted transition hover:border-line hover:text-ink cursor-pointer"
               >
                 <X size={13} />
                 <span>Сбросить</span>
@@ -673,9 +673,9 @@ export function KonturBookingWidget({
             >
               <label
                 htmlFor={`${containerId}-checkin`}
-                className="flex items-center gap-1.5 text-xs font-medium text-[#a8b9ae]"
+                className="flex items-center gap-1.5 text-xs font-medium text-muted"
               >
-                <CalendarBlank size={14} className="text-[#d49a5a]" />
+                <CalendarBlank size={14} className="text-accent" />
                 <span>Дата заезда</span>
               </label>
               <input
@@ -683,7 +683,7 @@ export function KonturBookingWidget({
                 type="date"
                 value={checkIn}
                 onChange={(e) => setCheckIn(e.target.value)}
-                className="h-12 w-full rounded-xl border border-white/15 bg-[#102219]/90 px-3.5 text-sm text-[#f3f5f0] outline-none transition focus:border-[#d49a5a]"
+                className="h-12 w-full rounded-xl border border-line bg-canvas/90 px-3.5 text-sm text-ink outline-none transition focus:border-accent"
               />
             </div>
 
@@ -696,9 +696,9 @@ export function KonturBookingWidget({
             >
               <label
                 htmlFor={`${containerId}-checkout`}
-                className="flex items-center gap-1.5 text-xs font-medium text-[#a8b9ae]"
+                className="flex items-center gap-1.5 text-xs font-medium text-muted"
               >
-                <CalendarBlank size={14} className="text-[#d49a5a]" />
+                <CalendarBlank size={14} className="text-accent" />
                 <span>Дата выезда</span>
               </label>
               <input
@@ -707,7 +707,7 @@ export function KonturBookingWidget({
                 min={checkIn || undefined}
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
-                className="h-12 w-full rounded-xl border border-white/15 bg-[#102219]/90 px-3.5 text-sm text-[#f3f5f0] outline-none transition focus:border-[#d49a5a]"
+                className="h-12 w-full rounded-xl border border-line bg-canvas/90 px-3.5 text-sm text-ink outline-none transition focus:border-accent"
               />
             </div>
 
@@ -720,9 +720,9 @@ export function KonturBookingWidget({
             >
               <label
                 htmlFor={`${containerId}-guests`}
-                className="flex items-center gap-1.5 text-xs font-medium text-[#a8b9ae]"
+                className="flex items-center gap-1.5 text-xs font-medium text-muted"
               >
-                <Users size={14} className="text-[#d49a5a]" />
+                <Users size={14} className="text-accent" />
                 <span>Взрослые</span>
               </label>
               <div className="relative">
@@ -730,7 +730,7 @@ export function KonturBookingWidget({
                   id={`${containerId}-guests`}
                   value={adults}
                   onChange={(e) => setAdults(e.target.value)}
-                  className="h-12 w-full appearance-none rounded-xl border border-white/15 bg-[#102219]/90 pr-9 pl-3.5 text-sm text-[#f3f5f0] outline-none transition focus:border-[#d49a5a] cursor-pointer"
+                  className="h-12 w-full appearance-none rounded-xl border border-line bg-canvas/90 pr-9 pl-3.5 text-sm text-ink outline-none transition focus:border-accent cursor-pointer"
                 >
                   {ADULTS_OPTIONS.map((opt) => (
                     <option key={opt.value} value={opt.value}>
@@ -740,7 +740,7 @@ export function KonturBookingWidget({
                 </select>
                 <CaretDown
                   size={15}
-                  className="pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2 text-[#a8b9ae]"
+                  className="pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2 text-muted"
                 />
               </div>
             </div>
@@ -752,7 +752,7 @@ export function KonturBookingWidget({
             >
               <button
                 type="submit"
-                className="flex h-12 w-full items-center justify-center whitespace-nowrap rounded-full bg-[#d49a5a] px-6 text-sm font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98] cursor-pointer"
+                className="flex h-12 w-full items-center justify-center whitespace-nowrap rounded-full bg-action px-6 text-sm font-semibold text-on-action transition hover:bg-action-hover active:scale-[0.98] cursor-pointer"
               >
                 Проверить даты
               </button>
@@ -762,18 +762,18 @@ export function KonturBookingWidget({
       )}
 
       {!mountedWidget && !isFormVariant && (
-        <div className="mx-auto max-w-[910px] rounded-3xl border border-white/10 bg-[#173024] p-8 text-center">
-          <p className="mx-auto max-w-xl text-sm leading-relaxed text-[#a8b9ae]">
+        <div className="mx-auto max-w-[910px] rounded-3xl border border-line bg-surface p-8 text-center">
+          <p className="mx-auto max-w-xl text-sm leading-relaxed text-muted">
             {originBlocked
               ? "Встроенный календарь Контур.Отель активируется на основном домене hyzhinalesnika.ru. Вы можете открыть актуальную шахматку свободных дат напрямую:"
               : loadError ? "Не удалось загрузить календарь. Повторите загрузку или откройте официальный календарь бронирования." : "Загружаем актуальный календарь свободных дат Контур.Отель..."}
           </p>
-          {(loadError || originBlocked) && <button type="button" onClick={() => { setLoadError(false); setOriginBlocked(false); setLoadAttempt(value => value + 1); }} className="mt-4 block w-full text-sm text-[#d49a5a] underline">Повторить загрузку</button>}
+          {(loadError || originBlocked) && <button type="button" onClick={() => { setLoadError(false); setOriginBlocked(false); setLoadAttempt(value => value + 1); }} className="mt-4 block w-full text-sm text-accent underline">Повторить загрузку</button>}
           <a
             href={SITE_CONFIG.konturBookingPortalUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex min-h-12 max-w-full items-center justify-center rounded-full bg-[#d49a5a] px-4 py-3 text-center text-sm leading-snug font-semibold text-[#102219] transition hover:bg-[#e0ab6e] active:scale-[0.98] sm:px-7"
+            className="mt-5 inline-flex min-h-12 max-w-full items-center justify-center rounded-full bg-action px-4 py-3 text-center text-sm leading-snug font-semibold text-on-action transition hover:bg-action-hover active:scale-[0.98] sm:px-7"
           >
             Открыть календарь бронирования
           </a>
