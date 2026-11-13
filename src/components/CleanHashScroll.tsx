@@ -157,7 +157,7 @@ export function CleanHashScroll() {
 
       let parsed: URL;
       try {
-        parsed = new URL(rawHref, window.location.origin);
+        parsed = new URL(rawHref, window.location.href);
       } catch {
         return;
       }

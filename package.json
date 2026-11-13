@@ -12,6 +12,7 @@
     "test:social": "node scripts/test-social-metadata.mjs",
     "test:metrica": "node scripts/test-metrica.mjs",
     "test:booking": "node scripts/test-kontur-booking.mjs",
+    "test:navigation": "node scripts/test-section-navigation.mjs",
     "test:contact": "node scripts/test-contact.cjs"
   },
   "dependencies": {

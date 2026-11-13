@@ -2,17 +2,15 @@
 
 import Script from "next/script";
 import { usePathname } from "next/navigation";
-import { useEffect, useSyncExternalStore } from "react";
-import { analyticsServerSnapshot, getAnalyticsChoice, subscribeAnalyticsChoice } from "@/lib/analytics-consent";
-import { contactGoal, isMetricaSite, METRICA_SCRIPT_URL, stopMetrica, trackMetricaGoal, trackMetricaPage } from "@/lib/metrica";
+import { useEffect } from "react";
+import { contactGoal, isMetricaSite, METRICA_SCRIPT_URL, trackMetricaGoal, trackMetricaPage } from "@/lib/metrica";
 
 export function YandexMetrica() {
-  const choice = useSyncExternalStore(subscribeAnalyticsChoice, getAnalyticsChoice, analyticsServerSnapshot);
   const pathname = usePathname();
-  const enabled = choice === "granted" && isMetricaSite();
+  const enabled = isMetricaSite();
 
   useEffect(() => {
-    if (!enabled) { stopMetrica(); return; }
+    if (!enabled) return;
     trackMetricaPage();
   }, [enabled, pathname]);
 
@@ -33,5 +31,5 @@ export function YandexMetrica() {
     };
   }, [enabled]);
 
-  return enabled ? <Script id="yandex-metrica" src={METRICA_SCRIPT_URL} strategy="afterInteractive" /> : null;
+  return enabled ? <Script id="yandex-metrica" src={METRICA_SCRIPT_URL} strategy="afterInteractive" onReady={trackMetricaPage} /> : null;
 }

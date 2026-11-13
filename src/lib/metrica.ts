@@ -1,5 +1,4 @@
 import { SITE_CONFIG } from "@/data/site";
-import { getAnalyticsChoice } from "@/lib/analytics-consent";
 
 export const METRICA_COUNTER_ID = 98987390;
 export const METRICA_SCRIPT_URL = "https://mc.yandex.ru/metrika/tag.js";
@@ -42,7 +41,7 @@ export function analyticsUrl(value: string): string {
 }
 
 export function initializeMetrica() {
-  if (!isMetricaSite() || getAnalyticsChoice() !== "granted") return false;
+  if (!isMetricaSite()) return false;
   if (initialized) return true;
   if (!window.ym) {
     const queue: MetricaFunction = (...args) => { (queue.a ??= []).push(args); };
@@ -102,22 +101,4 @@ export function contactGoal(href: string): { goal: MetricaGoal; parameters?: Goa
     }
   } catch { /* Ignore malformed and non-contact URLs. */ }
   return null;
-}
-
-export function stopMetrica() {
-  if (typeof window === "undefined" || !initialized) return;
-  try {
-    if (window.ym?.hyzhinaQueue) {
-      window.ym.a = window.ym.a?.filter(args => args[0] !== METRICA_COUNTER_ID);
-    } else window.ym?.(METRICA_COUNTER_ID, "destruct");
-    for (const value of document.cookie.split(";")) {
-      const name = value.trim().split("=")[0];
-      if (!name.startsWith("_ym_")) continue;
-      for (const domain of ["", `; Domain=${window.location.hostname}`, `; Domain=.${window.location.hostname}`]) {
-        document.cookie = `${name}=; Max-Age=0; Path=/; SameSite=Lax; Secure${domain}`;
-      }
-    }
-  } catch { /* Event helpers also check the choice before every call. */ }
-  initialized = false;
-  lastPage = null;
 }
