@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { randomUUID } from "node:crypto";
 import { validateContactConsents, consentEvidence, ConsentValidationError } from "@/lib/contact-consents";
 import { recordContactEvent } from "@/lib/contact-journal";
+import { GIFT_CERTIFICATE_FORMATS, GIFT_CERTIFICATE_SOURCE, GIFT_CERTIFICATE_VALIDITY_YEARS, parseGiftCertificate } from "@/data/special-offers";
 
 function clean(value: unknown, length: number) {
   return typeof value === "string" ? value.replace(/[\u0000-\u001f\u007f]/g, " ").trim().slice(0, length) : "";
@@ -28,7 +29,12 @@ export async function POST(request: Request) {
 
   const name = clean(body.name, 100);
   const phone = clean(body.phone, 30);
-  const source = clean(body.source, 200) || "Обратная связь";
+  const source = body.giftCertificate !== undefined ? GIFT_CERTIFICATE_SOURCE : clean(body.source, 200) || "Обратная связь";
+  const isGiftRequest = body.giftCertificate !== undefined || source === GIFT_CERTIFICATE_SOURCE;
+  const giftCertificate = isGiftRequest ? parseGiftCertificate(body.giftCertificate) : null;
+  if (isGiftRequest && !giftCertificate) {
+    return NextResponse.json({ ok: false, error: "Выберите формат сертификата и укажите номинал от 10 000 ₽ целым числом." }, { status: 400 });
+  }
   const contactMethod = body.contactMethod === undefined ? "phone" : clean(body.contactMethod, 20);
   const contactHandle = clean(body.contactHandle, 150);
   if (!name || !/^\+?[\d\s()\-]+$/.test(phone) || !/^\d{10,15}$/.test(phone.replace(/\D/g, ""))) {
@@ -48,6 +54,7 @@ export async function POST(request: Request) {
     // Durable evidence must exist before forwarding a contact to the administrator.
     await recordContactEvent("requests", id, {
       schemaVersion: 2, id, recordedAt, name, phone, source, contactMethod, contactHandle,
+      ...(giftCertificate ? { giftCertificate: { ...giftCertificate, validityYears: GIFT_CERTIFICATE_VALIDITY_YEARS } } : {}),
       consents: consentEvidence(consents, recordedAt),
     });
   } catch {
@@ -58,6 +65,11 @@ export async function POST(request: Request) {
     "🌲 Новая заявка с сайта hyzhinalesnika.ru", `Номер: ${id}`, `Форма: ${source}`,
     `Имя: ${name}`, `Телефон: ${phone}`, `Способ связи: ${contactMethod}`,
     ...(contactHandle ? [`Контакт в мессенджере: ${contactHandle}`] : []),
+    ...(giftCertificate ? [
+      `Номинал сертификата: ${giftCertificate.amount.toLocaleString("ru-RU")} ₽`,
+      `Формат сертификата: ${GIFT_CERTIFICATE_FORMATS[giftCertificate.format]}`,
+      `Срок действия сертификата: ${GIFT_CERTIFICATE_VALIDITY_YEARS} год`,
+    ] : []),
     `Согласие на заявку: да; версия ${consents.callback.document.version}; ${recordedAt}`,
   ].join("\n");
 

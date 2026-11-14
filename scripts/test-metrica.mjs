@@ -50,6 +50,8 @@ assert.equal(win.ym.a.filter(args => args[2] === "booking_page").length, 1);
 trackMetricaGoal("callback_sent", { form: "callback", name: "private", phone: "private" });
 assert.equal(JSON.stringify(win.ym.a.at(-1)), JSON.stringify([98987390, "reachGoal", "callback_sent", { form: "callback" }]));
 assert.ok(!JSON.stringify(win.ym.a).includes("private"), "Contact and booking details never enter event parameters");
+trackMetricaGoal("callback_sent", { form: "gift_certificate", amount: 10000, format: "printed" });
+assert.equal(JSON.stringify(win.ym.a.at(-1)), JSON.stringify([98987390, "reachGoal", "callback_sent", { form: "gift_certificate" }]), "Certificate amount and format stay out of analytics");
 assert.equal(contactGoal(site.phoneHref).goal, "phone_click");
 assert.equal(contactGoal("tel:+70000000000"), null, "Partner and unrelated phone numbers are excluded");
 assert.equal(contactGoal(site.maxHref).parameters.channel, "max");
@@ -137,14 +139,20 @@ function formElement(element) {
   }
   return null;
 }
-for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssistance", "booking_assistance"]]) {
-  for (const scenario of ["success", "rejected", "network", "unchecked"]) {
+const giftOffers = load("src/data/special-offers.ts", {});
+for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssistance", "booking_assistance"], ["GiftCertificateForm", "gift_certificate"]]) {
+  const isGift = component === "GiftCertificateForm";
+  for (const scenario of ["success", "rejected", "network", "unchecked", ...(isGift ? ["custom", "invalid_amount", "invalid_format"] : [])]) {
     const goals = [], requests = [];
     let hook = 0;
-    const fields = { name: "Test", phone: "+70000000000", callbackConsent: scenario === "unchecked" ? null : "on" };
+    const fields = {
+      name: "Test", phone: "+70000000000", callbackConsent: scenario === "unchecked" ? null : "on",
+      giftAmount: scenario === "custom" ? "custom" : scenario === "invalid_amount" ? "9999" : "10000",
+      giftCustomAmount: "12500", giftFormat: scenario === "invalid_format" ? "invalid" : "printed",
+    };
     const react = { useState: initial => {
       const index = hook++;
-      const value = component === "CallbackModal" && index < 2 ? [fields.name, fields.phone][index] : initial;
+      const value = component === "CallbackModal" && index < 2 ? [fields.name, fields.phone][index] : isGift && index === 0 ? fields.giftAmount : initial;
       return [value, () => {}];
     } };
     const componentExports = load(`src/components/${component}.tsx`, {
@@ -152,7 +160,7 @@ for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssis
       fetch: async (...args) => {
         requests.push(args);
         if (scenario === "network") throw Error("offline");
-        return { ok: scenario === "success", json: async () => ({ error: "failed" }) };
+        return { ok: scenario === "success" || scenario === "custom", json: async () => ({ error: "failed" }) };
       },
     }, {
       react, "react/jsx-runtime": { jsx, jsxs },
@@ -160,14 +168,21 @@ for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssis
       "./ContactConsentFields": { ContactConsentFields: "consent-fields" },
       "@/data/consents": { contactConsentSelection: () => ({}) },
       "@/data/site": { SITE_CONFIG: site },
+      "@/data/special-offers": giftOffers,
       "@/lib/metrica": { trackMetricaGoal: (...args) => goals.push(args) },
     });
     const form = formElement(componentExports[component]({ open: true, onClose() {} }));
     assert.ok(form, `${component} contains a form`);
     await form.props.onSubmit({ preventDefault() {}, currentTarget: { reset() {} } });
-    assert.equal(goals.length, scenario === "success" ? 1 : 0, `${component}: ${scenario}`);
-    assert.equal(requests.length, scenario === "unchecked" ? 0 : 1);
+    assert.equal(goals.length, scenario === "success" || scenario === "custom" ? 1 : 0, `${component}: ${scenario}`);
+    assert.equal(requests.length, ["unchecked", "invalid_amount", "invalid_format"].includes(scenario) ? 0 : 1);
+    if (isGift && requests.length) {
+      const payload = JSON.parse(requests[0][1].body);
+      assert.equal(payload.giftCertificate.amount, scenario === "custom" ? 12500 : 10000);
+      assert.equal(payload.giftCertificate.format, "printed");
+      assert.equal(payload.source, giftOffers.GIFT_CERTIFICATE_SOURCE);
+    }
     if (goals.length) assert.equal(JSON.stringify(goals[0]), JSON.stringify(["callback_sent", { form: source }]));
   }
 }
-console.log("METRICA PASS: automatic first visit, blocked storage, legacy choices, script readiness, SPA views, goals, cookie notice, preview exclusion, contact filtering, parameter sanitization and both form success/error paths; no external requests.");
+console.log("METRICA PASS: automatic first visit, blocked storage, legacy choices, script readiness, SPA views, goals, cookie notice, preview exclusion, contact filtering, parameter sanitization and all three form success/error paths; no external requests.");

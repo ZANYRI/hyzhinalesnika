@@ -4,7 +4,7 @@ export const METRICA_COUNTER_ID = 98987390;
 export const METRICA_SCRIPT_URL = "https://mc.yandex.ru/metrika/tag.js";
 export type MetricaGoal = "kontur_booking" | "callback_sent" | "phone_click" | "messenger_click" | "booking_page";
 type GoalParameters = {
-  form?: "callback" | "booking_assistance";
+  form?: "callback" | "booking_assistance" | "gift_certificate";
   channel?: "whatsapp" | "telegram" | "max" | "instagram";
 };
 type MetricaFunction = ((counterId: number, action: string, ...args: unknown[]) => void) & {
@@ -64,7 +64,7 @@ export function trackMetricaGoal(goal: MetricaGoal, parameters?: GoalParameters)
   try {
     // Only explicitly allowed categorical values can leave the application.
     const safe: GoalParameters = {};
-    if (parameters?.form === "callback" || parameters?.form === "booking_assistance") safe.form = parameters.form;
+    if (parameters?.form === "callback" || parameters?.form === "booking_assistance" || parameters?.form === "gift_certificate") safe.form = parameters.form;
     if (["whatsapp", "telegram", "max", "instagram"].includes(parameters?.channel || "")) safe.channel = parameters!.channel;
     if (Object.keys(safe).length) window.ym?.(METRICA_COUNTER_ID, "reachGoal", goal, safe);
     else window.ym?.(METRICA_COUNTER_ID, "reachGoal", goal);

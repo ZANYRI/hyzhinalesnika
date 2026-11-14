@@ -17,6 +17,7 @@ require.extensions[".ts"] = (module, filename) => module._compile(ts.transpileMo
 
 const { POST } = require(path.join(root, "src/app/api/contact/route.ts"));
 const { CALLBACK_CONSENT } = require(path.join(root, "src/data/consents.ts"));
+const { GIFT_CERTIFICATE_SOURCE } = require(path.join(root, "src/data/special-offers.ts"));
 
 async function main() {
   const directory = await fsp.mkdtemp(path.join(os.tmpdir(), "hyzhina-contact-test-"));
@@ -51,6 +52,14 @@ async function main() {
       { ...base, consents: { callback: consent(CALLBACK_CONSENT, "true") } },
       { ...base, phone: "invalid" },
     ]) assert.equal((await send(body)).status, 400);
+    for (const giftCertificate of [
+      null, [], "10000", {}, { amount: 9999, format: "electronic" },
+      { amount: 10000.5, format: "printed" }, { amount: "10000", format: "electronic" },
+      { amount: 10000, format: "pdf" }, { amount: 10000 },
+      { amount: Number.MAX_SAFE_INTEGER + 1, format: "electronic" },
+    ]) assert.equal((await send({ ...base, source: GIFT_CERTIFICATE_SOURCE, giftCertificate })).status, 400);
+    assert.equal((await send({ ...base, source: GIFT_CERTIFICATE_SOURCE })).status, 400);
+    assert.equal((await send({ ...base, consents: undefined, giftCertificate: { amount: 10000, format: "printed" } })).status, 400);
     assert.equal((await send({ ...base, consents: { callback: { granted: true, version: "old" } } })).status, 409);
     assert.equal((await send({ ...base, consents: { ...base.consents, advertising: { granted: true, version: CALLBACK_CONSENT.version } } })).status, 400);
     assert.equal((await POST(new Request("http://localhost/api/contact", { method: "POST", body: "{" }))).status, 400);
@@ -64,6 +73,7 @@ async function main() {
     const stored = read("requests", requestId);
     assert.equal(stored.consents.length, 1);
     assert.equal(stored.schemaVersion, 2);
+    assert.equal("giftCertificate" in stored, false, "Regular callback requests retain their original schema");
     assert.equal("advertising" in stored, false);
     assert(Date.parse(stored.recordedAt) >= Date.now() - 60_000);
     for (const evidence of stored.consents) {
@@ -75,6 +85,24 @@ async function main() {
     assert.equal(read("delivery", requestId).status, "delivered");
     assert.equal(fs.statSync(path.join(journal, "requests", `${requestId}.json`)).mode & 0o777, 0o600);
     assert.equal(fs.statSync(journal).mode & 0o777, 0o700);
+
+    for (const giftCertificate of [
+      { amount: 10000, format: "electronic" },
+      { amount: 20000, format: "printed" },
+      { amount: 12345, format: "electronic" },
+    ]) {
+      const result = await send({ ...base, giftCertificate });
+      assert.equal(result.status, 200);
+      const { requestId: giftId } = await result.json();
+      const gift = read("requests", giftId);
+      assert.equal(gift.source, GIFT_CERTIFICATE_SOURCE);
+      assert.deepEqual(gift.giftCertificate, { ...giftCertificate, validityYears: 1 });
+      assert.equal(gift.consents[0].granted, true);
+      const notification = deliveries.at(-1).text;
+      assert.ok(notification.includes(`Номинал сертификата: ${giftCertificate.amount.toLocaleString("ru-RU")} ₽`));
+      assert.ok(notification.includes(`Формат сертификата: ${giftCertificate.format === "printed" ? "Печатный" : "Электронный"}`));
+      assert.ok(notification.includes("Срок действия сертификата: 1 год"));
+    }
 
     const parallel = await Promise.all(Array.from({ length: 6 }, () => send(base)));
     assert(parallel.every(result => result.status === 200));
@@ -100,7 +128,7 @@ async function main() {
     assert.equal(read("requests", failure.id).consents[0].granted, true);
     delete process.env.TELEGRAM_BOT_TOKEN;
     assert.equal((await send(base)).status, 503);
-    console.log("PASS contact: consent required, version checked, single callback consent and no advertising processing, evidence stored before delivery, private files, concurrency and failure paths");
+    console.log("PASS contact: consent, version, certificate amount/format validation, private certificate details saved and delivered, regular callbacks, concurrency and failure paths; no external requests");
   } finally {
     global.fetch = originalFetch;
     for (const [key, value] of Object.entries(originalEnv)) {
