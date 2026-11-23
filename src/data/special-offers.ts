@@ -1,4 +1,4 @@
-export const DISCOUNT_PERCENT = 10;
+export const DISCOUNT_PERCENT = 5;
 export const LONG_STAY_MIN_NIGHTS = 5;
 export const BIRTHDAY_WINDOW_DAYS = 7;
 export const BIRTHDAY_MIN_NIGHTS = 2;
