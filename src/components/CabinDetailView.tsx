@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/SeasonalImage";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, Check, Clock, DoorOpen, PawPrint, Ruler, TreeEvergreen, Users } from "@phosphor-icons/react/dist/ssr";
 import { BOOKING_RULES, CABIN_LIST, CabinData } from "@/data/cabins";

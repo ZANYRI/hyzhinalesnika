@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/SeasonalImage";
 import React from "react";
 import Link from "next/link";
 import {

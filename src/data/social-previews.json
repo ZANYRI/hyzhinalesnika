@@ -9,6 +9,7 @@
   "/dining": { "file": "dining.jpg", "title": "Ресторан и завтрак в домик", "photo": "/images/partners/dining/bar-mural.webp" },
   "/split": { "file": "split.jpg", "title": "Отдых с оплатой частями", "photo": "/images/home/faq-terrace.jpg" },
   "/special-offers": { "file": "offers.jpg", "title": "Особенные предложения для гостей", "photo": "/images/home/discount-festive.jpg" },
+  "/new-year": { "file": "new-year.jpg", "title": "Новый год 2027 в горах Архыза", "photo": "/images/barnhouse/11.jpg" },
   "/news": { "file": "news.jpg", "title": "Новости и маршруты по Архызу", "photo": "/images/brand/forest-aerial.jpg" },
   "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety": { "file": "travel-guide.jpg", "title": "Как добраться до Архыза", "photo": "/images/blog/how-to-get-cover.jpg" },
   "/stati-i-sovety/post/top-5-mest-v-arhyze": { "file": "places-guide.jpg", "title": "Пять мест рядом с нашими домами", "photo": "/images/blog/top5-baritovy.png" },

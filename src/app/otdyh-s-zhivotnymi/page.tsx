@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "@/components/SeasonalImage";
 import Link from "next/link";
 import { ContentPage } from "@/components/ContentPage";
 import { PageStructuredData } from "@/components/StructuredData";
@@ -53,7 +53,7 @@ export default function PetsPage() {
           <div className="grid gap-3">
             <figure className="overflow-hidden rounded-2xl border border-line bg-white">
               <div className="relative aspect-[4/5] overflow-hidden">
-                <Image fill quality={75} loading="lazy" src="/images/pets/dogs-with-welcome-kit.webp" alt="Две собаки в осеннем лесу рядом с приветственным набором «Четыре Лапы»" sizes="(min-width: 1400px) 550px, (min-width: 1024px) 42vw, (min-width: 640px) calc(100vw - 120px), calc(100vw - 74px)" className="object-cover object-[50%_55%]" />
+                <Image fill quality={75} loading="lazy" src="/images/pets/dogs-with-welcome-kit.webp" alt="Две собаки в лесу рядом с приветственным набором «Четыре Лапы»" sizes="(min-width: 1400px) 550px, (min-width: 1024px) 42vw, (min-width: 640px) calc(100vw - 120px), calc(100vw - 74px)" className="object-cover object-[50%_55%]" />
               </div>
               <figcaption className="px-4 py-3 text-xs leading-relaxed text-muted">Наши четвероногие гости и подарок от «Четыре Лапы».</figcaption>
             </figure>

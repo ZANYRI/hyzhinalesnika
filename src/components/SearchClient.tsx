@@ -16,6 +16,7 @@ interface SearchEntry {
 }
 
 const SEARCH_INDEX: SearchEntry[] = [
+  { title: "Новый год 2027 и январские каникулы в Архызе", href: "/new-year", snippet: "Новогодний отдых в домиках «Хижины лесника»: выбор дома, зимние впечатления и бронирование." },
   ...CABIN_LIST.map((c) => ({
     cabinId: c.id,
     title: `${c.titlePrefix} ${c.titleHighlight}`,

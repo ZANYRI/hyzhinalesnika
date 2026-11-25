@@ -1,5 +1,5 @@
 import { PageStructuredData } from "@/components/StructuredData";
-import Image from "next/image";
+import Image from "@/components/SeasonalImage";
 import heroMedia from "@/data/hero-media.json";
 import type { Metadata } from "next";
 import { withSocialMetadata, HOME_TITLE, HOME_DESCRIPTION } from "@/lib/social-metadata";
@@ -18,8 +18,8 @@ import { GuestReviews } from "@/components/GuestReviews";
 import { Reveal } from "@/components/Reveal";
 import { HomeBenefits, AudienceStories, HeroBadges } from "@/components/HomeSections";
 import { BookingAssistance } from "@/components/BookingAssistance";
-import { AUTUMN_ATMOSPHERE } from "@/data/atmosphere";
-import { AutumnAtmosphere } from "@/components/AutumnAtmosphere";
+import { SEASON_LABEL } from "@/lib/season";
+import { Snowfall } from "@/components/Snowfall";
 
 export const metadata: Metadata = withSocialMetadata({title: HOME_TITLE, description: HOME_DESCRIPTION, alternates: {canonical: "/"}});
 
@@ -49,14 +49,14 @@ export default function HomePage() {
             Wider screens retain the full photo and the same cover framing. */}
         <source media="(max-width: 639px) and (max-aspect-ratio: 9/16)" type="image/avif" srcSet={heroMedia.avif} />
         <source media="(max-width: 639px) and (max-aspect-ratio: 9/16)" type="image/webp" srcSet={heroMedia.webp} />
-        <Image fill quality={60} sizes="(max-aspect-ratio: 3/2) 150vh, 100vw" loading="eager" fetchPriority="high" src="/images/home/hero-bg.jpg" alt="Дома базы отдыха Хижина лесника в буковом лесу Архыза" className="absolute inset-0 h-full w-full object-cover" />
+        <Image fill quality={60} sizes="(max-aspect-ratio: 3/2) 150vh, 100vw" loading="eager" fetchPriority="high" src={heroMedia.desktop} alt="Дома «Хижины лесника» в буковом лесу Архыза — сезонная иллюстрация" className="absolute inset-0 h-full w-full object-cover" />
       </picture>
-      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-[#06130d]/55 via-[#06130d]/55 to-[#102219]/95" />
-      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#06130d]/30 via-[#06130d]/10 to-transparent" />
-      {AUTUMN_ATMOSPHERE.enabled && <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden [contain:paint]"><AutumnAtmosphere /></div>}
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-[#081623]/55 via-[#081623]/45 to-[#0a1b24]/90" />
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#081623]/25 via-[#081623]/10 to-transparent" />
+      <Snowfall />
       <div className="relative z-10 mx-auto flex w-full max-w-[1400px] justify-end px-4 sm:px-6"><HeroBadges /></div>
       <div className="relative z-[31] mx-auto my-auto flex w-full max-w-[1400px] flex-col items-center px-4 py-12 text-center sm:px-6">
-        <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-[#f3e6cf] sm:text-sm">База отдыха Хижина лесника</p>
+        <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-[#f3e6cf] sm:text-sm">{SEASON_LABEL} в Архызе · Хижина лесника</p>
         <h1 className="mt-4 max-w-4xl font-moderustic text-4xl font-medium leading-[1.12] text-balance sm:text-5xl lg:text-6xl">Уединенный отдых<br className="hidden sm:block" /> в буковом лесу Архыза</h1>
         <p className="mt-5 max-w-5xl font-medium leading-7 text-ink sm:text-lg sm:leading-8">Идеальное место для отдыха. Дома с огороженной территорией, тихие вечера у костра и панорамные окна с видом на горы. Приезжайте вдвоём, с детьми или в компании друзей. До СПА-комплекса и ресторана — 100 метров.</p>
         <Link href="/booking" className="mt-8 inline-flex rounded-full bg-action px-7 py-4 text-sm font-semibold text-on-action transition hover:bg-action-hover">Проверить свободные даты</Link>

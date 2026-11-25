@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { writeFile } from "node:fs/promises";
 import { get as httpGet } from "node:http";
+import seasonConfig from "../src/data/season.json" with { type: "json" };
+import heroMedia from "../src/data/hero-media.json" with { type: "json" };
 import forestMedia from "../src/data/forest-media.json" with { type: "json" };
 
 // Read-only assertions against a running production build; never submits forms.
@@ -14,7 +16,8 @@ const canonical = html => attr(tags(html, "link").find(tag => attr(tag, "rel") =
 const get = path => fetch(new URL(path, base), { redirect: "manual", signal: AbortSignal.timeout(30000) });
 const sitemap = await (await get("/sitemap.xml")).text();
 const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => decode(match[1]));
-assert.equal(urls.length, 18, "Existing pages, pet accommodation page and current consent document belong in sitemap");
+assert.equal(urls.length, 19, "Existing pages, New Year page and current consent document belong in sitemap");
+assert.ok(urls.includes(`${production}/new-year`), "New Year page is discoverable in sitemap");
 assert.ok(urls.includes(`${production}/otdyh-s-zhivotnymi`), "Pet accommodation page is discoverable in sitemap");
 assert.equal(new Set(urls).size, urls.length, "No duplicate sitemap entries");
 const rows = [], titles = new Set(), descriptions = new Set(), links = new Set();
@@ -23,6 +26,35 @@ for (const url of urls) {
   const response = await get(pathname);
   assert.equal(response.status, 200, pathname);
   const html = await response.text();
+  if (pathname === "/new-year") {
+    const visible = decode(html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, "").replace(/<!--.*?-->/gs, ""));
+    assert.ok(visible.includes("Новый год") && visible.includes("2027"), "Current holiday season rendered on server");
+    assert.ok(tags(html, "a").filter(tag => attr(tag, "href") === "/new-year").length >= 3, "Holiday navigation in header, mobile and footer");
+    assert.ok(tags(html, "a").some(tag => attr(tag, "href") === "#help") && html.includes('id="help"'), "Manager links target the local request form");
+    for (const cabin of ["/dom-dlya-semi", "/shale-s-vidom-na-gory", "/dvuhetazhnyj-barnhouse"]) assert.ok(tags(html, "a").some(tag => attr(tag, "href") === cabin), "All three actual cabins linked");
+    const schemas = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap(match => { const value = JSON.parse(match[1]); return value["@graph"] || [value]; });
+    const faq = schemas.find(node => node["@type"] === "FAQPage");
+    assert.ok(faq?.mainEntity?.length > 0, "Holiday FAQ schema");
+    for (const item of faq.mainEntity) assert.ok(visible.includes(item.name) && visible.includes(item.acceptedAnswer.text), "Holiday FAQ schema matches visible answers");
+    assert.equal(html.includes('data-snowfall="true"'), seasonConfig.season === "winter", "Snowfall follows the active season");
+    assert.doesNotMatch(attr(tags(html, "h1")[0], "class"), /\bundefined\b/, "Hero heading has valid styles");
+    for (const name of ["new-year-hero", "new-year-hero-shade", "new-year-hero-copy", "new-year-hero-title"]) assert.ok(html.includes(name), `Holiday contrast class rendered: ${name}`);
+    const sheets = tags(html, "link").filter(tag => attr(tag, "rel") === "stylesheet").map(tag => attr(tag, "href"));
+    const css = (await Promise.all(sheets.map(async href => (await get(href)).text()))).join("\n");
+    for (const name of ["new-year-hero-shade", "new-year-hero-copy", "new-year-hero-title"]) assert.ok(css.includes(`.${name}`), `Holiday contrast CSS actually delivered: ${name}`);
+    assert.doesNotMatch(visible, /Включить падающий снег|Выключить падающий снег|Снег выключен/, "Snow toggle removed");
+  }
+  if (pathname === "/special-offers") {
+    const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, "");
+    for (const name of ["giftAmount", "giftDesign", "giftMessage", "giftRecipient", "giftFormat", "callbackConsent"]) {
+      assert.ok(visible.includes(`name="${name}"`), `Certificate builder field rendered: ${name}`);
+    }
+    assert.ok(visible.includes('data-testid="gift-preview"'), "Live preview rendered");
+    assert.equal(attr(tags(visible, "textarea").find(tag => attr(tag, "name") === "giftMessage"), "maxlength"), "600", "Greeting is bounded");
+    const sheets = tags(html, "link").filter(tag => attr(tag, "rel") === "stylesheet").map(tag => attr(tag, "href"));
+    const css = (await Promise.all(sheets.map(async href => (await get(href)).text()))).join("\n");
+    for (const name of ["gift-builder", "gift-preview-content", "gift-choice", "gift-designs", "gift-formats"]) assert.ok(css.includes(`.${name}`), `Certificate CSS actually delivered: ${name}`);
+  }
   const title = decode(html.match(/<title>(.*?)<\/title>/s)?.[1] || "");
   const description = meta(html, "description");
   assert.ok(title && description, `Metadata: ${pathname}`);
@@ -103,6 +135,10 @@ for (const url of urls) {
     assert.ok(tags(html, "a").some(tag => attr(tag, "href") === "/spa"), "Crawlable navigation");
     const hero = images.find(tag => attr(tag, "alt").includes("буковом лесу Архыза"));
     assert.ok(attr(hero, "srcset"), "Responsive hero image");
+    assert.equal(new URL(attr(hero, "src"), base).searchParams.get("url"), heroMedia.desktop, "Active seasonal hero is served on the homepage");
+    const snowGrains = tags(html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, ""), "span").filter(tag => attr(tag, "class") === "site-snow-grain");
+    assert.ok(seasonConfig.season === "winter" ? snowGrains.length > 0 && snowGrains.length <= 24 : snowGrains.length === 0, "Homepage snow follows the season with a small fixed particle budget");
+    assert.equal(attr(tags(html, "html")[0], "data-season"), seasonConfig.season, "Server/client share the active season");
     const portraitSources = tags(html, "source").filter(tag => attr(tag, "srcset").includes("hero-mobile."));
     assert.equal(portraitSources.length, 2, "Portrait AVIF and WebP sources available");
     for (const source of portraitSources) {

@@ -1,0 +1,162 @@
+{
+  "/images/house/01.jpg": {
+    "winter": "/images/seasons/winter/house-01.88900a4de980.webp",
+    "autumn": "/images/seasons/autumn/house-01.83acbff1a096.webp",
+    "summer": "/images/seasons/summer/house-01.a88fcd8af2b6.webp"
+  },
+  "/images/house/14.jpg": {
+    "winter": "/images/seasons/winter/house-14.98f3e7358908.webp",
+    "autumn": "/images/seasons/autumn/house-14.ba78598c9aef.webp",
+    "summer": "/images/seasons/summer/house-14.b2b7d05b07f9.webp"
+  },
+  "/images/house/15.jpg": {
+    "winter": "/images/seasons/winter/house-15.8339635700b2.webp",
+    "autumn": "/images/seasons/autumn/house-15.1bef413d5a78.webp",
+    "summer": "/images/seasons/summer/house-15.18a5b535327a.webp"
+  },
+  "/images/house/16.jpg": {
+    "winter": "/images/seasons/winter/house-16.b2d6f5084e4a.webp",
+    "autumn": "/images/seasons/autumn/house-16.3ef8963b0772.webp",
+    "summer": "/images/seasons/summer/house-16.e3faf6baf822.webp"
+  },
+  "/images/barnhouse/01.jpg": {
+    "winter": "/images/seasons/winter/barnhouse-01.df3a95218d8d.webp",
+    "autumn": "/images/seasons/autumn/barnhouse-01.0962f9f05c92.webp",
+    "summer": "/images/seasons/summer/barnhouse-01.5bdde6542fa0.webp"
+  },
+  "/images/barnhouse/02.jpg": {
+    "winter": "/images/seasons/winter/barnhouse-02.ed8bc4abf209.webp",
+    "autumn": "/images/seasons/autumn/barnhouse-02.ebf8ebe6dd40.webp",
+    "summer": "/images/seasons/summer/barnhouse-02.0b901726290b.webp"
+  },
+  "/images/barnhouse/03.jpg": {
+    "winter": "/images/seasons/winter/barnhouse-03.f691e1b98147.webp",
+    "autumn": "/images/seasons/autumn/barnhouse-03.1caa6e9a32e8.webp",
+    "summer": "/images/seasons/summer/barnhouse-03.edfd095f1d15.webp"
+  },
+  "/images/barnhouse/04.jpg": {
+    "winter": "/images/seasons/winter/barnhouse-04.2ff268b98525.webp",
+    "autumn": "/images/seasons/autumn/barnhouse-04.8c78e05f9d93.webp",
+    "summer": "/images/seasons/summer/barnhouse-04.7334c3a15f22.webp"
+  },
+  "/images/barnhouse/05.jpg": {
+    "winter": "/images/seasons/winter/barnhouse-05.3514e883e796.webp",
+    "autumn": "/images/seasons/autumn/barnhouse-05.3564a5f250c3.webp",
+    "summer": "/images/seasons/summer/barnhouse-05.bc28f9efb86e.webp"
+  },
+  "/images/barnhouse/06.jpg": {
+    "winter": "/images/seasons/winter/barnhouse-06.b36b6595d4e1.webp",
+    "autumn": "/images/seasons/autumn/barnhouse-06.9915528e47e8.webp",
+    "summer": "/images/seasons/summer/barnhouse-06.51f7c796f381.webp"
+  },
+  "/images/barnhouse/07.jpg": {
+    "winter": "/images/seasons/winter/barnhouse-07.ead8b64425d2.webp",
+    "autumn": "/images/seasons/autumn/barnhouse-07.451bd2ee6a31.webp",
+    "summer": "/images/seasons/summer/barnhouse-07.9e67cc5c9018.webp"
+  },
+  "/images/home/gal-1.jpg": {
+    "winter": "/images/seasons/winter/home-gal-1.a2f06a8f2ba2.webp",
+    "autumn": "/images/seasons/autumn/home-gal-1.4b20f4f33cc6.webp",
+    "summer": "/images/seasons/summer/home-gal-1.820b91829c8b.webp"
+  },
+  "/images/home/gal-2.jpg": {
+    "winter": "/images/seasons/winter/home-gal-2.0abd66c7c538.webp",
+    "autumn": "/images/seasons/autumn/home-gal-2.b121cf4bfd4b.webp",
+    "summer": "/images/seasons/summer/home-gal-2.8e6d03b9ba52.webp"
+  },
+  "/images/home/story-romance.webp": {
+    "winter": "/images/seasons/winter/home-story-romance.6fe7d7a7561d.webp",
+    "autumn": "/images/seasons/autumn/home-story-romance.233295067179.webp",
+    "summer": "/images/home/story-romance.webp"
+  },
+  "/images/home/story-friends.webp": {
+    "winter": "/images/seasons/winter/home-story-friends.8a9bc5f48d33.webp",
+    "autumn": "/images/seasons/autumn/home-story-friends.4d099e1cbe28.webp",
+    "summer": "/images/home/story-friends.webp"
+  },
+  "/images/home/story-romance-chalet-night.webp": {
+    "winter": "/images/seasons/winter/home-story-romance-chalet-night.99a9b736d586.webp",
+    "autumn": "/images/seasons/autumn/home-story-romance-chalet-night.9cb1b344bd9b.webp",
+    "summer": "/images/seasons/summer/home-story-romance-chalet-night.6cbc90194644.webp"
+  },
+  "/images/home/forest-seclusion.webp": {
+    "winter": "/images/seasons/winter/home-forest-seclusion.fb177295f4a0.webp",
+    "autumn": "/images/seasons/autumn/home-forest-seclusion.a3722c494a93.webp",
+    "summer": "/images/home/forest-seclusion.webp"
+  },
+  "/images/home/hero-bg.jpg": {
+    "winter": "/images/home/hero-winter.jpg",
+    "autumn": "/images/seasons/autumn/home-hero-bg.f5df5f8476fb.webp",
+    "summer": "/images/home/hero-bg.jpg"
+  },
+  "/images/pets/dog-on-cabin-terrace.webp": {
+    "winter": "/images/seasons/winter/pets-dog-on-cabin-terrace.8bd3b258b569.webp",
+    "autumn": "/images/pets/dog-on-cabin-terrace.webp",
+    "summer": "/images/seasons/summer/pets-dog-on-cabin-terrace.787d845fb82c.webp"
+  },
+  "/images/pets/dogs-with-welcome-kit.webp": {
+    "winter": "/images/seasons/winter/pets-dogs-with-welcome-kit.939517e92518.webp",
+    "autumn": "/images/pets/dogs-with-welcome-kit.webp",
+    "summer": "/images/seasons/summer/pets-dogs-with-welcome-kit.e508bed758ac.webp"
+  },
+  "/images/pets/four-paws-welcome-kit.webp": {
+    "winter": "/images/seasons/winter/pets-four-paws-welcome-kit.498db7dc0471.webp",
+    "autumn": "/images/pets/four-paws-welcome-kit.webp",
+    "summer": "/images/seasons/summer/pets-four-paws-welcome-kit.5b748257416b.webp"
+  },
+  "/images/activities/forest-river-clean.webp": {
+    "winter": "/images/seasons/winter/activities-forest-river-clean.63749c925968.webp",
+    "autumn": "/images/activities/forest-river-clean.webp",
+    "summer": "/images/activities/forest-river-clean.webp"
+  },
+  "/images/activities/quad-adventure.webp": {
+    "winter": "/images/seasons/winter/activities-quad-adventure.efb28d079fcc.webp",
+    "autumn": "/images/activities/quad-adventure.webp",
+    "summer": "/images/activities/quad-adventure.webp"
+  },
+  "/images/activities/jeep-adventure.webp": {
+    "winter": "/images/seasons/winter/activities-jeep-adventure.7b16dc943156.webp",
+    "autumn": "/images/activities/jeep-adventure.webp",
+    "summer": "/images/activities/jeep-adventure.webp"
+  },
+  "/images/activities/arkhyz-road-trip.webp": {
+    "winter": "/images/seasons/winter/activities-arkhyz-road-trip.48137221f0a6.webp",
+    "autumn": "/images/activities/arkhyz-road-trip.webp",
+    "summer": "/images/activities/arkhyz-road-trip.webp"
+  },
+  "/images/barnhouse/24.jpg": {
+    "winter": "/images/seasons/winter/house-01.88900a4de980.webp",
+    "autumn": "/images/seasons/autumn/house-01.83acbff1a096.webp",
+    "summer": "/images/seasons/summer/house-01.a88fcd8af2b6.webp"
+  },
+  "/images/home/cabin-bereza.jpg": {
+    "winter": "/images/seasons/winter/barnhouse-01.df3a95218d8d.webp",
+    "autumn": "/images/seasons/autumn/barnhouse-01.0962f9f05c92.webp",
+    "summer": "/images/seasons/summer/barnhouse-01.5bdde6542fa0.webp"
+  },
+  "/images/home/cabin-iva.jpg": {
+    "winter": "/images/seasons/winter/house-01.88900a4de980.webp",
+    "autumn": "/images/seasons/autumn/house-01.83acbff1a096.webp",
+    "summer": "/images/seasons/summer/house-01.a88fcd8af2b6.webp"
+  },
+  "/images/home/hero-bg.webp": {
+    "winter": "/images/home/hero-winter.jpg",
+    "autumn": "/images/seasons/autumn/home-hero-bg.f5df5f8476fb.webp",
+    "summer": "/images/home/hero-bg.jpg"
+  },
+  "/images/house/17.jpg": {
+    "winter": "/images/seasons/winter/barnhouse-01.df3a95218d8d.webp",
+    "autumn": "/images/seasons/autumn/barnhouse-01.0962f9f05c92.webp",
+    "summer": "/images/seasons/summer/barnhouse-01.5bdde6542fa0.webp"
+  },
+  "/images/shale/12.jpg": {
+    "winter": "/images/seasons/winter/house-01.88900a4de980.webp",
+    "autumn": "/images/seasons/autumn/house-01.83acbff1a096.webp",
+    "summer": "/images/seasons/summer/house-01.a88fcd8af2b6.webp"
+  },
+  "/images/shale/13.jpg": {
+    "winter": "/images/seasons/winter/barnhouse-01.df3a95218d8d.webp",
+    "autumn": "/images/seasons/autumn/barnhouse-01.0962f9f05c92.webp",
+    "summer": "/images/seasons/summer/barnhouse-01.5bdde6542fa0.webp"
+  }
+}

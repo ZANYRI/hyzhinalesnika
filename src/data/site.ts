@@ -41,6 +41,7 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: NavItem[] = [
+  { label: "Новый год 2027", href: "/new-year", row: 2 },
   { label: "Дома", href: "/#cabins", row: 1 },
   { label: "Чем заняться", href: "/#sez1", row: 2 },
   { label: "Специальные предложения", href: "/special-offers", row: 2 },

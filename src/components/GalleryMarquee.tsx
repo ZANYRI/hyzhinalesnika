@@ -1,5 +1,7 @@
 "use client";
 
+import { seasonalImage } from "@/lib/season";
+
 import React, { useEffect, useState } from "react";
 import { CaretLeft, CaretRight, X } from "@phosphor-icons/react";
 import { HOME_GALLERY } from "@/data/home";
@@ -50,7 +52,7 @@ export function GalleryMarquee() {
               }`}
             >
               <img
-                src={item.src}
+                src={seasonalImage(item.src)}
                 alt={item.alt}
                 loading="lazy"
                 className="h-full w-full object-cover"
@@ -97,7 +99,7 @@ export function GalleryMarquee() {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={HOME_GALLERY[lightboxIdx].src}
+              src={seasonalImage(HOME_GALLERY[lightboxIdx].src)}
               alt={HOME_GALLERY[lightboxIdx].alt}
               className="max-h-[84vh] max-w-full rounded-2xl object-contain shadow-2xl"
             />

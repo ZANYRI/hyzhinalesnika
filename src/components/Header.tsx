@@ -4,8 +4,9 @@ import Image from "next/image";
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { List, PhoneCall, X } from "@phosphor-icons/react";
+import { List, PhoneCall, Snowflake, X } from "@phosphor-icons/react";
 import { SITE_CONFIG } from "@/data/site";
+import { NEW_YEAR } from "@/data/new-year";
 import { CallbackModal } from "./CallbackModal";
 
 interface HeaderProps {
@@ -30,7 +31,7 @@ export function Header({ variant = "inner" }: HeaderProps) {
   return (
     <>
       <div className="sticky top-0 z-40 w-full border-b border-line bg-white shadow-[0_3px_18px_rgba(24,47,36,0.04)]">
-        <header data-variant={variant} className="mx-auto flex h-[80px] w-full max-w-[1800px] items-center justify-between gap-x-3 gap-y-3 px-4 sm:h-[84px] sm:px-6 md:h-auto md:flex-wrap md:py-4 xl:h-[84px] xl:flex-nowrap xl:py-0">
+        <header data-variant={variant} className="mx-auto flex h-[80px] w-full max-w-[1800px] items-center justify-between gap-x-3 gap-y-3 px-4 sm:h-[84px] sm:px-6 md:h-auto md:flex-wrap md:py-4 2xl:h-[88px] 2xl:flex-nowrap 2xl:py-0">
           {/* Brand Wordmark Logo */}
           <Link
             href="/"
@@ -50,7 +51,7 @@ export function Header({ variant = "inner" }: HeaderProps) {
           {/* Single-line Desktop Navigation */}
           <nav
             aria-label="Основное меню"
-            className="order-3 hidden w-full flex-wrap items-center justify-center gap-x-4 gap-y-2 md:flex xl:order-none xl:w-auto xl:flex-nowrap xl:gap-2 2xl:gap-3"
+            className="order-3 hidden w-full flex-wrap items-center justify-center gap-x-4 gap-y-2 md:flex 2xl:order-none 2xl:w-auto 2xl:flex-nowrap 2xl:gap-3"
           >
             {HEADER_LINKS.map((item) => (
               <Link key={item.target} href={item.target} prefetch={item.target.startsWith("/#") ? false : "auto"} onClick={() => setDrawerOpen(false)}
@@ -62,6 +63,9 @@ export function Header({ variant = "inner" }: HeaderProps) {
 
           {/* Right Actions */}
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <Link href={NEW_YEAR.href} onClick={() => setDrawerOpen(false)} className="holiday-header-link hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-xl bg-[#742f32] px-4 py-2.5 text-xs font-semibold md:inline-flex">
+              <Snowflake size={17} aria-hidden="true" />Новый год {NEW_YEAR.year}
+            </Link>
             <a
               href={SITE_CONFIG.phoneHref}
               className="hidden whitespace-nowrap text-sm font-semibold text-ink transition hover:text-accent-hover min-[1700px]:inline-block"
@@ -97,6 +101,11 @@ export function Header({ variant = "inner" }: HeaderProps) {
             </button>
           </div>
         </header>
+        <div className="px-4 pb-3 sm:px-6 md:hidden">
+          <Link href={NEW_YEAR.href} onClick={() => setDrawerOpen(false)} className="holiday-header-link flex min-h-10 items-center justify-center gap-2 rounded-xl bg-[#742f32] px-4 py-2 text-xs font-semibold">
+            <Snowflake size={17} aria-hidden="true" />Новый год {NEW_YEAR.year} в Архызе <span aria-hidden="true" className="ml-2">↗</span>
+          </Link>
+        </div>
       </div>
 
       {/* Mobile Navigation Drawer */}
@@ -129,7 +138,8 @@ export function Header({ variant = "inner" }: HeaderProps) {
               </button>
             </div>
 
-            <nav className="mt-6 flex flex-col gap-1">
+            <nav aria-label="Мобильное меню" className="mt-6 flex min-h-0 flex-col gap-1 overflow-y-auto">
+              <Link href={NEW_YEAR.href} onClick={() => setDrawerOpen(false)} className="holiday-header-link mb-2 flex items-center gap-2 rounded-xl bg-[#742f32] px-3 py-3 font-moderustic font-semibold"><Snowflake size={18} aria-hidden="true" />Новый год {NEW_YEAR.year}</Link>
               {HEADER_LINKS.map((item) => (
                 <Link key={item.target} href={item.target} prefetch={item.target.startsWith("/#") ? false : "auto"} onClick={() => setDrawerOpen(false)}
                   className="rounded-xl px-3 py-3 text-left font-moderustic text-base font-medium text-ink transition hover:bg-surface hover:text-accent-hover cursor-pointer"
