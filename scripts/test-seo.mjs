@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { writeFile } from "node:fs/promises";
 import { get as httpGet } from "node:http";
+import seasonConfig from "../src/data/season.json" with { type: "json" };
+import heroMedia from "../src/data/hero-media.json" with { type: "json" };
 import forestMedia from "../src/data/forest-media.json" with { type: "json" };
 
 // Read-only assertions against a running production build; never submits forms.
@@ -34,13 +36,24 @@ for (const url of urls) {
     const faq = schemas.find(node => node["@type"] === "FAQPage");
     assert.ok(faq?.mainEntity?.length > 0, "Holiday FAQ schema");
     for (const item of faq.mainEntity) assert.ok(visible.includes(item.name) && visible.includes(item.acceptedAnswer.text), "Holiday FAQ schema matches visible answers");
-    assert.ok(html.includes('data-snowfall="true"'), "Winter effect replaces autumn leaves");
+    assert.equal(html.includes('data-snowfall="true"'), seasonConfig.season === "winter", "Snowfall follows the active season");
     assert.doesNotMatch(attr(tags(html, "h1")[0], "class"), /\bundefined\b/, "Hero heading has valid styles");
     for (const name of ["new-year-hero", "new-year-hero-shade", "new-year-hero-copy", "new-year-hero-title"]) assert.ok(html.includes(name), `Holiday contrast class rendered: ${name}`);
     const sheets = tags(html, "link").filter(tag => attr(tag, "rel") === "stylesheet").map(tag => attr(tag, "href"));
     const css = (await Promise.all(sheets.map(async href => (await get(href)).text()))).join("\n");
     for (const name of ["new-year-hero-shade", "new-year-hero-copy", "new-year-hero-title"]) assert.ok(css.includes(`.${name}`), `Holiday contrast CSS actually delivered: ${name}`);
     assert.doesNotMatch(visible, /Включить падающий снег|Выключить падающий снег|Снег выключен/, "Snow toggle removed");
+  }
+  if (pathname === "/special-offers") {
+    const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, "");
+    for (const name of ["giftAmount", "giftDesign", "giftMessage", "giftRecipient", "giftFormat", "callbackConsent"]) {
+      assert.ok(visible.includes(`name="${name}"`), `Certificate builder field rendered: ${name}`);
+    }
+    assert.ok(visible.includes('data-testid="gift-preview"'), "Live preview rendered");
+    assert.equal(attr(tags(visible, "textarea").find(tag => attr(tag, "name") === "giftMessage"), "maxlength"), "600", "Greeting is bounded");
+    const sheets = tags(html, "link").filter(tag => attr(tag, "rel") === "stylesheet").map(tag => attr(tag, "href"));
+    const css = (await Promise.all(sheets.map(async href => (await get(href)).text()))).join("\n");
+    for (const name of ["gift-builder", "gift-preview-content", "gift-choice", "gift-designs", "gift-formats"]) assert.ok(css.includes(`.${name}`), `Certificate CSS actually delivered: ${name}`);
   }
   const title = decode(html.match(/<title>(.*?)<\/title>/s)?.[1] || "");
   const description = meta(html, "description");
@@ -122,9 +135,10 @@ for (const url of urls) {
     assert.ok(tags(html, "a").some(tag => attr(tag, "href") === "/spa"), "Crawlable navigation");
     const hero = images.find(tag => attr(tag, "alt").includes("буковом лесу Архыза"));
     assert.ok(attr(hero, "srcset"), "Responsive hero image");
-    assert.equal(new URL(attr(hero, "src"), base).searchParams.get("url"), "/images/home/hero-winter.jpg", "Winter hero is served on the homepage");
+    assert.equal(new URL(attr(hero, "src"), base).searchParams.get("url"), heroMedia.desktop, "Active seasonal hero is served on the homepage");
     const snowGrains = tags(html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, ""), "span").filter(tag => attr(tag, "class") === "site-snow-grain");
-    assert.ok(snowGrains.length > 0 && snowGrains.length <= 24, "Homepage snowfall has a small fixed particle budget");
+    assert.ok(seasonConfig.season === "winter" ? snowGrains.length > 0 && snowGrains.length <= 24 : snowGrains.length === 0, "Homepage snow follows the season with a small fixed particle budget");
+    assert.equal(attr(tags(html, "html")[0], "data-season"), seasonConfig.season, "Server/client share the active season");
     const portraitSources = tags(html, "source").filter(tag => attr(tag, "srcset").includes("hero-mobile."));
     assert.equal(portraitSources.length, 2, "Portrait AVIF and WebP sources available");
     for (const source of portraitSources) {

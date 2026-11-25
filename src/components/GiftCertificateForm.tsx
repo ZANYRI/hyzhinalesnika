@@ -87,7 +87,7 @@ export function GiftCertificateForm() {
             <div className="gift-preview-bottom"><strong data-testid="gift-preview-amount">{amountLabel}</strong><span>Отдых в горах<br />Действует 1 год</span></div>
           </div>
         </div>
-        {(recipient || message) && <div className="gift-note"><p className="gift-note-to">{recipient ? `Для ${recipient}` : "С теплом и заботой"}</p>{message && <p className="gift-note-message">{message}</p>}</div>}
+        {(recipient || message) && <div className="gift-note"><p className="gift-note-to">{recipient ? `Получатель: ${recipient}` : "С теплом и заботой"}</p>{message && <p className="gift-note-message">{message}</p>}</div>}
         <div className="gift-preview-details"><span>От 10 000 ₽</span><span>Срок — 1 год</span><span>{GIFT_CERTIFICATE_FORMATS[format as keyof typeof GIFT_CERTIFICATE_FORMATS]}</span></div>
         <p className="gift-preview-help">Подарите поездку в Архыз: тихие вечера, прогулки по лесу и уютный дом среди гор.</p>
       </div>

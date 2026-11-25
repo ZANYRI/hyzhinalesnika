@@ -148,6 +148,7 @@ for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssis
     const fields = {
       name: "Test", phone: "+70000000000", callbackConsent: scenario === "unchecked" ? null : "on",
       giftAmount: scenario === "custom" ? "custom" : scenario === "invalid_amount" ? "9999" : "10000",
+      giftDesign: "evening", giftMessage: "С днём рождения!", giftRecipient: "Анна",
       giftCustomAmount: "12500", giftFormat: scenario === "invalid_format" ? "invalid" : "printed",
     };
     const react = { useState: initial => {
@@ -181,9 +182,50 @@ for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssis
       const payload = JSON.parse(requests[0][1].body);
       assert.equal(payload.giftCertificate.amount, scenario === "custom" ? 12500 : 10000);
       assert.equal(payload.giftCertificate.format, "printed");
+      assert.equal(payload.giftCertificate.design, fields.giftDesign);
+      assert.equal(payload.giftCertificate.message, fields.giftMessage);
+      assert.equal(payload.giftCertificate.recipient, fields.giftRecipient);
       assert.equal(payload.source, giftOffers.GIFT_CERTIFICATE_SOURCE);
     }
     if (goals.length) assert.equal(JSON.stringify(goals[0]), JSON.stringify(["callback_sent", { form: source }]));
   }
+}
+// Exercise the real builder controls and rerender with their selected state.
+{
+  const states = []; let cursor = 0;
+  const component = load("src/components/GiftCertificateForm.tsx", {}, {
+    react: { useState(initial) {
+      const index = cursor++;
+      if (!(index in states)) states[index] = initial;
+      return [states[index], value => { states[index] = value; }];
+    } },
+    "react/jsx-runtime": { jsx, jsxs }, "next/image": "image",
+    "./ContactConsentFields": { ContactConsentFields: "consent-fields" },
+    "@/data/consents": { contactConsentSelection: () => ({}) },
+    "@/data/site": { SITE_CONFIG: site }, "@/data/special-offers": giftOffers,
+    "@/lib/metrica": { trackMetricaGoal() {} },
+  });
+  const render = () => { cursor = 0; return component.GiftCertificateForm(); };
+  function nodes(node) {
+    if (!node || typeof node !== "object") return [];
+    return [node, ...[node.props?.children].flat(Infinity).flatMap(nodes)];
+  }
+  let tree = render();
+  const find = predicate => nodes(tree).find(predicate);
+  const change = (name, value) => {
+    const control = find(node => node.props?.name === name && (node.type !== "input" || node.props.type !== "radio" || String(node.props.value) === value));
+    assert.ok(control, name); control.props.onChange({ target: { value } }); tree = render();
+  };
+  const previewAmount = () => find(node => node.props?.["data-testid"] === "gift-preview-amount").props.children.replace(/\s/g, "");
+  assert.equal(previewAmount(), "10000₽");
+  change("giftAmount", "custom"); change("giftCustomAmount", "12500");
+  assert.equal(previewAmount(), "12500₽", "Custom nominal updates the preview");
+  change("giftDesign", "forest");
+  assert.equal(find(node => node.props?.className === "gift-preview-photo").props.src, giftOffers.GIFT_CERTIFICATE_DESIGNS.forest.image);
+  change("giftRecipient", "Анна"); change("giftMessage", "С днём рождения!");
+  assert.equal(find(node => node.props?.className === "gift-note-to").props.children, "Получатель: Анна");
+  assert.equal(find(node => node.props?.className === "gift-note-message").props.children, "С днём рождения!");
+  change("giftFormat", "printed");
+  assert.ok(JSON.stringify(find(node => node.props?.className === "gift-preview-details")).includes("Печатный"));
 }
 console.log("METRICA PASS: automatic first visit, blocked storage, legacy choices, script readiness, SPA views, goals, cookie notice, preview exclusion, contact filtering, parameter sanitization and all three form success/error paths; no external requests.");

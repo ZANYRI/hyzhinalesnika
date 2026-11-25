@@ -8,6 +8,7 @@ import { FloatingContacts } from "@/components/FloatingContacts";
 import { CleanHashScroll } from "@/components/CleanHashScroll";
 import { SiteStructuredData } from "@/components/StructuredData";
 import { YandexMetrica } from "@/components/YandexMetrica";
+import { SITE_SEASON } from "@/lib/season";
 
 export const metadata: Metadata = withSocialMetadata({
   metadataBase: new URL(SITE_CONFIG.url),
@@ -29,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" data-scroll-behavior="smooth">
+    <html lang="ru" data-season={SITE_SEASON} data-scroll-behavior="smooth">
       <body className="min-h-screen bg-canvas font-montserrat text-ink antialiased selection:bg-action selection:text-on-action">
         <SiteStructuredData />
         {children}

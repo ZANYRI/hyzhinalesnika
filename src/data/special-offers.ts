@@ -35,9 +35,10 @@ export function parseGiftCertificate(value: unknown): GiftCertificateRequest | n
   if (message !== undefined && (typeof message !== "string" || message.length > 600)) return null;
   if (recipient !== undefined && (typeof recipient !== "string" || recipient.length > 100)) return null;
   const cleanText = (text: string) => text.replace(/[\u0000-\u001f\u007f]/g, " ").trim();
+  const cleanMessage = (text: string) => text.replace(/\r\n?/g, "\n").replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, " ").trim();
   return { amount, format,
     ...(design === undefined ? {} : { design: design as keyof typeof GIFT_CERTIFICATE_DESIGNS }),
-    ...(message === undefined ? {} : { message: cleanText(message as string) }),
+    ...(message === undefined ? {} : { message: cleanMessage(message as string) }),
     ...(recipient === undefined ? {} : { recipient: cleanText(recipient as string) }),
   };
 }

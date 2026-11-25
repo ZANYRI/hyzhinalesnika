@@ -57,6 +57,12 @@ async function main() {
       { amount: 10000.5, format: "printed" }, { amount: "10000", format: "electronic" },
       { amount: 10000, format: "pdf" }, { amount: 10000 },
       { amount: Number.MAX_SAFE_INTEGER + 1, format: "electronic" },
+      { amount: 10000, format: "printed", design: "__proto__" },
+      { amount: 10000, format: "printed", design: "unknown" },
+      { amount: 10000, format: "printed", message: "x".repeat(601) },
+      { amount: 10000, format: "printed", message: [] },
+      { amount: 10000, format: "printed", recipient: "x".repeat(101) },
+      { amount: 10000, format: "printed", recipient: {} },
     ]) assert.equal((await send({ ...base, source: GIFT_CERTIFICATE_SOURCE, giftCertificate })).status, 400);
     assert.equal((await send({ ...base, source: GIFT_CERTIFICATE_SOURCE })).status, 400);
     assert.equal((await send({ ...base, consents: undefined, giftCertificate: { amount: 10000, format: "printed" } })).status, 400);
@@ -90,6 +96,7 @@ async function main() {
       { amount: 10000, format: "electronic" },
       { amount: 20000, format: "printed" },
       { amount: 12345, format: "electronic" },
+      { amount: 12500, format: "printed", design: "evening", recipient: "Анна", message: "С днём рождения!\nТёплых воспоминаний." },
     ]) {
       const result = await send({ ...base, giftCertificate });
       assert.equal(result.status, 200);
@@ -102,6 +109,9 @@ async function main() {
       assert.ok(notification.includes(`Номинал сертификата: ${giftCertificate.amount.toLocaleString("ru-RU")} ₽`));
       assert.ok(notification.includes(`Формат сертификата: ${giftCertificate.format === "printed" ? "Печатный" : "Электронный"}`));
       assert.ok(notification.includes("Срок действия сертификата: 1 год"));
+      if (giftCertificate.design) assert.ok(notification.includes("Дизайн сертификата: Тёплый вечер"));
+      if (giftCertificate.recipient) assert.ok(notification.includes(`Получатель подарка: ${giftCertificate.recipient}`));
+      if (giftCertificate.message) assert.ok(notification.includes(`Поздравление: ${giftCertificate.message}`));
     }
 
     const parallel = await Promise.all(Array.from({ length: 6 }, () => send(base)));
