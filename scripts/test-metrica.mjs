@@ -169,6 +169,7 @@ for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssis
       "@/data/consents": { contactConsentSelection: () => ({}) },
       "@/data/site": { SITE_CONFIG: site },
       "@/data/special-offers": giftOffers,
+      "next/image": "image",
       "@/lib/metrica": { trackMetricaGoal: (...args) => goals.push(args) },
     });
     const form = formElement(componentExports[component]({ open: true, onClose() {} }));

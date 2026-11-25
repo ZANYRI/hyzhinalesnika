@@ -8,7 +8,10 @@ import assert from "node:assert/strict";
 const require = createRequire(import.meta.url);
 const sharp = createRequire(require.resolve("next/package.json"))("sharp");
 const check = process.argv.includes("--check");
-const input = await readFile(new URL("../public/images/home/forest-seclusion.webp", import.meta.url));
+const { season } = JSON.parse(await readFile(new URL("../src/data/season.json", import.meta.url), "utf8"));
+const images = JSON.parse(await readFile(new URL("../src/data/seasonal-images.json", import.meta.url), "utf8"));
+const source = images["/images/home/forest-seclusion.webp"]?.[season] ?? "/images/home/forest-seclusion.webp";
+const input = await readFile(new URL(`../public${source}`, import.meta.url));
 const metadata = await sharp(input).metadata();
 const result = {
   sourceSha256: createHash("sha256").update(input).digest("hex"),

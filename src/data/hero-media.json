@@ -1,7 +1,8 @@
 {
-  "sourceSha256": "46476a6d86153d880efd2dd51b43b9bb7d44153628b49c632e663f67a0c68c0d",
+  "desktop": "/images/home/hero-winter.jpg",
+  "sourceSha256": "c6e05035b47b652dfcbd32a16b6d085498a018b8f67d233862ea5a65da6828c8",
   "width": 576,
   "height": 1024,
-  "avif": "/images/home/hero-mobile.ed0ed5f52e37.avif",
-  "webp": "/images/home/hero-mobile.3b3eafbdb33e.webp"
+  "avif": "/images/home/hero-mobile.384e7e4f5b61.avif",
+  "webp": "/images/home/hero-mobile.bb5c2ee4d386.webp"
 }

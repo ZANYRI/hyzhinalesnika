@@ -14,7 +14,8 @@ const canonical = html => attr(tags(html, "link").find(tag => attr(tag, "rel") =
 const get = path => fetch(new URL(path, base), { redirect: "manual", signal: AbortSignal.timeout(30000) });
 const sitemap = await (await get("/sitemap.xml")).text();
 const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => decode(match[1]));
-assert.equal(urls.length, 18, "Existing pages, pet accommodation page and current consent document belong in sitemap");
+assert.equal(urls.length, 19, "Existing pages, New Year page and current consent document belong in sitemap");
+assert.ok(urls.includes(`${production}/new-year`), "New Year page is discoverable in sitemap");
 assert.ok(urls.includes(`${production}/otdyh-s-zhivotnymi`), "Pet accommodation page is discoverable in sitemap");
 assert.equal(new Set(urls).size, urls.length, "No duplicate sitemap entries");
 const rows = [], titles = new Set(), descriptions = new Set(), links = new Set();
@@ -23,6 +24,24 @@ for (const url of urls) {
   const response = await get(pathname);
   assert.equal(response.status, 200, pathname);
   const html = await response.text();
+  if (pathname === "/new-year") {
+    const visible = decode(html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, "").replace(/<!--.*?-->/gs, ""));
+    assert.ok(visible.includes("Новый год") && visible.includes("2027"), "Current holiday season rendered on server");
+    assert.ok(tags(html, "a").filter(tag => attr(tag, "href") === "/new-year").length >= 3, "Holiday navigation in header, mobile and footer");
+    assert.ok(tags(html, "a").some(tag => attr(tag, "href") === "#help") && html.includes('id="help"'), "Manager links target the local request form");
+    for (const cabin of ["/dom-dlya-semi", "/shale-s-vidom-na-gory", "/dvuhetazhnyj-barnhouse"]) assert.ok(tags(html, "a").some(tag => attr(tag, "href") === cabin), "All three actual cabins linked");
+    const schemas = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap(match => { const value = JSON.parse(match[1]); return value["@graph"] || [value]; });
+    const faq = schemas.find(node => node["@type"] === "FAQPage");
+    assert.ok(faq?.mainEntity?.length > 0, "Holiday FAQ schema");
+    for (const item of faq.mainEntity) assert.ok(visible.includes(item.name) && visible.includes(item.acceptedAnswer.text), "Holiday FAQ schema matches visible answers");
+    assert.ok(html.includes('data-snowfall="true"'), "Winter effect replaces autumn leaves");
+    assert.doesNotMatch(attr(tags(html, "h1")[0], "class"), /\bundefined\b/, "Hero heading has valid styles");
+    for (const name of ["new-year-hero", "new-year-hero-shade", "new-year-hero-copy", "new-year-hero-title"]) assert.ok(html.includes(name), `Holiday contrast class rendered: ${name}`);
+    const sheets = tags(html, "link").filter(tag => attr(tag, "rel") === "stylesheet").map(tag => attr(tag, "href"));
+    const css = (await Promise.all(sheets.map(async href => (await get(href)).text()))).join("\n");
+    for (const name of ["new-year-hero-shade", "new-year-hero-copy", "new-year-hero-title"]) assert.ok(css.includes(`.${name}`), `Holiday contrast CSS actually delivered: ${name}`);
+    assert.doesNotMatch(visible, /Включить падающий снег|Выключить падающий снег|Снег выключен/, "Snow toggle removed");
+  }
   const title = decode(html.match(/<title>(.*?)<\/title>/s)?.[1] || "");
   const description = meta(html, "description");
   assert.ok(title && description, `Metadata: ${pathname}`);
@@ -103,6 +122,9 @@ for (const url of urls) {
     assert.ok(tags(html, "a").some(tag => attr(tag, "href") === "/spa"), "Crawlable navigation");
     const hero = images.find(tag => attr(tag, "alt").includes("буковом лесу Архыза"));
     assert.ok(attr(hero, "srcset"), "Responsive hero image");
+    assert.equal(new URL(attr(hero, "src"), base).searchParams.get("url"), "/images/home/hero-winter.jpg", "Winter hero is served on the homepage");
+    const snowGrains = tags(html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, ""), "span").filter(tag => attr(tag, "class") === "site-snow-grain");
+    assert.ok(snowGrains.length > 0 && snowGrains.length <= 24, "Homepage snowfall has a small fixed particle budget");
     const portraitSources = tags(html, "source").filter(tag => attr(tag, "srcset").includes("hero-mobile."));
     assert.equal(portraitSources.length, 2, "Portrait AVIF and WebP sources available");
     for (const source of portraitSources) {

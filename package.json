@@ -13,7 +13,11 @@
     "test:metrica": "node scripts/test-metrica.mjs",
     "test:booking": "node scripts/test-kontur-booking.mjs",
     "test:navigation": "node scripts/test-section-navigation.mjs",
-    "test:contact": "node scripts/test-contact.cjs"
+    "test:contact": "node scripts/test-contact.cjs",
+    "season:winter": "node scripts/set-season.mjs winter",
+    "season:autumn": "node scripts/set-season.mjs autumn",
+    "season:summer": "node scripts/set-season.mjs summer",
+    "test:season": "node scripts/test-season.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

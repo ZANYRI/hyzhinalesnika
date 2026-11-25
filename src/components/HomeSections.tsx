@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/SeasonalImage";
 import Link from "next/link";
 import { PawPrint, TreeEvergreen, Waves, ForkKnife, CreditCard, Star } from "@phosphor-icons/react/dist/ssr";
 import { SITE_CONFIG } from "@/data/site";

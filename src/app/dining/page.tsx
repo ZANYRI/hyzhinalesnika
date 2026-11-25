@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/SeasonalImage";
 import { PageStructuredData } from "@/components/StructuredData";
 import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";

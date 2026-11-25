@@ -9,13 +9,16 @@ const require = createRequire(import.meta.url);
 const sharp = createRequire(require.resolve("next/package.json"))("sharp");
 const check = process.argv.includes("--check");
 
-const source = new URL("../public/images/home/hero-bg.jpg", import.meta.url);
+const { season } = JSON.parse(await readFile(new URL("../src/data/season.json", import.meta.url), "utf8"));
+const images = JSON.parse(await readFile(new URL("../src/data/seasonal-images.json", import.meta.url), "utf8"));
+const desktop = images["/images/home/hero-bg.jpg"]?.[season] ?? "/images/home/hero-bg.jpg";
+const source = new URL(`../public${desktop}`, import.meta.url);
 const input = await readFile(source);
 const metadata = await sharp(input).metadata();
 const height = metadata.height;
 const width = Math.round(height * 9 / 16);
 const crop = { left: Math.floor((metadata.width - width) / 2), top: 0, width, height };
-const result = { sourceSha256: createHash("sha256").update(input).digest("hex"), width, height };
+const result = { desktop, sourceSha256: createHash("sha256").update(input).digest("hex"), width, height };
 for (const format of ["avif", "webp"]) {
   // The portrait is a darkened background, so use a smaller AVIF while keeping
   // the same photo, dimensions and crop. The WebP compatibility file stays

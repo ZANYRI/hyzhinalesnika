@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { randomUUID } from "node:crypto";
 import { validateContactConsents, consentEvidence, ConsentValidationError } from "@/lib/contact-consents";
 import { recordContactEvent } from "@/lib/contact-journal";
-import { GIFT_CERTIFICATE_FORMATS, GIFT_CERTIFICATE_SOURCE, GIFT_CERTIFICATE_VALIDITY_YEARS, parseGiftCertificate } from "@/data/special-offers";
+import { GIFT_CERTIFICATE_DESIGNS, GIFT_CERTIFICATE_FORMATS, GIFT_CERTIFICATE_SOURCE, GIFT_CERTIFICATE_VALIDITY_YEARS, parseGiftCertificate } from "@/data/special-offers";
 
 function clean(value: unknown, length: number) {
   return typeof value === "string" ? value.replace(/[\u0000-\u001f\u007f]/g, " ").trim().slice(0, length) : "";
@@ -68,6 +68,9 @@ export async function POST(request: Request) {
     ...(giftCertificate ? [
       `Номинал сертификата: ${giftCertificate.amount.toLocaleString("ru-RU")} ₽`,
       `Формат сертификата: ${GIFT_CERTIFICATE_FORMATS[giftCertificate.format]}`,
+      ...(giftCertificate.design ? [`Дизайн сертификата: ${GIFT_CERTIFICATE_DESIGNS[giftCertificate.design].title}`] : []),
+      ...(giftCertificate.recipient ? [`Получатель подарка: ${giftCertificate.recipient}`] : []),
+      ...(giftCertificate.message ? [`Поздравление: ${giftCertificate.message}`] : []),
       `Срок действия сертификата: ${GIFT_CERTIFICATE_VALIDITY_YEARS} год`,
     ] : []),
     `Согласие на заявку: да; версия ${consents.callback.document.version}; ${recordedAt}`,

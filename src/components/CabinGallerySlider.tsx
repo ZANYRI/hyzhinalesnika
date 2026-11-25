@@ -1,6 +1,8 @@
 "use client";
 
-import Image from "next/image";
+import { seasonalImage } from "@/lib/season";
+
+import Image from "@/components/SeasonalImage";
 
 import React, { useEffect, useRef, useState } from "react";
 import {
@@ -70,7 +72,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
             <div
               key={activeImage?.src}
               className={`relative h-full w-full ${current !== 0 ? "cabin-photo-enter" : ""}`}
-            ><Image src={activeImage?.src} alt={activeImage?.alt} fill sizes="(min-width: 1400px) 871px, (min-width: 1024px) calc(66.666667vw - 62.666667px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)" loading="eager" fetchPriority="high" className="object-cover" /></div>
+            ><Image src={seasonalImage(activeImage?.src)} alt={activeImage?.alt} fill sizes="(min-width: 1400px) 871px, (min-width: 1024px) calc(66.666667vw - 62.666667px), (min-width: 640px) calc(100vw - 82px), calc(100vw - 58px)" loading="eager" fetchPriority="high" className="object-cover" /></div>
         </button>
 
         {[1, 2].map(offset => {
@@ -151,7 +153,7 @@ export function CabinGallerySlider({ images }: CabinGallerySliderProps) {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={activeImage?.src}
+              src={seasonalImage(activeImage?.src)}
               alt={activeImage?.alt}
               className="max-h-[84vh] max-w-full rounded-2xl object-contain shadow-2xl"
             />

@@ -1,13 +1,3 @@
-export const AUTUMN_ATMOSPHERE = {
-  /**
-   * ГЛАВНЫЙ ПЕРЕКЛЮЧАТЕЛЬ ЭФФЕКТА:
-   * Поставьте `false`, чтобы одним изменением полностью отключить осенний туман и листопад на всём сайте.
-   */
-  enabled: true,
+import { SITE_SEASON } from "@/lib/season";
 
-  /** Слой стелющегося лесного тумана */
-  fog: true,
-
-  /** Падающие осенние листья (бук, берёза, ива) с реакцией на курсор */
-  leaves: true,
-} as const;
+export const WINTER_ATMOSPHERE = { enabled: SITE_SEASON === "winter" };

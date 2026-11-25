@@ -12,17 +12,34 @@ export const GIFT_CERTIFICATE_FORMATS = {
   printed: "Печатный",
 } as const;
 
+export const GIFT_CERTIFICATE_DESIGNS = {
+  winter: { title: "Зимняя сказка", image: "/images/home/hero-winter.jpg" },
+  forest: { title: "В сердце леса", image: "/images/home/hero-bg.jpg" },
+  evening: { title: "Тёплый вечер", image: "/images/home/story-romance-chalet-night.webp" },
+} as const;
+
 export type GiftCertificateRequest = {
   amount: number;
   format: keyof typeof GIFT_CERTIFICATE_FORMATS;
+  design?: keyof typeof GIFT_CERTIFICATE_DESIGNS;
+  message?: string;
+  recipient?: string;
 };
 
 export function parseGiftCertificate(value: unknown): GiftCertificateRequest | null {
   if (!value || typeof value !== "object" || Array.isArray(value)) return null;
-  const { amount, format } = value as Record<string, unknown>;
+  const { amount, format, design, message, recipient } = value as Record<string, unknown>;
   if (typeof amount !== "number" || !Number.isSafeInteger(amount) || amount < GIFT_CERTIFICATE_MIN_AMOUNT) return null;
   if (format !== "electronic" && format !== "printed") return null;
-  return { amount, format };
+  if (design !== undefined && (typeof design !== "string" || !Object.hasOwn(GIFT_CERTIFICATE_DESIGNS, design))) return null;
+  if (message !== undefined && (typeof message !== "string" || message.length > 600)) return null;
+  if (recipient !== undefined && (typeof recipient !== "string" || recipient.length > 100)) return null;
+  const cleanText = (text: string) => text.replace(/[\u0000-\u001f\u007f]/g, " ").trim();
+  return { amount, format,
+    ...(design === undefined ? {} : { design: design as keyof typeof GIFT_CERTIFICATE_DESIGNS }),
+    ...(message === undefined ? {} : { message: cleanText(message as string) }),
+    ...(recipient === undefined ? {} : { recipient: cleanText(recipient as string) }),
+  };
 }
 
 export const OFFERS_FAQ = {
