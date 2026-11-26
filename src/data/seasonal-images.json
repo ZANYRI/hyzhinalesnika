@@ -158,5 +158,115 @@
     "winter": "/images/seasons/winter/barnhouse-01.df3a95218d8d.webp",
     "autumn": "/images/seasons/autumn/barnhouse-01.0962f9f05c92.webp",
     "summer": "/images/seasons/summer/barnhouse-01.5bdde6542fa0.webp"
+  },
+  "/images/blog/top5-alpaca.png": {
+    "winter": "/images/seasons/winter/blog-top5-alpaca.7f8259eb32e6.webp",
+    "autumn": "/images/blog/top5-alpaca.png",
+    "summer": "/images/blog/top5-alpaca.png"
+  },
+  "/images/blog/top5-baritovy.png": {
+    "winter": "/images/seasons/winter/blog-top5-baritovy.f0d40ba9ef58.webp",
+    "autumn": "/images/blog/top5-baritovy.png",
+    "summer": "/images/blog/top5-baritovy.png"
+  },
+  "/images/blog/top5-kazachy.png": {
+    "winter": "/images/seasons/winter/blog-top5-kazachy.ca6508df446e.webp",
+    "autumn": "/images/blog/top5-kazachy.png",
+    "summer": "/images/blog/top5-kazachy.png"
+  },
+  "/images/blog/top5-cableway.png": {
+    "winter": "/images/seasons/winter/blog-top5-cableway.e74ce4ae5f47.webp",
+    "autumn": "/images/blog/top5-cableway.png",
+    "summer": "/images/blog/top5-cableway.png"
+  },
+  "/images/blog/top5-observatory.png": {
+    "winter": "/images/seasons/winter/blog-top5-observatory.6bdb3df360ce.webp",
+    "autumn": "/images/blog/top5-observatory.png",
+    "summer": "/images/blog/top5-observatory.png"
+  },
+  "/images/brand/forest-aerial.jpg": {
+    "winter": "/images/seasons/winter/brand-forest-aerial.fda6f8a0eaaa.webp",
+    "autumn": "/images/brand/forest-aerial.jpg",
+    "summer": "/images/brand/forest-aerial.jpg"
+  },
+  "/images/home/gal-8.jpg": {
+    "winter": "/images/seasons/winter/home-gal-8.e50ba10a9c3b.webp",
+    "autumn": "/images/home/gal-8.jpg",
+    "summer": "/images/home/gal-8.jpg"
+  },
+  "/images/partners/spa/spa-06.webp": {
+    "winter": "/images/seasons/winter/partners-spa-spa-06.9dc3d137e6b0.webp",
+    "autumn": "/images/partners/spa/spa-06.webp",
+    "summer": "/images/partners/spa/spa-06.webp"
+  },
+  "/images/partners/spa/spa-01.webp": {
+    "winter": "/images/seasons/winter/partners-spa-spa-01.736d9d80b965.webp",
+    "autumn": "/images/partners/spa/spa-01.webp",
+    "summer": "/images/partners/spa/spa-01.webp"
+  },
+  "/images/partners/spa/spa-07.webp": {
+    "winter": "/images/seasons/winter/partners-spa-spa-07.b18db12ed28c.webp",
+    "autumn": "/images/partners/spa/spa-07.webp",
+    "summer": "/images/partners/spa/spa-07.webp"
+  },
+  "/images/activities/animal-park.webp": {
+    "winter": "/images/seasons/winter/activities-animal-park.53db1cd07120.webp",
+    "autumn": "/images/activities/animal-park.webp",
+    "summer": "/images/activities/animal-park.webp"
+  },
+  "/images/activities/horseback-tour.webp": {
+    "winter": "/images/seasons/winter/activities-horseback-tour.2eae9a9c98e9.webp",
+    "autumn": "/images/activities/horseback-tour.webp",
+    "summer": "/images/activities/horseback-tour.webp"
+  },
+  "/images/barnhouse/08.jpg": {
+    "winter": "/images/seasons/winter/barnhouse-08.6c7da22174fe.webp",
+    "autumn": "/images/barnhouse/08.jpg",
+    "summer": "/images/barnhouse/08.jpg"
+  },
+  "/images/barnhouse/20.jpg": {
+    "winter": "/images/seasons/winter/barnhouse-20.5e0d39971af5.webp",
+    "autumn": "/images/barnhouse/20.jpg",
+    "summer": "/images/barnhouse/20.jpg"
+  },
+  "/images/shale/03.jpg": {
+    "winter": "/images/seasons/winter/shale-03.689900d675b1.webp",
+    "autumn": "/images/shale/03.jpg",
+    "summer": "/images/shale/03.jpg"
+  },
+  "/images/shale/06.jpg": {
+    "winter": "/images/seasons/winter/shale-06.6af761881d46.webp",
+    "autumn": "/images/shale/06.jpg",
+    "summer": "/images/shale/06.jpg"
+  },
+  "/images/house/02.jpg": {
+    "winter": "/images/seasons/winter/house-02.b279e4c4d680.webp",
+    "autumn": "/images/house/02.jpg",
+    "summer": "/images/house/02.jpg"
+  },
+  "/images/barnhouse/16.jpg": {
+    "winter": "/images/seasons/winter/barnhouse-16.c56f12b52a32.webp",
+    "autumn": "/images/barnhouse/16.jpg",
+    "summer": "/images/barnhouse/16.jpg"
+  },
+  "/images/barnhouse/17.jpg": {
+    "winter": "/images/seasons/winter/barnhouse-17.ea31f8056ce6.webp",
+    "autumn": "/images/barnhouse/17.jpg",
+    "summer": "/images/barnhouse/17.jpg"
+  },
+  "/images/partners/spa/spa-02.webp": {
+    "winter": "/images/seasons/winter/partners-spa-spa-02.4e67f81fb676.webp",
+    "autumn": "/images/partners/spa/spa-02.webp",
+    "summer": "/images/partners/spa/spa-02.webp"
+  },
+  "/images/activities/spa-pool.webp": {
+    "winter": "/images/seasons/winter/activities-spa-pool.c8d151fbc67f.webp",
+    "autumn": "/images/activities/spa-pool.webp",
+    "summer": "/images/activities/spa-pool.webp"
+  },
+  "/images/activities/river-rafting.webp": {
+    "winter": "/images/seasons/winter/activities-river-rafting.01c3c01135a5.webp",
+    "autumn": "/images/activities/river-rafting.webp",
+    "summer": "/images/activities/river-rafting.webp"
   }
 }

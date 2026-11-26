@@ -14,7 +14,11 @@ export const GIFT_CERTIFICATE_FORMATS = {
 
 export const GIFT_CERTIFICATE_DESIGNS = {
   winter: { title: "Зимняя сказка", image: "/images/home/hero-winter.jpg" },
-  forest: { title: "В сердце леса", image: "/images/home/hero-bg.jpg" },
+  forest: {
+    title: "В сердце леса",
+    image: "/images/home/hero-bg.jpg",
+    winterImage: "/images/seasons/winter/gift-forest-winter.webp",
+  },
   evening: { title: "Тёплый вечер", image: "/images/home/story-romance-chalet-night.webp" },
 } as const;
 

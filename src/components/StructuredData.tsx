@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { SITE_CONFIG } from "@/data/site";
 import { CABIN_LIST } from "@/data/cabins";
 import { BLOG_POSTS } from "@/data/blog";
+import { seasonalImage } from "@/lib/season";
 
 const absolute = (path: string) => new URL(path, SITE_CONFIG.url).toString();
+const absoluteImage = (path: string) => absolute(seasonalImage(path));
 const businessId = `${SITE_CONFIG.url}/#lodging`;
 const websiteId = `${SITE_CONFIG.url}/#website`;
 const accommodationId = (slug: string) => `${absolute(slug)}#accommodation`;
@@ -12,7 +14,7 @@ function accommodation(cabin: typeof CABIN_LIST[number]) {
   return {
     "@type": "Accommodation", "@id": accommodationId(cabin.slug),
     url: absolute(cabin.slug), name: cabin.cardTitle, description: cabin.seoDescription,
-    image: cabin.gallery.map(photo => absolute(photo.src)),
+    image: cabin.gallery.map(photo => absoluteImage(photo.src)),
     containedInPlace: { "@id": businessId },
     occupancy: { "@type": "QuantitativeValue", maxValue: cabin.maxGuests, unitCode: "C62" },
     floorSize: { "@type": "QuantitativeValue", value: Number.parseFloat(cabin.cardArea), unitCode: "MTK" },
@@ -30,7 +32,7 @@ export function JsonLd({ data }: { data: Record<string, unknown> }) {
 export function SiteStructuredData() {
   return <JsonLd data={{ "@context": "https://schema.org", "@graph": [
     { "@type": "WebSite", "@id": websiteId, url: absolute("/"), name: SITE_CONFIG.name, inLanguage: "ru", publisher: { "@id": businessId } },
-    { "@type": "LodgingBusiness", "@id": businessId, name: SITE_CONFIG.name, alternateName: SITE_CONFIG.shortName, description: SITE_CONFIG.description, url: absolute("/"), image: absolute("/images/home/cabin-bereza.jpg"), telephone: SITE_CONFIG.phoneHref.replace("tel:", ""),
+    { "@type": "LodgingBusiness", "@id": businessId, name: SITE_CONFIG.name, alternateName: SITE_CONFIG.shortName, description: SITE_CONFIG.description, url: absolute("/"), image: absoluteImage("/images/home/cabin-bereza.jpg"), telephone: SITE_CONFIG.phoneHref.replace("tel:", ""),
       address: { "@type": "PostalAddress", addressLocality: "Архыз", addressRegion: "Карачаево-Черкесская Республика", streetAddress: "улица Лесная, 40", addressCountry: "RU" },
       geo: { "@type": "GeoCoordinates", latitude: SITE_CONFIG.coords.lat, longitude: SITE_CONFIG.coords.lng }, sameAs: [SITE_CONFIG.yandexMapsOrgUrl],
       hasMap: SITE_CONFIG.yandexMapsOrgUrl,
@@ -63,7 +65,7 @@ export function PageStructuredData({ metadata }: { metadata: Metadata }) {
     const id = `${url}#article`;
     const [day, month, year] = article.date.split(".");
     page.mainEntity = { "@id": id };
-    graph.push({ "@type": "Article", "@id": id, url, mainEntityOfPage: { "@id": pageId }, headline: article.title, description: metadata.description, image: absolute(article.thumbnail), datePublished: `${year}-${month}-${day}`, inLanguage: "ru", publisher: { "@id": businessId } });
+    graph.push({ "@type": "Article", "@id": id, url, mainEntityOfPage: { "@id": pageId }, headline: article.title, description: metadata.description, image: absoluteImage(article.thumbnail), datePublished: `${year}-${month}-${day}`, inLanguage: "ru", publisher: { "@id": businessId } });
   }
   if (pathname === "/" || pathname === "/news" || pathname === "/otdyh-s-zhivotnymi") {
     const items = pathname === "/news" ? BLOG_POSTS.map(item => ({ name: item.title, url: absolute(item.href) })) : CABIN_LIST.map(item => ({ name: item.cardTitle, url: absolute(item.slug) }));

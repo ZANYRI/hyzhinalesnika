@@ -140,6 +140,10 @@ function formElement(element) {
   return null;
 }
 const giftOffers = load("src/data/special-offers.ts", {});
+const winterSeason = load("src/lib/season.ts", {}, {
+  "@/data/season.json": { default: { season: "winter" } },
+  "@/data/seasonal-images.json": { default: JSON.parse(fs.readFileSync("src/data/seasonal-images.json", "utf8")) },
+});
 for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssistance", "booking_assistance"], ["GiftCertificateForm", "gift_certificate"]]) {
   const isGift = component === "GiftCertificateForm";
   for (const scenario of ["success", "rejected", "network", "unchecked", ...(isGift ? ["custom", "invalid_amount", "invalid_format"] : [])]) {
@@ -170,6 +174,7 @@ for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssis
       "@/data/consents": { contactConsentSelection: () => ({}) },
       "@/data/site": { SITE_CONFIG: site },
       "@/data/special-offers": giftOffers,
+      "@/lib/season": winterSeason,
       "next/image": "image",
       "@/lib/metrica": { trackMetricaGoal: (...args) => goals.push(args) },
     });
@@ -203,6 +208,7 @@ for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssis
     "./ContactConsentFields": { ContactConsentFields: "consent-fields" },
     "@/data/consents": { contactConsentSelection: () => ({}) },
     "@/data/site": { SITE_CONFIG: site }, "@/data/special-offers": giftOffers,
+    "@/lib/season": winterSeason,
     "@/lib/metrica": { trackMetricaGoal() {} },
   });
   const render = () => { cursor = 0; return component.GiftCertificateForm(); };
@@ -220,8 +226,14 @@ for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssis
   assert.equal(previewAmount(), "10000₽");
   change("giftAmount", "custom"); change("giftCustomAmount", "12500");
   assert.equal(previewAmount(), "12500₽", "Custom nominal updates the preview");
+  const previewImage = () => find(node => node.props?.className === "gift-preview-photo").props.src;
+  const winterImage = previewImage();
   change("giftDesign", "forest");
-  assert.equal(find(node => node.props?.className === "gift-preview-photo").props.src, giftOffers.GIFT_CERTIFICATE_DESIGNS.forest.image);
+  assert.equal(previewImage(), giftOffers.GIFT_CERTIFICATE_DESIGNS.forest.winterImage);
+  assert.notEqual(previewImage(), winterImage, "The two winter designs have distinct covers");
+  assert.ok(fs.existsSync(`public${previewImage()}`));
+  change("giftDesign", "evening");
+  assert.equal(previewImage(), winterSeason.seasonalImage(giftOffers.GIFT_CERTIFICATE_DESIGNS.evening.image));
   change("giftRecipient", "Анна"); change("giftMessage", "С днём рождения!");
   assert.equal(find(node => node.props?.className === "gift-note-to").props.children, "Получатель: Анна");
   assert.equal(find(node => node.props?.className === "gift-note-message").props.children, "С днём рождения!");

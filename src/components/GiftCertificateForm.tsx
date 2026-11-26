@@ -10,8 +10,14 @@ import {
   GIFT_CERTIFICATE_SOURCE, parseGiftCertificate,
 } from "@/data/special-offers";
 import { trackMetricaGoal } from "@/lib/metrica";
+import { seasonalImage, SITE_SEASON } from "@/lib/season";
 
 const fieldClass = "mt-2 min-h-12 w-full rounded-xl border border-line bg-white px-4 py-3 text-ink outline-none focus:border-accent";
+
+function designImage(design: (typeof GIFT_CERTIFICATE_DESIGNS)[keyof typeof GIFT_CERTIFICATE_DESIGNS]) {
+  if (SITE_SEASON === "winter" && "winterImage" in design) return design.winterImage;
+  return seasonalImage(design.image);
+}
 
 export function GiftCertificateForm() {
   const [amount, setAmount] = useState("10000");
@@ -79,7 +85,7 @@ export function GiftCertificateForm() {
       <div className="gift-preview-sticky">
         <p className="gift-overline">Ваш подарок</p>
         <div className="gift-preview" data-testid="gift-preview">
-          <Image src={GIFT_CERTIFICATE_DESIGNS[design].image} alt="" fill sizes="(min-width: 1024px) 550px, 100vw" className="gift-preview-photo" />
+          <Image src={designImage(GIFT_CERTIFICATE_DESIGNS[design])} alt="" fill sizes="(min-width: 1024px) 550px, 100vw" className="gift-preview-photo" />
           <div className="gift-preview-shade" />
           <div className="gift-preview-content">
             <span className="gift-brand">ХИЖИНА ЛЕСНИКА<span>АРХЫЗ · БУКОВЫЙ ЛЕС</span></span>
@@ -111,7 +117,7 @@ export function GiftCertificateForm() {
           <div className="gift-designs">
             {Object.entries(GIFT_CERTIFICATE_DESIGNS).map(([value, item]) => <label className="gift-design" key={value}>
               <input type="radio" name="giftDesign" value={value} checked={design === value} onChange={() => setDesign(value as keyof typeof GIFT_CERTIFICATE_DESIGNS)} />
-              <span className="gift-design-image"><Image src={item.image} alt="" fill sizes="(min-width: 1024px) 160px, 30vw" className="object-cover" /><span className="gift-design-check" aria-hidden="true">✓</span></span>
+              <span className="gift-design-image"><Image src={designImage(item)} alt="" fill sizes="(min-width: 1024px) 160px, 30vw" className="object-cover" /><span className="gift-design-check" aria-hidden="true">✓</span></span>
               <span className="gift-design-name">{item.title}</span>
             </label>)}
           </div>
