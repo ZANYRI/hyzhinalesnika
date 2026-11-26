@@ -25,7 +25,10 @@ export const metadata: Metadata = withSocialMetadata({
   title: HOME_TITLE,
   description: HOME_DESCRIPTION,
   alternates: { canonical: "/" },
-  verification: { yandex: "6c90a5ad39131eb6" },
+  verification: {
+    yandex: "6c90a5ad39131eb6",
+    google: "FndzbKgm5wFtDJkYbqb6Kw5WQpN_MLhN_R0GZKKlzZE",
+  },
 });
 
 const HOME_JSON_LD = [
