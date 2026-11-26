@@ -42,7 +42,7 @@ export function SiteStructuredData() {
 }
 
 /** Only facts already published in the page's own source data are emitted. */
-export function PageStructuredData({ metadata }: { metadata: Metadata }) {
+export function PageStructuredData({ metadata, articleHeadline }: { metadata: Metadata; articleHeadline?: string }) {
   const canonical = metadata.alternates?.canonical;
   const path = typeof canonical === "string" ? canonical : canonical instanceof URL ? canonical.toString() : canonical?.url.toString() ?? "/";
   const url = absolute(path);
@@ -65,7 +65,7 @@ export function PageStructuredData({ metadata }: { metadata: Metadata }) {
     const id = `${url}#article`;
     const [day, month, year] = article.date.split(".");
     page.mainEntity = { "@id": id };
-    graph.push({ "@type": "Article", "@id": id, url, mainEntityOfPage: { "@id": pageId }, headline: article.title, description: metadata.description, image: absoluteImage(article.thumbnail), datePublished: `${year}-${month}-${day}`, inLanguage: "ru", publisher: { "@id": businessId } });
+    graph.push({ "@type": "Article", "@id": id, url, mainEntityOfPage: { "@id": pageId }, headline: articleHeadline ?? article.title, description: metadata.description, image: absoluteImage(article.thumbnail), datePublished: `${year}-${month}-${day}`, inLanguage: "ru", publisher: { "@id": businessId } });
   }
   if (pathname === "/" || pathname === "/news" || pathname === "/otdyh-s-zhivotnymi") {
     const items = pathname === "/news" ? BLOG_POSTS.map(item => ({ name: item.title, url: absolute(item.href) })) : CABIN_LIST.map(item => ({ name: item.cardTitle, url: absolute(item.slug) }));

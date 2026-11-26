@@ -35,7 +35,7 @@ export function BookingAssistance() {
         <p className="mt-5 text-xs uppercase tracking-[0.2em] text-accent">Осталось выбрать даты</p>
         <h2 className="mt-3 font-moderustic text-3xl font-bold sm:text-4xl">Поможем подобрать ваш дом</h2>
         <p className="mt-4 leading-relaxed text-muted">Оставьте контакты – подберём дом для вашей поездки, поможем с бронированием и ответим на вопросы.</p>
-        {status === "sent" ? <p role="status" className="mt-8 rounded-2xl border border-accent/40 p-6">Спасибо! Заявка отправлена. Мы свяжемся с вами.</p> : <form data-tone="light" onSubmit={submit} className="mt-8 space-y-4 rounded-2xl bg-white p-5 text-left sm:p-7">
+        {status === "sent" ? <p role="status" className="mt-8 rounded-2xl border border-accent/40 p-6">Спасибо! Заявка отправлена. Мы свяжемся с вами.</p> : <form method="post" data-tone="light" onSubmit={submit} className="mt-8 space-y-4 rounded-2xl bg-white p-5 text-left sm:p-7">
           <label className="block text-sm">Ваше имя<input name="name" required maxLength={100} autoComplete="given-name" placeholder="Как к вам обращаться" className="mt-2 h-14 w-full rounded-xl border border-line bg-canvas/40 px-4 outline-none focus:border-accent" /></label>
           <label className="block text-sm">Телефон<input name="phone" type="tel" required minLength={10} maxLength={30} autoComplete="tel" placeholder="+7 (___) ___-__-__" className="mt-2 h-14 w-full rounded-xl border border-line bg-canvas/40 px-4 outline-none focus:border-accent" /></label>
           <ContactConsentFields />

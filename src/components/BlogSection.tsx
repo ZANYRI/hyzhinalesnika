@@ -60,9 +60,9 @@ export function BlogSection() {
                 <EyeCount views={post.views} />
               </div>
 
-              <h3 className="mt-3 px-1 font-moderustic text-xl font-bold leading-snug text-ink transition group-hover:text-accent-hover sm:text-2xl">
+              <h2 className="mt-3 px-1 font-moderustic text-xl font-bold leading-snug text-ink transition group-hover:text-accent-hover sm:text-2xl">
                 <Link href={post.href}>{post.title}</Link>
-              </h3>
+              </h2>
 
               {post.excerpt && (
                 <p className="mt-2.5 px-1 text-sm leading-relaxed text-muted">

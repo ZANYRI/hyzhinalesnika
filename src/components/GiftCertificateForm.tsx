@@ -146,7 +146,7 @@ export function GiftCertificateForm() {
     <p className="mt-4 leading-relaxed text-muted">Менеджер свяжется с вами, уточнит детали и поможет оформить покупку.</p>
   </div>;
 
-  return <form data-tone="light" onSubmit={submit} aria-label="Заявка на покупку подарочного сертификата" className="gift-builder">
+  return <form method="post" data-tone="light" onSubmit={submit} aria-label="Заявка на покупку подарочного сертификата" className="gift-builder">
     <aside className="gift-preview-column">
       <div className="gift-preview-sticky">
         <p className="gift-overline">Ваш подарок</p>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArticleBreadcrumbs } from "@/components/ArticleBreadcrumbs";
 import { PageStructuredData } from "@/components/StructuredData";
 import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
@@ -7,25 +8,26 @@ import { Footer } from "@/components/Footer";
 import { KonturBookingWidget } from "@/components/KonturBookingWidget";
 import { EyeCount } from "@/components/BlogSection";
 
+const path = "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety";
+const headline = "Как добраться до Архыза на машине и общественном транспорте в 2026 году";
+
 export const metadata: Metadata = withSocialMetadata({
   title:
     'Как добраться до Архыза в 2026 году | Хижина лесника',
   description:
     "Актуальный гид 2026 года: как доехать до Архыза на машине, автобусе, самолёте и трансфере, и как добраться от посёлка до базы отдыха «Хижина лесника».",
   alternates: {
-    canonical:
-      "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety",
+    canonical: path,
   },
 });
 
 export default function HowToGetToArkhyz2026Page() {
-  return <><PageStructuredData metadata={metadata} />{(
+  return <><PageStructuredData metadata={metadata} articleHeadline={headline} />{(
     <div className="min-h-screen bg-canvas text-ink">
       <Header variant="inner" bookingAnchor="#booking" />
 
       <main className="mx-auto max-w-[1260px] px-4 pt-10 pb-20 sm:px-6 sm:pt-14">
-        {/* Breadcrumbs */}
-
+        <ArticleBreadcrumbs path={path} headline={headline} />
 
         <article className="mt-6 rounded-3xl border border-line bg-surface p-6 sm:p-10 lg:p-12">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4">
@@ -36,8 +38,7 @@ export default function HowToGetToArkhyz2026Page() {
           </div>
 
           <h1 className="mt-6 font-moderustic text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
-            Как добраться до Архыза на машине и общественном транспорте в 2026
-            году
+            {headline}
           </h1>
 
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted">

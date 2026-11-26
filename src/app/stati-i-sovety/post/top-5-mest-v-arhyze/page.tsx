@@ -1,5 +1,6 @@
 import Image from "@/components/SeasonalImage";
 import Link from "next/link";
+import { ArticleBreadcrumbs } from "@/components/ArticleBreadcrumbs";
 import { PageStructuredData } from "@/components/StructuredData";
 import { withSocialMetadata } from "@/lib/social-metadata";
 import type { Metadata } from "next";
@@ -10,23 +11,25 @@ import { Footer } from "@/components/Footer";
 import { KonturBookingWidget } from "@/components/KonturBookingWidget";
 import { EyeCount } from "@/components/BlogSection";
 
+const path = "/stati-i-sovety/post/top-5-mest-v-arhyze";
+const headline = "ТОП-5 мест рядом с нашими домиками в Архызе";
+
 export const metadata: Metadata = withSocialMetadata({
   title: 'ТОП-5 мест Архыза рядом с домиками | База отдыха "Хижина лесника"',
   description:
     "Откройте для себя 5 красивейших мест недалеко от базы отдыха Хижина Лесника: Баритовый водопад, Ферма Альпак, Казачий водопад, Канатная дорога и Обсерватория.",
   alternates: {
-    canonical: "/stati-i-sovety/post/top-5-mest-v-arhyze",
+    canonical: path,
   },
 });
 
 export default function Top5MestArhyzaPage() {
-  return <><PageStructuredData metadata={metadata} />{(
+  return <><PageStructuredData metadata={metadata} articleHeadline={headline} />{(
     <div className="min-h-screen bg-canvas text-ink">
       <Header variant="inner" bookingAnchor="#booking" />
 
       <main className="mx-auto max-w-[1260px] px-4 pt-10 pb-20 sm:px-6 sm:pt-14">
-        {/* Breadcrumbs */}
-
+        <ArticleBreadcrumbs path={path} headline={headline} />
 
         <article className="mt-6 rounded-3xl border border-line bg-surface p-6 sm:p-10 lg:p-12">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-4">
@@ -37,7 +40,7 @@ export default function Top5MestArhyzaPage() {
           </div>
 
           <h1 className="mt-6 font-moderustic text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
-            ТОП-5 мест рядом с нашими домиками в Архызе
+            {headline}
           </h1>
 
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted">

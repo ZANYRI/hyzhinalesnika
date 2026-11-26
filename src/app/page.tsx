@@ -43,6 +43,7 @@ export default function HomePage() {
     <link rel="preload" as="image" href={heroMedia.avif} type="image/avif" media="(max-width: 639px) and (max-aspect-ratio: 9/16)" fetchPriority="high" />
     {HOME_JSON_LD.map(schema => <script key={schema["@type"]} type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(schema).replace(/</g, "\\u003c")}} />)}
     <Header variant="hero" />
+    <main>
     <section data-tone="photo" className="relative -mt-[80px] flex min-h-[100dvh] flex-col justify-between overflow-hidden pt-28 pb-10 sm:-mt-[84px] sm:pt-32">
       <picture>
         {/* Only tall phones use the native-resolution portrait derivative.
@@ -62,7 +63,6 @@ export default function HomePage() {
         <Link href="/booking" className="mt-8 inline-flex rounded-full bg-action px-7 py-4 text-sm font-semibold text-on-action transition hover:bg-action-hover">Проверить свободные даты</Link>
       </div>
     </section>
-    <main>
       <HomeBenefits />
       <AudienceStories />
       <section id="cabins" className="section-band scroll-mt-24">

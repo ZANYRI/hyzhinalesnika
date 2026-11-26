@@ -5,21 +5,23 @@ import { CALLBACK_CONSENT, consentUrl } from "@/data/consents";
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE_CONFIG.url;
 
-  const routes = [
-    { path: "", priority: 1.0 },
+  // Maintain lastModified when the published content changes. Leave it unset
+  // when the content update date is unknown.
+  const routes: { path: string; priority: number; lastModified?: string }[] = [
+    { path: "", priority: 1.0, lastModified: "2026-11-26" },
     { path: consentUrl(CALLBACK_CONSENT), priority: 0.3 },
     { path: "/booking", priority: 0.9 },
     { path: "/news", priority: 0.7 },
-    { path: "/special-offers", priority: 0.8 },
+    { path: "/special-offers", priority: 0.8, lastModified: "2026-11-26" },
     { path: "/new-year", priority: 0.9 },
     { path: "/spa", priority: 0.8 },
     { path: "/otdyh-s-zhivotnymi", priority: 0.8 },
-    { path: "/dining", priority: 0.8 },
+    { path: "/dining", priority: 0.8, lastModified: "2026-11-26" },
     { path: "/split", priority: 0.7 },
     { path: "/cookie-policy", priority: 0.3 },
     { path: "/dom-dlya-semi", priority: 0.9 },
     { path: "/dvuhetazhnyj-barnhouse", priority: 0.9 },
-    { path: "/shale-s-vidom-na-gory", priority: 0.9 },
+    { path: "/shale-s-vidom-na-gory", priority: 0.9, lastModified: "2026-11-26" },
     {
       path: "/kak-dobratsya-do-arhyza-v-2026-godu-vse-sposoby-marshruty-sovety",
       priority: 0.8,
@@ -32,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return routes.map((route) => ({
     url: new URL(route.path || "/", base).toString(),
-    changeFrequency: "weekly",
+    lastModified: route.lastModified,
     priority: route.priority,
   }));
 }

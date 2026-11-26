@@ -111,7 +111,7 @@ export function CallbackModal({
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+          <form method="post" onSubmit={handleSubmit} className="mt-6 space-y-4">
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="callback-name"

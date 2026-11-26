@@ -11,7 +11,7 @@ function PhotoDishes({ dishes, columns, sizes }: {
 }) {
   return <ul className={`grid gap-4 sm:grid-cols-2 sm:gap-5 ${columns}`}>
     {dishes.map(dish => <li key={dish.name} className="overflow-hidden rounded-2xl border border-line bg-white">
-      <Image width={620} height={620} sizes={sizes} src={`${photoDirectory}/${dish.photo}.webp`} alt="" className="aspect-[3/2] w-full object-cover sm:aspect-[5/4]" />
+      <Image width={620} height={620} sizes={sizes} src={`${photoDirectory}/${dish.photo}.webp`} alt={`Подача блюда «${dish.name}»`} className="aspect-[3/2] w-full object-cover sm:aspect-[5/4]" />
       <div className="px-4 pt-4 pb-5 sm:px-5">
         <div className="flex items-start justify-between gap-3">
           <h4 className="font-moderustic text-lg font-semibold leading-snug">{dish.name}</h4>

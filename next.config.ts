@@ -1,11 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
   cacheComponents: true,
   partialPrefetching: true,
   images: { qualities: [60, 75], formats: ["image/avif", "image/webp"] },
   async headers() {
     return [{
+      source: "/:path*",
+      headers: [
+        { key: "X-Content-Type-Options", value: "nosniff" },
+        { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+      ],
+    }, {
       // Only content-addressed fonts are immutable. The manifest and full-font
       // fallback remain revalidatable, so later typography updates are visible.
       source: "/fonts/subsets/:name([a-z0-9-]+\\.[0-9a-f]{12}\\.woff2)",
