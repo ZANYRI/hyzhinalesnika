@@ -21,7 +21,12 @@ import { BookingAssistance } from "@/components/BookingAssistance";
 import { SEASON_LABEL } from "@/lib/season";
 import { Snowfall } from "@/components/Snowfall";
 
-export const metadata: Metadata = withSocialMetadata({title: HOME_TITLE, description: HOME_DESCRIPTION, alternates: {canonical: "/"}});
+export const metadata: Metadata = withSocialMetadata({
+  title: HOME_TITLE,
+  description: HOME_DESCRIPTION,
+  alternates: { canonical: "/" },
+  verification: { yandex: "6c90a5ad39131eb6" },
+});
 
 const HOME_JSON_LD = [
   {
