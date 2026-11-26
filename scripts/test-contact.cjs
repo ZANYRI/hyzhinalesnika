@@ -6,6 +6,7 @@ const path = require("node:path");
 const { createHash } = require("node:crypto");
 const Module = require("node:module");
 const ts = require("typescript");
+const sharp = require("sharp");
 const root = path.resolve(__dirname, "..");
 const resolve = Module._resolveFilename;
 Module._resolveFilename = function (name, parent, ...rest) {
@@ -17,7 +18,7 @@ require.extensions[".ts"] = (module, filename) => module._compile(ts.transpileMo
 
 const { POST } = require(path.join(root, "src/app/api/contact/route.ts"));
 const { CALLBACK_CONSENT } = require(path.join(root, "src/data/consents.ts"));
-const { GIFT_CERTIFICATE_SOURCE } = require(path.join(root, "src/data/special-offers.ts"));
+const { GIFT_CERTIFICATE_SOURCE, GIFT_COVER_UPLOAD_LIMIT } = require(path.join(root, "src/data/special-offers.ts"));
 
 async function main() {
   const directory = await fsp.mkdtemp(path.join(os.tmpdir(), "hyzhina-contact-test-"));
@@ -34,14 +35,29 @@ async function main() {
     callback: consent(CALLBACK_CONSENT, true),
   } };
   const send = body => POST(new Request("http://localhost/api/contact", { method: "POST", body: JSON.stringify(body) }));
+  const sendCover = (body, image, contentType = "image/jpeg") => {
+    const form = new FormData();
+    form.set("payload", JSON.stringify(body));
+    form.set("cover", new Blob([image], { type: contentType }), "uploaded.jpg");
+    return POST(new Request("http://localhost/api/contact", { method: "POST", body: form }));
+  };
   const read = (kind, id) => JSON.parse(fs.readFileSync(path.join(journal, kind, `${id}.json`), "utf8"));
   global.fetch = async (url, options) => {
     // Never send test notifications to Telegram or any other network service.
-    assert.equal(url, "https://api.telegram.org/bottest-token/sendMessage");
-    const payload = JSON.parse(options.body);
+    const document = url === "https://api.telegram.org/bottest-token/sendDocument";
+    if (!document) assert.equal(url, "https://api.telegram.org/bottest-token/sendMessage");
+    const payload = document ? { text: options.body.get("caption") } : JSON.parse(options.body);
     const id = payload.text.match(/Номер: ([\da-f-]+)/)[1];
     const request = read("requests", id);
     assert.equal(request.consents[0].granted, true, "Consent must exist before delivery");
+    if (document) {
+      const attachment = options.body.get("document");
+      assert.equal(attachment.name, "cover.jpg");
+      assert.equal(attachment.type, "image/jpeg");
+      assert.equal(request.giftCertificate.design, "custom");
+      assert.deepEqual(Buffer.from(await attachment.arrayBuffer()), Buffer.from(request.giftCover.base64, "base64"));
+      assert.ok(payload.text.length <= 1024);
+    }
     deliveries.push(payload);
     return Response.json({ ok: true });
   };
@@ -70,6 +86,17 @@ async function main() {
     assert.equal((await send({ ...base, consents: { ...base.consents, advertising: { granted: true, version: CALLBACK_CONSENT.version } } })).status, 400);
     assert.equal((await POST(new Request("http://localhost/api/contact", { method: "POST", body: "{" }))).status, 400);
     assert.equal((await send({ ...base, oversized: "x".repeat(9000) })).status, 413);
+
+    const cover = await sharp({ create: { width: 64, height: 32, channels: 3, background: "#245442" } }).jpeg().toBuffer();
+    const giftWithCover = { ...base, name: "А".repeat(100), phone: "+7" + " ".repeat(15) + "9001234567",
+      giftCertificate: { amount: Number.MAX_SAFE_INTEGER, format: "electronic", design: "custom", recipient: "Б".repeat(100), message: "🎉".repeat(300) },
+    };
+    assert.equal((await send(giftWithCover)).status, 400);
+    assert.equal((await sendCover(base, cover)).status, 400);
+    assert.equal((await sendCover(giftWithCover, cover, "image/png")).status, 400);
+    assert.equal((await sendCover(giftWithCover, Buffer.from("not a photo"))).status, 400);
+    assert.equal((await sendCover(giftWithCover, Buffer.alloc(GIFT_COVER_UPLOAD_LIMIT + 1))).status, 413);
+
     assert.equal(deliveries.length, 0);
     assert.equal(fs.existsSync(journal), false);
 
@@ -113,6 +140,13 @@ async function main() {
       if (giftCertificate.recipient) assert.ok(notification.includes(`Получатель подарка: ${giftCertificate.recipient}`));
       if (giftCertificate.message) assert.ok(notification.includes(`Поздравление: ${giftCertificate.message}`));
     }
+
+    const coverResponse = await sendCover(giftWithCover, cover);
+    assert.equal(coverResponse.status, 200);
+    const { requestId: coverId } = await coverResponse.json();
+    assert.deepEqual(read("requests", coverId).giftCertificate, { ...giftWithCover.giftCertificate, validityYears: 1 });
+    assert.equal(read("delivery", coverId).status, "delivered");
+    assert.ok(deliveries.at(-1).text.includes(giftWithCover.giftCertificate.message), "The longest note from the builder fits in the document caption");
 
     const parallel = await Promise.all(Array.from({ length: 6 }, () => send(base)));
     assert(parallel.every(result => result.status === 200));

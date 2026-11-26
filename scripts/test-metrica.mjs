@@ -155,7 +155,7 @@ for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssis
       giftDesign: "evening", giftMessage: "С днём рождения!", giftRecipient: "Анна",
       giftCustomAmount: "12500", giftFormat: scenario === "invalid_format" ? "invalid" : "printed",
     };
-    const react = { useState: initial => {
+    const react = { useEffect() {}, useState: initial => {
       const index = hook++;
       const value = component === "CallbackModal" && index < 2 ? [fields.name, fields.phone][index] : isGift && index === 0 ? fields.giftAmount : initial;
       return [value, () => {}];
@@ -198,8 +198,21 @@ for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssis
 // Exercise the real builder controls and rerender with their selected state.
 {
   const states = []; let cursor = 0;
-  const component = load("src/components/GiftCertificateForm.tsx", {}, {
-    react: { useState(initial) {
+  const requests = [];
+  const processed = new Blob(["converted image"], { type: "image/jpeg" });
+  const component = load("src/components/GiftCertificateForm.tsx", {
+    createImageBitmap: async () => ({ width: 2000, height: 1000, close() {} }),
+    document: { createElement: () => ({
+      getContext: () => ({ fillRect() {}, drawImage() {} }),
+      toBlob: callback => callback(processed),
+    }) },
+    URL: { createObjectURL: () => "blob:cover", revokeObjectURL() {} },
+    FormData: class extends FormData {
+      constructor(form) { super(); if (form) for (const [name, value] of Object.entries(form.fields)) this.set(name, value); }
+    },
+    fetch: async (url, options) => { requests.push({ url, options }); return { ok: true }; },
+  }, {
+    react: { useEffect() {}, useState(initial) {
       const index = cursor++;
       if (!(index in states)) states[index] = initial;
       return [states[index], value => { states[index] = value; }];
@@ -227,11 +240,17 @@ for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssis
   change("giftAmount", "custom"); change("giftCustomAmount", "12500");
   assert.equal(previewAmount(), "12500₽", "Custom nominal updates the preview");
   const previewImage = () => find(node => node.props?.className === "gift-preview-photo").props.src;
-  const winterImage = previewImage();
+  const predefined = nodes(tree).filter(node => node.props?.name === "giftDesign");
+  assert.ok(predefined.length >= 6);
+  const coverSources = new Set();
+  for (const variant of predefined) {
+    change("giftDesign", variant.props.value);
+    coverSources.add(previewImage());
+    assert.ok(fs.existsSync(`public${previewImage()}`));
+  }
+  assert.equal(coverSources.size, predefined.length, "Every predefined choice uses a distinct cover");
   change("giftDesign", "forest");
-  assert.equal(previewImage(), giftOffers.GIFT_CERTIFICATE_DESIGNS.forest.winterImage);
-  assert.notEqual(previewImage(), winterImage, "The two winter designs have distinct covers");
-  assert.ok(fs.existsSync(`public${previewImage()}`));
+  assert.equal(previewImage(), winterSeason.seasonalImage(giftOffers.GIFT_CERTIFICATE_DESIGNS.forest.image));
   change("giftDesign", "evening");
   assert.equal(previewImage(), winterSeason.seasonalImage(giftOffers.GIFT_CERTIFICATE_DESIGNS.evening.image));
   change("giftRecipient", "Анна"); change("giftMessage", "С днём рождения!");
@@ -239,5 +258,31 @@ for (const [component, source] of [["CallbackModal", "callback"], ["BookingAssis
   assert.equal(find(node => node.props?.className === "gift-note-message").props.children, "С днём рождения!");
   change("giftFormat", "printed");
   assert.ok(JSON.stringify(find(node => node.props?.className === "gift-preview-details")).includes("Печатный"));
+
+  const chooseFile = async file => {
+    await find(node => node.props?.type === "file").props.onChange({ currentTarget: { files: [file], value: "selected" } });
+    tree = render();
+  };
+  await chooseFile({ name: "cover.svg", type: "image/svg+xml", size: 90 });
+  assert.ok(find(node => node.props?.className === "gift-upload-error"));
+  await chooseFile({ name: "cover.png", type: "image/png", size: 90 });
+  assert.equal(previewImage(), "blob:cover");
+  change("giftDesign", "campfire");
+  assert.notEqual(previewImage(), "blob:cover");
+  change("giftDesign", "custom");
+  assert.equal(previewImage(), "blob:cover");
+  find(node => node.props?.className === "gift-upload-remove").props.onClick();
+  tree = render();
+  assert.notEqual(previewImage(), "blob:cover");
+  assert.equal(find(node => node.props?.name === "giftDesign" && node.props.value === "custom"), undefined);
+  await chooseFile({ name: "replacement.jpg", type: "image/jpeg", size: 90 });
+  await formElement(tree).props.onSubmit({ preventDefault() {}, currentTarget: { reset() {}, fields: {
+    callbackConsent: "on", giftAmount: "10000", giftDesign: "custom", giftFormat: "printed",
+    giftRecipient: "Анна", giftMessage: "С днём рождения!", name: "Test", phone: "+70000000000",
+  } } });
+  assert.equal(requests.length, 1);
+  assert.equal(requests[0].options.headers, undefined);
+  assert.equal(JSON.parse(requests[0].options.body.get("payload")).giftCertificate.design, "custom");
+  assert.equal(await requests[0].options.body.get("cover").text(), "converted image");
 }
 console.log("METRICA PASS: automatic first visit, blocked storage, legacy choices, script readiness, SPA views, goals, cookie notice, preview exclusion, contact filtering, parameter sanitization and all three form success/error paths; no external requests.");

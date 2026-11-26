@@ -22,7 +22,7 @@ export function CabinShowcase() {
   const [photoIdx, setPhotoIdx] = useState(0);
 
   const cabin = CABIN_LIST[activeCabinIdx];
-  // The card cover is already the first gallery photo, under a different filename.
+  // Each cabin opens on its first gallery photo.
   const previewPhotos = cabin.gallery.filter((photo, index, photos) => photos.findIndex(item => item.src === photo.src) === index);
   const currentPhoto = previewPhotos[photoIdx % previewPhotos.length];
 

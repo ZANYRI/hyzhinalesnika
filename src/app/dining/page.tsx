@@ -7,6 +7,7 @@ import { Coffee, ForkKnife, Clock } from "@phosphor-icons/react/dist/ssr";
 import { ContentPage } from "@/components/ContentPage";
 import { CabinGallerySlider } from "@/components/CabinGallerySlider";
 import { BookingAssistance } from "@/components/BookingAssistance";
+import { BreakfastMenu } from "@/components/BreakfastMenu";
 
 export const metadata: Metadata = withSocialMetadata({
   title: "Ресторан и завтрак в домик | Хижина лесника, Архыз",
@@ -28,7 +29,14 @@ export default function DiningPage() {
   return <><PageStructuredData metadata={metadata} />{<ContentPage title="Ресторан и завтрак в домик" eyebrow="Вкус вашего отдыха" description="Ужин после горной прогулки, обед всей семьёй или неспешное утро дома. Выберите удобный для вас формат.">
     <section className="mb-10 grid gap-7 rounded-3xl border border-line bg-surface p-6 sm:p-10 lg:grid-cols-2">
       <div><ForkKnife size={38} weight="thin" className="text-accent" /><h2 className="mt-5 font-moderustic text-3xl font-bold">Ресторан à la carte рядом</h2><p className="mt-4 leading-relaxed text-muted">В 100 метрах от наших домиков находится ресторан-бар партнёрского парк-отеля «Адреналин». Приходите на обед, ужин или чашку кофе. Каждое блюдо выбираете по меню, питание оплачивается отдельно.</p></div>
-      <div className="flex flex-col justify-center"><p className="flex items-center gap-2 text-accent"><Clock size={22} />Кухня: 12:00–22:30</p><p className="mt-5 leading-relaxed text-muted">В меню есть салаты, супы, мясные и рыбные блюда, паста, пицца, гарниры и десерты. В баре можно заказать кофе, чай, лимонады и молочные коктейли. Зал с мягкими креслами и деревянными столами располагает к спокойному вечеру после активного дня.</p><a href="#menu" className="mt-5 text-sm font-semibold text-accent">Посмотреть меню ↓</a></div>
+      <div className="flex flex-col justify-center">
+        <p className="flex items-center gap-2 text-accent"><Clock size={22} />Кухня: 12:00–22:30</p>
+        <p className="mt-5 leading-relaxed text-muted">В меню есть салаты, супы, мясные и рыбные блюда, паста, пицца, гарниры и десерты. В баре можно заказать кофе, чай, лимонады и молочные коктейли. Зал с мягкими креслами и деревянными столами располагает к спокойному вечеру после активного дня.</p>
+        <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-accent">
+          <a href="#menu">Меню ресторана ↓</a>
+          <a href="#breakfast-menu">Меню завтраков ↓</a>
+        </div>
+      </div>
     </section>
     <CabinGallerySlider images={photos} />
     <section id="menu" className="mt-16 scroll-mt-28">
@@ -39,7 +47,19 @@ export default function DiningPage() {
         <span className="block px-5 py-4 text-sm font-semibold text-ink">Меню à la carte ↗</span>
       </a>
     </section>
-    <section id="breakfast" className="mt-16 grid scroll-mt-28 overflow-hidden rounded-3xl bg-canvas text-ink lg:grid-cols-2"><Image width={1500} height={889} sizes="(min-width: 1024px) 50vw, 100vw" src="/images/home/about-dining.jpg" alt="Обеденная зона домика для завтрака" loading="lazy" className="h-full min-h-72 w-full object-cover"/><div className="p-7 sm:p-10"><Coffee size={38} weight="thin"/><p className="mt-5 text-xs uppercase tracking-widest opacity-65">Утро без спешки</p><h2 className="mt-3 font-moderustic text-3xl font-bold">Завтрак в ваш домик</h2><p className="mt-5 leading-relaxed">Для завтраков с доставкой мы сотрудничаем с другим рестораном. Закажите завтрак с вечера, чтобы утром остаться в уюте своего дома.</p><ol className="mt-6 list-inside list-decimal space-y-3 text-sm leading-relaxed"><li>Свяжитесь с нами накануне вечером.</li><li>Уточните меню, количество порций, стоимость и время доставки.</li><li>Подтвердите заказ и встречайте завтрак в домике.</li></ol><p className="mt-5 text-sm leading-relaxed opacity-75">Сообщите о пищевых ограничениях при заказе. Меню и возможность доставки уточняем для выбранной даты.</p><Link href="#help" prefetch={false} className="mt-7 inline-block rounded-full bg-action px-6 py-3 text-sm font-semibold text-white">Узнать о завтраке</Link></div></section>
+    <section id="breakfast" className="mt-16 grid scroll-mt-28 overflow-hidden rounded-3xl bg-canvas text-ink lg:grid-cols-2">
+      <Image width={1500} height={889} sizes="(min-width: 1024px) 50vw, 100vw" src="/images/home/about-dining.jpg" alt="Обеденная зона домика для завтрака" loading="lazy" className="h-full min-h-72 w-full object-cover" />
+      <div className="p-7 sm:p-10">
+        <Coffee size={38} weight="thin" className="text-accent" />
+        <h2 className="mt-4 font-moderustic text-3xl font-bold">Завтрак в ваш домик</h2>
+        <p className="mt-4 leading-relaxed">Завтраки в домик доставляет другой ресторан-партнёр. Выберите блюда из меню и свяжитесь с нами накануне вечером, чтобы согласовать количество порций, стоимость и время доставки.</p>
+        <div className="mt-6 flex flex-wrap items-center gap-4">
+          <Link href="#help" prefetch={false} className="inline-block rounded-full bg-action px-6 py-3 text-sm font-semibold text-white">Узнать о завтраке</Link>
+          <a href="#breakfast-menu" className="text-sm font-semibold text-accent underline underline-offset-4">Посмотреть меню ↓</a>
+        </div>
+      </div>
+    </section>
+    <BreakfastMenu />
     <BookingAssistance />
   </ContentPage>}</>;
 }

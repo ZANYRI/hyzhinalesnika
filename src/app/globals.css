@@ -643,6 +643,18 @@ body:not(:has([data-tid="modal-container"])) [data-tid="Tooltip__root"] img[src*
 .gift-design-check { position:absolute; top:.35rem; right:.35rem; display:none; width:1.3rem; height:1.3rem; border-radius:50%; background:#fffaf0; color:#274c36; text-align:center; font-size:.8rem; }
 .gift-design:has(input:checked) .gift-design-check { display:block; }
 .gift-design-name { display:block; margin-top:.55rem; color:#59695c; font-size:.66rem; text-align:center; }
+.gift-upload { margin-top:1rem; padding:.9rem; border:1px solid #dedfd4; border-radius:.9rem; background:#faf9f5; }
+.gift-upload-selection { display:flex; align-items:flex-start; gap:.6rem; margin-bottom:.65rem; color:#294838; font-size:.8rem; cursor:pointer; }
+.gift-upload-selection input { margin-top:.2rem; accent-color:#31573f; }
+.gift-upload-selection small { display:block; overflow-wrap:anywhere; color:#59695c; font-size:.72rem; }
+.gift-upload-actions { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem 1rem; }
+.gift-upload-button { position:relative; display:inline-flex; min-height:2.75rem; align-items:center; padding:.5rem .8rem; border:1px solid #6c8d76; border-radius:.65rem; color:#294838; background:#fff; font-size:.8rem; font-weight:600; cursor:pointer; }
+.gift-upload-button:focus-within { outline:2px solid #31573f; outline-offset:3px; }
+.gift-upload-button:hover { background:#edf2e9; }
+.gift-upload-button:has(input:disabled) { cursor:wait; opacity:.65; }
+.gift-upload-remove { min-height:2.75rem; color:#415649; font-size:.75rem; text-decoration:underline; cursor:pointer; }
+.gift-upload-help, .gift-upload-error { margin-top:.55rem; color:#59695c; font-size:.72rem; line-height:1.55; }
+.gift-upload-error { color:#912c28; }
 .gift-formats { display:grid; grid-template-columns:1fr 1fr; gap:.65rem; }
 .gift-format > span { flex-direction:column; align-items:flex-start; padding:.85rem; }
 .gift-format strong { font-weight:500; }

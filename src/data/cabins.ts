@@ -85,6 +85,11 @@ function makeGallery(folder: string, count: number, baseAlt: string) {
   });
 }
 
+const bukCover = {
+  src: "/images/home/story-romance-chalet-night.webp",
+  alt: "Освещённая терраса шале «Бук» в Архызе",
+};
+
 export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
   iva: {
     id: "iva",
@@ -186,7 +191,7 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
         id: "buk",
         title: 'Шале «Бук»',
         href: "/shale-s-vidom-na-gory",
-        image: "/images/home/cabin-buk.jpg",
+        image: bukCover.src,
         capacity: "до 4 гостей",
         sleepingPlaces: "двуспальная кровать и две односпальные кровати",
         area: "40 м²",
@@ -297,7 +302,7 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
         id: "buk",
         title: 'Шале «Бук»',
         href: "/shale-s-vidom-na-gory",
-        image: "/images/home/cabin-buk.jpg",
+        image: bukCover.src,
         capacity: "до 4 гостей",
         sleepingPlaces: "двуспальная кровать и две односпальные кровати",
         area: "40 м²",
@@ -320,9 +325,8 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
     cardBedrooms: "2 спальни",
     cardArea: "40 м²",
     cardSubtitle: "Камерное шале с тёплым полом и панорамным видом на горные хребты",
-    cardImage: "/images/home/cabin-buk.jpg",
-    cardImageAlt:
-      "Шале Бук с панорамным видом на горы на базе отдыха Хижина лесника",
+    cardImage: bukCover.src,
+    cardImageAlt: bukCover.alt,
     highlights: [
       "Прямой панорамный вид на горные хребты из окон",
       "Тёплый пол и автономное газовое отопление",
@@ -375,7 +379,7 @@ export const CABINS: Record<"iva" | "bereza" | "buk", CabinData> = {
         ],
       },
     ],
-    gallery: makeGallery("shale", 11, 'Шале «Бук» с панорамными окнами'),
+    gallery: [bukCover, ...makeGallery("shale", 11, 'Шале «Бук» с панорамными окнами')],
     otherVariants: [
       {
         id: "iva",
